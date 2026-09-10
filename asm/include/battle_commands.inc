@@ -1634,3 +1634,9 @@
 
 
 .endif
+
+    // Caretaker Retirement: remove the just-caught Pokemon from the party.
+    // Only valid immediately after WaitCatchMonTask, guarded on BATTLE_RESULT_CAPTURED_MON.
+    .macro SendCaughtMonToRanch
+    .long 0x12A
+    .endm

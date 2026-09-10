@@ -9,6 +9,12 @@ _000:
     Wait
     StartCatchMonTask CAPTURE_NORMAL
     WaitCatchMonTask
+    // Caretaker Retirement: the catch registers the Dex entry, then the Pokemon is
+    // removed again so it never joins the party. Skipped unless a catch succeeded.
+    CompareVarToValue OPCODE_FLAG_NOT, BSCRIPT_VAR_BATTLE_OUTCOME, BATTLE_RESULT_CAPTURED_MON, _ranch
+    SendCaughtMonToRanch
+
+_ranch:
     UpdateVarFromVar OPCODE_GET, BSCRIPT_VAR_BATTLE_OUTCOME, BSCRIPT_VAR_TEMP_DATA
     UpdateVar OPCODE_BITWISE_AND, BSCRIPT_VAR_TEMP_DATA, 255
     CompareVarToValue OPCODE_NEQ, BSCRIPT_VAR_TEMP_DATA, 4, _029

@@ -139,6 +139,7 @@ BOOL btl_scr_cmd_126_TryHealingWish(void *bsys UNUSED, struct BattleStruct *ctx)
 BOOL btl_scr_cmd_127_ActivateHealingWish(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_128_IsFieldCondition2On(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_129_SetFieldCondition2(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_12A_sendcaughtmontoranch(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -481,6 +482,7 @@ const u8 *BattleScrCmdNames[] = {
     "ActivateHealingWish",
     "IsFieldCondition2On",
     "SetFieldCondition2",
+    "SendCaughtMonToRanch",
     // "YourCustomCommand",
 };
 
@@ -565,6 +567,7 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x127 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_127_ActivateHealingWish,
     [0x128 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_128_IsFieldCondition2On,
     [0x129 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_129_SetFieldCondition2,
+    [0x12A - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_12A_sendcaughtmontoranch,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -2513,6 +2516,39 @@ BOOL btl_scr_cmd_F1_setparentalbondflag(void *bw UNUSED, struct BattleStruct *sp
 
     return FALSE;
 }
+
+/**
+ *  @brief Caretaker Retirement: a caught wild Pokemon is registered in the Dex by the
+ *         vanilla capture routine, then removed again here so it never joins the player.
+ *
+ *  Runs from subscript_0011_THROW_POKEBALL after WaitCatchMonTask, guarded on
+ *  BATTLE_RESULT_CAPTURED_MON, so it only fires on a successful catch.
+ *
+ *  The Pokemon has already been appended to the party by the vanilla routine, so the
+ *  newly-caught one is the last entry. Never removes the last remaining party member -
+ *  an empty party soft-locks the game.
+ *
+ *  @param bw battle work structure
+ *  @param sp global battle structure
+ *  @return FALSE
+ */
+BOOL btl_scr_cmd_12A_sendcaughtmontoranch(void *bw, struct BattleStruct *sp)
+{
+    IncrementBattleScriptPtr(sp, 1);
+
+    struct Party *party = BattleWorkPokePartyGet(bw, 0);
+    if (party == NULL) {
+        return FALSE;
+    }
+
+    int count = BattleWorkPokeCountGet(bw, 0);
+    if (count > 1) {
+        PokeParty_Delete(party, count - 1);
+    }
+
+    return FALSE;
+}
+
 
 /**
  *  @brief script command to jump somewhere if the current move is a valid parental bond move
