@@ -2104,6 +2104,11 @@
 #define ITEM_EISCUE_DOWN                 2098
 #define ITEM_DREEPY_POWDER               2099
 #define ITEM_NONE_2100                   2100
+// Caretaker Retirement: baby evolutions are gated behind this item, which is never
+// obtainable. Babies therefore never evolve, but they still HAVE an evolution, which
+// is what Eviolite checks. Make this obtainable to re-enable baby evolutions.
+#define ITEM_CARETAKER_TOKEN             ITEM_NONE_2100
+
 #define ITEM_NONE_2101                   2101
 #define ITEM_NONE_2102                   2102
 #define ITEM_LECHONK_HAIR                2103

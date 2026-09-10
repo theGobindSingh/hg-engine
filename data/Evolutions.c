@@ -2424,7 +2424,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_PICHU] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_PIKACHU },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_PIKACHU },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -2438,7 +2438,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_CLEFFA] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_CLEFAIRY },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_CLEFAIRY },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -2452,7 +2452,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_IGGLYBUFF] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_JIGGLYPUFF },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_JIGGLYPUFF },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -2466,7 +2466,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_TOGEPI] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_TOGETIC },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_TOGETIC },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -3320,9 +3320,9 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_TYROGUE] = {
         .entries = {
-            { EVO_LEVEL_ATK_LT_DEF, 20, SPECIES_HITMONCHAN },
-            { EVO_LEVEL_ATK_GT_DEF, 20, SPECIES_HITMONLEE },
-            { EVO_LEVEL_ATK_EQ_DEF, 20, SPECIES_HITMONTOP },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_HITMONCHAN },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_HITMONLEE },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_HITMONTOP },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -3348,7 +3348,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_SMOOCHUM] = {
         .entries = {
-            { EVO_LEVEL, 30, SPECIES_JYNX },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_JYNX },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -3362,7 +3362,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_ELEKID] = {
         .entries = {
-            { EVO_LEVEL, 30, SPECIES_ELECTABUZZ },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_ELECTABUZZ },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -3376,7 +3376,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_MAGBY] = {
         .entries = {
-            { EVO_LEVEL, 30, SPECIES_MAGMAR },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_MAGMAR },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -4188,7 +4188,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_AZURILL] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_MARILL },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_MARILL },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -5056,7 +5056,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_WYNAUT] = {
         .entries = {
-            { EVO_LEVEL, 15, SPECIES_WOBBUFFET },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_WOBBUFFET },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -5700,7 +5700,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_BUDEW] = {
         .entries = {
-            { EVO_FRIENDSHIP_DAY, 0, SPECIES_ROSELIA },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_ROSELIA },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6078,7 +6078,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_CHINGLING] = {
         .entries = {
-            { EVO_FRIENDSHIP_NIGHT, 0, SPECIES_CHIMECHO },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_CHIMECHO },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6148,7 +6148,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_BONSLY] = {
         .entries = {
-            { EVO_HAS_MOVE, MOVE_MIMIC, SPECIES_SUDOWOODO },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_SUDOWOODO },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6162,7 +6162,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_MIME_JR] = {
         .entries = {
-            { EVO_HAS_MOVE, MOVE_MIMIC, SPECIES_MR_MIME },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_MR_MIME },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6260,7 +6260,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_MUNCHLAX] = {
         .entries = {
-            { EVO_FRIENDSHIP, 0, SPECIES_SNORLAX },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_SNORLAX },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6274,7 +6274,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_RIOLU] = {
         .entries = {
-            { EVO_FRIENDSHIP_DAY, 0, SPECIES_LUCARIO },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_LUCARIO },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6428,7 +6428,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_MANTYKE] = {
         .entries = {
-            { EVO_OTHER_PARTY_MON, SPECIES_REMORAID, SPECIES_MANTINE },
+            { EVO_STONE, ITEM_CARETAKER_TOKEN, SPECIES_MANTINE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
