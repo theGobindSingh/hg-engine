@@ -63,6 +63,10 @@
 
  ``IMPLEMENT_REUSABLE_REPELS`` (``include/config.h`` only) implements reusable repels, queuing up the next repel in the order of max, super, and then normal repels depending on which the player yet has.
 
+ ``IMPLEMENT_EGG_WARMER`` (``include/config.h`` only) makes a Chansey or Blissey in the lead party slot halve Egg hatching time, exactly as Flame Body and Magma Armor already do.  It does not stack with them, and Happiny does not count.
+
+ ``IMPLEMENT_EGG_CARETAKER_CUE`` (``include/config.h`` only) plays a short "!" emote, sound and message over the following Pokemon on the first step after it becomes a Chansey or Blissey while an Egg is in the party.  It needs common script ``2074`` and text archive ``40`` index ``121``, both of which ship with this repository.  ``EGG_CARETAKER_CUE_VAR`` is the save variable it uses to remember the previous follower species; it must not be used by any script.
+
  ``UPDATE_VITAMIN_EV_CAPS`` (``include/config.h`` only) updates the EV caps for vitamins from 100 to 252 like later generations.
 
  ``DISABLE_ITEMS_IN_TRAINER_BATTLE`` (``include/config.h`` only) disables items being used while in trainer battles.

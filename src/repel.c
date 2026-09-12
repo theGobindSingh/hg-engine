@@ -3,13 +3,26 @@
 #include "../include/bag.h"
 #include "../include/constants/file.h"
 #include "../include/constants/item.h"
+#include "../include/egg_caretaker.h"
 #include "../include/item.h"
 
 void Repel_SetCurrentType();
 
-#ifdef IMPLEMENT_REUSABLE_REPELS
-u16 ALIGN4 CurrentRepelType = 0;
-
+#if defined(IMPLEMENT_REUSABLE_REPELS) || defined(IMPLEMENT_EGG_CARETAKER_CUE)
+/**
+ *  @brief the per-step field event hooked over PlayerStepEvent_RepelCounterDecrement
+ *
+ *  Vanilla only counts the repel down and shows "the repellent's effect wore
+ *  off" (common script 2022).  IMPLEMENT_REUSABLE_REPELS replaces that message
+ *  with the reuse prompt (2072), and IMPLEMENT_EGG_CARETAKER_CUE bolts the
+ *  caretaker cue on afterwards.  Either flag alone is enough to install the
+ *  hook, and with the repel flag off the vanilla repel behaviour is kept here
+ *  verbatim so nothing is lost.
+ *
+ *  @param saveData the save
+ *  @param fieldSystem the field system
+ *  @return TRUE if a script was queued for this step
+ */
 bool32 PlayerStepEvent_RepelCounterDecrement(SaveData *saveData, FieldSystem *fieldSystem)
 {
     void *roamerSaveData = EncDataSave_GetSaveDataPtr(saveData);
@@ -19,6 +32,7 @@ bool32 PlayerStepEvent_RepelCounterDecrement(SaveData *saveData, FieldSystem *fi
         (*repel_addr)--;
 
         if (*repel_addr == 0) {
+#ifdef IMPLEMENT_REUSABLE_REPELS
             BAG_DATA *bag = Sav2_Bag_get(saveData);
             u16 currentRepel = Repel_GetMostRecent();
             if (Bag_HasItem(bag, currentRepel, 1, HEAPID_WORLD)) {
@@ -26,13 +40,26 @@ bool32 PlayerStepEvent_RepelCounterDecrement(SaveData *saveData, FieldSystem *fi
             } else {
                 EventSet_Script(fieldSystem, 2022, NULL);
             }
+#else
+            EventSet_Script(fieldSystem, 2022, NULL);
+#endif
 
             return TRUE;
         }
     }
 
+#ifdef IMPLEMENT_EGG_CARETAKER_CUE
+    if (EggCaretaker_TryLeadChangeCue(saveData, fieldSystem)) {
+        return TRUE;
+    }
+#endif
+
     return FALSE;
 }
+#endif
+
+#ifdef IMPLEMENT_REUSABLE_REPELS
+u16 ALIGN4 CurrentRepelType = 0;
 
 u16 Repel_GetMostRecent()
 {

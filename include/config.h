@@ -158,6 +158,15 @@
 // IMPLEMENT_REUSABLE_REPELS defines whether or not a prompt to use another repel automatically appears upon the previous repel being used up
 #define IMPLEMENT_REUSABLE_REPELS
 
+// IMPLEMENT_EGG_WARMER makes a Chansey or Blissey leading the party warm eggs in the party, halving egg cycles exactly as Flame Body and Magma Armor do.  Does not stack with them, and Happiny deliberately does not count.
+#define IMPLEMENT_EGG_WARMER
+
+// IMPLEMENT_EGG_CARETAKER_CUE makes the game play a short "!" cue over the following Pokemon the first time it becomes a Chansey or Blissey while an Egg is in the party.  Requires common script 2074 and text archive 40 index 121.
+#define IMPLEMENT_EGG_CARETAKER_CUE
+
+// EGG_CARETAKER_CUE_VAR is the save variable the caretaker cue uses to remember which species was following last step.  It must be a save-persistent event variable that no script touches; 0x4060 is unused by every script in the HeartGold US ROM.
+#define EGG_CARETAKER_CUE_VAR 0x4060
+
 // UPDATE_VITAMIN_EV_CAPS changes the cap on the vitamins from 100 to 252 per recent generations
 #define UPDATE_VITAMIN_EV_CAPS
 

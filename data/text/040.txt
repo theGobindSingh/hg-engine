@@ -119,3 +119,7 @@ NOT TELLING
 The repellent’s effect wore off!\nWould you like to use another one?
 You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
+{STRVAR_1 1, 0, 0} seems delighted to look\nafter your egg as you walk!
+{STRVAR_1 1, 0, 0} is carefully\nkeeping the Egg safe in its pouch!
+{STRVAR_1 1, 0, 0} gently patted the pouch\nholding your Egg with a warm smile.
+{STRVAR_1 1, 0, 0} seems delighted to look\nafter your Egg as you walk!

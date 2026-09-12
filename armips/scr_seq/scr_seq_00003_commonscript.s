@@ -88,6 +88,8 @@ scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
+scrdef scr_seq_0003_074_egg_caretaker_cue
+scrdef scr_seq_0003_075_egg_caretaker_talk
 scrdef_end
 
 scr_seq_0003_002:
@@ -1740,6 +1742,68 @@ scr_seq_0003_073_autobattle_testing:
     trainer_battle 5, 0, 0, 0
     //setvar 0x800B, 1
     //WildBattleSp 785 | (1 << 11), 50, 0
+    releaseall
+    end
+
+// Caretaker cue - queued from PlayerStepEvent_RepelCounterDecrement (src/egg_caretaker.c)
+// on the first step after the following Pokemon becomes a Chansey or Blissey
+// while an Egg is in the party.  Text archive 040.txt index 121.
+scr_seq_0003_074_egg_caretaker_cue:
+    lockall
+    SetFollowingPokeMovement Exclamation
+    WaitFollowingPoke
+    play_se SEQ_SE_DP_SELECT
+    CMD_734 1 // FollowingPokeJump
+    WaitFollowingPoke
+    get_party_lead_alive VAR_SPECIAL_x8004
+    buffer_mon_species_name 0, VAR_SPECIAL_x8004
+    npc_msg 121
+    wait_button_or_walk_away
+    closemsg
+    releaseall
+    end
+
+// Caretaker talk - called with CommonScript 2075 from ROM script file 163, the
+// "press A on your following Pokemon" script.  A Chansey or Blissey carrying an
+// Egg gets one of three caretaker lines (text archive 040.txt indices 122-124);
+// anything else falls through to the vanilla follower chatter.
+scr_seq_0003_075_egg_caretaker_talk:
+    // script 163 has already played SEQ_SE_CONFIRM, as vanilla does
+    lockall
+    follow_poke_face_player
+    get_party_lead_alive VAR_SPECIAL_x8004
+    get_partymon_species VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
+    compare VAR_SPECIAL_x8005, 113 // Chansey
+    goto_if_eq _egg_caretaker_talk_caretaker
+    compare VAR_SPECIAL_x8005, 242 // Blissey
+    goto_if_eq _egg_caretaker_talk_caretaker
+_egg_caretaker_talk_vanilla:
+    follow_poke_interact
+    goto _egg_caretaker_talk_done
+_egg_caretaker_talk_caretaker:
+    party_count_egg VAR_SPECIAL_x8006
+    compare VAR_SPECIAL_x8006, 0
+    goto_if_eq _egg_caretaker_talk_vanilla
+    CMD_728 16, 2 // FollowingPokeFlash
+    CMD_734 2 // FollowingPokeJump
+    CMD_732 1 // AdjustFollowingPokeMood
+    buffer_mon_species_name 0, VAR_SPECIAL_x8004
+    random VAR_SPECIAL_x8007, 3
+    compare VAR_SPECIAL_x8007, 1
+    goto_if_eq _egg_caretaker_talk_line_1
+    compare VAR_SPECIAL_x8007, 2
+    goto_if_eq _egg_caretaker_talk_line_2
+    npc_msg 122
+    goto _egg_caretaker_talk_wait
+_egg_caretaker_talk_line_1:
+    npc_msg 123
+    goto _egg_caretaker_talk_wait
+_egg_caretaker_talk_line_2:
+    npc_msg 124
+_egg_caretaker_talk_wait:
+    wait_button
+    closemsg
+_egg_caretaker_talk_done:
     releaseall
     end
 
