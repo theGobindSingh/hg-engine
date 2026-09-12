@@ -280,6 +280,7 @@ CT_PokemonAppearSet = 0x02259D48 | 1;
 ClientCommandReset = 0x02259928 | 1;
 BattleWorkPokePartyGet = 0x0223A7F4 | 1;
 PokeParty_GetPokeCount = 0x02074640 | 1;
+MapPropManager_LoadOne = 0x021F3C0C | 1;  /* ov01 - places a map prop (Elm lab Poke Balls) */
 Party_GetMonByIndex = 0x02074644 | 1;
 GetBattlerVar = 0x0224EDE0 | 1;
 SideClientNoGet = 0x0224768C | 1;
