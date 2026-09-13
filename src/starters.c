@@ -1,3 +1,4 @@
+#include "../include/constants/moves.h"
 #include "../include/constants/species.h"
 #include "../include/map_events_internal.h"
 #include "../include/pokemon.h"
@@ -130,6 +131,37 @@ static void SetFourRandomPerfectIVs(struct PartyPokemon *mon)
     RecalcPartyPokemonStats(mon);
 }
 
+/**
+ *  @brief force the starter's moveset to an exact, known-good four moves
+ *
+ *  The level-up learnset fill (species data -> level 5) was dropping the
+ *  first move, leaving Happiny with only Charm and Copycat and no attack -
+ *  a hard blocker. Aromatherapy is an egg move for the Chansey line in HGSS,
+ *  so it can never come from the level-up learnset at all. Rather than chase
+ *  the fill bug, the four slots are set explicitly and unconditionally here,
+ *  in the client's requested order, so the starter is correct regardless of
+ *  where that bug turns out to live.
+ *
+ *  @param mon the PartyPokemon to modify
+ */
+static void SetHappinyStarterMoves(struct PartyPokemon *mon)
+{
+    static const u16 moves[4] = {
+        MOVE_POUND, MOVE_CHARM, MOVE_COPYCAT, MOVE_AROMATHERAPY,
+    };
+
+    for (int i = 0; i < 4; i++) {
+        u8 ppUps = 0;
+        SetMonData(mon, MON_DATA_MOVE1PPUP + i, &ppUps);
+
+        u16 moveId = moves[i];
+        SetMonData(mon, MON_DATA_MOVE1 + i, &moveId);
+
+        u8 maxPP = GetMonData(mon, MON_DATA_MOVE1MAXPP + i, 0);
+        SetMonData(mon, MON_DATA_MOVE1PP + i, &maxPP);
+    }
+}
+
 // ---------------------------------------------------------------------------
 // scrcmd 0xA7 (167), vanilla arm9 0x020430C4, pret's ScrCmd_ChooseStarter.
 // ---------------------------------------------------------------------------
@@ -156,6 +188,7 @@ BOOL LONG_CALL ScrCmd_ChooseStarter(SCRIPTCONTEXT *ctx)
     // stays correct if the script order is ever rearranged.
     if (count > 0) {
         SetFourRandomPerfectIVs(&party->members[count - 1]);
+        SetHappinyStarterMoves(&party->members[count - 1]);
     }
 
     // Give the new starter its map object, so it walks behind the player
