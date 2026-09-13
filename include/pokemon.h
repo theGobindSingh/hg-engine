@@ -608,7 +608,15 @@ typedef struct FieldSystem {
     /* 0x50 */ u8 unk50[0x5C];
     /* 0xAC */ u32 unkAC;
     /* 0xB0 */ u8 unkB0[0x4];
-    /* 0xB4 */ s64 unkB4;
+    // Was `s64 unkB4`, which silently broke every field below it. The ARM EABI
+    // aligns `long long` to 8 bytes, so at the odd offset 0xB4 the compiler
+    // inserted 4 bytes of padding and pushed unkBC to 0xC0 and followMon to
+    // 0xE8 - four bytes past where they really live. Verified against the ROM:
+    // FollowMon_InitMapObject (arm9 0x020699F8) stores the map object to
+    // fieldSystem+0xE4 and TRUE to +0xFA, and FollowPokeFsysParamSet (0x02069F3C)
+    // writes species at +0xF4, so followMon is at 0xE4 and .active at 0xFA.
+    // Two u32s occupy the same 8 bytes without demanding 8-byte alignment.
+    /* 0xB4 */ u32 unkB4[2];
     /* 0xBC */ u8 unkBC[0x28];
     /* 0xE4 */ FollowMon followMon;
     // u8 unk104[4];

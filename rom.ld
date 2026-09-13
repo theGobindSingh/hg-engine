@@ -364,6 +364,8 @@ FollowingPokemon_GetSpriteID = 0x02069D70 | 1;
 FollowPokeFsysParamSet = 0x02069F3C | 1;
 FollowPokeMapObjectSetParams = 0x02069EE8 | 1;
 FsysFollowMonClear = 0x0206A06C | 1;
+FollowMon_InitMapObject = 0x020699F8 | 1;  /* builds followMon: map object + active + params; vanilla's only caller is the warp path at 0x020531FC */
+FollowMon_GetPermissionBySpeciesAndMap = 0x02069FF4 | 1;  /* the map/species follower gate InitMapObject calls itself */
 
 CreateSpecialFieldObject = 0x0205E294 | 1;
 DeleteMapObject = 0x0205E400 | 1;

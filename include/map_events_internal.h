@@ -231,6 +231,8 @@ u32 LONG_CALL FollowingPokemon_GetSpriteID(int species, u16 forme, u32 gender);
 void LONG_CALL FollowPokeFsysParamSet(FieldSystem *fsys, int species, u8 forme, BOOL shiny, u8 gender);
 void LONG_CALL FollowPokeMapObjectSetParams(LocalMapObject *mapObject, int species, u8 forme, BOOL shiny);
 void LONG_CALL FsysFollowMonClear(FollowMon *followMon);
+LocalMapObject *LONG_CALL FollowMon_InitMapObject(void *mapObjectMan, int x, int y, int direction, u32 mapNo);
+BOOL LONG_CALL FollowMon_GetPermissionBySpeciesAndMap(int species, u32 mapNo);
 LocalMapObject *LONG_CALL CreateSpecialFieldObject(void *objectMan, u32 x, u32 z, u32 direction, u32 sprite, u32 movement, u32 mapNo);
 void LONG_CALL DeleteMapObject(LocalMapObject *mapObject);
 u32 LONG_CALL MapObject_GetCurrentX(LocalMapObject *object);

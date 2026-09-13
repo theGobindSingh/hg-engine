@@ -148,7 +148,8 @@ static void SetFourRandomPerfectIVs(struct PartyPokemon *mon)
 // assemble unchanged and DSPRE / dspre-mcp still validate it.
 BOOL LONG_CALL ScrCmd_ChooseStarter(SCRIPTCONTEXT *ctx)
 {
-    struct Party *party = SaveData_GetPlayerPartyPtr(ctx->fsys->savedata);
+    FieldSystem *fsys = ctx->fsys;
+    struct Party *party = SaveData_GetPlayerPartyPtr(fsys->savedata);
     int count = PokeParty_GetPokeCount(party);
 
     // Act on the mon GivePokemon just appended, not on slot 0, so the command
@@ -157,48 +158,44 @@ BOOL LONG_CALL ScrCmd_ChooseStarter(SCRIPTCONTEXT *ctx)
         SetFourRandomPerfectIVs(&party->members[count - 1]);
     }
 
+    // Give the new starter its map object, so it walks behind the player
+    // immediately instead of only after the next warp.
+    //
+    // Vanilla never needed this. Its starter scene ran as a field application,
+    // and re-entering the field runs the warp-restore path, which is what
+    // builds fieldSystem->followMon. Handing the mon over with a plain
+    // GivePokemon never leaves the field, so script 0843's vanilla tail
+    // (SetFollowingPokePosition / SendOutFollowingPoke) was acting on a
+    // follower that had no map object, and nothing appeared. Opening and
+    // closing the party menu appeared to "fix" it because that is a field
+    // application too.
+    //
+    // FollowMon_InitMapObject (arm9 0x020699F8) is the exact function the warp
+    // path uses - vanilla's only caller is 0x020531FC, pret's sub_0205316C in
+    // field_warp_tasks.c. It does the whole job itself: the party lookup, the
+    // FollowMon_GetPermissionBySpeciesAndMap gate (Elm's lab passes it, which
+    // is why vanilla's own starter follows in here), CreateFollowingSpriteField-
+    // Object, followMon.active and FieldSystem_SetFollowerPokeParam. Calling it
+    // is exactly what a warp would have done, minus the warp.
+    //
+    // We pass the player's CURRENT coordinates via GetPlayerXCoord/
+    // GetPlayerYCoord rather than vanilla's fieldSystem->location->x/y, because
+    // mid-map the location record holds where the player ENTERED the map, not
+    // where they are standing now.
+    //
+    // Guarded on .active so it can never run twice: FollowMon_Clear only nulls
+    // the map object pointer, it does not delete the object, so a second call
+    // would orphan the first sprite.
+    if (!fsys->followMon.active) {
+        FollowMon_InitMapObject(fsys->mapObjectMan,
+            GetPlayerXCoord(fsys->playerAvatar),
+            GetPlayerYCoord(fsys->playerAvatar),
+            fsys->location->direction,
+            fsys->location->mapId);
+    }
+
     return FALSE;
 }
-
-// Why this command does NOT also re-create the following Pokemon.
-//
-// The starter does not walk behind the player until something makes the game
-// rebuild the follower. Vanilla got that for free: its starter scene ran as a
-// *field application* (FieldSystem_LaunchApplication), and leaving and
-// re-entering the field is what (re)initialises fieldSystem->followMon. Handing
-// the mon over with a plain GivePokemon never leaves the field, so followMon is
-// still empty when script 0843's vanilla tail (SetFollowingPokePosition /
-// SendOutFollowingPoke) runs. That also explains the reported symptom that
-// opening and closing the party menu "fixes" it - the party menu is a field
-// application too.
-//
-// Doing it here was tried and rejected. In pret's follow_mon.c the real
-// orchestrator FollowMon_InitMapObject runs, in order: FollowMon_Clear, a party
-// lookup, a FollowMon_GetPermissionBySpeciesAndMap gate, then
-//
-//     followMon.mapObject = FollowMon_CreateMapObject(...);
-//     followMon.active    = TRUE;
-//     FieldSystem_SetFollowerPokeParam(...);
-//
-// so the map object is created *first* and the param set is the last step.
-// FollowPokeFsysParamSet is exactly FieldSystem_SetFollowerPokeParam (the
-// signature matches 1:1), which means calling it alone would write
-// species/form/shiny/gender and nothing else - no map object, not even active -
-// so it cannot spawn anything. SendOutFollowingPoke only re-animates an object
-// that already exists; neither it nor ParamSet ever allocates one.
-//
-// Doing it properly therefore means reimplementing that orchestration by hand,
-// and hg-engine links only the five low-level primitives (rom.ld:362-366):
-// FollowMon_InitMapObject, FollowMon_ChangeMon and the
-// FollowMon_GetPermissionBySpeciesAndMap gate have no address here, and nothing
-// in this repo calls any of the five, so there is no proven-safe call order to
-// copy and no way to test the result headlessly. The permission gate matters -
-// it is what decides whether a follower is allowed on this map at all.
-//
-// For a cosmetic, self-healing glitch that is a bad trade, so the fix lives in
-// script 0843 instead. If a future session wants to do it here properly, what it
-// needs is the two missing addresses (FollowMon_InitMapObject and
-// FollowMon_GetPermissionBySpeciesAndMap) and a real play-test.
 
 // ---------------------------------------------------------------------------
 // scrcmd 0x26D (621), vanilla arm9 0x02047358,
