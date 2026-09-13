@@ -90,7 +90,6 @@ scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_egg_caretaker_cue
 scrdef scr_seq_0003_075_egg_caretaker_talk
-scrdef scr_seq_0003_076_iv_readout
 scrdef_end
 
 scr_seq_0003_002:
@@ -1843,35 +1842,6 @@ _egg_caretaker_talk_line_1:
 _egg_caretaker_talk_line_2:
     npc_msg 124
 _egg_caretaker_talk_wait:
-    wait_button
-    closemsg
-    endstd
-    end
-
-// TEST-ONLY.  IV readout NPC in New Bark Town, called with CommonScript 2076
-// from a new Script 19 in ROM script file 842.  Prints the six IVs of the
-// Pokemon walking with the player.  Remove it by setting flag 2208
-// (FLAG_UNK_8A0), which hides the overworld event.  Text archive 040.txt
-// index 125.  This must live in a common script and not in file 842, because
-// the IV command reuses opcode 208 with a 5-byte operand layout that DSPRE's
-// command table cannot express.
-//
-// 0xFFFF asks the command to resolve the follower's party slot itself.  It
-// fills eight vars from VAR_SPECIAL_x8000: the six IVs, the species id, and the
-// party index it used.  The name is buffered from that index rather than from
-// the species id, because buffer_mon_species_name (scrcmd 193, "Flex: Party
-// Position") paired with {STRVAR_1 1, 0, 0} is the form attested in this file -
-// see the caretaker lines above.
-scr_seq_0003_076_iv_readout:
-    GetPartyMonIVs 0xFFFF, VAR_SPECIAL_x8000
-    buffer_mon_species_name 0, VAR_SPECIAL_x8007
-    buffer_int 1, VAR_SPECIAL_x8000
-    buffer_int 2, VAR_SPECIAL_x8001
-    buffer_int 3, VAR_SPECIAL_x8002
-    buffer_int 4, VAR_SPECIAL_x8003
-    buffer_int 5, VAR_SPECIAL_x8004
-    buffer_int 6, VAR_SPECIAL_x8005
-    npc_msg 125
     wait_button
     closemsg
     endstd
