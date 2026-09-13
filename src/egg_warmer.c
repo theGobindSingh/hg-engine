@@ -52,7 +52,8 @@ u8 GetEggCyclesToSubtract(struct Party *party)
             }
         }
     }
-#endif
 
     return 1;
 }
+
+#endif

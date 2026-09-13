@@ -1776,8 +1776,18 @@ scr_seq_0003_074_egg_caretaker_cue:
 //
 // That split is deliberate and it is the fix for a hard freeze.  The earlier
 // version of this script did the species check here and ran follow_poke_interact
-// (TalkFollowingPoke, opcode 0x02C7) on the vanilla path.  In pret/pokeheartgold
-// ScrCmd_FollowMonInteract returns TRUE immediately and fires an asynchronous
+// (TalkFollowingPoke, opcode 0x02C7) on the vanilla path.
+//
+// A common script reached via CommonScript/callstd runs as a sibling context of
+// its parent; ScrCmd_CallStd sets a bit on the parent and parks it waiting for
+// that bit to clear.  Only endstd (opcode 21, "yield to parent context") clears
+// it, so any such script that falls through to a bare `end` instead leaves the
+// parent waiting forever - a hard freeze.  Every branch below must terminate
+// through endstd.
+//
+// follow_poke_interact remains a separate hazard on top of that rule.  In
+// pret/pokeheartgold, ScrCmd_FollowMonInteract returns TRUE immediately and
+// fires an asynchronous
 // TaskManager_Call(Task_FollowMonInteract) instead of setting up a native wait,
 // so running it inside a callstd-spawned sibling context - which then ends and
 // is torn down while that task is still live - locked the game up.  Never put
@@ -1803,6 +1813,7 @@ _egg_caretaker_talk_line_2:
 _egg_caretaker_talk_wait:
     wait_button
     closemsg
+    endstd
     end
 
 // TEST-ONLY.  IV readout NPC in New Bark Town, called with CommonScript 2076
@@ -1831,6 +1842,7 @@ scr_seq_0003_076_iv_readout:
     npc_msg 125
     wait_button
     closemsg
+    endstd
     end
 
 
