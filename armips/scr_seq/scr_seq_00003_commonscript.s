@@ -1764,26 +1764,25 @@ scr_seq_0003_074_egg_caretaker_cue:
     end
 
 // Caretaker talk - called with CommonScript 2075 from ROM script file 163, the
-// "press A on your following Pokemon" script.  A Chansey or Blissey carrying an
-// Egg gets one of three caretaker lines (text archive 040.txt indices 122-124);
-// anything else falls through to the vanilla follower chatter.
+// "press A on your following Pokemon" script.  This is ONLY the caretaker
+// reaction: one of three lines (text archive 040.txt indices 122-124) with a
+// sparkle and a hop.
+//
+// Script 163 owns everything else and calls this only when it already knows the
+// follower is a Chansey or Blissey and there is an Egg in the party.  163 does
+// the PlayFanfare, the LockAll, the FollowingPokeFacePlayer and the ReleaseAll,
+// and it runs the vanilla TalkFollowingPoke itself on every other path.
+//
+// That split is deliberate and it is the fix for a hard freeze.  The earlier
+// version of this script did the species check here and ran follow_poke_interact
+// (TalkFollowingPoke, opcode 0x02C7) on the vanilla path.  In pret/pokeheartgold
+// ScrCmd_FollowMonInteract returns TRUE immediately and fires an asynchronous
+// TaskManager_Call(Task_FollowMonInteract) instead of setting up a native wait,
+// so running it inside a callstd-spawned sibling context - which then ends and
+// is torn down while that task is still live - locked the game up.  Never put
+// follow_poke_interact in a common script; it belongs in the map's own context.
 scr_seq_0003_075_egg_caretaker_talk:
-    // script 163 has already played SEQ_SE_CONFIRM, as vanilla does
-    lockall
-    follow_poke_face_player
     get_party_lead_alive VAR_SPECIAL_x8004
-    get_partymon_species VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
-    compare VAR_SPECIAL_x8005, 113 // Chansey
-    goto_if_eq _egg_caretaker_talk_caretaker
-    compare VAR_SPECIAL_x8005, 242 // Blissey
-    goto_if_eq _egg_caretaker_talk_caretaker
-_egg_caretaker_talk_vanilla:
-    follow_poke_interact
-    goto _egg_caretaker_talk_done
-_egg_caretaker_talk_caretaker:
-    party_count_egg VAR_SPECIAL_x8006
-    compare VAR_SPECIAL_x8006, 0
-    goto_if_eq _egg_caretaker_talk_vanilla
     CMD_728 16, 2 // FollowingPokeFlash
     CMD_734 2 // FollowingPokeJump
     CMD_732 1 // AdjustFollowingPokeMood
@@ -1803,8 +1802,6 @@ _egg_caretaker_talk_line_2:
 _egg_caretaker_talk_wait:
     wait_button
     closemsg
-_egg_caretaker_talk_done:
-    releaseall
     end
 
 
