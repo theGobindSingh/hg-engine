@@ -123,3 +123,4 @@ Begin auto-battle.
 {STRVAR_1 1, 0, 0} is carefully\nkeeping the Egg safe in its pouch!
 {STRVAR_1 1, 0, 0} gently patted the pouch\nholding your Egg with a warm smile.
 {STRVAR_1 1, 0, 0} seems delighted to look\nafter your Egg as you walk!
+Let me see your {STRVAR_1 1, 0, 0}...\rHP {STRVAR_1 52, 1, 0}, Attack {STRVAR_1 52, 2, 0}, Defense {STRVAR_1 52, 3, 0},\nSp. Atk {STRVAR_1 52, 4, 0}, Sp. Def {STRVAR_1 52, 5, 0}, Speed {STRVAR_1 52, 6, 0}.
