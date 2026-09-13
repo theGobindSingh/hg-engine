@@ -1,4 +1,5 @@
 #include "../include/constants/species.h"
+#include "../include/map_events_internal.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
 #include "../include/script.h"
@@ -158,6 +159,46 @@ BOOL LONG_CALL ScrCmd_ChooseStarter(SCRIPTCONTEXT *ctx)
 
     return FALSE;
 }
+
+// Why this command does NOT also re-create the following Pokemon.
+//
+// The starter does not walk behind the player until something makes the game
+// rebuild the follower. Vanilla got that for free: its starter scene ran as a
+// *field application* (FieldSystem_LaunchApplication), and leaving and
+// re-entering the field is what (re)initialises fieldSystem->followMon. Handing
+// the mon over with a plain GivePokemon never leaves the field, so followMon is
+// still empty when script 0843's vanilla tail (SetFollowingPokePosition /
+// SendOutFollowingPoke) runs. That also explains the reported symptom that
+// opening and closing the party menu "fixes" it - the party menu is a field
+// application too.
+//
+// Doing it here was tried and rejected. In pret's follow_mon.c the real
+// orchestrator FollowMon_InitMapObject runs, in order: FollowMon_Clear, a party
+// lookup, a FollowMon_GetPermissionBySpeciesAndMap gate, then
+//
+//     followMon.mapObject = FollowMon_CreateMapObject(...);
+//     followMon.active    = TRUE;
+//     FieldSystem_SetFollowerPokeParam(...);
+//
+// so the map object is created *first* and the param set is the last step.
+// FollowPokeFsysParamSet is exactly FieldSystem_SetFollowerPokeParam (the
+// signature matches 1:1), which means calling it alone would write
+// species/form/shiny/gender and nothing else - no map object, not even active -
+// so it cannot spawn anything. SendOutFollowingPoke only re-animates an object
+// that already exists; neither it nor ParamSet ever allocates one.
+//
+// Doing it properly therefore means reimplementing that orchestration by hand,
+// and hg-engine links only the five low-level primitives (rom.ld:362-366):
+// FollowMon_InitMapObject, FollowMon_ChangeMon and the
+// FollowMon_GetPermissionBySpeciesAndMap gate have no address here, and nothing
+// in this repo calls any of the five, so there is no proven-safe call order to
+// copy and no way to test the result headlessly. The permission gate matters -
+// it is what decides whether a follower is allowed on this map at all.
+//
+// For a cosmetic, self-healing glitch that is a bad trade, so the fix lives in
+// script 0843 instead. If a future session wants to do it here properly, what it
+// needs is the two missing addresses (FollowMon_InitMapObject and
+// FollowMon_GetPermissionBySpeciesAndMap) and a real play-test.
 
 // ---------------------------------------------------------------------------
 // scrcmd 0x26D (621), vanilla arm9 0x02047358,
