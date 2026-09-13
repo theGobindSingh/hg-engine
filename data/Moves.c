@@ -5,7 +5,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "-",
             .capsName = "-",
-            .fullName = "-",
+            .fullName = "!",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -46,7 +46,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -73,7 +73,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -84,9 +84,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_DOUBLE_SLAP] = {
         .names = {
-            .name = "Double Slap",
-            .capsName = "DOUBLE SLAP",
-            .fullName = "Double Slap",
+            .name = "DoubleSlap",
+            .capsName = "DOUBLESLAP",
+            .fullName = "DoubleSlap",
         },
         .data = {
             .effect = MOVE_EFFECT_MULTI_HIT,
@@ -100,7 +100,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -127,7 +127,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -154,7 +154,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -181,7 +181,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_PITY_HEARTS,
@@ -246,9 +246,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_THUNDER_PUNCH] = {
         .names = {
-            .name = "Thunder Punch",
-            .capsName = "THUNDER PUNCH",
-            .fullName = "Thunder Punch",
+            .name = "ThunderPunch",
+            .capsName = "THUNDERPUNCH",
+            .fullName = "ThunderPunch",
         },
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
@@ -289,7 +289,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -300,9 +300,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_VICE_GRIP] = {
         .names = {
-            .name = "Vise Grip",
-            .capsName = "VISE GRIP",
-            .fullName = "Vise Grip",
+            .name = "ViceGrip",
+            .capsName = "VICEGRIP",
+            .fullName = "ViceGrip",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -316,7 +316,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -370,7 +370,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -391,7 +391,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 20,
+            .pp = 30,
             .effectChance = 0,
         },
         .battle = {
@@ -424,7 +424,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -451,7 +451,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -478,7 +478,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -498,14 +498,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 0,
+            .accuracy = 100,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = -6,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_ALL_SAME_JUDGE,
@@ -532,7 +532,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -552,14 +552,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_PHYSICAL,
             .power = 15,
             .type = TYPE_NORMAL,
-            .accuracy = 85,
+            .accuracy = 75,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -586,7 +586,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -604,16 +604,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 45,
+            .power = 35,
             .type = TYPE_GRASS,
             .accuracy = 100,
-            .pp = 25,
+            .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -667,7 +667,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -694,7 +694,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -712,16 +712,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_CRASH_ON_MISS,
             .split = SPLIT_PHYSICAL,
-            .power = 100,
+            .power = 85,
             .type = TYPE_FIGHTING,
             .accuracy = 95,
-            .pp = 10,
+            .pp = 25,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -748,7 +748,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -759,9 +759,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SAND_ATTACK] = {
         .names = {
-            .name = "Sand Attack",
-            .capsName = "SAND ATTACK",
-            .fullName = "Sand Attack",
+            .name = "Sand-Attack",
+            .capsName = "SAND-ATTACK",
+            .fullName = "Sand-Attack",
         },
         .data = {
             .effect = MOVE_EFFECT_ACC_DOWN,
@@ -829,7 +829,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -856,7 +856,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -901,16 +901,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 40,
+            .power = 35,
             .type = TYPE_NORMAL,
-            .accuracy = 100,
+            .accuracy = 95,
             .pp = 35,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -957,14 +957,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_PHYSICAL,
             .power = 15,
             .type = TYPE_NORMAL,
-            .accuracy = 90,
+            .accuracy = 85,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -991,7 +991,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1009,16 +1009,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_CONTINUE_AND_CONFUSE_SELF,
             .split = SPLIT_PHYSICAL,
-            .power = 120,
+            .power = 90,
             .type = TYPE_NORMAL,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_RANDOM_OPPONENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -1045,7 +1045,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_ALL_SAME_JUDGE,
@@ -1144,16 +1144,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_MULTI_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 25,
+            .power = 14,
             .type = TYPE_BUG,
-            .accuracy = 95,
+            .accuracy = 85,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -1254,14 +1254,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 0,
+            .accuracy = 100,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = -6,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_UP,
@@ -1326,9 +1326,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SONIC_BOOM] = {
         .names = {
-            .name = "Sonic Boom",
-            .capsName = "SONIC BOOM",
-            .fullName = "Sonic Boom",
+            .name = "SonicBoom",
+            .capsName = "SONICBOOM",
+            .fullName = "SonicBoom",
         },
         .data = {
             .effect = MOVE_EFFECT_10_DAMAGE_FLAT,
@@ -1342,7 +1342,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1362,14 +1362,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 100,
+            .accuracy = 80,
             .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_UP,
@@ -1441,7 +1441,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BURN_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 95,
             .type = TYPE_FIRE,
             .accuracy = 100,
             .pp = 15,
@@ -1504,7 +1504,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1522,7 +1522,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 110,
+            .power = 120,
             .type = TYPE_WATER,
             .accuracy = 80,
             .pp = 5,
@@ -1531,7 +1531,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -1549,7 +1549,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_DOUBLE_DAMAGE_DIVE,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 95,
             .type = TYPE_WATER,
             .accuracy = 100,
             .pp = 15,
@@ -1558,7 +1558,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -1576,7 +1576,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_FREEZE_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 95,
             .type = TYPE_ICE,
             .accuracy = 100,
             .pp = 10,
@@ -1603,7 +1603,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BLIZZARD,
             .split = SPLIT_SPECIAL,
-            .power = 110,
+            .power = 120,
             .type = TYPE_ICE,
             .accuracy = 70,
             .pp = 5,
@@ -1650,9 +1650,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_BUBBLE_BEAM] = {
         .names = {
-            .name = "Bubble Beam",
-            .capsName = "BUBBLE BEAM",
-            .fullName = "Bubble Beam",
+            .name = "BubbleBeam",
+            .capsName = "BUBBLEBEAM",
+            .fullName = "BubbleBeam",
         },
         .data = {
             .effect = MOVE_EFFECT_LOWER_SPEED_HIT,
@@ -1720,7 +1720,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -1747,7 +1747,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1774,7 +1774,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1795,13 +1795,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 80,
             .type = TYPE_FIGHTING,
             .accuracy = 80,
-            .pp = 20,
+            .pp = 25,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1828,7 +1828,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1855,7 +1855,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET_SPECIAL,
             .priority = -5,
-            .flags = FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -1882,7 +1882,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -1909,7 +1909,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -2009,9 +2009,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effect = MOVE_EFFECT_SP_ATK_UP,
             .split = SPLIT_STATUS,
             .power = 0,
-            .type = ((CHAMPIONS_TYPE_CHANGES) ? (TYPE_GRASS) : (TYPE_NORMAL)),
+            .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 20,
+            .pp = 40,
             .effectChance = 0,
         },
         .battle = {
@@ -2044,7 +2044,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -2055,9 +2055,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SOLAR_BEAM] = {
         .names = {
-            .name = "Solar Beam",
-            .capsName = "SOLAR BEAM",
-            .fullName = "Solar Beam",
+            .name = "SolarBeam",
+            .capsName = "SOLARBEAM",
+            .fullName = "SolarBeam",
         },
         .data = {
             .effect = MOVE_EFFECT_CHARGE_TURN_SUN_SKIPS,
@@ -2071,7 +2071,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -2082,9 +2082,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_POISON_POWDER] = {
         .names = {
-            .name = "Poison Powder",
-            .capsName = "POISON POWDER",
-            .fullName = "Poison Powder",
+            .name = "PoisonPowder",
+            .capsName = "POISONPOWDER",
+            .fullName = "PoisonPowder",
         },
         .data = {
             .effect = MOVE_EFFECT_STATUS_POISON,
@@ -2170,16 +2170,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_CONTINUE_AND_CONFUSE_SELF,
             .split = SPLIT_SPECIAL,
-            .power = 120,
+            .power = 90,
             .type = TYPE_GRASS,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_RANDOM_OPPONENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -2195,7 +2195,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .fullName = "String Shot",
         },
         .data = {
-            .effect = MOVE_EFFECT_SPEED_DOWN_2,
+            .effect = MOVE_EFFECT_SPEED_DOWN,
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_BUG,
@@ -2233,7 +2233,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -2251,16 +2251,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BIND_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 35,
+            .power = 15,
             .type = TYPE_FIRE,
-            .accuracy = 85,
+            .accuracy = 70,
             .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -2271,9 +2271,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_THUNDER_SHOCK] = {
         .names = {
-            .name = "Thunder Shock",
-            .capsName = "THUNDER SHOCK",
-            .fullName = "Thunder Shock",
+            .name = "ThunderShock",
+            .capsName = "THUNDERSHOCK",
+            .fullName = "ThunderShock",
         },
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
@@ -2305,7 +2305,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 95,
             .type = TYPE_ELECTRIC,
             .accuracy = 100,
             .pp = 15,
@@ -2334,7 +2334,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_ELECTRIC,
-            .accuracy = 90,
+            .accuracy = 100,
             .pp = 20,
             .effectChance = 0,
         },
@@ -2359,7 +2359,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_THUNDER,
             .split = SPLIT_SPECIAL,
-            .power = 110,
+            .power = 120,
             .type = TYPE_ELECTRIC,
             .accuracy = 70,
             .pp = 10,
@@ -2395,7 +2395,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -2422,7 +2422,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -2476,7 +2476,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -2496,7 +2496,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_POISON,
-            .accuracy = 90,
+            .accuracy = 85,
             .pp = 10,
             .effectChance = 0,
         },
@@ -2665,7 +2665,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -2692,7 +2692,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_NEXT_SCORE,
@@ -2718,7 +2718,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_USER,
-            .priority = -6,
+            .priority = 0,
             .flags = 0x00,
         },
         .contest = {
@@ -2746,7 +2746,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -2848,7 +2848,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -2857,7 +2857,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_SMART,
         },
         .description = "A self-healing move.\\nThe user restores its\\nown HP by up to half\\nof its max HP.\\n",
@@ -2902,7 +2902,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 10,
+            .pp = 20,
             .effectChance = 0,
         },
         .battle = {
@@ -2919,9 +2919,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SMOKESCREEN] = {
         .names = {
-            .name = "Smokescreen",
+            .name = "SmokeScreen",
             .capsName = "SMOKESCREEN",
-            .fullName = "Smokescreen",
+            .fullName = "SmokeScreen",
         },
         .data = {
             .effect = MOVE_EFFECT_ACC_DOWN,
@@ -3037,7 +3037,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_PSYCHIC,
             .accuracy = 0,
-            .pp = 20,
+            .pp = 30,
             .effectChance = 0,
         },
         .battle = {
@@ -3178,7 +3178,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 1,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -3243,9 +3243,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SELF_DESTRUCT] = {
         .names = {
-            .name = "Self-Destruct",
-            .capsName = "SELF-DESTRUCT",
-            .fullName = "Self-Destruct",
+            .name = "Selfdestruct",
+            .capsName = "SELFDESTRUCT",
+            .fullName = "Selfdestruct",
         },
         .data = {
             .effect = MOVE_EFFECT_HALVE_DEFENSE,
@@ -3259,7 +3259,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_ALL_SAME_JUDGE,
@@ -3286,7 +3286,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -3304,7 +3304,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 30,
+            .power = 20,
             .type = TYPE_GHOST,
             .accuracy = 100,
             .pp = 30,
@@ -3331,7 +3331,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_POISON_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 30,
+            .power = 20,
             .type = TYPE_POISON,
             .accuracy = 70,
             .pp = 20,
@@ -3412,7 +3412,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BURN_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 110,
+            .power = 120,
             .type = TYPE_FIRE,
             .accuracy = 85,
             .pp = 5,
@@ -3448,7 +3448,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -3468,14 +3468,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_PHYSICAL,
             .power = 35,
             .type = TYPE_WATER,
-            .accuracy = 85,
-            .pp = 15,
+            .accuracy = 75,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -3502,7 +3502,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -3520,16 +3520,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_CHARGE_TURN_DEF_UP,
             .split = SPLIT_PHYSICAL,
-            .power = 130,
+            .power = 100,
             .type = TYPE_NORMAL,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 15,
             .effectChance = 100,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -3556,7 +3556,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -3648,9 +3648,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SOFT_BOILED] = {
         .names = {
-            .name = "Soft-Boiled",
-            .capsName = "SOFT-BOILED",
-            .fullName = "Soft-Boiled",
+            .name = "Softboiled",
+            .capsName = "SOFTBOILED",
+            .fullName = "Softboiled",
         },
         .data = {
             .effect = MOVE_EFFECT_RESTORE_HALF_HP,
@@ -3658,7 +3658,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -3667,7 +3667,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user restores its\\nown HP by up to half\\nof its maximum HP.\\nIt may also be used\\nto heal an ally’s HP.",
@@ -3675,23 +3675,23 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_HIGH_JUMP_KICK] = {
         .names = {
-            .name = "High Jump Kick",
-            .capsName = "HIGH JUMP KICK",
-            .fullName = "High Jump Kick",
+            .name = "Hi Jump Kick",
+            .capsName = "HI JUMP KICK",
+            .fullName = "Hi Jump Kick",
         },
         .data = {
             .effect = MOVE_EFFECT_CRASH_ON_MISS,
             .split = SPLIT_PHYSICAL,
-            .power = 130,
+            .power = 100,
             .type = TYPE_FIGHTING,
             .accuracy = 90,
-            .pp = 10,
+            .pp = 20,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -3711,7 +3711,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 100,
+            .accuracy = 75,
             .pp = 30,
             .effectChance = 0,
         },
@@ -3765,12 +3765,12 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_POISON,
-            .accuracy = 90,
+            .accuracy = 55,
             .pp = 40,
             .effectChance = 0,
         },
         .battle = {
-            .target = RANGE_ADJACENT_OPPONENTS,
+            .target = RANGE_SINGLE_TARGET,
             .priority = 0,
             .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
         },
@@ -3799,7 +3799,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -3817,10 +3817,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT,
             .split = SPLIT_PHYSICAL,
-            .power = 80,
+            .power = 20,
             .type = TYPE_BUG,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 15,
             .effectChance = 0,
         },
         .battle = {
@@ -3880,7 +3880,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -3925,7 +3925,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_SPEED_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 40,
+            .power = 20,
             .type = TYPE_WATER,
             .accuracy = 100,
             .pp = 30,
@@ -4035,14 +4035,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_SPECIAL,
             .power = 1,
             .type = TYPE_PSYCHIC,
-            .accuracy = 100,
+            .accuracy = 80,
             .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -4090,7 +4090,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_POISON,
             .accuracy = 0,
-            .pp = 20,
+            .pp = 40,
             .effectChance = 0,
         },
         .battle = {
@@ -4114,16 +4114,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIGH_CRITICAL,
             .split = SPLIT_PHYSICAL,
-            .power = 100,
+            .power = 90,
             .type = TYPE_WATER,
-            .accuracy = ((CHAMPIONS_ACC_CHANGES) ? (95) : (90)),
+            .accuracy = 85,
             .pp = 10,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -4150,7 +4150,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_ALL_SAME_JUDGE,
@@ -4177,7 +4177,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -4204,7 +4204,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -4225,7 +4225,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_PSYCHIC,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -4234,7 +4234,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "The user goes to\\nsleep for two turns.\\nIt fully restores the\\nuser’s HP and heals\\nany status problem.",
@@ -4339,7 +4339,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
+            .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
             .appeal = APPEAL_PITY_HEARTS,
@@ -4420,7 +4420,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -4474,7 +4474,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -4528,7 +4528,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -4546,10 +4546,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_STEAL_HELD_ITEM,
             .split = SPLIT_PHYSICAL,
-            .power = 60,
+            .power = 40,
             .type = TYPE_DARK,
             .accuracy = 100,
-            .pp = 25,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -4582,7 +4582,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -4681,7 +4681,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_DAMAGE_WHILE_ASLEEP,
             .split = SPLIT_SPECIAL,
-            .power = 50,
+            .power = 40,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 15,
@@ -4690,7 +4690,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -4709,7 +4709,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effect = MOVE_EFFECT_CURSE,
             .split = SPLIT_STATUS,
             .power = 0,
-            .type = TYPE_GHOST,
+            .type = TYPE_FAIRY,
             .accuracy = 0,
             .pp = 10,
             .effectChance = 0,
@@ -4744,7 +4744,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -4769,7 +4769,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effectChance = 0,
         },
         .battle = {
-            .target = RANGE_ALL_ADJACENT,
+            .target = RANGE_USER,
             .priority = 0,
             .flags = 0x00,
         },
@@ -4798,7 +4798,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -4818,12 +4818,12 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_GRASS,
-            .accuracy = 100,
+            .accuracy = 85,
             .pp = 40,
             .effectChance = 0,
         },
         .battle = {
-            .target = RANGE_ADJACENT_OPPONENTS,
+            .target = RANGE_SINGLE_TARGET,
             .priority = 0,
             .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
         },
@@ -4852,7 +4852,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -4879,7 +4879,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_UP,
@@ -4927,12 +4927,12 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = ((CHAMPIONS_PP_CHANGES) ? (5) : (10)),
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_USER,
-            .priority = 4,
+            .priority = 3,
             .flags = 0x00,
         },
         .contest = {
@@ -4960,7 +4960,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -4980,7 +4980,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 100,
+            .accuracy = 90,
             .pp = 10,
             .effectChance = 0,
         },
@@ -4998,9 +4998,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_FEINT_ATTACK] = {
         .names = {
-            .name = "Feint Attack",
-            .capsName = "FEINT ATTACK",
-            .fullName = "Feint Attack",
+            .name = "Faint Attack",
+            .capsName = "FAINT ATTACK",
+            .fullName = "Faint Attack",
         },
         .data = {
             .effect = MOVE_EFFECT_BYPASS_ACCURACY,
@@ -5014,7 +5014,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -5033,7 +5033,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effect = MOVE_EFFECT_STATUS_CONFUSE,
             .split = SPLIT_STATUS,
             .power = 0,
-            .type = TYPE_FAIRY,
+            .type = TYPE_NORMAL,
             .accuracy = 75,
             .pp = 10,
             .effectChance = 0,
@@ -5176,7 +5176,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_OPPONENT_SIDE,
             .priority = 0,
-            .flags = FLAG_MAGIC_COAT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -5230,7 +5230,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -5337,7 +5337,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_USER,
-            .priority = 4,
+            .priority = 3,
             .flags = 0x00,
         },
         .contest = {
@@ -5356,16 +5356,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_MULTI_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = ((CHAMPIONS_POWER_CHANGES) ? (30) : (25)),
+            .power = 25,
             .type = TYPE_GROUND,
-            .accuracy = 90,
+            .accuracy = 80,
             .pp = 10,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -5413,13 +5413,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 120,
             .type = TYPE_DRAGON,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_RANDOM_OPPONENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -5440,7 +5440,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_ROCK,
             .accuracy = 0,
-            .pp = ((CHAMPIONS_PP_CHANGES) ? (5) : (10)),
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -5464,7 +5464,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT,
             .split = SPLIT_SPECIAL,
-            .power = 75,
+            .power = 60,
             .type = TYPE_GRASS,
             .accuracy = 100,
             .pp = 10,
@@ -5499,7 +5499,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_USER,
-            .priority = 4,
+            .priority = 3,
             .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
@@ -5519,7 +5519,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effect = MOVE_EFFECT_ATK_DOWN_2,
             .split = SPLIT_STATUS,
             .power = 0,
-            .type = TYPE_FAIRY,
+            .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 20,
             .effectChance = 0,
@@ -5554,7 +5554,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -5581,7 +5581,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -5601,7 +5601,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
-            .accuracy = 85,
+            .accuracy = 90,
             .pp = 15,
             .effectChance = 0,
         },
@@ -5629,7 +5629,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -5638,7 +5638,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "The user restores its\\nown HP by up to half\\nof its maximum HP.\\nIt may also be used\\nto heal an ally’s HP.",
@@ -5680,7 +5680,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_DOUBLE_POWER_EACH_TURN,
             .split = SPLIT_PHYSICAL,
-            .power = 40,
+            .power = 10,
             .type = TYPE_BUG,
             .accuracy = 95,
             .pp = 20,
@@ -5689,7 +5689,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -5716,7 +5716,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -5743,7 +5743,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
         },
         .contest = {
             .appeal = APPEAL_LOWER_VOLTAGES,
@@ -5827,7 +5827,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user makes a\\nsoothing bell chime\\nto heal the status\\nproblems of all the\\nparty Pokémon.",
@@ -5851,7 +5851,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -5905,7 +5905,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -6013,7 +6013,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -6024,9 +6024,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_DYNAMIC_PUNCH] = {
         .names = {
-            .name = "Dynamic Punch",
-            .capsName = "DYNAMIC PUNCH",
-            .fullName = "Dynamic Punch",
+            .name = "DynamicPunch",
+            .capsName = "DYNAMICPUNCH",
+            .fullName = "DynamicPunch",
         },
         .data = {
             .effect = MOVE_EFFECT_CONFUSE_HIT,
@@ -6067,7 +6067,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -6078,9 +6078,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_DRAGON_BREATH] = {
         .names = {
-            .name = "Dragon Breath",
-            .capsName = "DRAGON BREATH",
-            .fullName = "Dragon Breath",
+            .name = "DragonBreath",
+            .capsName = "DRAGONBREATH",
+            .fullName = "DragonBreath",
         },
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
@@ -6094,7 +6094,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -6148,7 +6148,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -6193,16 +6193,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_REMOVE_HAZARDS_AND_BINDING,
             .split = SPLIT_PHYSICAL,
-            .power = 50,
+            .power = 20,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 40,
-            .effectChance = 100,
+            .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -6218,7 +6218,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .fullName = "Sweet Scent",
         },
         .data = {
-            .effect = MOVE_EFFECT_EVA_DOWN_2,
+            .effect = MOVE_EFFECT_EVA_DOWN,
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
@@ -6310,7 +6310,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = -1,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_NEXT_TURN,
@@ -6340,7 +6340,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user restores its\\nown HP.\\nThe amount of HP\\nregained varies with\\nthe weather.",
@@ -6367,7 +6367,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_SMART,
         },
         .description = "The user restores its\\nown HP.\\nThe amount of HP\\nregained varies with\\nthe weather.",
@@ -6383,7 +6383,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effect = MOVE_EFFECT_HEAL_HALF_DIFFERENT_IN_WEATHER,
             .split = SPLIT_STATUS,
             .power = 0,
-            .type = TYPE_FAIRY,
+            .type = TYPE_NORMAL,
             .accuracy = 0,
             .pp = 5,
             .effectChance = 0,
@@ -6394,7 +6394,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH | FLAG_HIDE_SHADOW,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user restores its\\nown HP.\\nThe amount of HP\\nregained varies with\\nthe weather.",
@@ -6409,7 +6409,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_RANDOM_TYPE_BASED_ON_IVS,
             .split = SPLIT_SPECIAL,
-            .power = 60,
+            .power = 1,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 15,
@@ -6418,13 +6418,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_PITY_HEARTS,
             .contestType = CONTEST_SMART,
         },
-        .description = "A unique attack that\\nvaries in type\\ndepending on the\\nPokémon using it.",
+        .description = "A unique attack that\\nvaries in type and\\nintensity depending\\non the Pokémon using\\nit.",
     },
 
     [MOVE_CROSS_CHOP] = {
@@ -6445,7 +6445,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -6472,7 +6472,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -6580,7 +6580,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET_SPECIAL,
             .priority = -5,
-            .flags = FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -6607,7 +6607,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_NEXT_SCORE,
@@ -6618,9 +6618,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_EXTREME_SPEED] = {
         .names = {
-            .name = "Extreme Speed",
-            .capsName = "EXTREME SPEED",
-            .fullName = "Extreme Speed",
+            .name = "ExtremeSpeed",
+            .capsName = "EXTREMESPEED",
+            .fullName = "ExtremeSpeed",
         },
         .data = {
             .effect = MOVE_EFFECT_PRIORITY_1,
@@ -6633,8 +6633,8 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
-            .priority = 2,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .priority = 1,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -6645,9 +6645,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_ANCIENT_POWER] = {
         .names = {
-            .name = "Ancient Power",
-            .capsName = "ANCIENT POWER",
-            .fullName = "Ancient Power",
+            .name = "AncientPower",
+            .capsName = "ANCIENTPOWER",
+            .fullName = "AncientPower",
         },
         .data = {
             .effect = MOVE_EFFECT_RAISE_ALL_STATS_HIT,
@@ -6706,10 +6706,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT_IN_3_TURNS,
             .split = SPLIT_SPECIAL,
-            .power = 120,
+            .power = 80,
             .type = TYPE_PSYCHIC,
-            .accuracy = 100,
-            .pp = 10,
+            .accuracy = 90,
+            .pp = 15,
             .effectChance = 0,
         },
         .battle = {
@@ -6760,16 +6760,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_WHIRLPOOL,
             .split = SPLIT_SPECIAL,
-            .power = 35,
+            .power = 15,
             .type = TYPE_WATER,
-            .accuracy = 85,
+            .accuracy = 70,
             .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -6787,7 +6787,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BEAT_UP,
             .split = SPLIT_PHYSICAL,
-            .power = 1,
+            .power = 10,
             .type = TYPE_DARK,
             .accuracy = 100,
             .pp = 10,
@@ -6796,7 +6796,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -6822,7 +6822,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
-            .priority = 3,
+            .priority = 1,
             .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
@@ -6841,7 +6841,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_UPROAR,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 50,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 10,
@@ -6850,7 +6850,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_RANDOM_OPPONENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LOWER_VOLTAGES,
@@ -6904,7 +6904,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_PROTECT,
+            .flags = FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -6934,7 +6934,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_TOUGH,
         },
         .description = "The power stored\\nusing the move\\nStockpile is absorbed\\nby the user to heal\\nits HP.",
@@ -6949,7 +6949,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BURN_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 95,
+            .power = 100,
             .type = TYPE_FIRE,
             .accuracy = 90,
             .pp = 10,
@@ -7012,7 +7012,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -7059,7 +7059,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_FIRE,
-            .accuracy = 85,
+            .accuracy = 75,
             .pp = 15,
             .effectChance = 0,
         },
@@ -7158,14 +7158,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_SMELLING_SALTS] = {
         .names = {
-            .name = "Smelling Salts",
-            .capsName = "SMELLING SALTS",
-            .fullName = "Smelling Salts",
+            .name = "SmellingSalt",
+            .capsName = "SMELLINGSALT",
+            .fullName = "SmellingSalt",
         },
         .data = {
             .effect = MOVE_EFFECT_DOUBLE_POWER_AND_CURE_PARALYSIS,
             .split = SPLIT_PHYSICAL,
-            .power = 70,
+            .power = 60,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 10,
@@ -7200,7 +7200,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         },
         .battle = {
             .target = RANGE_USER,
-            .priority = 2,
+            .priority = 3,
             .flags = 0x00,
         },
         .contest = {
@@ -7282,7 +7282,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -7390,10 +7390,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH | FLAG_HIDE_SHADOW,
+            .flags = FLAG_HIDE_SHADOW,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "A self-healing move.\\nThe user restores its\\nown HP by up to half\\nof its maximum HP\\nin the next turn.",
@@ -7525,7 +7525,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
+            .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
             .appeal = APPEAL_STEAL_VOLTAGE,
@@ -7552,7 +7552,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = -4,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -7579,7 +7579,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -7624,7 +7624,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_REMOVE_HELD_ITEM,
             .split = SPLIT_PHYSICAL,
-            .power = 65,
+            .power = 20,
             .type = TYPE_DARK,
             .accuracy = 100,
             .pp = 20,
@@ -7660,7 +7660,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -7687,7 +7687,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -7741,7 +7741,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -7771,7 +7771,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "The user rests\\nto cure itself of a\\npoisoning, burn, or\\nparalysis.\\n",
@@ -7876,7 +7876,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -7903,7 +7903,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -7946,7 +7946,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .fullName = "Tail Glow",
         },
         .data = {
-            .effect = MOVE_EFFECT_SP_ATK_UP_3,
+            .effect = MOVE_EFFECT_SP_ATK_UP_2,
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_BUG,
@@ -7975,7 +7975,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_SP_DEF_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 95,
+            .power = 70,
             .type = TYPE_PSYCHIC,
             .accuracy = 100,
             .pp = 5,
@@ -8002,7 +8002,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_SP_ATK_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 95,
+            .power = 70,
             .type = TYPE_PSYCHIC,
             .accuracy = 100,
             .pp = 5,
@@ -8022,9 +8022,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_FEATHER_DANCE] = {
         .names = {
-            .name = "Feather Dance",
-            .capsName = "FEATHER DANCE",
-            .fullName = "Feather Dance",
+            .name = "FeatherDance",
+            .capsName = "FEATHERDANCE",
+            .fullName = "FeatherDance",
         },
         .data = {
             .effect = MOVE_EFFECT_ATK_DOWN_2,
@@ -8146,7 +8146,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -8194,7 +8194,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_NORMAL,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -8203,7 +8203,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "The user slacks off,\\nrestoring its own HP\\nby up to half of its\\nmaximum HP.\\n",
@@ -8249,7 +8249,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .type = TYPE_POISON,
             .accuracy = 100,
             .pp = 15,
-            .effectChance = 50,
+            .effectChance = 30,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
@@ -8308,7 +8308,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -8335,7 +8335,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -8353,16 +8353,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_RAISE_ATTACK_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 90,
+            .power = 100,
             .type = TYPE_STEEL,
-            .accuracy = 90,
+            .accuracy = 85,
             .pp = 10,
             .effectChance = 20,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -8416,7 +8416,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -8446,7 +8446,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_SMART,
         },
         .description = "The user releases a\\nsoothing scent that\\nheals all status\\nproblems affecting\\nthe user’s party.",
@@ -8488,7 +8488,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIGH_CRITICAL,
             .split = SPLIT_SPECIAL,
-            .power = 60,
+            .power = 55,
             .type = TYPE_FLYING,
             .accuracy = 95,
             .pp = 25,
@@ -8497,7 +8497,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -8515,7 +8515,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_USER_SP_ATK_DOWN_2,
             .split = SPLIT_SPECIAL,
-            .power = 130,
+            .power = 140,
             .type = TYPE_FIRE,
             .accuracy = 90,
             .pp = 5,
@@ -8524,7 +8524,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -8551,7 +8551,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -8569,10 +8569,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_SPEED_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 60,
+            .power = 50,
             .type = TYPE_ROCK,
-            .accuracy = 95,
-            .pp = 15,
+            .accuracy = 80,
+            .pp = 10,
             .effectChance = 100,
         },
         .battle = {
@@ -8605,7 +8605,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -8643,9 +8643,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_GRASS_WHISTLE] = {
         .names = {
-            .name = "Grass Whistle",
-            .capsName = "GRASS WHISTLE",
-            .fullName = "Grass Whistle",
+            .name = "GrassWhistle",
+            .capsName = "GRASSWHISTLE",
+            .fullName = "GrassWhistle",
         },
         .data = {
             .effect = MOVE_EFFECT_STATUS_SLEEP,
@@ -8767,7 +8767,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -8794,7 +8794,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -8815,7 +8815,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 80,
             .type = TYPE_PSYCHIC,
             .accuracy = 100,
-            .pp = 20,
+            .pp = 30,
             .effectChance = 10,
         },
         .battle = {
@@ -8848,7 +8848,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -8866,16 +8866,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BIND_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 35,
+            .power = 15,
             .type = TYPE_GROUND,
-            .accuracy = 85,
+            .accuracy = 70,
             .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -8920,7 +8920,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_ACCURACY_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 95,
             .type = TYPE_WATER,
             .accuracy = 85,
             .pp = 10,
@@ -8929,7 +8929,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -8947,7 +8947,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_MULTI_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 25,
+            .power = 10,
             .type = TYPE_GRASS,
             .accuracy = 100,
             .pp = 30,
@@ -8956,7 +8956,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -8983,7 +8983,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9001,7 +9001,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_MULTI_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 25,
+            .power = 10,
             .type = TYPE_ICE,
             .accuracy = 100,
             .pp = 30,
@@ -9010,7 +9010,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -9064,7 +9064,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -9080,7 +9080,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .fullName = "Howl",
         },
         .data = {
-            .effect = MOVE_EFFECT_HOWL,
+            .effect = MOVE_EFFECT_ATK_UP,
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_NORMAL,
@@ -9089,7 +9089,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .effectChance = 0,
         },
         .battle = {
-            .target = RANGE_USER_SIDE,
+            .target = RANGE_USER,
             .priority = 0,
             .flags = FLAG_SNATCH,
         },
@@ -9118,7 +9118,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9145,7 +9145,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -9199,7 +9199,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -9226,7 +9226,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_NEXT_TURN,
@@ -9253,7 +9253,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -9271,10 +9271,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_STEAL_HELD_ITEM,
             .split = SPLIT_PHYSICAL,
-            .power = 60,
+            .power = 40,
             .type = TYPE_NORMAL,
             .accuracy = 100,
-            .pp = 25,
+            .pp = 40,
             .effectChance = 0,
         },
         .battle = {
@@ -9307,7 +9307,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -9334,7 +9334,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9415,7 +9415,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9462,14 +9462,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_PHYSICAL,
             .power = 25,
             .type = TYPE_ROCK,
-            .accuracy = 90,
+            .accuracy = 80,
             .pp = 10,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -9496,7 +9496,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9523,7 +9523,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -9541,9 +9541,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT_IN_3_TURNS,
             .split = SPLIT_SPECIAL,
-            .power = 140,
+            .power = 120,
             .type = TYPE_STEEL,
-            .accuracy = 100,
+            .accuracy = 85,
             .pp = 5,
             .effectChance = 0,
         },
@@ -9577,7 +9577,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -9598,7 +9598,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_FLYING,
             .accuracy = 0,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -9607,7 +9607,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_COOL,
         },
         .description = "The user lands and\\nrests its body.\\nIt restores the\\nuser’s HP by up to\\nhalf of its max HP.",
@@ -9658,7 +9658,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -9676,7 +9676,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_DOUBLE_POWER_HEAL_SLEEP,
             .split = SPLIT_PHYSICAL,
-            .power = 70,
+            .power = 60,
             .type = TYPE_FIGHTING,
             .accuracy = 100,
             .pp = 10,
@@ -9685,7 +9685,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -9712,7 +9712,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_NEXT_TURN,
@@ -9739,7 +9739,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -9766,10 +9766,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH,
+            .flags = 0x00,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_CUTE,
         },
         .description = "The user faints. In\\nreturn, the Pokémon\\ntaking its place will\\nhave its HP restored\\nand status cured.",
@@ -9793,7 +9793,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -9838,7 +9838,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_REMOVE_PROTECT,
             .split = SPLIT_PHYSICAL,
-            .power = 30,
+            .power = 50,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 10,
@@ -9847,7 +9847,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 2,
-            .flags = FLAG_MIRROR_MOVE,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -9874,7 +9874,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_STEAL_VOLTAGE,
@@ -9895,7 +9895,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_FLYING,
             .accuracy = 0,
-            .pp = 15,
+            .pp = 30,
             .effectChance = 0,
         },
         .battle = {
@@ -9928,7 +9928,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET_USER_SIDE,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_NEXT_SCORE,
@@ -9955,7 +9955,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET_SPECIAL,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -9982,7 +9982,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -10009,7 +10009,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -10036,7 +10036,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_UNIQUE_JUDGE,
@@ -10054,7 +10054,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_DOUBLE_POWER_IF_TARGET_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 60,
+            .power = 50,
             .type = TYPE_DARK,
             .accuracy = 100,
             .pp = 10,
@@ -10063,7 +10063,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -10090,7 +10090,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -10137,7 +10137,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_PSYCHIC,
-            .accuracy = 100,
+            .accuracy = 90,
             .pp = 10,
             .effectChance = 0,
         },
@@ -10171,7 +10171,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -10198,7 +10198,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ADJACENT_OPPONENTS,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -10225,7 +10225,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -10252,7 +10252,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
+            .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
@@ -10306,7 +10306,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER_SIDE,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_SNATCH,
+            .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -10441,7 +10441,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_PITY_HEARTS,
@@ -10459,7 +10459,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_FAIL_IF_NOT_USED_ALL_OTHER_MOVES,
             .split = SPLIT_PHYSICAL,
-            .power = 140,
+            .power = 130,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 5,
@@ -10468,7 +10468,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LATE_BOOST,
@@ -10513,7 +10513,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING,
             .split = SPLIT_PHYSICAL,
-            .power = 70,
+            .power = 80,
             .type = TYPE_DARK,
             .accuracy = 100,
             .pp = 5,
@@ -10522,7 +10522,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -10549,7 +10549,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_OPPONENT_SIDE,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MAGIC_COAT,
+            .flags = FLAG_KEEP_HP_BAR,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -10603,10 +10603,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH,
+            .flags = 0x00,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user envelops\\nitself in a veil made\\nof water. It regains\\nsome HP on every\\nturn.",
@@ -10630,7 +10630,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -10684,7 +10684,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -10702,7 +10702,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BYPASS_ACCURACY,
             .split = SPLIT_SPECIAL,
-            .power = 80,
+            .power = 90,
             .type = TYPE_FIGHTING,
             .accuracy = 0,
             .pp = 20,
@@ -10711,7 +10711,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -10765,7 +10765,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -10792,7 +10792,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -10813,13 +10813,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 70,
             .type = TYPE_DARK,
             .accuracy = 100,
-            .pp = ((CHAMPIONS_PP_CHANGES) ? (20) : (15)),
+            .pp = 15,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -10846,7 +10846,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -10873,7 +10873,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -10894,13 +10894,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 75,
             .type = TYPE_FLYING,
             .accuracy = 95,
-            .pp = 15,
+            .pp = 20,
             .effectChance = 30,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -10927,7 +10927,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -10972,7 +10972,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 85,
+            .power = 90,
             .type = TYPE_DRAGON,
             .accuracy = 100,
             .pp = 10,
@@ -10981,7 +10981,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -11008,7 +11008,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11026,7 +11026,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 80,
+            .power = 70,
             .type = TYPE_ROCK,
             .accuracy = 100,
             .pp = 20,
@@ -11035,7 +11035,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11053,16 +11053,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT,
             .split = SPLIT_PHYSICAL,
-            .power = 75,
+            .power = 60,
             .type = TYPE_FIGHTING,
             .accuracy = 100,
-            .pp = 10,
+            .pp = 5,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_CHAIN_HEARTS,
@@ -11089,7 +11089,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -11134,7 +11134,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_SP_DEF_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 80,
             .type = TYPE_GRASS,
             .accuracy = 100,
             .pp = 10,
@@ -11170,7 +11170,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11197,7 +11197,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11251,7 +11251,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -11305,7 +11305,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -11332,7 +11332,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = -4,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -11359,7 +11359,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -11386,7 +11386,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11413,7 +11413,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11440,7 +11440,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11467,7 +11467,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11494,7 +11494,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -11521,7 +11521,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11548,7 +11548,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11575,7 +11575,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11602,7 +11602,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11629,7 +11629,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11656,7 +11656,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11683,7 +11683,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -11728,7 +11728,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_USER_SP_ATK_DOWN_2,
             .split = SPLIT_SPECIAL,
-            .power = 130,
+            .power = 140,
             .type = TYPE_DRAGON,
             .accuracy = 90,
             .pp = 5,
@@ -11737,7 +11737,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -11764,7 +11764,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11791,7 +11791,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_ALL_ADJACENT,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -11809,7 +11809,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_USER_SP_ATK_DOWN_2,
             .split = SPLIT_SPECIAL,
-            .power = 130,
+            .power = 140,
             .type = TYPE_GRASS,
             .accuracy = 90,
             .pp = 5,
@@ -11818,7 +11818,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -11845,7 +11845,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11872,7 +11872,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -11899,7 +11899,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11919,14 +11919,14 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_PHYSICAL,
             .power = 120,
             .type = TYPE_POISON,
-            .accuracy = 80,
+            .accuracy = 70,
             .pp = 5,
             .effectChance = 30,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -11948,12 +11948,12 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .type = TYPE_STEEL,
             .accuracy = 100,
             .pp = 15,
-            .effectChance = ((CHAMPIONS_EFFECT_CHANCE_CHANGES) ? (20) : (30)),
+            .effectChance = 30,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -11980,7 +11980,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_BASIC,
@@ -12007,7 +12007,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -12061,7 +12061,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_OPPONENT_SIDE,
             .priority = 0,
-            .flags = FLAG_MAGIC_COAT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = APPEAL_KEEP_VOLTAGE_DOWN,
@@ -12088,7 +12088,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -12104,13 +12104,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .fullName = "Chatter",
         },
         .data = {
-            .effect = MOVE_EFFECT_CONFUSE_HIT,
+            .effect = MOVE_EFFECT_CHATTER,
             .split = SPLIT_SPECIAL,
-            .power = 65,
+            .power = 60,
             .type = TYPE_FLYING,
             .accuracy = 100,
             .pp = 20,
-            .effectChance = 100,
+            .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
@@ -12142,7 +12142,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_RANDOMIZE_NEXT_TURN,
@@ -12169,7 +12169,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_STEAL_VOLTAGE,
@@ -12196,7 +12196,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
@@ -12223,7 +12223,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_LAST_HEARTS,
@@ -12250,7 +12250,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 1,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_NEXT_TURN,
@@ -12277,7 +12277,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -12334,7 +12334,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .flags = FLAG_SNATCH,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_SMART,
         },
         .description = "The user calls out\\nits underlings to heal\\nit. The user regains\\nup to half of its\\nmax HP.",
@@ -12358,7 +12358,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -12385,7 +12385,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -12412,7 +12412,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -12439,7 +12439,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_VOLTAGE_HEARTS,
@@ -12466,10 +12466,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_SNATCH | FLAG_HIDE_SHADOW,
+            .flags = FLAG_HIDE_SHADOW,
         },
         .contest = {
-            .appeal = APPEAL_SUCCESSIVE,
+            .appeal = APPEAL_VOLTAGE_ONLY,
             .contestType = CONTEST_BEAUTY,
         },
         .description = "The user faints. In\\nreturn, the Pokémon\\ntaking its place will\\nhave its status and\\nHP fully restored.",
@@ -12493,7 +12493,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_ON_FINALE,
@@ -12511,16 +12511,16 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_BIND_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 100,
+            .power = 120,
             .type = TYPE_FIRE,
-            .accuracy = 75,
+            .accuracy = 70,
             .pp = 5,
             .effectChance = 0,
         },
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_SUCCESSIVE,
@@ -12540,7 +12540,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_DARK,
-            .accuracy = 50,
+            .accuracy = 80,
             .pp = 10,
             .effectChance = 0,
         },
@@ -12574,7 +12574,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_HIDE_SHADOW,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT | FLAG_HIDE_SHADOW,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -12601,7 +12601,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_DOUBLE_NEXT_SCORE,
@@ -12628,7 +12628,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_CONTACT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_CONTACT,
         },
         .contest = {
             .appeal = APPEAL_AFTER_MAX_VOLTAGE_HEARTS,
@@ -12639,9 +12639,9 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
 
     [MOVE_468] = {
         .names = {
-            .name = "MOVE_468",
-            .capsName = "MOVE_468",
-            .fullName = "MOVE_468",
+            .name = "",
+            .capsName = "",
+            .fullName = "",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -12655,20 +12655,20 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_LOW_VOLTAGE_BOOST,
             .contestType = CONTEST_BEAUTY,
         },
-        .description = "--",
+        .description = "",
     },
 
     [MOVE_469] = {
         .names = {
-            .name = "MOVE_469",
-            .capsName = "MOVE_469",
-            .fullName = "MOVE_469",
+            .name = "",
+            .capsName = "",
+            .fullName = "",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -12682,13 +12682,13 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = FLAG_MIRROR_MOVE | FLAG_UNUSABLE_IN_GEN_8 | FLAG_UNUSABLE_IN_GEN_9 | FLAG_UNUSABLE_UNIMPLEMENTED | FLAG_PROTECT,
         },
         .contest = {
             .appeal = APPEAL_FIRST_HEARTS,
             .contestType = CONTEST_CUTE,
         },
-        .description = "--",
+        .description = "",
     },
 
     [MOVE_470] = {

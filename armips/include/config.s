@@ -9,7 +9,7 @@ DISALLOW_DEXIT_GEN equ 0
 
 // FAIRY_TYPE_IMPLEMENTED defines whether or not the Fairy type is to be implemented as type 9 or not.
 // If you do not want this change, then set it to 0.
-FAIRY_TYPE_IMPLEMENTED equ 1
+FAIRY_TYPE_IMPLEMENTED equ 0
 
 // SNOW_WARNING_GENERATION controls whether to summon Snow or Hail when the ability is activated.
 // 9 or above: Snow

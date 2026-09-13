@@ -15,7 +15,7 @@
 
 // FAIRY_TYPE_IMPLEMENTED should be used if you want to implement the fairy type and overwrite type 9 in this project
 // set FAIRY_TYPE_IMPLEMENTED to 0 if you do not want this to happen
-#define FAIRY_TYPE_IMPLEMENTED 1
+#define FAIRY_TYPE_IMPLEMENTED 0
 
 // TYPE_EFFECTIVENESS_GEN defines the type chart interactions you would like to use.
 // Defining this as "5" or lower will revert Steel to resisting Ghost- and Dark-type moves.

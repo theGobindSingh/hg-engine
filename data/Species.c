@@ -60,7 +60,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BULBASAUR] = {
         .textData = {
-            .name = "Bulbasaur",
+            .name = "BULBASAUR",
             .pokedexEntry = "The seed on its back is filled\\nwith nutrients. The seed grows\\nsteadily larger as its body grows.",
             .classification = "Seed Pokémon",
             .height = "2’04”",
@@ -77,7 +77,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -92,7 +92,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -117,7 +117,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_IVYSAUR] = {
         .textData = {
-            .name = "Ivysaur",
+            .name = "IVYSAUR",
             .pokedexEntry = "Exposure to sunlight adds to its\\nstrength. Sunlight also makes the\\nbud on its back grow larger.",
             .classification = "Seed Pokémon",
             .height = "3’03”",
@@ -134,7 +134,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -149,7 +149,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -174,7 +174,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VENUSAUR] = {
         .textData = {
-            .name = "Venusaur",
+            .name = "VENUSAUR",
             .pokedexEntry = "By spreading the broad petals of\\nits flower and catching the sun’s\\nrays, it fills its body with power.",
             .classification = "Seed Pokémon",
             .height = "6’07”",
@@ -191,7 +191,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -206,7 +206,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -231,7 +231,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHARMANDER] = {
         .textData = {
-            .name = "Charmander",
+            .name = "CHARMANDER",
             .pokedexEntry = "The flame on its tail shows the\\nstrength of its life force. If it is weak,\\nthe flame also burns weakly.",
             .classification = "Lizard Pokémon",
             .height = "2’00”",
@@ -248,7 +248,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -263,7 +263,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -288,7 +288,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHARMELEON] = {
         .textData = {
-            .name = "Charmeleon",
+            .name = "CHARMELEON",
             .pokedexEntry = "It is very hotheaded by nature,\\nso it constantly seeks opponents.\\nIt calms down only when it wins.",
             .classification = "Flame Pokémon",
             .height = "3’07”",
@@ -305,7 +305,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 142,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -320,7 +320,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -345,7 +345,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHARIZARD] = {
         .textData = {
-            .name = "Charizard",
+            .name = "CHARIZARD",
             .pokedexEntry = "If CHARIZARD becomes furious,\\nthe flame at the tip of its tail flares\\nup in a light blue shade.",
             .classification = "Flame Pokémon",
             .height = "5’07”",
@@ -362,7 +362,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 209,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -377,7 +377,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -402,7 +402,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SQUIRTLE] = {
         .textData = {
-            .name = "Squirtle",
+            .name = "SQUIRTLE",
             .pokedexEntry = "The shell is soft when it is born.\\nIt soon becomes so resilient,\\nprodding fingers will bounce off it.",
             .classification = "Tiny Turtle Pokémon",
             .height = "1’08”",
@@ -419,7 +419,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 66,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -434,7 +434,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -459,7 +459,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WARTORTLE] = {
         .textData = {
-            .name = "Wartortle",
+            .name = "WARTORTLE",
             .pokedexEntry = "It is a well-established symbol of\\nlongevity. If its shell has algae on it,\\nthat WARTORTLE is very old.",
             .classification = "Turtle Pokémon",
             .height = "3’03”",
@@ -476,7 +476,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 143,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -491,7 +491,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -516,7 +516,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BLASTOISE] = {
         .textData = {
-            .name = "Blastoise",
+            .name = "BLASTOISE",
             .pokedexEntry = "It deliberately makes itself heavy\\nso it can withstand the recoil\\nof the water jets it fires.",
             .classification = "Shellfish Pokémon",
             .height = "5’03”",
@@ -533,7 +533,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -548,7 +548,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -573,7 +573,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CATERPIE] = {
         .textData = {
-            .name = "Caterpie",
+            .name = "CATERPIE",
             .pokedexEntry = "For protection, it releases a horrible\\nstench from the antennae on its\\nhead to drive away enemies.",
             .classification = "Worm Pokémon",
             .height = "1’00”",
@@ -590,7 +590,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 53,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -605,7 +605,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE },
@@ -630,7 +630,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_METAPOD] = {
         .textData = {
-            .name = "Metapod",
+            .name = "METAPOD",
             .pokedexEntry = "Inside the shell, it is soft and\\nweak as it prepares to evolve.\\nIt stays motionless in the shell.",
             .classification = "Cocoon Pokémon",
             .height = "2’04”",
@@ -647,7 +647,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 72,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -662,7 +662,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE },
@@ -687,7 +687,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BUTTERFREE] = {
         .textData = {
-            .name = "Butterfree",
+            .name = "BUTTERFREE",
             .pokedexEntry = "It collects honey every day. It rubs\\nhoney onto the hairs on its legs\\nto carry it back to its nest.",
             .classification = "Butterfly Pokémon",
             .height = "3’07”",
@@ -698,13 +698,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 60,
                 .attack = 45,
                 .defense = 50,
-                .spAttack = 90,
+                .spAttack = 80,
                 .spDefense = 80,
                 .speed = 70,
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 160,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -719,7 +719,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE },
@@ -744,7 +744,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WEEDLE] = {
         .textData = {
-            .name = "Weedle",
+            .name = "WEEDLE",
             .pokedexEntry = "Its poison stinger is very powerful.\\nIts bright-colored body is intended\\nto warn off its enemies.",
             .classification = "Hairy Bug Pokémon",
             .height = "1’00”",
@@ -761,7 +761,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 52,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -801,7 +801,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KAKUNA] = {
         .textData = {
-            .name = "Kakuna",
+            .name = "KAKUNA",
             .pokedexEntry = "Although it is a cocoon, it can\\nmove a little. It can extend its\\npoison barb if it is attacked.",
             .classification = "Cocoon Pokémon",
             .height = "2’00”",
@@ -818,7 +818,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 71,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -858,7 +858,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BEEDRILL] = {
         .textData = {
-            .name = "Beedrill",
+            .name = "BEEDRILL",
             .pokedexEntry = "It can take down any opponent with\\nits powerful poison stingers.\\nIt sometimes attacks in swarms.",
             .classification = "Poison Bee Pokémon",
             .height = "3’03”",
@@ -867,7 +867,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 65,
-                .attack = 90,
+                .attack = 80,
                 .defense = 40,
                 .spAttack = 45,
                 .spDefense = 80,
@@ -875,7 +875,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 159,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -915,7 +915,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PIDGEY] = {
         .textData = {
-            .name = "Pidgey",
+            .name = "PIDGEY",
             .pokedexEntry = "It usually hides in tall grass.\\nBecause it dislikes fighting,\\nit protects itself by kicking up sand.",
             .classification = "Tiny Bird Pokémon",
             .height = "1’00”",
@@ -932,7 +932,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 55,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -950,8 +950,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET },
-            .safariFleeRate = 0,
+            .abilities = { 19763, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -972,7 +972,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PIDGEOTTO] = {
         .textData = {
-            .name = "Pidgeotto",
+            .name = "PIDGEOTTO",
             .pokedexEntry = "It has outstanding vision. However\\nhigh it flies, it is able to distinguish\\nthe movements of its prey.",
             .classification = "Bird Pokémon",
             .height = "3’07”",
@@ -989,7 +989,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 113,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1007,7 +1007,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET },
+            .abilities = { 19763, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -1029,7 +1029,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PIDGEOT] = {
         .textData = {
-            .name = "Pidgeot",
+            .name = "PIDGEOT",
             .pokedexEntry = "Its well-developed chest muscles make\\nit strong enough to whip up a gusty\\nwindstorm with just a few flaps.",
             .classification = "Bird Pokémon",
             .height = "4’11”",
@@ -1042,11 +1042,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .defense = 75,
                 .spAttack = 70,
                 .spDefense = 70,
-                .speed = 101,
+                .speed = 91,
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 172,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1064,7 +1064,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET },
+            .abilities = { 19763, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -1086,7 +1086,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RATTATA] = {
         .textData = {
-            .name = "Rattata",
+            .name = "RATTATA",
             .pokedexEntry = "It eats anything. Wherever food is\\navailable, it will settle down and\\nproduce offspring continuously.",
             .classification = "Mouse Pokémon",
             .height = "1’00”",
@@ -1103,7 +1103,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 57,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1121,8 +1121,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_GUTS },
-            .safariFleeRate = 0,
+            .abilities = { 15922, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -1143,7 +1143,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RATICATE] = {
         .textData = {
-            .name = "Raticate",
+            .name = "RATICATE",
             .pokedexEntry = "Gnaws on anything with its tough\\nfangs. It can even topple concrete\\nbuildings by gnawing on them.",
             .classification = "Mouse Pokémon",
             .height = "2’04”",
@@ -1160,7 +1160,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 127,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 116,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1170,16 +1170,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 2,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
-                .rare = ITEM_SITRUS_BERRY,
+                .common = ITEM_NONE,
+                .rare = ITEM_CHILAN_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_GUTS },
-            .safariFleeRate = 0,
+            .abilities = { 15922, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -1200,7 +1200,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPEAROW] = {
         .textData = {
-            .name = "Spearow",
+            .name = "SPEAROW",
             .pokedexEntry = "It flaps its short wings to flush out\\ninsects from tall grass. It then\\nplucks them with its stubby beak.",
             .classification = "Tiny Bird Pokémon",
             .height = "1’00”",
@@ -1217,7 +1217,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 58,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1228,7 +1228,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_SHARP_BEAK,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
@@ -1236,7 +1236,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -1257,7 +1257,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FEAROW] = {
         .textData = {
-            .name = "Fearow",
+            .name = "FEAROW",
             .pokedexEntry = "It shoots itself suddenly high into\\nthe sky, then plummets down in\\none fell swoop to strike its prey.",
             .classification = "Beak Pokémon",
             .height = "3’11”",
@@ -1274,7 +1274,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 162,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1293,7 +1293,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -1314,7 +1314,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EKANS] = {
         .textData = {
-            .name = "Ekans",
+            .name = "EKANS",
             .pokedexEntry = "It can freely detach its jaw to\\nswallow large prey whole. It can\\nbecome too heavy to move, however.",
             .classification = "Snake Pokémon",
             .height = "6’07”",
@@ -1331,7 +1331,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 62,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -1349,8 +1349,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_SHED_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 15638, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -1371,7 +1371,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARBOK] = {
         .textData = {
-            .name = "Arbok",
+            .name = "ARBOK",
             .pokedexEntry = "Transfixing prey with the face-like\\npattern on its belly, it binds\\nand poisons the frightened victim.",
             .classification = "Cobra Pokémon",
             .height = "11’06”",
@@ -1380,7 +1380,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 60,
-                .attack = 95,
+                .attack = 85,
                 .defense = 69,
                 .spAttack = 65,
                 .spDefense = 79,
@@ -1388,7 +1388,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 147,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -1399,15 +1399,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_POISON_BARB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_SHED_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 15638, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -1428,7 +1428,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PIKACHU] = {
         .textData = {
-            .name = "Pikachu",
+            .name = "PIKACHU",
             .pokedexEntry = "This intelligent Pokémon roasts\\nhard berries with electricity to\\nmake them tender enough to eat.",
             .classification = "Mouse Pokémon",
             .height = "1’04”",
@@ -1438,14 +1438,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 35,
                 .attack = 55,
-                .defense = 40,
+                .defense = 30,
                 .spAttack = 50,
-                .spDefense = 50,
+                .spDefense = 40,
                 .speed = 90,
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 82,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1460,7 +1460,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
@@ -1485,7 +1485,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RAICHU] = {
         .textData = {
-            .name = "Raichu",
+            .name = "RAICHU",
             .pokedexEntry = "When its electricity builds, its\\nmuscles are stimulated, and it becomes\\nmore aggressive than usual.",
             .classification = "Mouse Pokémon",
             .height = "2’07”",
@@ -1498,11 +1498,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .defense = 55,
                 .spAttack = 90,
                 .spDefense = 80,
-                .speed = 110,
+                .speed = 100,
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 122,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1517,7 +1517,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
@@ -1542,7 +1542,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SANDSHREW] = {
         .textData = {
-            .name = "Sandshrew",
+            .name = "SANDSHREW",
             .pokedexEntry = "If it fell from a great height, this\\nPokémon could save itself by rolling\\ninto a ball and bouncing.",
             .classification = "Mouse Pokémon",
             .height = "2’00”",
@@ -1559,7 +1559,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 93,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1569,16 +1569,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_GRIP_CLAW,
+                .common = ITEM_NONE,
                 .rare = ITEM_QUICK_CLAW,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -1599,7 +1599,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SANDSLASH] = {
         .textData = {
-            .name = "Sandslash",
+            .name = "SANDSLASH",
             .pokedexEntry = "In an attempt to hide itself,\\nit will run around at top speed to\\nkick up a blinding dust storm.",
             .classification = "Mouse Pokémon",
             .height = "3’03”",
@@ -1616,7 +1616,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 163,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -1626,16 +1626,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SOFT_SAND,
+                .common = ITEM_NONE,
                 .rare = ITEM_QUICK_CLAW,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -1656,7 +1656,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDORAN_F] = {
         .textData = {
-            .name = "Nidoran♀",
+            .name = "NIDORAN♀",
             .pokedexEntry = "The poison hidden in its small horn\\nis extremely potent. Even a tiny\\nscratch can have fatal results.",
             .classification = "Poison Pin Pokémon",
             .height = "1’04”",
@@ -1673,7 +1673,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 59,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -1688,11 +1688,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
-            .safariFleeRate = 0,
+            .abilities = { 20262, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -1713,7 +1713,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDORINA] = {
         .textData = {
-            .name = "Nidorina",
+            .name = "NIDORINA",
             .pokedexEntry = "When feeding its young, it first\\nchews the food into a paste, then\\nspits it out for the offspring.",
             .classification = "Poison Pin Pokémon",
             .height = "2’07”",
@@ -1730,7 +1730,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 117,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -1745,11 +1745,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
-            .safariFleeRate = 0,
+            .abilities = { 20262, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -1770,7 +1770,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDOQUEEN] = {
         .textData = {
-            .name = "Nidoqueen",
+            .name = "NIDOQUEEN",
             .pokedexEntry = "Its body is covered with needle-like\\nscales. It never shows signs\\nof shrinking from any attack.",
             .classification = "Drill Pokémon",
             .height = "4’03”",
@@ -1779,7 +1779,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 90,
-                .attack = 92,
+                .attack = 82,
                 .defense = 87,
                 .spAttack = 75,
                 .spDefense = 85,
@@ -1787,7 +1787,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 194,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -1802,10 +1802,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
+            .abilities = { 20262, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -1827,7 +1827,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDORAN_M] = {
         .textData = {
-            .name = "Nidoran♂",
+            .name = "NIDORAN♂",
             .pokedexEntry = "It is small, but its horn is filled\\nwith poison. It charges then stabs\\nwith the horn to inject poison.",
             .classification = "Poison Pin Pokémon",
             .height = "1’08”",
@@ -1844,7 +1844,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 60,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -1859,11 +1859,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
-            .safariFleeRate = 0,
+            .abilities = { 20262, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -1884,7 +1884,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDORINO] = {
         .textData = {
-            .name = "Nidorino",
+            .name = "NIDORINO",
             .pokedexEntry = "It raises its big ears to check its\\nsurroundings. If it senses anything,\\nit attacks immediately.",
             .classification = "Poison Pin Pokémon",
             .height = "2’11”",
@@ -1901,7 +1901,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 118,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -1916,11 +1916,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
-            .safariFleeRate = 0,
+            .abilities = { 20262, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -1941,7 +1941,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NIDOKING] = {
         .textData = {
-            .name = "Nidoking",
+            .name = "NIDOKING",
             .pokedexEntry = "It swings its big tail around during\\nbattle. If its foe flinches, it will\\ncharge with its sturdy body.",
             .classification = "Drill Pokémon",
             .height = "4’07”",
@@ -1950,7 +1950,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 81,
-                .attack = 102,
+                .attack = 92,
                 .defense = 77,
                 .spAttack = 85,
                 .spDefense = 75,
@@ -1958,7 +1958,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 195,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -1973,10 +1973,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY },
+            .abilities = { 20262, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -1998,7 +1998,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLEFAIRY] = {
         .textData = {
-            .name = "Clefairy",
+            .name = "CLEFAIRY",
             .pokedexEntry = "The moonlight that it stores in the\\nwings on its back apparently gives\\nit the ability to float in midair.",
             .classification = "Fairy Pokémon",
             .height = "2’00”",
@@ -2013,9 +2013,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 65,
                 .speed = 35,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 68,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -2028,13 +2028,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_LEPPA_BERRY,
                 .rare = ITEM_MOON_STONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_MAGIC_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 25144, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -2055,7 +2055,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLEFABLE] = {
         .textData = {
-            .name = "Clefable",
+            .name = "CLEFABLE",
             .pokedexEntry = "With its acute hearing, it can\\npick up sounds from far away.\\nIt usually hides in quiet places.",
             .classification = "Fairy Pokémon",
             .height = "4’03”",
@@ -2066,13 +2066,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 95,
                 .attack = 70,
                 .defense = 73,
-                .spAttack = 95,
+                .spAttack = 85,
                 .spDefense = 90,
                 .speed = 60,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 129,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -2085,12 +2085,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_LEPPA_BERRY,
                 .rare = ITEM_MOON_STONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_MAGIC_GUARD },
+            .abilities = { 25144, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -2112,7 +2112,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VULPIX] = {
         .textData = {
-            .name = "Vulpix",
+            .name = "VULPIX",
             .pokedexEntry = "As it develops, its single white\\ntail gains color and splits into six.\\nIt is quite warm and cuddly.",
             .classification = "Fox Pokémon",
             .height = "2’00”",
@@ -2129,7 +2129,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 63,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2140,11 +2140,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_CHARCOAL,
+                .rare = ITEM_RAWST_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE },
@@ -2169,7 +2169,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NINETALES] = {
         .textData = {
-            .name = "Ninetales",
+            .name = "NINETALES",
             .pokedexEntry = "Some legends claim that each of its\\nnine tails has its own unique type\\nof special mystical power.",
             .classification = "Fox Pokémon",
             .height = "3’07”",
@@ -2186,7 +2186,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2197,11 +2197,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_CHARCOAL,
+                .rare = ITEM_RAWST_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE },
@@ -2226,7 +2226,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_JIGGLYPUFF] = {
         .textData = {
-            .name = "Jigglypuff",
+            .name = "JIGGLYPUFF",
             .pokedexEntry = "If it inflates to sing a lullaby,\\nit can perform longer and cause\\nsure drowsiness in its audience.",
             .classification = "Balloon Pokémon",
             .height = "1’08”",
@@ -2241,9 +2241,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 25,
                 .speed = 20,
             },
-            .types = { TYPE_NORMAL, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 170,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 76,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -2253,16 +2253,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
-                .rare = ITEM_MOON_STONE,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_COMPETITIVE },
-            .safariFleeRate = 0,
+            .abilities = { ABILITY_CUTE_CHARM, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -2283,7 +2283,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WIGGLYTUFF] = {
         .textData = {
-            .name = "Wigglytuff",
+            .name = "WIGGLYTUFF",
             .pokedexEntry = "Their fur feels so good that if two\\nof them snuggle together,\\nthey won’t want to be separated.",
             .classification = "Balloon Pokémon",
             .height = "3’03”",
@@ -2294,13 +2294,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 140,
                 .attack = 70,
                 .defense = 45,
-                .spAttack = 85,
+                .spAttack = 75,
                 .spDefense = 50,
                 .speed = 45,
             },
-            .types = { TYPE_NORMAL, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 50,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 109,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -2310,15 +2310,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
-                .rare = ITEM_MOON_STONE,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_CUTE_CHARM, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -2340,7 +2340,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ZUBAT] = {
         .textData = {
-            .name = "Zubat",
+            .name = "ZUBAT",
             .pokedexEntry = "While flying, it constantly emits\\nultrasonic waves from its mouth to\\ncheck its surroundings.",
             .classification = "Bat Pokémon",
             .height = "2’07”",
@@ -2357,7 +2357,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 54,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2372,11 +2372,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_INNER_FOCUS, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -2397,7 +2397,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GOLBAT] = {
         .textData = {
-            .name = "Golbat",
+            .name = "GOLBAT",
             .pokedexEntry = "However hard its victim’s hide may be,\\nit punctures with sharp fangs\\nand gorges itself with blood.",
             .classification = "Bat Pokémon",
             .height = "5’03”",
@@ -2414,7 +2414,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_FLYING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 171,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2429,11 +2429,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_INNER_FOCUS, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -2454,7 +2454,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ODDISH] = {
         .textData = {
-            .name = "Oddish",
+            .name = "ODDISH",
             .pokedexEntry = "Awakened by moonlight, it roams\\nactively at night. In the day, it stays\\nquietly underground.",
             .classification = "Weed Pokémon",
             .height = "1’08”",
@@ -2471,7 +2471,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 78,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2482,15 +2482,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_ABSORB_BULB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -2511,7 +2511,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLOOM] = {
         .textData = {
-            .name = "Gloom",
+            .name = "GLOOM",
             .pokedexEntry = "What appears to be drool is actually\\nsweet honey. It is very sticky and\\nclings stubbornly if touched.",
             .classification = "Weed Pokémon",
             .height = "2’07”",
@@ -2528,7 +2528,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 132,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2539,15 +2539,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_ABSORB_BULB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -2568,7 +2568,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VILEPLUME] = {
         .textData = {
-            .name = "Vileplume",
+            .name = "VILEPLUME",
             .pokedexEntry = "It has the world’s largest petals.\\nWith every step, the petals shake\\nout heavy clouds of toxic pollen.",
             .classification = "Flower Pokémon",
             .height = "3’11”",
@@ -2579,13 +2579,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 75,
                 .attack = 80,
                 .defense = 85,
-                .spAttack = 110,
+                .spAttack = 100,
                 .spDefense = 90,
                 .speed = 50,
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 184,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2596,11 +2596,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_ABSORB_BULB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
@@ -2625,7 +2625,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PARAS] = {
         .textData = {
-            .name = "Paras",
+            .name = "PARAS",
             .pokedexEntry = "It is doused with mushroom spores\\nwhen it is born. As its body grows,\\nmushrooms sprout from its back.",
             .classification = "Mushroom Pokémon",
             .height = "1’00”",
@@ -2642,7 +2642,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_GRASS },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 70,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -2660,8 +2660,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_EFFECT_SPORE, ABILITY_DRY_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 22299, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -2682,7 +2682,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PARASECT] = {
         .textData = {
-            .name = "Parasect",
+            .name = "PARASECT",
             .pokedexEntry = "It stays mostly in dark, damp places,\\nthe preference not of the bug, but\\nof the big mushroom on its back.",
             .classification = "Mushroom Pokémon",
             .height = "3’03”",
@@ -2699,7 +2699,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_GRASS },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 128,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -2717,8 +2717,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_EFFECT_SPORE, ABILITY_DRY_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 22299, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -2739,7 +2739,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VENONAT] = {
         .textData = {
-            .name = "Venonat",
+            .name = "VENONAT",
             .pokedexEntry = "Its eyes also function as radar\\nunits. It catches and eats small\\nbugs that hide in darkness.",
             .classification = "Insect Pokémon",
             .height = "3’03”",
@@ -2756,7 +2756,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2774,7 +2774,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_COMPOUND_EYES, ABILITY_TINTED_LENS },
+            .abilities = { 28174, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -2796,7 +2796,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VENOMOTH] = {
         .textData = {
-            .name = "Venomoth",
+            .name = "VENOMOTH",
             .pokedexEntry = "When it attacks, it flaps its large\\nwings violently to scatter its\\npoisonous powder all around.",
             .classification = "Poison Moth Pokémon",
             .height = "4’11”",
@@ -2813,7 +2813,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 138,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2823,15 +2823,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_SHED_SHELL,
-                .rare = ITEM_SILVER_POWDER,
+                .common = ITEM_NONE,
+                .rare = ITEM_SHED_SHELL,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SHIELD_DUST, ABILITY_TINTED_LENS },
+            .abilities = { 28179, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -2853,7 +2853,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DIGLETT] = {
         .textData = {
-            .name = "Diglett",
+            .name = "DIGLETT",
             .pokedexEntry = "Its skin is very thin. If it is exposed\\nto light, its blood heats up,\\ncausing it to grow weak.",
             .classification = "Mole Pokémon",
             .height = "0’08”",
@@ -2870,7 +2870,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 81,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2885,11 +2885,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP },
-            .safariFleeRate = 0,
+            .abilities = { 18184, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -2910,7 +2910,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUGTRIO] = {
         .textData = {
-            .name = "Dugtrio",
+            .name = "DUGTRIO",
             .pokedexEntry = "Its three heads bob separately up\\nand down to loosen the soil nearby,\\nmaking it easier for it to burrow.",
             .classification = "Mole Pokémon",
             .height = "2’04”",
@@ -2919,7 +2919,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 35,
-                .attack = 100,
+                .attack = 80,
                 .defense = 50,
                 .spAttack = 50,
                 .spDefense = 70,
@@ -2927,7 +2927,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 50,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 153,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2942,10 +2942,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP },
+            .abilities = { 18184, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -2967,7 +2967,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEOWTH] = {
         .textData = {
-            .name = "Meowth",
+            .name = "MEOWTH",
             .pokedexEntry = "It is fascinated by round objects.\\nIt can’t stop playing with them\\nuntil it tires and falls asleep.",
             .classification = "Scratch Cat Pokémon",
             .height = "1’04”",
@@ -2984,7 +2984,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 69,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -2994,15 +2994,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_QUICK_CLAW,
-                .rare = ITEM_NUGGET,
+                .common = ITEM_NONE,
+                .rare = ITEM_QUICK_CLAW,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PICKUP, ABILITY_TECHNICIAN },
+            .abilities = { 25909, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -3024,7 +3024,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PERSIAN] = {
         .textData = {
-            .name = "Persian",
+            .name = "PERSIAN",
             .pokedexEntry = "Many adore it for its sophisticated air.\\nHowever, it will lash out and\\nscratch for little reason.",
             .classification = "Classy Cat Pokémon",
             .height = "3’03”",
@@ -3041,7 +3041,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 148,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3056,10 +3056,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LIMBER, ABILITY_TECHNICIAN },
+            .abilities = { 25863, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -3081,7 +3081,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PSYDUCK] = {
         .textData = {
-            .name = "Psyduck",
+            .name = "PSYDUCK",
             .pokedexEntry = "It has mystical powers but doesn’t\\nrecall that it has used them.\\nThat is why it always looks puzzled.",
             .classification = "Duck Pokémon",
             .height = "2’07”",
@@ -3098,7 +3098,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 80,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3113,11 +3113,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_DAMP, ABILITY_CLOUD_NINE },
-            .safariFleeRate = 0,
+            .abilities = { 3334, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -3138,7 +3138,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GOLDUCK] = {
         .textData = {
-            .name = "Golduck",
+            .name = "GOLDUCK",
             .pokedexEntry = "When it swims at full speed using\\nits long, webbed limbs, its forehead\\nsomehow begins to glow.",
             .classification = "Duck Pokémon",
             .height = "5’07”",
@@ -3155,7 +3155,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 174,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3170,11 +3170,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_DAMP, ABILITY_CLOUD_NINE },
-            .safariFleeRate = 0,
+            .abilities = { 3334, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -3195,7 +3195,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MANKEY] = {
         .textData = {
-            .name = "Mankey",
+            .name = "MANKEY",
             .pokedexEntry = "It is extremely ill-tempered.\\nGroups of them will attack any\\nhandy target for no reason.",
             .classification = "Pig Monkey Pokémon",
             .height = "1’08”",
@@ -3212,7 +3212,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -3230,7 +3230,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_ANGER_POINT },
+            .abilities = { 21320, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3252,7 +3252,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PRIMEAPE] = {
         .textData = {
-            .name = "Primeape",
+            .name = "PRIMEAPE",
             .pokedexEntry = "If approached while asleep,\\nit may awaken and angrily give chase\\nin a groggy state of semi-sleep.",
             .classification = "Pig Monkey Pokémon",
             .height = "3’03”",
@@ -3269,7 +3269,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 149,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -3287,7 +3287,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_ANGER_POINT },
+            .abilities = { 21320, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3309,7 +3309,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GROWLITHE] = {
         .textData = {
-            .name = "Growlithe",
+            .name = "GROWLITHE",
             .pokedexEntry = "It has a brave and trustworthy\\nnature. It fearlessly stands up\\nto bigger and stronger foes.",
             .classification = "Puppy Pokémon",
             .height = "2’04”",
@@ -3326,7 +3326,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 91,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -3337,14 +3337,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_RAWST_BERRY,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE },
+            .abilities = { 4630, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3366,7 +3366,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARCANINE] = {
         .textData = {
-            .name = "Arcanine",
+            .name = "ARCANINE",
             .pokedexEntry = "This legendary Chinese Pokémon is\\nconsidered magnificent. Many people\\nare enchanted by its grand mane.",
             .classification = "Legendary Pokémon",
             .height = "6’03”",
@@ -3383,7 +3383,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 213,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -3394,14 +3394,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_RAWST_BERRY,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE },
+            .abilities = { 4630, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3423,7 +3423,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_POLIWAG] = {
         .textData = {
-            .name = "Poliwag",
+            .name = "POLIWAG",
             .pokedexEntry = "Because it is inept at walking on\\nits newly grown legs, it always \\nswims around in water.",
             .classification = "Tadpole Pokémon",
             .height = "2’00”",
@@ -3440,7 +3440,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 77,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3455,13 +3455,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_DAMP },
-            .safariFleeRate = 0,
+            .abilities = { 1547, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 6,
@@ -3480,7 +3480,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_POLIWHIRL] = {
         .textData = {
-            .name = "Poliwhirl",
+            .name = "POLIWHIRL",
             .pokedexEntry = "The swirl on its belly subtly undulates.\\nStaring at it may gradually\\ncause drowsiness.",
             .classification = "Tadpole Pokémon",
             .height = "3’03”",
@@ -3497,7 +3497,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 131,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3512,13 +3512,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_DAMP },
-            .safariFleeRate = 0,
+            .abilities = { 1547, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 10,
@@ -3537,7 +3537,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_POLIWRATH] = {
         .textData = {
-            .name = "Poliwrath",
+            .name = "POLIWRATH",
             .pokedexEntry = "This strong and skilled swimmer is\\neven capable of crossing the\\nPacific Ocean just by kicking.",
             .classification = "Tadpole Pokémon",
             .height = "4’03”",
@@ -3546,7 +3546,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 90,
-                .attack = 95,
+                .attack = 85,
                 .defense = 95,
                 .spAttack = 70,
                 .spDefense = 90,
@@ -3554,7 +3554,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 185,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3569,13 +3569,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_DAMP },
+            .abilities = { 1547, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 13,
@@ -3594,7 +3594,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ABRA] = {
         .textData = {
-            .name = "Abra",
+            .name = "ABRA",
             .pokedexEntry = "It senses impending attacks and\\nteleports away to safety before the\\nactual attacks can strike.",
             .classification = "Psi Pokémon",
             .height = "2’11”",
@@ -3611,7 +3611,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3626,11 +3626,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS },
-            .safariFleeRate = 0,
+            .abilities = { 10012, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -3651,7 +3651,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KADABRA] = {
         .textData = {
-            .name = "Kadabra",
+            .name = "KADABRA",
             .pokedexEntry = "It possesses strong spiritual power.\\nThe more danger it faces,\\nthe stronger its psychic power.",
             .classification = "Psi Pokémon",
             .height = "4’03”",
@@ -3668,7 +3668,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 100,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 145,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3683,10 +3683,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS },
+            .abilities = { 10012, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3708,7 +3708,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ALAKAZAM] = {
         .textData = {
-            .name = "Alakazam",
+            .name = "ALAKAZAM",
             .pokedexEntry = "Closing both its eyes heightens all\\nits other senses. This enables it to\\nuse its abilities to their extremes.",
             .classification = "Psi Pokémon",
             .height = "4’11”",
@@ -3720,12 +3720,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 50,
                 .defense = 45,
                 .spAttack = 135,
-                .spDefense = 95,
+                .spDefense = 85,
                 .speed = 120,
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 50,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 186,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -3740,10 +3740,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS },
+            .abilities = { 10012, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -3765,7 +3765,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MACHOP] = {
         .textData = {
-            .name = "Machop",
+            .name = "MACHOP",
             .pokedexEntry = "Always brimming with power,\\nit passes time by lifting boulders.\\nDoing so makes it even stronger.",
             .classification = "Superpower Pokémon",
             .height = "2’07”",
@@ -3782,7 +3782,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 180,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -3793,15 +3793,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_FOCUS_BAND,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_GUTS, ABILITY_NO_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 25406, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -3822,7 +3822,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MACHOKE] = {
         .textData = {
-            .name = "Machoke",
+            .name = "MACHOKE",
             .pokedexEntry = "It always goes at its full power,\\nbut this very tough and durable\\nPokémon never gets tired.",
             .classification = "Superpower Pokémon",
             .height = "4’11”",
@@ -3839,7 +3839,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 146,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -3850,17 +3850,17 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_FOCUS_BAND,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_GUTS, ABILITY_NO_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 25406, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 15,
@@ -3879,7 +3879,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MACHAMP] = {
         .textData = {
-            .name = "Machamp",
+            .name = "MACHAMP",
             .pokedexEntry = "It quickly swings its four arms to\\nrock its opponents with ceaseless\\npunches and chops from all angles.",
             .classification = "Superpower Pokémon",
             .height = "5’03”",
@@ -3896,7 +3896,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 193,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -3907,14 +3907,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_FOCUS_BAND,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_GUTS, ABILITY_NO_GUARD },
+            .abilities = { 25406, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -3936,7 +3936,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BELLSPROUT] = {
         .textData = {
-            .name = "Bellsprout",
+            .name = "BELLSPROUT",
             .pokedexEntry = "Even though its body is extremely\\nskinny, it is blindingly fast\\nwhen catching its prey.",
             .classification = "Flower Pokémon",
             .height = "2’04”",
@@ -3953,7 +3953,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 84,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -3972,7 +3972,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -3993,7 +3993,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WEEPINBELL] = {
         .textData = {
-            .name = "Weepinbell",
+            .name = "WEEPINBELL",
             .pokedexEntry = "Even though it is filled with acid,\\nit does not melt because it also\\noozes a protective fluid.",
             .classification = "Flycatcher Pokémon",
             .height = "3’03”",
@@ -4010,7 +4010,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 151,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -4029,7 +4029,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -4050,7 +4050,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VICTREEBEL] = {
         .textData = {
-            .name = "Victreebel",
+            .name = "VICTREEBEL",
             .pokedexEntry = "Acid that has dissolved many prey\\nbecomes sweeter, making it even\\nmore effective at attracting prey.",
             .classification = "Flycatcher Pokémon",
             .height = "5’07”",
@@ -4062,12 +4062,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 105,
                 .defense = 65,
                 .spAttack = 100,
-                .spDefense = 70,
+                .spDefense = 60,
                 .speed = 70,
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 191,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -4107,7 +4107,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TENTACOOL] = {
         .textData = {
-            .name = "Tentacool",
+            .name = "TENTACOOL",
             .pokedexEntry = "When the tide goes out, dehydrated\\nTENTACOOL remains can be found\\nwashed up on the shore.",
             .classification = "Jellyfish Pokémon",
             .height = "2’11”",
@@ -4124,7 +4124,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_POISON },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 105,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4139,10 +4139,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_CLEAR_BODY, ABILITY_LIQUID_OOZE },
+            .abilities = { 16413, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -4164,7 +4164,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TENTACRUEL] = {
         .textData = {
-            .name = "Tentacruel",
+            .name = "TENTACRUEL",
             .pokedexEntry = "Its 80 tentacles absorb water and\\nstretch almost endlessly to\\nconstrict its prey and enemies.",
             .classification = "Jellyfish Pokémon",
             .height = "5’03”",
@@ -4181,7 +4181,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_POISON },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 205,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4196,10 +4196,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_CLEAR_BODY, ABILITY_LIQUID_OOZE },
+            .abilities = { 16413, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -4221,7 +4221,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GEODUDE] = {
         .textData = {
-            .name = "Geodude",
+            .name = "GEODUDE",
             .pokedexEntry = "Most people may not notice,\\nbut a closer look should reveal that\\nthere are many GEODUDE around.",
             .classification = "Rock Pokémon",
             .height = "1’04”",
@@ -4238,7 +4238,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 73,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4256,8 +4256,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY },
-            .safariFleeRate = 0,
+            .abilities = { 1349, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -4278,7 +4278,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GRAVELER] = {
         .textData = {
-            .name = "Graveler",
+            .name = "GRAVELER",
             .pokedexEntry = "With a free and uncaring nature,\\nit doesn’t mind if pieces break off\\nwhile it rolls down mountains.",
             .classification = "Rock Pokémon",
             .height = "3’03”",
@@ -4295,7 +4295,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 134,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4305,7 +4305,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_HARD_STONE,
+                .common = ITEM_NONE,
                 .rare = ITEM_EVERSTONE,
             },
             .genderRatio = 127,
@@ -4313,8 +4313,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY },
-            .safariFleeRate = 0,
+            .abilities = { 1349, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -4335,7 +4335,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GOLEM] = {
         .textData = {
-            .name = "Golem",
+            .name = "GOLEM",
             .pokedexEntry = "It sheds its skin once a year.\\nThe discarded shell immediately\\nhardens and crumbles away.",
             .classification = "Megaton Pokémon",
             .height = "4’07”",
@@ -4344,7 +4344,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 80,
-                .attack = 120,
+                .attack = 110,
                 .defense = 130,
                 .spAttack = 55,
                 .spDefense = 65,
@@ -4352,7 +4352,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 177,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4362,7 +4362,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_HARD_STONE,
+                .common = ITEM_NONE,
                 .rare = ITEM_EVERSTONE,
             },
             .genderRatio = 127,
@@ -4370,7 +4370,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY },
+            .abilities = { 1349, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -4392,7 +4392,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PONYTA] = {
         .textData = {
-            .name = "Ponyta",
+            .name = "PONYTA",
             .pokedexEntry = "It is a weak runner immediately\\nafter birth. It gradually becomes\\nfaster by chasing after its parents.",
             .classification = "Fire Horse Pokémon",
             .height = "3’03”",
@@ -4409,7 +4409,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 152,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4424,11 +4424,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE },
-            .safariFleeRate = 0,
+            .abilities = { 4658, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -4449,7 +4449,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RAPIDASH] = {
         .textData = {
-            .name = "Rapidash",
+            .name = "RAPIDASH",
             .pokedexEntry = "At full gallop, its four hooves\\nbarely touch the ground because\\nit moves so incredibly fast.",
             .classification = "Fire Horse Pokémon",
             .height = "5’07”",
@@ -4466,7 +4466,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 192,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4481,10 +4481,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE },
+            .abilities = { 4658, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -4506,7 +4506,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLOWPOKE] = {
         .textData = {
-            .name = "Slowpoke",
+            .name = "SLOWPOKE",
             .pokedexEntry = "It lazes vacantly near water.\\nIf something bites its tail, it won’t\\neven notice for a whole day.",
             .classification = "Dopey Pokémon",
             .height = "3’11”",
@@ -4523,7 +4523,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_PSYCHIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -4533,16 +4533,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_LAGGING_TAIL,
-                .rare = ITEM_KINGS_ROCK,
+                .common = ITEM_NONE,
+                .rare = ITEM_LAGGING_TAIL,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO },
-            .safariFleeRate = 0,
+            .abilities = { 5132, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -4563,7 +4563,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLOWBRO] = {
         .textData = {
-            .name = "Slowbro",
+            .name = "SLOWBRO",
             .pokedexEntry = "If the tail-biting SHELLDER is thrown\\noff in a harsh battle, it reverts to\\nbeing an ordinary SLOWPOKE.",
             .classification = "Hermit Crab Pokémon",
             .height = "5’03”",
@@ -4580,7 +4580,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_PSYCHIC },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4595,11 +4595,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO },
-            .safariFleeRate = 0,
+            .abilities = { 5132, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -4620,7 +4620,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGNEMITE] = {
         .textData = {
-            .name = "Magnemite",
+            .name = "MAGNEMITE",
             .pokedexEntry = "It is attracted by electromagnetic\\nwaves. It may approach Trainers\\nif they are using their Pokégear.",
             .classification = "Magnet Pokémon",
             .height = "1’00”",
@@ -4637,7 +4637,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_STEEL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 89,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4652,11 +4652,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY },
-            .safariFleeRate = 0,
+            .abilities = { 1322, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -4677,7 +4677,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGNETON] = {
         .textData = {
-            .name = "Magneton",
+            .name = "MAGNETON",
             .pokedexEntry = "Three MAGNEMITE are linked by a\\nstrong magnetic force. Earaches\\nwill occur if you get too close.",
             .classification = "Magnet Pokémon",
             .height = "3’03”",
@@ -4694,7 +4694,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_STEEL },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 161,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4704,16 +4704,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_MAGNET,
+                .common = ITEM_NONE,
                 .rare = ITEM_METAL_COAT,
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY },
-            .safariFleeRate = 0,
+            .abilities = { 1322, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -4734,7 +4734,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FARFETCHD] = {
         .textData = {
-            .name = "Farfetch’d",
+            .name = "FARFETCH’D",
             .pokedexEntry = "If anyone tries to disturb where the\\nessential plant stalks grow, it uses its\\nown stalk to thwart them.",
             .classification = "Wild Duck Pokémon",
             .height = "2’07”",
@@ -4743,7 +4743,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         .speciesData = {
             .baseStats = {
                 .hp = 52,
-                .attack = 90,
+                .attack = 65,
                 .defense = 55,
                 .spAttack = 58,
                 .spDefense = 62,
@@ -4751,7 +4751,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 94,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -4766,11 +4766,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_INNER_FOCUS },
-            .safariFleeRate = 0,
+            .abilities = { 10035, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -4791,7 +4791,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DODUO] = {
         .textData = {
-            .name = "Doduo",
+            .name = "DODUO",
             .pokedexEntry = "By alternately raising and lowering\\nits two heads, it balances itself\\nto be more stable while running.",
             .classification = "Twin Bird Pokémon",
             .height = "4’07”",
@@ -4808,7 +4808,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 96,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -4826,8 +4826,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_EARLY_BIRD },
-            .safariFleeRate = 0,
+            .abilities = { 12338, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -4848,7 +4848,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DODRIO] = {
         .textData = {
-            .name = "Dodrio",
+            .name = "DODRIO",
             .pokedexEntry = "It collects data and plans three times\\nas wisely, but it may think too much\\nand fall into a state of immobility.",
             .classification = "Triple Bird Pokémon",
             .height = "5’11”",
@@ -4861,11 +4861,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .defense = 70,
                 .spAttack = 60,
                 .spDefense = 60,
-                .speed = 110,
+                .speed = 100,
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 158,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -4883,8 +4883,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_EARLY_BIRD },
-            .safariFleeRate = 0,
+            .abilities = { 12338, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -4905,7 +4905,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEEL] = {
         .textData = {
-            .name = "Seel",
+            .name = "SEEL",
             .pokedexEntry = "Although it can’t walk well on land,\\nit is a graceful swimmer. It especially\\nloves being in frigid seas.",
             .classification = "Sea Lion Pokémon",
             .height = "3’07”",
@@ -4922,7 +4922,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 100,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4932,7 +4932,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ASPEAR_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 127,
@@ -4940,7 +4940,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_HYDRATION },
+            .abilities = { 23855, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -4962,7 +4962,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DEWGONG] = {
         .textData = {
-            .name = "Dewgong",
+            .name = "DEWGONG",
             .pokedexEntry = "Its streamlined body has little\\ndrag in water. The colder the\\ntemperature, the friskier it gets.",
             .classification = "Sea Lion Pokémon",
             .height = "5’07”",
@@ -4979,7 +4979,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ICE },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 176,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -4989,15 +4989,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ASPEAR_BERRY,
-                .rare = ITEM_NEVER_MELT_ICE,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_HYDRATION },
+            .abilities = { 23855, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -5019,7 +5019,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GRIMER] = {
         .textData = {
-            .name = "Grimer",
+            .name = "GRIMER",
             .pokedexEntry = "As it moves, it loses bits of its body,\\nfrom which new GRIMER emerge.\\nThis worsens the stench around it.",
             .classification = "Sludge Pokémon",
             .height = "2’11”",
@@ -5036,7 +5036,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 90,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -5046,7 +5046,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_BLACK_SLUDGE,
+                .common = ITEM_NONE,
                 .rare = ITEM_NUGGET,
             },
             .genderRatio = 127,
@@ -5054,8 +5054,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD },
-            .safariFleeRate = 0,
+            .abilities = { 15361, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -5076,7 +5076,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MUK] = {
         .textData = {
-            .name = "Muk",
+            .name = "MUK",
             .pokedexEntry = "They love to gather in smelly areas\\nwhere sludge accumulates, making\\nthe stench around them worse.",
             .classification = "Sludge Pokémon",
             .height = "3’11”",
@@ -5093,7 +5093,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 157,
             .evYields = {
                 .hp = 1,
                 .attack = 1,
@@ -5103,7 +5103,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_TOXIC_ORB,
+                .common = ITEM_NONE,
                 .rare = ITEM_NUGGET,
             },
             .genderRatio = 127,
@@ -5111,8 +5111,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD },
-            .safariFleeRate = 0,
+            .abilities = { 15361, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -5133,7 +5133,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHELLDER] = {
         .textData = {
-            .name = "Shellder",
+            .name = "SHELLDER",
             .pokedexEntry = "It swims facing backward by opening\\nand closing its two-piece shell.\\nIt is surprisingly fast.",
             .classification = "Bivalve Pokémon",
             .height = "1’00”",
@@ -5150,7 +5150,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 97,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5165,10 +5165,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SKILL_LINK },
+            .abilities = { 23627, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -5190,7 +5190,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLOYSTER] = {
         .textData = {
-            .name = "Cloyster",
+            .name = "CLOYSTER",
             .pokedexEntry = "Once it slams its shell shut,\\nit is impossible to open, even by\\nthose with superior strength.",
             .classification = "Bivalve Pokémon",
             .height = "4’11”",
@@ -5207,7 +5207,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ICE },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 203,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5222,10 +5222,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SKILL_LINK },
+            .abilities = { 23627, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -5247,7 +5247,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GASTLY] = {
         .textData = {
-            .name = "Gastly",
+            .name = "GASTLY",
             .pokedexEntry = "With its gas-like body, it can sneak\\ninto any place it desires. However,\\nit can be blown away by wind.",
             .classification = "Gas Pokémon",
             .height = "4’03”",
@@ -5264,7 +5264,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_POISON },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 95,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5279,11 +5279,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -5304,7 +5304,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HAUNTER] = {
         .textData = {
-            .name = "Haunter",
+            .name = "HAUNTER",
             .pokedexEntry = "In total darkness, where nothing is\\nvisible, HAUNTER lurks, silently\\nstalking its next victim.",
             .classification = "Gas Pokémon",
             .height = "5’03”",
@@ -5321,7 +5321,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_POISON },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 126,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5332,15 +5332,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_SPELL_TAG,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -5361,7 +5361,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GENGAR] = {
         .textData = {
-            .name = "Gengar",
+            .name = "GENGAR",
             .pokedexEntry = "It steals heat from its surroundings.\\nIf you feel a sudden chill,\\nit is certain that a GENGAR appeared.",
             .classification = "Shadow Pokémon",
             .height = "4’11”",
@@ -5378,7 +5378,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 190,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5389,14 +5389,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_SPELL_TAG,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_CURSED_BODY, ABILITY_NONE },
+            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -5418,7 +5418,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ONIX] = {
         .textData = {
-            .name = "Onix",
+            .name = "ONIX",
             .pokedexEntry = "It twists and squirms through\\nthe ground. The thunderous roar of\\nits tunneling echoes a long way.",
             .classification = "Rock Snake Pokémon",
             .height = "28’10”",
@@ -5435,7 +5435,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 108,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5446,15 +5446,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_HARD_STONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY },
-            .safariFleeRate = 0,
+            .abilities = { 1349, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -5475,7 +5475,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DROWZEE] = {
         .textData = {
-            .name = "Drowzee",
+            .name = "DROWZEE",
             .pokedexEntry = "If you think that you had a good dream\\nbut you can’t remember it,\\na DROWZEE has probably eaten it.",
             .classification = "Hypnosis Pokémon",
             .height = "3’03”",
@@ -5492,7 +5492,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 102,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5510,8 +5510,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_FOREWARN },
-            .safariFleeRate = 0,
+            .abilities = { 27663, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -5532,7 +5532,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HYPNO] = {
         .textData = {
-            .name = "Hypno",
+            .name = "HYPNO",
             .pokedexEntry = "When it is very hungry, it puts\\nhumans it meets to sleep,\\nthen it feasts on their dreams.",
             .classification = "Hypnosis Pokémon",
             .height = "5’03”",
@@ -5549,7 +5549,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5567,8 +5567,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_FOREWARN },
-            .safariFleeRate = 0,
+            .abilities = { 27663, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -5589,7 +5589,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KRABBY] = {
         .textData = {
-            .name = "Krabby",
+            .name = "KRABBY",
             .pokedexEntry = "If it senses danger approaching,\\nit cloaks itself with bubbles from\\nits mouth so it will look bigger.",
             .classification = "River Crab Pokémon",
             .height = "1’04”",
@@ -5606,7 +5606,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 115,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -5621,11 +5621,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR },
-            .safariFleeRate = 0,
+            .abilities = { 19252, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -5646,7 +5646,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KINGLER] = {
         .textData = {
-            .name = "Kingler",
+            .name = "KINGLER",
             .pokedexEntry = "It can hardly lift its massive,\\novergrown pincer. The pincer’s size\\nmakes it difficult to aim properly.",
             .classification = "Pincer Pokémon",
             .height = "4’03”",
@@ -5663,7 +5663,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 206,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -5678,13 +5678,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR },
-            .safariFleeRate = 0,
+            .abilities = { 19252, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_RED,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 13,
@@ -5703,7 +5703,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VOLTORB] = {
         .textData = {
-            .name = "Voltorb",
+            .name = "VOLTORB",
             .pokedexEntry = "It rolls to move. If the ground is\\nuneven, a sudden jolt from hitting\\na bump can cause it to explode.",
             .classification = "Ball Pokémon",
             .height = "1’08”",
@@ -5720,7 +5720,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 103,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5738,8 +5738,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC },
-            .safariFleeRate = 0,
+            .abilities = { 2347, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -5760,7 +5760,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ELECTRODE] = {
         .textData = {
-            .name = "Electrode",
+            .name = "ELECTRODE",
             .pokedexEntry = "It is dangerous. If it has too much\\nelectricity and has nothing to do,\\nit amuses itself by exploding.",
             .classification = "Ball Pokémon",
             .height = "3’11”",
@@ -5773,11 +5773,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .defense = 70,
                 .spAttack = 80,
                 .spDefense = 80,
-                .speed = 150,
+                .speed = 140,
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 150,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5795,7 +5795,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC },
+            .abilities = { 2347, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -5817,7 +5817,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EXEGGCUTE] = {
         .textData = {
-            .name = "Exeggcute",
+            .name = "EXEGGCUTE",
             .pokedexEntry = "Their shells are very durable. Even if\\nthey crack, they can survive without\\nspilling their contents.",
             .classification = "Egg Pokémon",
             .height = "1’04”",
@@ -5834,7 +5834,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_PSYCHIC },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 98,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5845,15 +5845,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_PSYCHIC_SEED,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -5874,7 +5874,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EXEGGUTOR] = {
         .textData = {
-            .name = "Exeggutor",
+            .name = "EXEGGUTOR",
             .pokedexEntry = "Its three heads think independently.\\nHowever, they are friendly and\\nnever appear to squabble.",
             .classification = "Coconut Pokémon",
             .height = "6’07”",
@@ -5886,12 +5886,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 95,
                 .defense = 85,
                 .spAttack = 125,
-                .spDefense = 75,
+                .spDefense = 65,
                 .speed = 55,
             },
             .types = { TYPE_GRASS, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 212,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5906,7 +5906,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
@@ -5931,7 +5931,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CUBONE] = {
         .textData = {
-            .name = "Cubone",
+            .name = "CUBONE",
             .pokedexEntry = "If it is sad or lonely, the skull\\nit wears shakes and emits a plaintive\\nand mournful sound.",
             .classification = "Lonely Pokémon",
             .height = "1’04”",
@@ -5948,7 +5948,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 87,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -5963,11 +5963,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_LIGHTNING_ROD },
-            .safariFleeRate = 0,
+            .abilities = { 8005, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -5988,7 +5988,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAROWAK] = {
         .textData = {
-            .name = "Marowak",
+            .name = "MAROWAK",
             .pokedexEntry = "It has been seen pounding boulders\\nwith the bone it carries in order\\nto tap out messages to others.",
             .classification = "Bone Keeper Pokémon",
             .height = "3’03”",
@@ -6005,7 +6005,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 124,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6020,11 +6020,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_LIGHTNING_ROD },
-            .safariFleeRate = 0,
+            .abilities = { 8005, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -6045,7 +6045,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HITMONLEE] = {
         .textData = {
-            .name = "Hitmonlee",
+            .name = "HITMONLEE",
             .pokedexEntry = "This amazing Pokémon has an awesome\\nsense of balance. It can kick in\\nsuccession from any position.",
             .classification = "Kicking Pokémon",
             .height = "4’11”",
@@ -6062,7 +6062,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 139,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -6077,10 +6077,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_LIMBER, ABILITY_RECKLESS },
+            .abilities = { 30727, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -6102,7 +6102,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HITMONCHAN] = {
         .textData = {
-            .name = "Hitmonchan",
+            .name = "HITMONCHAN",
             .pokedexEntry = "Its punches slice the air. However,\\nit seems to need a short break after\\nfighting for three minutes.",
             .classification = "Punching Pokémon",
             .height = "4’07”",
@@ -6119,7 +6119,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 140,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6134,10 +6134,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_IRON_FIST },
+            .abilities = { 22835, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -6159,7 +6159,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LICKITUNG] = {
         .textData = {
-            .name = "Lickitung",
+            .name = "LICKITUNG",
             .pokedexEntry = "Its tongue has well-developed\\nnerves that run to the very tip,\\nso it can be deftly manipulated.",
             .classification = "Licking Pokémon",
             .height = "3’11”",
@@ -6176,7 +6176,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 127,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -6191,11 +6191,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_OWN_TEMPO, ABILITY_OBLIVIOUS },
-            .safariFleeRate = 0,
+            .abilities = { 3092, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -6216,7 +6216,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KOFFING] = {
         .textData = {
-            .name = "Koffing",
+            .name = "KOFFING",
             .pokedexEntry = "Its thin, filmy body is filled\\nwith gases that cause constant\\nsniffles, coughs and teary eyes.",
             .classification = "Poison Gas Pokémon",
             .height = "2’00”",
@@ -6233,7 +6233,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 114,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6248,11 +6248,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS },
-            .safariFleeRate = 0,
+            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -6273,7 +6273,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WEEZING] = {
         .textData = {
-            .name = "Weezing",
+            .name = "WEEZING",
             .pokedexEntry = "If one of the twin KOFFING inflates,\\nthe other one deflates. It constantly\\nmixes its poisonous gases.",
             .classification = "Poison Gas Pokémon",
             .height = "3’11”",
@@ -6290,7 +6290,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 173,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6305,11 +6305,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS },
-            .safariFleeRate = 0,
+            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -6330,7 +6330,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RHYHORN] = {
         .textData = {
-            .name = "Rhyhorn",
+            .name = "RHYHORN",
             .pokedexEntry = "It is inept at turning because of\\nits four short legs. It can only\\ncharge and run in one direction.",
             .classification = "Spikes Pokémon",
             .height = "3’03”",
@@ -6347,7 +6347,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_ROCK },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 135,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6362,11 +6362,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_ROCK_HEAD },
-            .safariFleeRate = 0,
+            .abilities = { 17695, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -6387,7 +6387,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RHYDON] = {
         .textData = {
-            .name = "Rhydon",
+            .name = "RHYDON",
             .pokedexEntry = "Its rugged hide protects it from\\neven the heat of lava. However,\\nthe hide also makes it insensitive.",
             .classification = "Drill Pokémon",
             .height = "6’03”",
@@ -6404,7 +6404,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_ROCK },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -6419,11 +6419,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_ROCK_HEAD },
-            .safariFleeRate = 0,
+            .abilities = { 17695, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -6444,7 +6444,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHANSEY] = {
         .textData = {
-            .name = "Chansey",
+            .name = "CHANSEY",
             .pokedexEntry = "It walks carefully to prevent its\\negg from breaking. However,\\nit is extremely fast at running away.",
             .classification = "Egg Pokémon",
             .height = "3’07”",
@@ -6461,7 +6461,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 255,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -6479,8 +6479,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE },
-            .safariFleeRate = 0,
+            .abilities = { 8222, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -6501,7 +6501,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TANGELA] = {
         .textData = {
-            .name = "Tangela",
+            .name = "TANGELA",
             .pokedexEntry = "The vines that cloak its entire\\nbody are always jiggling.\\nThey effectively unnerve its foes.",
             .classification = "Vine Pokémon",
             .height = "3’03”",
@@ -6518,7 +6518,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 166,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6533,11 +6533,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 26146, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -6558,7 +6558,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KANGASKHAN] = {
         .textData = {
-            .name = "Kangaskhan",
+            .name = "KANGASKHAN",
             .pokedexEntry = "If it is safe, the young gets out of\\nthe belly pouch to play. The adult\\nkeeps a close eye on the youngster.",
             .classification = "Parent Pokémon",
             .height = "7’03”",
@@ -6575,7 +6575,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 175,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -6590,11 +6590,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_EARLY_BIRD, ABILITY_SCRAPPY },
-            .safariFleeRate = 0,
+            .abilities = { 28976, ABILITY_NONE },
+            .safariFleeRate = 150,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -6615,7 +6615,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HORSEA] = {
         .textData = {
-            .name = "Horsea",
+            .name = "HORSEA",
             .pokedexEntry = "If attacked by a larger enemy,\\nit quickly swims to safety by adeptly\\ncontrolling its well-developed dorsal fin.",
             .classification = "Dragon Pokémon",
             .height = "1’04”",
@@ -6632,7 +6632,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 83,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6647,10 +6647,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_SNIPER },
+            .abilities = { 24865, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -6672,7 +6672,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEADRA] = {
         .textData = {
-            .name = "Seadra",
+            .name = "SEADRA",
             .pokedexEntry = "An examination of its cells revealed\\nthe presence of a gene not found in\\nHORSEA. It became a hot topic.",
             .classification = "Dragon Pokémon",
             .height = "3’11”",
@@ -6689,7 +6689,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 155,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6704,10 +6704,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SNIPER },
+            .abilities = { 24870, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -6729,7 +6729,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GOLDEEN] = {
         .textData = {
-            .name = "Goldeen",
+            .name = "GOLDEEN",
             .pokedexEntry = "Its dorsal, pectoral and tail fins\\nwave elegantly in water. That is why\\nit is known as the water dancer.",
             .classification = "Goldfish Pokémon",
             .height = "2’00”",
@@ -6746,7 +6746,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 111,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -6757,15 +6757,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_MYSTIC_WATER,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_VEIL },
-            .safariFleeRate = 0,
+            .abilities = { 10529, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -6786,7 +6786,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEAKING] = {
         .textData = {
-            .name = "Seaking",
+            .name = "SEAKING",
             .pokedexEntry = "During spawning season, SEAKING\\ngather from all over, causing rivers to\\nappear a brilliant red.",
             .classification = "Goldfish Pokémon",
             .height = "4’03”",
@@ -6803,7 +6803,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 170,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -6814,15 +6814,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_MYSTIC_WATER,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_VEIL },
-            .safariFleeRate = 0,
+            .abilities = { 10529, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -6843,7 +6843,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STARYU] = {
         .textData = {
-            .name = "Staryu",
+            .name = "STARYU",
             .pokedexEntry = "At night, the middle of its body\\nslowly flickers with the same\\nrhythm as a human heartbeat.",
             .classification = "Star Shape Pokémon",
             .height = "2’07”",
@@ -6860,7 +6860,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 106,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6875,13 +6875,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE },
+            .abilities = { 7715, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 8,
@@ -6900,7 +6900,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STARMIE] = {
         .textData = {
-            .name = "Starmie",
+            .name = "STARMIE",
             .pokedexEntry = "The middle section of its body is\\ncalled the core. It glows in a\\ndifferent color each time it is seen.",
             .classification = "Mysterious Pokémon",
             .height = "3’07”",
@@ -6917,7 +6917,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_PSYCHIC },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 207,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6932,10 +6932,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE },
+            .abilities = { 7715, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -6957,11 +6957,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MR_MIME] = {
         .textData = {
-            .name = "Mr. Mime",
+            .name = "MR. MIME",
             .pokedexEntry = "A skilled mime from birth,\\nit gains the ability to create\\ninvisible objects as it matures.",
             .classification = "Barrier Pokémon",
             .height = "4’03”",
-            .weight = "120.2 lbs.",
+            .weight = "120.1 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -6972,9 +6972,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 120,
                 .speed = 90,
             },
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 136,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -6989,11 +6989,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_SOUNDPROOF, ABILITY_FILTER },
-            .safariFleeRate = 0,
+            .abilities = { 28459, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -7014,7 +7014,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SCYTHER] = {
         .textData = {
-            .name = "Scyther",
+            .name = "SCYTHER",
             .pokedexEntry = "It slashes through grass with its\\nsharp scythes, moving too fast\\nfor the human eye to track.",
             .classification = "Mantis Pokémon",
             .height = "4’11”",
@@ -7031,7 +7031,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 187,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -7046,10 +7046,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_TECHNICIAN },
+            .abilities = { 25924, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -7071,7 +7071,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_JYNX] = {
         .textData = {
-            .name = "Jynx",
+            .name = "JYNX",
             .pokedexEntry = "It rocks its body rhythmically.\\nIt appears to alter the rhythm\\ndepending on how it is feeling.",
             .classification = "Human Shape Pokémon",
             .height = "4’07”",
@@ -7088,7 +7088,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 137,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7099,14 +7099,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_ASPEAR_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_ASPEAR_BERRY,
             },
             .genderRatio = 254,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_FOREWARN },
+            .abilities = { 27660, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -7128,7 +7128,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ELECTABUZZ] = {
         .textData = {
-            .name = "Electabuzz",
+            .name = "ELECTABUZZ",
             .pokedexEntry = "Electricity runs across the surface\\nof its body. In darkness, its entire\\nbody glows a whitish-blue.",
             .classification = "Electric Pokémon",
             .height = "3’07”",
@@ -7145,7 +7145,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 156,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7155,18 +7155,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 2,
             },
             .wildHeldItems = {
-                .common = ITEM_ELECTIRIZER,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_YELLOW,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 11,
@@ -7185,7 +7185,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGMAR] = {
         .textData = {
-            .name = "Magmar",
+            .name = "MAGMAR",
             .pokedexEntry = "It dislikes cold places, so it blows\\nscorching flames to make the\\nenvironment suitable for itself.",
             .classification = "Spitfire Pokémon",
             .height = "4’03”",
@@ -7202,7 +7202,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 167,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7212,16 +7212,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_MAGMARIZER,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_FLAME_BODY, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -7242,7 +7242,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PINSIR] = {
         .textData = {
-            .name = "Pinsir",
+            .name = "PINSIR",
             .pokedexEntry = "With its pincer horns, it digs burrows\\nto sleep in at night. In the morning,\\ndamp soil clings to its body.",
             .classification = "Stag Beetle Pokémon",
             .height = "4’11”",
@@ -7259,7 +7259,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 200,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -7274,10 +7274,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_MOLD_BREAKER },
+            .abilities = { 26676, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -7299,7 +7299,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TAUROS] = {
         .textData = {
-            .name = "Tauros",
+            .name = "TAUROS",
             .pokedexEntry = "They fight each other by locking\\nhorns. The herd’s protector takes\\npride in its battle-scarred horns.",
             .classification = "Wild Bull Pokémon",
             .height = "4’07”",
@@ -7316,7 +7316,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 211,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -7331,11 +7331,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_ANGER_POINT },
-            .safariFleeRate = 0,
+            .abilities = { 21270, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -7356,7 +7356,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGIKARP] = {
         .textData = {
-            .name = "Magikarp",
+            .name = "MAGIKARP",
             .pokedexEntry = "An underpowered, pathetic Pokémon.\\nIt may jump high on rare occasions,\\nbut usually not more than seven feet.",
             .classification = "Fish Pokémon",
             .height = "2’11”",
@@ -7373,7 +7373,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 20,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7388,11 +7388,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 5,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -7413,7 +7413,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GYARADOS] = {
         .textData = {
-            .name = "Gyarados",
+            .name = "GYARADOS",
             .pokedexEntry = "They say that during past strife,\\nGYARADOS would appear and leave\\nblazing ruins in its wake.",
             .classification = "Atrocious Pokémon",
             .height = "21’04”",
@@ -7430,7 +7430,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 214,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -7445,11 +7445,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 5,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -7470,7 +7470,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LAPRAS] = {
         .textData = {
-            .name = "Lapras",
+            .name = "LAPRAS",
             .pokedexEntry = "They have gentle hearts. Because\\nthey rarely fight, many have been\\ncaught. Their number has dwindled.",
             .classification = "Transport Pokémon",
             .height = "8’02”",
@@ -7487,7 +7487,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ICE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 219,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -7497,16 +7497,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_MYSTIC_WATER,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_SHELL_ARMOR },
-            .safariFleeRate = 0,
+            .abilities = { 19211, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -7527,7 +7527,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DITTO] = {
         .textData = {
-            .name = "Ditto",
+            .name = "DITTO",
             .pokedexEntry = "It can transform into anything.\\nWhen it sleeps, it changes into a\\nstone to avoid being attacked.",
             .classification = "Transform Pokémon",
             .height = "1’00”",
@@ -7544,7 +7544,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 35,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 61,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -7559,11 +7559,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_DITTO, EGG_GROUP_DITTO },
             .abilities = { ABILITY_LIMBER, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -7584,7 +7584,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EEVEE] = {
         .textData = {
-            .name = "Eevee",
+            .name = "EEVEE",
             .pokedexEntry = "It has the ability to alter the\\ncomposition of its body to suit its\\nsurrounding environment.",
             .classification = "Evolution Pokémon",
             .height = "1’00”",
@@ -7601,7 +7601,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 92,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7616,10 +7616,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY },
+            .abilities = { 23346, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -7641,7 +7641,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VAPOREON] = {
         .textData = {
-            .name = "Vaporeon",
+            .name = "VAPOREON",
             .pokedexEntry = "When VAPOREON’s fins begin to\\nvibrate, it is a sign that rain\\nwill come within a few hours.",
             .classification = "Bubble Jet Pokémon",
             .height = "3’03”",
@@ -7658,7 +7658,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 196,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -7673,10 +7673,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_NONE },
+            .abilities = { 2827, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -7698,7 +7698,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_JOLTEON] = {
         .textData = {
-            .name = "Jolteon",
+            .name = "JOLTEON",
             .pokedexEntry = "It concentrates the weak electric\\ncharges emitted by its cells and\\nlaunches wicked lightning bolts.",
             .classification = "Lightning Pokémon",
             .height = "2’07”",
@@ -7715,7 +7715,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 197,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7730,10 +7730,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_VOLT_ABSORB, ABILITY_NONE },
+            .abilities = { 2570, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -7755,7 +7755,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FLAREON] = {
         .textData = {
-            .name = "Flareon",
+            .name = "FLAREON",
             .pokedexEntry = "It stores some of the air it inhales in\\nits internal flame pouch, which heats it\\nto over 3,000 degrees Fahrenheit.",
             .classification = "Flame Pokémon",
             .height = "2’11”",
@@ -7772,7 +7772,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 198,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -7787,10 +7787,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE },
+            .abilities = { 4626, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -7812,7 +7812,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PORYGON] = {
         .textData = {
-            .name = "Porygon",
+            .name = "PORYGON",
             .pokedexEntry = "It is a manmade Pokémon. Since it\\ndoesn’t breathe, people are eager\\nto try it in any environment.",
             .classification = "Virtual Pokémon",
             .height = "2’07”",
@@ -7829,7 +7829,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 130,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7844,10 +7844,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_TRACE, ABILITY_DOWNLOAD },
+            .abilities = { 22564, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -7869,7 +7869,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_OMANYTE] = {
         .textData = {
-            .name = "Omanyte",
+            .name = "OMANYTE",
             .pokedexEntry = "Revived from an ancient fossil,\\nthis Pokémon uses air stored in its\\nshell to sink and rise in water.",
             .classification = "Spiral Pokémon",
             .height = "1’04”",
@@ -7886,7 +7886,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7901,10 +7901,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_SHELL_ARMOR },
+            .abilities = { 19233, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -7926,7 +7926,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_OMASTAR] = {
         .textData = {
-            .name = "Omastar",
+            .name = "OMASTAR",
             .pokedexEntry = "Apparently, it cracked SHELLDER’s\\nshell with its sharp fangs and\\nsucked out the insides.",
             .classification = "Spiral Pokémon",
             .height = "3’03”",
@@ -7943,7 +7943,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -7958,10 +7958,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_SHELL_ARMOR },
+            .abilities = { 19233, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -7983,7 +7983,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KABUTO] = {
         .textData = {
-            .name = "Kabuto",
+            .name = "KABUTO",
             .pokedexEntry = "On rare occasions, some have been\\nfound as fossils which they became\\nwhile hiding on the ocean floor.",
             .classification = "Shellfish Pokémon",
             .height = "1’08”",
@@ -8000,7 +8000,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8015,10 +8015,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_BATTLE_ARMOR },
+            .abilities = { 1057, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -8040,7 +8040,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KABUTOPS] = {
         .textData = {
-            .name = "Kabutops",
+            .name = "KABUTOPS",
             .pokedexEntry = "In the water, it tucks in its limbs\\nto become more compact, then it\\nwiggles its shell to swim fast.",
             .classification = "Shellfish Pokémon",
             .height = "4’03”",
@@ -8057,7 +8057,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -8072,10 +8072,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_BATTLE_ARMOR },
+            .abilities = { 1057, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -8097,7 +8097,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AERODACTYL] = {
         .textData = {
-            .name = "Aerodactyl",
+            .name = "AERODACTYL",
             .pokedexEntry = "A vicious Pokémon from the distant\\npast, it appears to have flown by\\nspreading its wings and gliding.",
             .classification = "Fossil Pokémon",
             .height = "5’11”",
@@ -8114,7 +8114,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 202,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8129,10 +8129,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_PRESSURE },
+            .abilities = { 11845, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -8154,7 +8154,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SNORLAX] = {
         .textData = {
-            .name = "Snorlax",
+            .name = "SNORLAX",
             .pokedexEntry = "What sounds like its cry may\\nactually be its snores or the\\nrumblings of its hungry belly.",
             .classification = "Sleeping Pokémon",
             .height = "6’11”",
@@ -8171,7 +8171,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 154,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -8181,15 +8181,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_CHESTO_BERRY,
+                .common = ITEM_LEFTOVERS,
                 .rare = ITEM_LEFTOVERS,
             },
             .genderRatio = 31,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_IMMUNITY, ABILITY_THICK_FAT },
+            .abilities = { 12049, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -8211,7 +8211,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARTICUNO] = {
         .textData = {
-            .name = "Articuno",
+            .name = "ARTICUNO",
             .pokedexEntry = "The magnificent, seemingly translucent\\nwings of this legendary bird Pokémon\\nare said to be made of ice.",
             .classification = "Freeze Pokémon",
             .height = "5’07”",
@@ -8228,7 +8228,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_FLYING },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8268,7 +8268,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ZAPDOS] = {
         .textData = {
-            .name = "Zapdos",
+            .name = "ZAPDOS",
             .pokedexEntry = "This legendary bird Pokémon\\ncauses savage thunderstorms by\\nflapping its glittering wings.",
             .classification = "Electric Pokémon",
             .height = "5’03”",
@@ -8285,7 +8285,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_FLYING },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 216,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8325,7 +8325,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MOLTRES] = {
         .textData = {
-            .name = "Moltres",
+            .name = "MOLTRES",
             .pokedexEntry = "This legendary Pokémon scatters\\nembers with every flap of its wings.\\nIt is a thrilling sight to behold.",
             .classification = "Flame Pokémon",
             .height = "6’07”",
@@ -8342,7 +8342,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FLYING },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 217,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8382,7 +8382,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRATINI] = {
         .textData = {
-            .name = "Dratini",
+            .name = "DRATINI",
             .pokedexEntry = "It is born large to start with.\\nIt repeatedly sheds its skin as it\\nsteadily grows longer.",
             .classification = "Dragon Pokémon",
             .height = "5’11”",
@@ -8399,7 +8399,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 67,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -8418,7 +8418,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -8439,7 +8439,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRAGONAIR] = {
         .textData = {
-            .name = "Dragonair",
+            .name = "DRAGONAIR",
             .pokedexEntry = "They say that if it emits an aura\\nfrom its whole body, the weather\\nwill begin to change instantly.",
             .classification = "Dragon Pokémon",
             .height = "13’01”",
@@ -8456,7 +8456,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 144,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -8466,7 +8466,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DRAGON_FANG,
+                .common = ITEM_NONE,
                 .rare = ITEM_DRAGON_SCALE,
             },
             .genderRatio = 127,
@@ -8475,7 +8475,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -8496,7 +8496,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRAGONITE] = {
         .textData = {
-            .name = "Dragonite",
+            .name = "DRAGONITE",
             .pokedexEntry = "It is said that this Pokémon constantly\\nflies over the immense seas\\nand rescues drowning people.",
             .classification = "Dragon Pokémon",
             .height = "7’03”",
@@ -8513,7 +8513,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -8523,7 +8523,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DRAGON_FANG,
+                .common = ITEM_NONE,
                 .rare = ITEM_DRAGON_SCALE,
             },
             .genderRatio = 127,
@@ -8553,7 +8553,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEWTWO] = {
         .textData = {
-            .name = "Mewtwo",
+            .name = "MEWTWO",
             .pokedexEntry = "Because its battle abilities were\\nraised to the ultimate level,\\nit thinks only of defeating its foes.",
             .classification = "Genetic Pokémon",
             .height = "6’07”",
@@ -8570,7 +8570,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8610,7 +8610,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEW] = {
         .textData = {
-            .name = "Mew",
+            .name = "MEW",
             .pokedexEntry = "Apparently, it appears only to\\nthose people who are pure of heart\\nand have a strong desire to see it.",
             .classification = "New Species Pokémon",
             .height = "1’04”",
@@ -8627,7 +8627,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -8638,7 +8638,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_LUM_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_LUM_BERRY,
             },
             .genderRatio = 255,
             .hatchCycles = 120,
@@ -8667,7 +8667,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHIKORITA] = {
         .textData = {
-            .name = "Chikorita",
+            .name = "CHIKORITA",
             .pokedexEntry = "A sweet aroma gently wafts from\\nthe leaf on its head. It is docile\\nand loves to soak up sunrays.",
             .classification = "Leaf Pokémon",
             .height = "2’11”",
@@ -8684,7 +8684,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8694,7 +8694,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_LUM_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 31,
@@ -8724,7 +8724,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BAYLEEF] = {
         .textData = {
-            .name = "Bayleef",
+            .name = "BAYLEEF",
             .pokedexEntry = "The scent of spices comes from\\naround its neck. Somehow,\\nsniffing it makes you want to fight.",
             .classification = "Leaf Pokémon",
             .height = "3’11”",
@@ -8741,7 +8741,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8781,7 +8781,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEGANIUM] = {
         .textData = {
-            .name = "Meganium",
+            .name = "MEGANIUM",
             .pokedexEntry = "The aroma that rises from its\\npetals contains a substance that\\ncalms aggressive feelings.",
             .classification = "Herb Pokémon",
             .height = "5’11”",
@@ -8798,7 +8798,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8838,7 +8838,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CYNDAQUIL] = {
         .textData = {
-            .name = "Cyndaquil",
+            .name = "CYNDAQUIL",
             .pokedexEntry = "It is timid, and always curls itself\\nup in a ball. If attacked, it\\nflares up its back for protection.",
             .classification = "Fire Mouse Pokémon",
             .height = "1’08”",
@@ -8855,7 +8855,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8895,7 +8895,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_QUILAVA] = {
         .textData = {
-            .name = "Quilava",
+            .name = "QUILAVA",
             .pokedexEntry = "Be careful if it turns its back\\nduring battle. It means that it will\\nattack with the fire on its back.",
             .classification = "Volcano Pokémon",
             .height = "2’11”",
@@ -8912,7 +8912,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 142,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -8952,7 +8952,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TYPHLOSION] = {
         .textData = {
-            .name = "Typhlosion",
+            .name = "TYPHLOSION",
             .pokedexEntry = "If its rage peaks, it becomes so\\nhot that anything that touches it\\nwill instantly go up in flames.",
             .classification = "Volcano Pokémon",
             .height = "5’07”",
@@ -8969,7 +8969,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 209,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9009,7 +9009,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TOTODILE] = {
         .textData = {
-            .name = "Totodile",
+            .name = "TOTODILE",
             .pokedexEntry = "Its powerful, well-developed jaws\\nare capable of crushing anything.\\nEven its Trainer must be careful.",
             .classification = "Big Jaw Pokémon",
             .height = "2’00”",
@@ -9026,7 +9026,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 66,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -9066,7 +9066,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CROCONAW] = {
         .textData = {
-            .name = "Croconaw",
+            .name = "CROCONAW",
             .pokedexEntry = "If it loses a fang, a new one\\ngrows back in its place. There are\\nalways 48 fangs lining its mouth.",
             .classification = "Big Jaw Pokémon",
             .height = "3’07”",
@@ -9083,7 +9083,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 143,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -9104,7 +9104,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 11,
@@ -9123,7 +9123,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FERALIGATR] = {
         .textData = {
-            .name = "Feraligatr",
+            .name = "FERALIGATR",
             .pokedexEntry = "When it bites with its massive and\\npowerful jaws, it shakes its head\\nand savagely tears its victim up.",
             .classification = "Big Jaw Pokémon",
             .height = "7’07”",
@@ -9140,7 +9140,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -9180,7 +9180,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SENTRET] = {
         .textData = {
-            .name = "Sentret",
+            .name = "SENTRET",
             .pokedexEntry = "A very cautious Pokémon, it raises\\nitself up using its tail to get a\\nbetter view of its surroundings.",
             .classification = "Scout Pokémon",
             .height = "2’07”",
@@ -9197,7 +9197,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 57,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -9215,8 +9215,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_KEEN_EYE },
-            .safariFleeRate = 0,
+            .abilities = { 13106, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -9237,11 +9237,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FURRET] = {
         .textData = {
-            .name = "Furret",
+            .name = "FURRET",
             .pokedexEntry = "It makes a nest to suit its long and\\nskinny body. The nest is impossible\\nfor other Pokémon to enter.",
             .classification = "Long Body Pokémon",
             .height = "5’11”",
-            .weight = "71.7 lbs.",
+            .weight = "71.6 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -9254,7 +9254,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 116,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9272,8 +9272,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_KEEN_EYE },
-            .safariFleeRate = 0,
+            .abilities = { 13106, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -9294,7 +9294,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HOOTHOOT] = {
         .textData = {
-            .name = "Hoothoot",
+            .name = "HOOTHOOT",
             .pokedexEntry = "It always stands on one foot.\\nIt changes feet so fast,\\nthe movement can rarely be seen.",
             .classification = "Owl Pokémon",
             .height = "2’04”",
@@ -9311,7 +9311,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 58,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -9326,11 +9326,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_KEEN_EYE },
-            .safariFleeRate = 0,
+            .abilities = { 13071, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -9351,7 +9351,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NOCTOWL] = {
         .textData = {
-            .name = "Noctowl",
+            .name = "NOCTOWL",
             .pokedexEntry = "Its eyes are specially adapted.\\nThey concentrate even faint light\\nand enable it to see in the dark.",
             .classification = "Owl Pokémon",
             .height = "5’03”",
@@ -9362,13 +9362,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 100,
                 .attack = 50,
                 .defense = 50,
-                .spAttack = 86,
+                .spAttack = 76,
                 .spDefense = 96,
                 .speed = 70,
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 162,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -9383,11 +9383,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_KEEN_EYE },
-            .safariFleeRate = 0,
+            .abilities = { 13071, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -9408,7 +9408,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LEDYBA] = {
         .textData = {
-            .name = "Ledyba",
+            .name = "LEDYBA",
             .pokedexEntry = "It is very timid. It will be afraid\\nto move if it is alone. But it will\\nbe active if it is in a group.",
             .classification = "Five Star Pokémon",
             .height = "3’03”",
@@ -9425,7 +9425,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 54,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9443,7 +9443,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_EARLY_BIRD },
+            .abilities = { 12356, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -9465,7 +9465,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LEDIAN] = {
         .textData = {
-            .name = "Ledian",
+            .name = "LEDIAN",
             .pokedexEntry = "When the stars flicker in the\\nnight sky, it flutters about,\\nscattering a glowing powder.",
             .classification = "Five Star Pokémon",
             .height = "4’07”",
@@ -9482,7 +9482,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 134,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9500,7 +9500,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_EARLY_BIRD },
+            .abilities = { 12356, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -9522,7 +9522,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPINARAK] = {
         .textData = {
-            .name = "Spinarak",
+            .name = "SPINARAK",
             .pokedexEntry = "It lies still in the same pose for\\ndays in its web, waiting for its\\nunsuspecting prey to wander close.",
             .classification = "String Spit Pokémon",
             .height = "1’08”",
@@ -9539,7 +9539,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 54,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -9557,7 +9557,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_INSOMNIA },
+            .abilities = { 3908, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -9579,7 +9579,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARIADOS] = {
         .textData = {
-            .name = "Ariados",
+            .name = "ARIADOS",
             .pokedexEntry = "It spins string not only from its\\nrear but also from its mouth. It’s\\nhard to tell which end is which.",
             .classification = "Long Leg Pokémon",
             .height = "3’07”",
@@ -9591,12 +9591,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 90,
                 .defense = 70,
                 .spAttack = 60,
-                .spDefense = 70,
+                .spDefense = 60,
                 .speed = 40,
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 134,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -9614,7 +9614,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_INSOMNIA },
+            .abilities = { 3908, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -9636,7 +9636,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CROBAT] = {
         .textData = {
-            .name = "Crobat",
+            .name = "CROBAT",
             .pokedexEntry = "It flies so silently through the\\ndark on its four wings that it may\\nnot be noticed even when nearby.",
             .classification = "Bat Pokémon",
             .height = "5’11”",
@@ -9653,7 +9653,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_FLYING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9668,7 +9668,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_INNER_FOCUS, ABILITY_NONE },
@@ -9693,7 +9693,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHINCHOU] = {
         .textData = {
-            .name = "Chinchou",
+            .name = "CHINCHOU",
             .pokedexEntry = "It shoots positive and negative\\nelectricity between the tips of its\\ntwo antennae and zaps its enemies.",
             .classification = "Angler Pokémon",
             .height = "1’08”",
@@ -9710,7 +9710,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ELECTRIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 90,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -9720,15 +9720,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DEEP_SEA_SCALE,
-                .rare = ITEM_YELLOW_SHARD,
+                .common = ITEM_NONE,
+                .rare = ITEM_DEEP_SEA_SCALE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE },
+            .abilities = { 8970, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -9750,7 +9750,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LANTURN] = {
         .textData = {
-            .name = "Lanturn",
+            .name = "LANTURN",
             .pokedexEntry = "The light it emits is so bright that\\nit can illuminate the sea’s surface\\nfrom a depth of over three miles.",
             .classification = "Light Pokémon",
             .height = "3’11”",
@@ -9767,7 +9767,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ELECTRIC },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 156,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -9777,15 +9777,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DEEP_SEA_SCALE,
-                .rare = ITEM_YELLOW_SHARD,
+                .common = ITEM_NONE,
+                .rare = ITEM_DEEP_SEA_SCALE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE },
+            .abilities = { 8970, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -9807,7 +9807,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PICHU] = {
         .textData = {
-            .name = "Pichu",
+            .name = "PICHU",
             .pokedexEntry = "It is not yet skilled at storing\\nelectricity. It may send out a\\njolt if amused or startled.",
             .classification = "Tiny Mouse Pokémon",
             .height = "1’00”",
@@ -9824,7 +9824,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 42,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9839,13 +9839,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 3,
@@ -9864,7 +9864,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLEFFA] = {
         .textData = {
-            .name = "Cleffa",
+            .name = "CLEFFA",
             .pokedexEntry = "Because of its unusual, starlike\\nsilhouette, people believe that\\nit came here on a meteor.",
             .classification = "Star Shape Pokémon",
             .height = "1’00”",
@@ -9879,9 +9879,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 55,
                 .speed = 15,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 37,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -9894,12 +9894,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_LEPPA_BERRY,
                 .rare = ITEM_MOON_STONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_MAGIC_GUARD },
+            .abilities = { 25144, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -9921,7 +9921,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_IGGLYBUFF] = {
         .textData = {
-            .name = "Igglybuff",
+            .name = "IGGLYBUFF",
             .pokedexEntry = "It has a very soft body. If it\\nstarts to roll, it will bounce all\\nover and be impossible to stop.",
             .classification = "Balloon Pokémon",
             .height = "1’00”",
@@ -9936,9 +9936,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 20,
                 .speed = 15,
             },
-            .types = { TYPE_NORMAL, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 170,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 39,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -9948,18 +9948,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_CUTE_CHARM, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 3,
@@ -9978,7 +9978,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TOGEPI] = {
         .textData = {
-            .name = "Togepi",
+            .name = "TOGEPI",
             .pokedexEntry = "The shell seems to be filled with\\njoy. It is said that it will share\\ngood luck when treated kindly.",
             .classification = "Spike Ball Pokémon",
             .height = "1’00”",
@@ -9993,9 +9993,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 65,
                 .speed = 20,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10010,10 +10010,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE },
+            .abilities = { 8247, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -10035,7 +10035,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TOGETIC] = {
         .textData = {
-            .name = "Togetic",
+            .name = "TOGETIC",
             .pokedexEntry = "They say that it will appear before\\nkindhearted, caring people and\\nshower them with happiness.",
             .classification = "Happiness Pokémon",
             .height = "2’00”",
@@ -10050,9 +10050,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 105,
                 .speed = 40,
             },
-            .types = { TYPE_FAIRY, TYPE_FLYING },
+            .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 114,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10067,10 +10067,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE },
+            .abilities = { 8247, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -10092,7 +10092,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NATU] = {
         .textData = {
-            .name = "Natu",
+            .name = "NATU",
             .pokedexEntry = "Because its wings aren’t yet fully\\ngrown, it has to hop to get around.\\nIt is always staring at something.",
             .classification = "Tiny Bird Pokémon",
             .height = "0’08”",
@@ -10109,7 +10109,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_FLYING },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 73,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10124,10 +10124,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD },
+            .abilities = { 12316, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -10149,7 +10149,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_XATU] = {
         .textData = {
-            .name = "Xatu",
+            .name = "XATU",
             .pokedexEntry = "They say that it stays still and\\nquiet because it is seeing both the\\npast and future at the same time.",
             .classification = "Mystic Pokémon",
             .height = "4’11”",
@@ -10166,7 +10166,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_FLYING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 171,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10181,10 +10181,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD },
+            .abilities = { 12316, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -10206,7 +10206,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAREEP] = {
         .textData = {
-            .name = "Mareep",
+            .name = "MAREEP",
             .pokedexEntry = "If static electricity builds in its\\nbody, its fleece doubles in volume.\\nTouching it will shock you.",
             .classification = "Wool Pokémon",
             .height = "2’00”",
@@ -10223,7 +10223,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 59,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10242,7 +10242,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -10263,7 +10263,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FLAAFFY] = {
         .textData = {
-            .name = "Flaaffy",
+            .name = "FLAAFFY",
             .pokedexEntry = "As a result of storing too much\\nelectricity, it developed patches\\nwhere even downy wool won’t grow.",
             .classification = "Wool Pokémon",
             .height = "2’07”",
@@ -10280,7 +10280,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 117,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10320,7 +10320,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AMPHAROS] = {
         .textData = {
-            .name = "Ampharos",
+            .name = "AMPHAROS",
             .pokedexEntry = "The tail’s tip shines brightly and\\ncan be seen from far away. It acts\\nas a beacon for lost people.",
             .classification = "Light Pokémon",
             .height = "4’07”",
@@ -10330,14 +10330,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 90,
                 .attack = 75,
-                .defense = 85,
+                .defense = 75,
                 .spAttack = 115,
                 .spDefense = 90,
                 .speed = 55,
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 194,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10377,7 +10377,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BELLOSSOM] = {
         .textData = {
-            .name = "Bellossom",
+            .name = "BELLOSSOM",
             .pokedexEntry = "BELLOSSOM gather at times and seem\\nto dance. They say that the dance\\nis a ritual to summon the sun.",
             .classification = "Flower Pokémon",
             .height = "1’04”",
@@ -10387,14 +10387,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 75,
                 .attack = 80,
-                .defense = 95,
+                .defense = 85,
                 .spAttack = 90,
                 .spDefense = 100,
                 .speed = 50,
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 184,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10405,11 +10405,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_ABSORB_BULB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
@@ -10434,7 +10434,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MARILL] = {
         .textData = {
-            .name = "Marill",
+            .name = "MARILL",
             .pokedexEntry = "The tip of its tail, which contains\\noil that is lighter than water,\\nlets it swim without drowning.",
             .classification = "Aqua Mouse Pokémon",
             .height = "1’04”",
@@ -10449,9 +10449,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 50,
                 .speed = 40,
             },
-            .types = { TYPE_WATER, TYPE_FAIRY },
+            .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 58,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -10466,11 +10466,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
-            .safariFleeRate = 0,
+            .abilities = { 9519, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -10491,7 +10491,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AZUMARILL] = {
         .textData = {
-            .name = "Azumarill",
+            .name = "AZUMARILL",
             .pokedexEntry = "By keeping still and listening\\nintently, it can tell what is in even\\nwild, fast-moving rivers.",
             .classification = "Aqua Rabbit Pokémon",
             .height = "2’07”",
@@ -10502,13 +10502,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 100,
                 .attack = 50,
                 .defense = 80,
-                .spAttack = 60,
+                .spAttack = 50,
                 .spDefense = 80,
                 .speed = 50,
             },
-            .types = { TYPE_WATER, TYPE_FAIRY },
+            .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 153,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -10523,10 +10523,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
+            .abilities = { 9519, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -10548,7 +10548,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SUDOWOODO] = {
         .textData = {
-            .name = "Sudowoodo",
+            .name = "SUDOWOODO",
             .pokedexEntry = "Although it always pretends to be a\\ntree, its composition appears more\\nsimilar to rock than to vegetation.",
             .classification = "Imitation Pokémon",
             .height = "3’11”",
@@ -10565,7 +10565,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 65,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 135,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10580,10 +10580,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD },
+            .abilities = { 17669, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -10605,7 +10605,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_POLITOED] = {
         .textData = {
-            .name = "Politoed",
+            .name = "POLITOED",
             .pokedexEntry = "If POLIWAG and POLIWHIRL hear its\\nechoing cry, they respond by\\ngathering from far and wide.",
             .classification = "Frog Pokémon",
             .height = "3’07”",
@@ -10622,7 +10622,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 185,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10637,13 +10637,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_WATER_ABSORB, ABILITY_DAMP },
+            .abilities = { 1547, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 11,
@@ -10662,7 +10662,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HOPPIP] = {
         .textData = {
-            .name = "Hoppip",
+            .name = "HOPPIP",
             .pokedexEntry = "To keep from being blown away by\\nthe wind, they gather in clusters.\\nBut they do enjoy gentle breezes.",
             .classification = "Cottonweed Pokémon",
             .height = "1’04”",
@@ -10679,7 +10679,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10697,8 +10697,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 26146, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
@@ -10719,7 +10719,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SKIPLOOM] = {
         .textData = {
-            .name = "Skiploom",
+            .name = "SKIPLOOM",
             .pokedexEntry = "The bloom on top of its head opens\\nand closes as the temperature\\nfluctuates up and down.",
             .classification = "Cottonweed Pokémon",
             .height = "2’00”",
@@ -10736,7 +10736,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_FLYING },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 136,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10754,8 +10754,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 26146, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -10776,7 +10776,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_JUMPLUFF] = {
         .textData = {
-            .name = "Jumpluff",
+            .name = "JUMPLUFF",
             .pokedexEntry = "Once it catches the wind, it deftly\\ncontrols its cotton-puff spores--\\nit can even float around the world.",
             .classification = "Cottonweed Pokémon",
             .height = "2’07”",
@@ -10788,12 +10788,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 55,
                 .defense = 70,
                 .spAttack = 55,
-                .spDefense = 95,
+                .spDefense = 85,
                 .speed = 110,
             },
             .types = { TYPE_GRASS, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 176,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10811,8 +10811,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD },
-            .safariFleeRate = 0,
+            .abilities = { 26146, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -10833,7 +10833,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AIPOM] = {
         .textData = {
-            .name = "Aipom",
+            .name = "AIPOM",
             .pokedexEntry = "Its tail is so powerful that it can\\nuse it to grab a tree branch and\\nhold itself up in the air.",
             .classification = "Long Tail Pokémon",
             .height = "2’07”",
@@ -10850,7 +10850,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 94,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10868,7 +10868,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_PICKUP },
+            .abilities = { 13618, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -10890,7 +10890,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SUNKERN] = {
         .textData = {
-            .name = "Sunkern",
+            .name = "SUNKERN",
             .pokedexEntry = "It may plummet from the sky.\\nIf attacked by a SPEAROW,\\nit will violently shake its leaves.",
             .classification = "Seed Pokémon",
             .height = "1’00”",
@@ -10907,7 +10907,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 52,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10925,8 +10925,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER },
-            .safariFleeRate = 0,
+            .abilities = { 24098, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -10947,7 +10947,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SUNFLORA] = {
         .textData = {
-            .name = "Sunflora",
+            .name = "SUNFLORA",
             .pokedexEntry = "It converts sunlight into energy.\\nIn the darkness after sunset, it\\ncloses its petals and becomes still.",
             .classification = "Sun Pokémon",
             .height = "2’07”",
@@ -10964,7 +10964,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 146,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -10982,7 +10982,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER },
+            .abilities = { 24098, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -11004,7 +11004,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_YANMA] = {
         .textData = {
-            .name = "Yanma",
+            .name = "YANMA",
             .pokedexEntry = "If it flaps its wings really fast,\\nit can generate shock waves that\\nwill shatter windows in the area.",
             .classification = "Clear Wing Pokémon",
             .height = "3’11”",
@@ -11021,7 +11021,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 147,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11039,8 +11039,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SPEED_BOOST, ABILITY_COMPOUND_EYES },
-            .safariFleeRate = 0,
+            .abilities = { 3587, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -11061,7 +11061,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WOOPER] = {
         .textData = {
-            .name = "Wooper",
+            .name = "WOOPER",
             .pokedexEntry = "This Pokémon lives in cold water.\\nIt will leave the water to search\\nfor food when it gets cold outside.",
             .classification = "Water Fish Pokémon",
             .height = "1’04”",
@@ -11078,7 +11078,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 52,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -11093,11 +11093,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB },
-            .safariFleeRate = 0,
+            .abilities = { 2822, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -11118,7 +11118,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_QUAGSIRE] = {
         .textData = {
-            .name = "Quagsire",
+            .name = "QUAGSIRE",
             .pokedexEntry = "This carefree Pokémon has an\\neasy-going nature. While swimming,\\nit always bumps into boat hulls.",
             .classification = "Water Fish Pokémon",
             .height = "4’07”",
@@ -11135,7 +11135,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 137,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -11150,11 +11150,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB },
-            .safariFleeRate = 0,
+            .abilities = { 2822, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -11175,7 +11175,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ESPEON] = {
         .textData = {
-            .name = "Espeon",
+            .name = "ESPEON",
             .pokedexEntry = "It uses the fine hair that covers\\nits body to sense air currents and\\npredict its enemy’s actions.",
             .classification = "Sun Pokémon",
             .height = "2’11”",
@@ -11192,7 +11192,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 197,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11207,10 +11207,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 35,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_NONE },
+            .abilities = { 7196, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -11232,7 +11232,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_UMBREON] = {
         .textData = {
-            .name = "Umbreon",
+            .name = "UMBREON",
             .pokedexEntry = "When agitated, this Pokémon\\nprotects itself by spraying\\npoisonous sweat from its pores.",
             .classification = "Moonlight Pokémon",
             .height = "3’03”",
@@ -11249,7 +11249,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_DARK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 197,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11267,7 +11267,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_NONE },
+            .abilities = { 7196, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -11289,7 +11289,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MURKROW] = {
         .textData = {
-            .name = "Murkrow",
+            .name = "MURKROW",
             .pokedexEntry = "Feared and loathed by many,\\nit is believed to bring misfortune to\\nall those who see it at night.",
             .classification = "Darkness Pokémon",
             .height = "1’08”",
@@ -11306,7 +11306,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 107,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11324,8 +11324,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_SUPER_LUCK },
-            .safariFleeRate = 0,
+            .abilities = { 26895, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -11346,7 +11346,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLOWKING] = {
         .textData = {
-            .name = "Slowking",
+            .name = "SLOWKING",
             .pokedexEntry = "It has incredible intellect and\\nintuition. Whatever the situation,\\nit remains calm and collected.",
             .classification = "Royal Pokémon",
             .height = "6’07”",
@@ -11363,13 +11363,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_PSYCHIC },
             .catchRate = 70,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
                 .defense = 0,
                 .spAttack = 0,
-                .spDefense = 2,
+                .spDefense = 3,
                 .speed = 0,
             },
             .wildHeldItems = {
@@ -11378,10 +11378,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO },
+            .abilities = { 5132, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -11403,8 +11403,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MISDREAVUS] = {
         .textData = {
-            .name = "Misdreavus",
-            .pokedexEntry = "It likes playing mischievous tricks,\\nsuch as screaming and wailing to\\nstartle people at night.",
+            .name = "MISDREAVUS",
+            .pokedexEntry = "It likes playing mischievous tricks,\\nsuch as screaming and wailing to\\nstartle people at night. ",
             .classification = "Screech Pokémon",
             .height = "2’04”",
             .weight = "2.2 lbs.",
@@ -11420,7 +11420,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 147,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11431,7 +11431,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_SPELL_TAG,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
@@ -11439,7 +11439,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -11460,7 +11460,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_UNOWN] = {
         .textData = {
-            .name = "Unown",
+            .name = "UNOWN",
             .pokedexEntry = "Their shapes look like hieroglyphs\\non ancient tablets. It is said\\nthat the two are somehow related.",
             .classification = "Symbol Pokémon",
             .height = "1’08”",
@@ -11477,7 +11477,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 61,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -11498,7 +11498,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 5,
@@ -11517,7 +11517,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WOBBUFFET] = {
         .textData = {
-            .name = "Wobbuffet",
+            .name = "WOBBUFFET",
             .pokedexEntry = "It hates light and shock. If\\nattacked, it inflates its body to\\nbuild up its counterstrike.",
             .classification = "Patient Pokémon",
             .height = "4’03”",
@@ -11534,7 +11534,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 177,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -11549,11 +11549,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_SHADOW_TAG, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -11574,7 +11574,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GIRAFARIG] = {
         .textData = {
-            .name = "Girafarig",
+            .name = "GIRAFARIG",
             .pokedexEntry = "Its tail has a small brain of its\\nown. Beware! If you get close, it\\nmay react to your scent by biting.",
             .classification = "Long Neck Pokémon",
             .height = "4’11”",
@@ -11591,7 +11591,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_PSYCHIC },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 149,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11609,8 +11609,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INNER_FOCUS, ABILITY_EARLY_BIRD },
-            .safariFleeRate = 0,
+            .abilities = { 12327, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -11631,7 +11631,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PINECO] = {
         .textData = {
-            .name = "Pineco",
+            .name = "PINECO",
             .pokedexEntry = "It likes to make its shell thicker\\nby adding layers of tree bark. The\\nadditional weight doesn’t bother it.",
             .classification = "Bagworm Pokémon",
             .height = "2’00”",
@@ -11648,7 +11648,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 60,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11688,7 +11688,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FORRETRESS] = {
         .textData = {
-            .name = "Forretress",
+            .name = "FORRETRESS",
             .pokedexEntry = "Its entire body is shielded by a\\nsteel-hard shell. What lurks inside\\nthis shell is a total mystery.",
             .classification = "Bagworm Pokémon",
             .height = "3’11”",
@@ -11705,7 +11705,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_STEEL },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 118,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11745,7 +11745,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUNSPARCE] = {
         .textData = {
-            .name = "Dunsparce",
+            .name = "DUNSPARCE",
             .pokedexEntry = "When spotted, this Pokémon escapes\\nbackward by furiously boring into\\nthe ground with its tail.",
             .classification = "Land Snake Pokémon",
             .height = "4’11”",
@@ -11762,7 +11762,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 125,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -11777,10 +11777,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY },
+            .abilities = { 12832, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -11802,7 +11802,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLIGAR] = {
         .textData = {
-            .name = "Gligar",
+            .name = "GLIGAR",
             .pokedexEntry = "It flies straight at its target’s\\nface, then clamps down on the\\nstartled victim to inject poison.",
             .classification = "FlyScorpion Pokémon",
             .height = "3’07”",
@@ -11819,7 +11819,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_FLYING },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 108,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11837,7 +11837,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL },
+            .abilities = { 2100, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -11859,7 +11859,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STEELIX] = {
         .textData = {
-            .name = "Steelix",
+            .name = "STEELIX",
             .pokedexEntry = "Its body has been compressed deep\\nunder the ground. As a result,\\nit is even harder than a diamond.",
             .classification = "Iron Snake Pokémon",
             .height = "30’02”",
@@ -11876,7 +11876,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_GROUND },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 196,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -11891,10 +11891,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY },
+            .abilities = { 1349, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -11916,7 +11916,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SNUBBULL] = {
         .textData = {
-            .name = "Snubbull",
+            .name = "SNUBBULL",
             .pokedexEntry = "Although it looks frightening, it\\nis actually kind and affectionate.\\nIt is very popular among women.",
             .classification = "Fairy Pokémon",
             .height = "2’00”",
@@ -11931,9 +11931,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 40,
                 .speed = 30,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 63,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -11946,12 +11946,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_RUN_AWAY },
+            .abilities = { 12822, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -11973,7 +11973,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GRANBULL] = {
         .textData = {
-            .name = "Granbull",
+            .name = "GRANBULL",
             .pokedexEntry = "It is actually timid and easily\\nspooked. If attacked, it flails\\nabout to fend off its attacker.",
             .classification = "Fairy Pokémon",
             .height = "4’07”",
@@ -11988,9 +11988,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 60,
                 .speed = 45,
             },
-            .types = { TYPE_FAIRY, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -12003,12 +12003,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_QUICK_FEET },
+            .abilities = { 24342, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -12030,7 +12030,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_QWILFISH] = {
         .textData = {
-            .name = "Qwilfish",
+            .name = "QWILFISH",
             .pokedexEntry = "To fire its poison spikes, it must\\ninflate its body by drinking over\\n2.6 gallons of water all at once.",
             .classification = "Balloon Pokémon",
             .height = "1’08”",
@@ -12040,14 +12040,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 65,
                 .attack = 95,
-                .defense = 85,
+                .defense = 75,
                 .spAttack = 55,
                 .spDefense = 55,
                 .speed = 85,
             },
             .types = { TYPE_WATER, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 100,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -12062,10 +12062,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM },
+            .abilities = { 8486, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -12087,7 +12087,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SCIZOR] = {
         .textData = {
-            .name = "Scizor",
+            .name = "SCIZOR",
             .pokedexEntry = "It swings its eye-patterned pincers\\nup to scare its foes. This makes\\nit look like it has three heads.",
             .classification = "Pincer Pokémon",
             .height = "5’11”",
@@ -12104,7 +12104,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_STEEL },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 200,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -12119,10 +12119,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_TECHNICIAN },
+            .abilities = { 25924, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -12144,7 +12144,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHUCKLE] = {
         .textData = {
-            .name = "Shuckle",
+            .name = "SHUCKLE",
             .pokedexEntry = "The berries it stores in its\\nvase-like shell decompose and\\nbecome a gooey liquid.",
             .classification = "Mold Pokémon",
             .height = "2’00”",
@@ -12161,7 +12161,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_ROCK },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 80,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12172,15 +12172,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_BERRY_JUICE,
-                .rare = ITEM_ORAN_BERRY,
+                .rare = ITEM_BERRY_JUICE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_STURDY, ABILITY_GLUTTONY },
-            .safariFleeRate = 0,
+            .abilities = { 20997, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -12201,7 +12201,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HERACROSS] = {
         .textData = {
-            .name = "Heracross",
+            .name = "HERACROSS",
             .pokedexEntry = "This powerful Pokémon thrusts\\nits prized horn under its enemies’\\nbellies, then lifts and throws them.",
             .classification = "Single Horn Pokémon",
             .height = "4’11”",
@@ -12218,7 +12218,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 200,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -12233,10 +12233,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SWARM, ABILITY_GUTS },
+            .abilities = { 15940, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -12258,7 +12258,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SNEASEL] = {
         .textData = {
-            .name = "Sneasel",
+            .name = "SNEASEL",
             .pokedexEntry = "Its paws conceal sharp claws. If\\nattacked, it suddenly extends the\\nclaws and startles its enemy.",
             .classification = "Sharp Claw Pokémon",
             .height = "2’11”",
@@ -12275,7 +12275,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_ICE },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 132,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12293,10 +12293,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE },
+            .abilities = { 13095, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 9,
@@ -12315,7 +12315,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TEDDIURSA] = {
         .textData = {
-            .name = "Teddiursa",
+            .name = "TEDDIURSA",
             .pokedexEntry = "If it finds honey, its crescent mark\\nglows. It always licks its paws\\nbecause they’re soaked with honey.",
             .classification = "Little Bear Pokémon",
             .height = "2’00”",
@@ -12332,7 +12332,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 124,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -12342,18 +12342,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
-                .rare = ITEM_SITRUS_BERRY,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PICKUP, ABILITY_QUICK_FEET },
+            .abilities = { 24373, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 6,
@@ -12372,7 +12372,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_URSARING] = {
         .textData = {
-            .name = "Ursaring",
+            .name = "URSARING",
             .pokedexEntry = "Although it is a good climber,\\nit prefers to snap trees with its\\nforelegs and eat fallen berries.",
             .classification = "Hibernator Pokémon",
             .height = "5’11”",
@@ -12389,7 +12389,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 189,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -12399,15 +12399,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
-                .rare = ITEM_SITRUS_BERRY,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_GUTS, ABILITY_QUICK_FEET },
+            .abilities = { 24382, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -12429,7 +12429,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLUGMA] = {
         .textData = {
-            .name = "Slugma",
+            .name = "SLUGMA",
             .pokedexEntry = "It never sleeps. It has to keep\\nmoving because if it stopped, its\\nmagma body would cool and harden.",
             .classification = "Lava Pokémon",
             .height = "2’04”",
@@ -12446,7 +12446,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 78,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12464,7 +12464,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_MAGMA_ARMOR, ABILITY_FLAME_BODY },
+            .abilities = { 12584, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -12486,7 +12486,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGCARGO] = {
         .textData = {
-            .name = "Magcargo",
+            .name = "MAGCARGO",
             .pokedexEntry = "The shell on its back is just skin\\nthat has cooled and hardened. It\\nbreaks easily with a slight touch.",
             .classification = "Lava Pokémon",
             .height = "2’07”",
@@ -12494,16 +12494,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 60,
+                .hp = 50,
                 .attack = 50,
                 .defense = 120,
-                .spAttack = 90,
+                .spAttack = 80,
                 .spDefense = 80,
                 .speed = 30,
             },
             .types = { TYPE_FIRE, TYPE_ROCK },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 154,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12521,7 +12521,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_MAGMA_ARMOR, ABILITY_FLAME_BODY },
+            .abilities = { 12584, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -12543,7 +12543,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SWINUB] = {
         .textData = {
-            .name = "Swinub",
+            .name = "SWINUB",
             .pokedexEntry = "It rubs its snout on the ground to\\nfind and dig up food. It sometimes\\ndiscovers hot springs.",
             .classification = "Pig Pokémon",
             .height = "1’04”",
@@ -12560,7 +12560,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_GROUND },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 78,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -12570,15 +12570,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ASPEAR_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK },
+            .abilities = { 20748, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -12600,7 +12600,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PILOSWINE] = {
         .textData = {
-            .name = "Piloswine",
+            .name = "PILOSWINE",
             .pokedexEntry = "Because the long hair all over its\\nbody obscures its sight, it just\\nkeeps charging repeatedly.",
             .classification = "Swine Pokémon",
             .height = "3’07”",
@@ -12617,7 +12617,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_GROUND },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 160,
             .evYields = {
                 .hp = 1,
                 .attack = 1,
@@ -12627,15 +12627,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ASPEAR_BERRY,
-                .rare = ITEM_NEVER_MELT_ICE,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK },
+            .abilities = { 20748, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -12657,7 +12657,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CORSOLA] = {
         .textData = {
-            .name = "Corsola",
+            .name = "CORSOLA",
             .pokedexEntry = "It continuously sheds and grows.\\nThe tip of its head is prized as\\na treasure because of its beauty.",
             .classification = "Coral Pokémon",
             .height = "2’00”",
@@ -12665,16 +12665,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 65,
+                .hp = 55,
                 .attack = 55,
-                .defense = 95,
+                .defense = 85,
                 .spAttack = 65,
-                .spDefense = 95,
+                .spDefense = 85,
                 .speed = 35,
             },
             .types = { TYPE_WATER, TYPE_ROCK },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 113,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12684,15 +12684,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_HARD_STONE,
-                .rare = ITEM_RED_SHARD,
+                .common = ITEM_NONE,
+                .rare = ITEM_HARD_STONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_HUSTLE, ABILITY_NATURAL_CURE },
+            .abilities = { 7735, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -12714,7 +12714,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_REMORAID] = {
         .textData = {
-            .name = "Remoraid",
+            .name = "REMORAID",
             .pokedexEntry = "It has superb accuracy. The water\\nit shoots out can strike moving\\nprey from more than 300 feet away.",
             .classification = "Jet Pokémon",
             .height = "2’00”",
@@ -12731,7 +12731,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 78,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12746,10 +12746,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_HUSTLE, ABILITY_SNIPER },
+            .abilities = { 24887, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -12771,7 +12771,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_OCTILLERY] = {
         .textData = {
-            .name = "Octillery",
+            .name = "OCTILLERY",
             .pokedexEntry = "It traps foes with the suction cups\\non its tentacles, then smashes\\nthem with its rock-hard head.",
             .classification = "Jet Pokémon",
             .height = "2’11”",
@@ -12788,7 +12788,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -12803,10 +12803,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SUCTION_CUPS, ABILITY_SNIPER },
+            .abilities = { 24853, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -12828,7 +12828,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DELIBIRD] = {
         .textData = {
-            .name = "Delibird",
+            .name = "DELIBIRD",
             .pokedexEntry = "It carries food all day long.\\nThere are tales about lost people\\nwho were saved by its stored food.",
             .classification = "Delivery Pokémon",
             .height = "2’11”",
@@ -12845,7 +12845,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 183,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12860,10 +12860,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_HUSTLE },
+            .abilities = { 14152, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -12885,7 +12885,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MANTINE] = {
         .textData = {
-            .name = "Mantine",
+            .name = "MANTINE",
             .pokedexEntry = "As it majestically swims, it doesn’t\\ncare if REMORAID attach to it for\\nscavenging its leftovers.",
             .classification = "Kite Pokémon",
             .height = "6’11”",
@@ -12893,7 +12893,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 85,
+                .hp = 65,
                 .attack = 40,
                 .defense = 70,
                 .spAttack = 80,
@@ -12902,7 +12902,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_FLYING },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 168,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12917,10 +12917,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB },
+            .abilities = { 2849, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -12942,7 +12942,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SKARMORY] = {
         .textData = {
-            .name = "Skarmory",
+            .name = "SKARMORY",
             .pokedexEntry = "Its sturdy wings look heavy, but\\nthey are actually hollow and light,\\nallowing it to fly freely in the sky.",
             .classification = "Armor Bird Pokémon",
             .height = "5’07”",
@@ -12959,7 +12959,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_FLYING },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 168,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -12969,15 +12969,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SHARP_BEAK,
-                .rare = ITEM_METAL_COAT,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_STURDY },
+            .abilities = { 1331, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -12999,7 +12999,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HOUNDOUR] = {
         .textData = {
-            .name = "Houndour",
+            .name = "HOUNDOUR",
             .pokedexEntry = "It uses different kinds of cries for\\ncommunicating with others of its\\nkind and for pursuing its prey.",
             .classification = "Dark Pokémon",
             .height = "2’00”",
@@ -13016,7 +13016,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_FIRE },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 114,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13034,8 +13034,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE },
-            .safariFleeRate = 0,
+            .abilities = { 4656, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -13056,7 +13056,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HOUNDOOM] = {
         .textData = {
-            .name = "Houndoom",
+            .name = "HOUNDOOM",
             .pokedexEntry = "If you are burned by the flames\\nit shoots from its mouth,\\nthe pain will never go away.",
             .classification = "Dark Pokémon",
             .height = "4’07”",
@@ -13073,7 +13073,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13091,8 +13091,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE },
-            .safariFleeRate = 0,
+            .abilities = { 4656, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -13113,7 +13113,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KINGDRA] = {
         .textData = {
-            .name = "Kingdra",
+            .name = "KINGDRA",
             .pokedexEntry = "It is said that it usually hides in\\nunderwater caves. It can create\\nwhirlpools by yawning.",
             .classification = "Dragon Pokémon",
             .height = "5’11”",
@@ -13130,7 +13130,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 207,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -13145,10 +13145,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_SNIPER },
+            .abilities = { 24865, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -13170,7 +13170,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PHANPY] = {
         .textData = {
-            .name = "Phanpy",
+            .name = "PHANPY",
             .pokedexEntry = "It swings its long snout around\\nplayfully, but because it is so\\nstrong, that can be dangerous.",
             .classification = "Long Nose Pokémon",
             .height = "1’08”",
@@ -13187,7 +13187,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 124,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -13227,7 +13227,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DONPHAN] = {
         .textData = {
-            .name = "Donphan",
+            .name = "DONPHAN",
             .pokedexEntry = "It has sharp, hard tusks and a\\nrugged hide. Its tackle is strong\\nenough to knock down a house.",
             .classification = "Armor Pokémon",
             .height = "3’07”",
@@ -13244,7 +13244,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 189,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -13284,11 +13284,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PORYGON2] = {
         .textData = {
-            .name = "Porygon2",
+            .name = "PORYGON2",
             .pokedexEntry = "This upgraded version of PORYGON\\nis designed for space exploration.\\nIt can’t fly, however.",
             .classification = "Virtual Pokémon",
             .height = "2’00”",
-            .weight = "71.7 lbs.",
+            .weight = "71.6 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -13301,7 +13301,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 180,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13311,15 +13311,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_UP_GRADE,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_TRACE, ABILITY_DOWNLOAD },
+            .abilities = { 22564, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -13341,7 +13341,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STANTLER] = {
         .textData = {
-            .name = "Stantler",
+            .name = "STANTLER",
             .pokedexEntry = "The curved antlers subtly change\\nthe flow of air to create a strange\\nspace where reality is distorted.",
             .classification = "Big Horn Pokémon",
             .height = "4’07”",
@@ -13358,7 +13358,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -13376,8 +13376,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_FRISK },
-            .safariFleeRate = 0,
+            .abilities = { 30486, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -13398,7 +13398,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SMEARGLE] = {
         .textData = {
-            .name = "Smeargle",
+            .name = "SMEARGLE",
             .pokedexEntry = "A special fluid oozes from the tip\\nof its tail. It paints the fluid\\neverywhere to mark its territory.",
             .classification = "Painter Pokémon",
             .height = "3’11”",
@@ -13415,7 +13415,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 106,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13433,8 +13433,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_OWN_TEMPO, ABILITY_TECHNICIAN },
-            .safariFleeRate = 0,
+            .abilities = { 25876, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -13455,7 +13455,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TYROGUE] = {
         .textData = {
-            .name = "Tyrogue",
+            .name = "TYROGUE",
             .pokedexEntry = "It is always bursting with energy.\\nTo make itself stronger, it\\nkeeps on fighting even if it loses.",
             .classification = "Scuffle Pokémon",
             .height = "2’04”",
@@ -13472,7 +13472,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 91,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -13487,10 +13487,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_GUTS, ABILITY_STEADFAST },
+            .abilities = { 20542, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -13512,7 +13512,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HITMONTOP] = {
         .textData = {
-            .name = "Hitmontop",
+            .name = "HITMONTOP",
             .pokedexEntry = "If you are enchanted by its smooth,\\ndance-like kicks, you may get a closer\\nexperience with one than you’d like.",
             .classification = "Handstand Pokémon",
             .height = "4’07”",
@@ -13529,7 +13529,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 138,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13544,10 +13544,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 0,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_TECHNICIAN },
+            .abilities = { 25878, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -13569,7 +13569,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SMOOCHUM] = {
         .textData = {
-            .name = "Smoochum",
+            .name = "SMOOCHUM",
             .pokedexEntry = "Its lips are the most sensitive\\npart of its body. It always uses\\nits lips first to examine things.",
             .classification = "Kiss Pokémon",
             .height = "1’04”",
@@ -13586,7 +13586,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 87,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13597,14 +13597,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_ASPEAR_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_ASPEAR_BERRY,
             },
             .genderRatio = 254,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_FOREWARN },
+            .abilities = { 27660, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -13626,7 +13626,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ELEKID] = {
         .textData = {
-            .name = "Elekid",
+            .name = "ELEKID",
             .pokedexEntry = "It rotates its arms to generate\\nelectricity, but it tires easily,\\nso it only charges up a little bit.",
             .classification = "Electric Pokémon",
             .height = "2’00”",
@@ -13643,7 +13643,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 106,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13653,18 +13653,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_ELECTIRIZER,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_STATIC, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 6,
@@ -13683,7 +13683,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGBY] = {
         .textData = {
-            .name = "Magby",
+            .name = "MAGBY",
             .pokedexEntry = "Each and every time it inhales\\nand exhales, hot embers dribble\\nfrom its mouth and nostrils.",
             .classification = "Live Coal Pokémon",
             .height = "2’04”",
@@ -13700,7 +13700,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 117,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13710,18 +13710,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_MAGMARIZER,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_FLAME_BODY, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 7,
@@ -13740,7 +13740,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MILTANK] = {
         .textData = {
-            .name = "Miltank",
+            .name = "MILTANK",
             .pokedexEntry = "Its milk is packed with nutrition,\\nmaking it the ultimate beverage\\nfor the sick or weary.",
             .classification = "Milk Cow Pokémon",
             .height = "3’11”",
@@ -13757,7 +13757,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 200,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13768,14 +13768,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_MOOMOO_MILK,
-                .rare = ITEM_NONE,
+                .rare = ITEM_MOOMOO_MILK,
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_SCRAPPY },
+            .abilities = { 28975, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -13797,7 +13797,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BLISSEY] = {
         .textData = {
-            .name = "Blissey",
+            .name = "BLISSEY",
             .pokedexEntry = "Anyone who takes even one taste of\\nBLISSEY’s egg becomes unfailingly\\ncaring and pleasant to everyone.",
             .classification = "Happiness Pokémon",
             .height = "4’11”",
@@ -13814,7 +13814,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 255,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -13832,7 +13832,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE },
+            .abilities = { 8222, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -13854,7 +13854,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RAIKOU] = {
         .textData = {
-            .name = "Raikou",
+            .name = "RAIKOU",
             .pokedexEntry = "The rain clouds it carries let it\\nfire thunderbolts at will. They say\\nthat it descended with lightning.",
             .classification = "Thunder Pokémon",
             .height = "6’03”",
@@ -13871,7 +13871,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 216,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -13911,7 +13911,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ENTEI] = {
         .textData = {
-            .name = "Entei",
+            .name = "ENTEI",
             .pokedexEntry = "Volcanoes erupt when it barks.\\nUnable to contain its sheer power,\\nit races headlong around the land.",
             .classification = "Volcano Pokémon",
             .height = "6’11”",
@@ -13928,7 +13928,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 217,
             .evYields = {
                 .hp = 1,
                 .attack = 2,
@@ -13968,7 +13968,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SUICUNE] = {
         .textData = {
-            .name = "Suicune",
+            .name = "SUICUNE",
             .pokedexEntry = "Said to be the embodiment of\\nnorth winds, it can instantly\\npurify filthy, murky water.",
             .classification = "Aurora Pokémon",
             .height = "6’07”",
@@ -13985,7 +13985,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14025,7 +14025,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LARVITAR] = {
         .textData = {
-            .name = "Larvitar",
+            .name = "LARVITAR",
             .pokedexEntry = "It feeds on soil. After it has eaten\\na large mountain, it falls asleep\\nso it can grow.",
             .classification = "Rock Skin Pokémon",
             .height = "2’00”",
@@ -14042,7 +14042,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 67,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -14061,7 +14061,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
             .abilities = { ABILITY_GUTS, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -14082,7 +14082,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PUPITAR] = {
         .textData = {
-            .name = "Pupitar",
+            .name = "PUPITAR",
             .pokedexEntry = "Its shell is as hard as sheet rock,\\nand it is also very strong. Its\\nthrashing can topple a mountain.",
             .classification = "Hard Shell Pokémon",
             .height = "3’11”",
@@ -14099,7 +14099,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 144,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -14139,7 +14139,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TYRANITAR] = {
         .textData = {
-            .name = "Tyranitar",
+            .name = "TYRANITAR",
             .pokedexEntry = "Its body can’t be harmed by any\\nsort of attack, so it is very eager\\nto make challenges against enemies.",
             .classification = "Armor Pokémon",
             .height = "6’07”",
@@ -14156,7 +14156,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_DARK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -14196,7 +14196,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUGIA] = {
         .textData = {
-            .name = "Lugia",
+            .name = "LUGIA",
             .pokedexEntry = "It is said that it quietly spends its\\ntime deep at the bottom of the sea\\nbecause its powers are too strong.",
             .classification = "Diving Pokémon",
             .height = "17’01”",
@@ -14213,7 +14213,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_FLYING },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14253,7 +14253,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HO_OH] = {
         .textData = {
-            .name = "Ho-oh",
+            .name = "HO-OH",
             .pokedexEntry = "Legends claim this Pokémon flies the\\nworld’s skies continuously on its\\nmagnificent, seven-colored wings.",
             .classification = "Rainbow Pokémon",
             .height = "12’06”",
@@ -14270,7 +14270,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FLYING },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14281,7 +14281,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_SACRED_ASH,
-                .rare = ITEM_NONE,
+                .rare = ITEM_SACRED_ASH,
             },
             .genderRatio = 255,
             .hatchCycles = 120,
@@ -14310,7 +14310,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CELEBI] = {
         .textData = {
-            .name = "Celebi",
+            .name = "CELEBI",
             .pokedexEntry = "This Pokémon wanders across time.\\nGrass and trees flourish in the\\nforests in which it has appeared.",
             .classification = "Time Travel Pokémon",
             .height = "2’00”",
@@ -14327,7 +14327,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -14338,7 +14338,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_LUM_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_LUM_BERRY,
             },
             .genderRatio = 255,
             .hatchCycles = 120,
@@ -14367,7 +14367,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TREECKO] = {
         .textData = {
-            .name = "Treecko",
+            .name = "TREECKO",
             .pokedexEntry = "Small hooks on the bottom of its\\nfeet catch on walls and ceilings.\\nThat is how it can hang from above.",
             .classification = "Wood Gecko Pokémon",
             .height = "1’08”",
@@ -14384,7 +14384,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14399,7 +14399,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -14424,7 +14424,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GROVYLE] = {
         .textData = {
-            .name = "Grovyle",
+            .name = "GROVYLE",
             .pokedexEntry = "It leaps from tree branch to tree\\nbranch quite swiftly. It shows\\nastounding agility.",
             .classification = "Wood Gecko Pokémon",
             .height = "2’11”",
@@ -14441,7 +14441,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14456,7 +14456,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -14481,7 +14481,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SCEPTILE] = {
         .textData = {
-            .name = "Sceptile",
+            .name = "SCEPTILE",
             .pokedexEntry = "It agilely leaps about the jungle\\nand uses the sharp leaves on its\\narms to strike its prey.",
             .classification = "Forest Pokémon",
             .height = "5’07”",
@@ -14498,7 +14498,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14513,7 +14513,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
@@ -14538,7 +14538,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TORCHIC] = {
         .textData = {
-            .name = "Torchic",
+            .name = "TORCHIC",
             .pokedexEntry = "Inside its body is a place where it\\nkeeps a small flame. Hug it! It will\\nbe as warm as a hot-water bottle.",
             .classification = "Chick Pokémon",
             .height = "1’04”",
@@ -14555,7 +14555,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -14570,7 +14570,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -14595,7 +14595,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_COMBUSKEN] = {
         .textData = {
-            .name = "Combusken",
+            .name = "COMBUSKEN",
             .pokedexEntry = "During a battle, the hot flame in\\nits body increases. Its kicks have\\noutstanding destructive power.",
             .classification = "Young Fowl Pokémon",
             .height = "2’11”",
@@ -14612,7 +14612,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 142,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -14627,7 +14627,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -14652,7 +14652,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BLAZIKEN] = {
         .textData = {
-            .name = "Blaziken",
+            .name = "BLAZIKEN",
             .pokedexEntry = "It can clear a 30-story building\\nin a leap. Its fiery punches scorch\\nits foes.",
             .classification = "Blaze Pokémon",
             .height = "6’03”",
@@ -14669,7 +14669,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 209,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -14684,7 +14684,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
@@ -14709,7 +14709,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MUDKIP] = {
         .textData = {
-            .name = "Mudkip",
+            .name = "MUDKIP",
             .pokedexEntry = "Its power can crush boulders.\\nIt rests by covering itself with mud\\nat the bottom of a river.",
             .classification = "Mud Fish Pokémon",
             .height = "1’04”",
@@ -14726,7 +14726,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -14741,7 +14741,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -14766,7 +14766,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MARSHTOMP] = {
         .textData = {
-            .name = "Marshtomp",
+            .name = "MARSHTOMP",
             .pokedexEntry = "Living on muddy ground that\\nprovides poor footing has made\\nits legs sturdy.",
             .classification = "Mud Fish Pokémon",
             .height = "2’04”",
@@ -14783,7 +14783,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 143,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -14798,7 +14798,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -14823,7 +14823,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SWAMPERT] = {
         .textData = {
-            .name = "Swampert",
+            .name = "SWAMPERT",
             .pokedexEntry = "Its arms are hard as rock.\\nWith one swing, it can\\nbreak a boulder into pieces.",
             .classification = "Mud Fish Pokémon",
             .height = "4’11”",
@@ -14840,7 +14840,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -14855,7 +14855,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
             .abilities = { ABILITY_TORRENT, ABILITY_NONE },
@@ -14880,7 +14880,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_POOCHYENA] = {
         .textData = {
-            .name = "Poochyena",
+            .name = "POOCHYENA",
             .pokedexEntry = "It chases its prey until the victim\\nbecomes exhausted. However, it\\nturns tail if the prey strikes back.",
             .classification = "Bite Pokémon",
             .height = "1’08”",
@@ -14897,7 +14897,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_DARK },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 55,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -14915,7 +14915,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_QUICK_FEET },
+            .abilities = { 24370, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -14937,7 +14937,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MIGHTYENA] = {
         .textData = {
-            .name = "Mightyena",
+            .name = "MIGHTYENA",
             .pokedexEntry = "It chases down prey in a pack of\\naround ten. They defeat foes with\\nperfectly coordinated teamwork.",
             .classification = "Bite Pokémon",
             .height = "3’03”",
@@ -14954,7 +14954,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_DARK },
             .catchRate = 127,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 128,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -14972,7 +14972,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_INTIMIDATE, ABILITY_QUICK_FEET },
+            .abilities = { 24342, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -14994,7 +14994,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ZIGZAGOON] = {
         .textData = {
-            .name = "Zigzagoon",
+            .name = "ZIGZAGOON",
             .pokedexEntry = "It gets interested in everything,\\nwhich is why it zigs and zags.\\nIt is good at finding items.",
             .classification = "TinyRaccoon Pokémon",
             .height = "1’04”",
@@ -15011,7 +15011,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 60,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15021,16 +15021,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_POTION,
-                .rare = ITEM_REVIVE,
+                .common = ITEM_NONE,
+                .rare = ITEM_ORAN_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY },
-            .safariFleeRate = 0,
+            .abilities = { 21045, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -15051,11 +15051,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LINOONE] = {
         .textData = {
-            .name = "Linoone",
+            .name = "LINOONE",
             .pokedexEntry = "When running in a straight line, it\\ncan easily top 60 miles an hour. It\\nhas a tough time with curved roads.",
             .classification = "Rushing Pokémon",
             .height = "1’08”",
-            .weight = "71.7 lbs.",
+            .weight = "71.6 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -15068,7 +15068,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 128,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15078,16 +15078,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 2,
             },
             .wildHeldItems = {
-                .common = ITEM_POTION,
-                .rare = ITEM_MAX_REVIVE,
+                .common = ITEM_ORAN_BERRY,
+                .rare = ITEM_SITRUS_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY },
-            .safariFleeRate = 0,
+            .abilities = { 21045, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -15108,7 +15108,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WURMPLE] = {
         .textData = {
-            .name = "Wurmple",
+            .name = "WURMPLE",
             .pokedexEntry = "It lives among the tall grass and in\\nforests. It repels attacks by \\nraising up the spikes on its rear.",
             .classification = "Worm Pokémon",
             .height = "1’00”",
@@ -15125,7 +15125,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 54,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -15135,8 +15135,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PECHA_BERRY,
-                .rare = ITEM_BRIGHT_POWDER,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
@@ -15165,7 +15165,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SILCOON] = {
         .textData = {
-            .name = "Silcoon",
+            .name = "SILCOON",
             .pokedexEntry = "Having wrapped silk around the\\nbranches of a tree, it quiescently\\nawaits evolution.",
             .classification = "Cocoon Pokémon",
             .height = "2’00”",
@@ -15182,7 +15182,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 72,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15222,7 +15222,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BEAUTIFLY] = {
         .textData = {
-            .name = "Beautifly",
+            .name = "BEAUTIFLY",
             .pokedexEntry = "Vibrantly patterned wings are its\\nprominent feature. It sucks sweet\\nflower nectar with its long mouth.",
             .classification = "Butterfly Pokémon",
             .height = "3’03”",
@@ -15233,13 +15233,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 60,
                 .attack = 70,
                 .defense = 50,
-                .spAttack = 100,
+                .spAttack = 90,
                 .spDefense = 50,
                 .speed = 65,
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 161,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15249,8 +15249,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SHED_SHELL,
-                .rare = ITEM_SILVER_POWDER,
+                .common = ITEM_NONE,
+                .rare = ITEM_SHED_SHELL,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
@@ -15279,7 +15279,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CASCOON] = {
         .textData = {
-            .name = "Cascoon",
+            .name = "CASCOON",
             .pokedexEntry = "It endures attacks with patience,\\nbecause the more pain before\\nevolution, the sturdier it becomes.",
             .classification = "Cocoon Pokémon",
             .height = "2’04”",
@@ -15296,7 +15296,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 72,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15336,7 +15336,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUSTOX] = {
         .textData = {
-            .name = "Dustox",
+            .name = "DUSTOX",
             .pokedexEntry = "It scatters its fine dust all over\\nwhen it is attacked. It is a\\nnocturnal Pokémon.",
             .classification = "Poison Moth Pokémon",
             .height = "3’11”",
@@ -15353,7 +15353,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_POISON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 161,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15363,8 +15363,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SHED_SHELL,
-                .rare = ITEM_SILVER_POWDER,
+                .common = ITEM_NONE,
+                .rare = ITEM_SHED_SHELL,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
@@ -15393,7 +15393,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LOTAD] = {
         .textData = {
-            .name = "Lotad",
+            .name = "LOTAD",
             .pokedexEntry = "Its leaf grew too large for it to\\nlive on land. That is how it began\\nto live floating in the water.",
             .classification = "Water Weed Pokémon",
             .height = "1’08”",
@@ -15410,7 +15410,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GRASS },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15421,15 +15421,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_MENTAL_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH },
-            .safariFleeRate = 0,
+            .abilities = { 11297, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -15450,11 +15450,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LOMBRE] = {
         .textData = {
-            .name = "Lombre",
+            .name = "LOMBRE",
             .pokedexEntry = "It is nocturnal and becomes active\\nat nightfall. It feeds on aquatic\\nmosses that grow in the riverbed.",
             .classification = "Jolly Pokémon",
             .height = "3’11”",
-            .weight = "71.7 lbs.",
+            .weight = "71.6 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -15467,7 +15467,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GRASS },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15478,15 +15478,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_MENTAL_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH },
-            .safariFleeRate = 0,
+            .abilities = { 11297, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -15507,7 +15507,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUDICOLO] = {
         .textData = {
-            .name = "Ludicolo",
+            .name = "LUDICOLO",
             .pokedexEntry = "If it hears festive music, it begins\\nmoving in rhythm in order to\\namplify its power.",
             .classification = "Carefree Pokémon",
             .height = "4’11”",
@@ -15524,7 +15524,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 181,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15535,14 +15535,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_MENTAL_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH },
+            .abilities = { 11297, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -15564,7 +15564,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEEDOT] = {
         .textData = {
-            .name = "Seedot",
+            .name = "SEEDOT",
             .pokedexEntry = "It attaches itself to a tree branch\\nusing the top of its head. Strong\\nwinds can sometimes make it fall.",
             .classification = "Acorn Pokémon",
             .height = "1’08”",
@@ -15581,7 +15581,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15592,15 +15592,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_POWER_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD },
-            .safariFleeRate = 0,
+            .abilities = { 12322, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -15621,7 +15621,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NUZLEAF] = {
         .textData = {
-            .name = "Nuzleaf",
+            .name = "NUZLEAF",
             .pokedexEntry = "It lives deep in forests. With the\\nleaf on its head, it makes a flute\\nwhose song makes listeners uneasy.",
             .classification = "Wily Pokémon",
             .height = "3’03”",
@@ -15638,7 +15638,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_DARK },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -15649,15 +15649,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_POWER_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD },
-            .safariFleeRate = 0,
+            .abilities = { 12322, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -15678,7 +15678,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHIFTRY] = {
         .textData = {
-            .name = "Shiftry",
+            .name = "SHIFTRY",
             .pokedexEntry = "It lives quietly in the deep forest.\\nIt is said to create chilly winter\\nwinds with the fans it holds.",
             .classification = "Wicked Pokémon",
             .height = "4’03”",
@@ -15695,7 +15695,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_DARK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 181,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -15706,14 +15706,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_POWER_HERB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_WIND_RIDER },
+            .abilities = { 12322, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -15735,7 +15735,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TAILLOW] = {
         .textData = {
-            .name = "Taillow",
+            .name = "TAILLOW",
             .pokedexEntry = "When it gets cold, they migrate,\\nflying over 180 miles a day.\\nIt hunts for tasty prey.",
             .classification = "TinySwallow Pokémon",
             .height = "1’00”",
@@ -15752,7 +15752,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 59,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15792,7 +15792,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SWELLOW] = {
         .textData = {
-            .name = "Swellow",
+            .name = "SWELLOW",
             .pokedexEntry = "It dives at a steep angle as soon\\nas it spots its prey. It catches\\nits prey with sharp claws.",
             .classification = "Swallow Pokémon",
             .height = "2’04”",
@@ -15803,13 +15803,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 60,
                 .attack = 85,
                 .defense = 60,
-                .spAttack = 75,
+                .spAttack = 50,
                 .spDefense = 50,
                 .speed = 125,
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 162,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15849,7 +15849,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WINGULL] = {
         .textData = {
-            .name = "Wingull",
+            .name = "WINGULL",
             .pokedexEntry = "It soars on updrafts without\\nflapping its wings. It makes a nest\\non sheer cliffs at the sea’s edge.",
             .classification = "Seagull Pokémon",
             .height = "2’00”",
@@ -15866,7 +15866,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_FLYING },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15876,15 +15876,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_PRETTY_FEATHER,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_HYDRATION },
+            .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -15906,7 +15906,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PELIPPER] = {
         .textData = {
-            .name = "Pelipper",
+            .name = "PELIPPER",
             .pokedexEntry = "It protects its young in its beak.\\nIt bobs on waves, resting on them\\non days when the waters are calm.",
             .classification = "Water Bird Pokémon",
             .height = "3’11”",
@@ -15917,13 +15917,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 60,
                 .attack = 50,
                 .defense = 100,
-                .spAttack = 95,
+                .spAttack = 85,
                 .spDefense = 70,
                 .speed = 65,
             },
             .types = { TYPE_WATER, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15933,15 +15933,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PRETTY_FEATHER,
-                .rare = ITEM_LUCKY_EGG,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_DRIZZLE },
+            .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -15963,7 +15963,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RALTS] = {
         .textData = {
-            .name = "Ralts",
+            .name = "RALTS",
             .pokedexEntry = "The horns on its head provide a\\nstrong power that enables\\nit to sense people’s emotions.",
             .classification = "Feeling Pokémon",
             .height = "1’04”",
@@ -15978,9 +15978,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 35,
                 .speed = 40,
             },
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 70,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -15997,8 +15997,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .hatchCycles = 20,
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
-            .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE },
+            .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+            .abilities = { 9244, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -16020,7 +16020,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KIRLIA] = {
         .textData = {
-            .name = "Kirlia",
+            .name = "KIRLIA",
             .pokedexEntry = "It has a psychic power that\\nenables it to distort the space\\naround it and see into the future.",
             .classification = "Emotion Pokémon",
             .height = "2’07”",
@@ -16035,9 +16035,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 55,
                 .speed = 50,
             },
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 140,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16054,8 +16054,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .hatchCycles = 20,
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
-            .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE },
+            .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+            .abilities = { 9244, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -16077,7 +16077,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GARDEVOIR] = {
         .textData = {
-            .name = "Gardevoir",
+            .name = "GARDEVOIR",
             .pokedexEntry = "It unleashes psychokinetic energy\\nat full power when protecting a\\nTrainer it has bonded closely with.",
             .classification = "Embrace Pokémon",
             .height = "5’03”",
@@ -16092,9 +16092,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 115,
                 .speed = 80,
             },
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16111,8 +16111,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .hatchCycles = 20,
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
-            .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE },
+            .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+            .abilities = { 9244, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -16134,7 +16134,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SURSKIT] = {
         .textData = {
-            .name = "Surskit",
+            .name = "SURSKIT",
             .pokedexEntry = "It secretes a thick, sweet-scented\\nsyrup from the tip of its head.\\nIt lives on weed-choked ponds.",
             .classification = "Pond Skater Pokémon",
             .height = "1’08”",
@@ -16151,7 +16151,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_WATER },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 63,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16161,7 +16161,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_HONEY,
+                .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
             .genderRatio = 127,
@@ -16170,7 +16170,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_BUG },
             .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -16191,7 +16191,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MASQUERAIN] = {
         .textData = {
-            .name = "Masquerain",
+            .name = "MASQUERAIN",
             .pokedexEntry = "It flaps its four wings to hover and\\nfly freely in any direction--\\nto and fro and sideways.",
             .classification = "Eyeball Pokémon",
             .height = "2’07”",
@@ -16202,13 +16202,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .hp = 70,
                 .attack = 60,
                 .defense = 62,
-                .spAttack = 100,
+                .spAttack = 80,
                 .spDefense = 82,
-                .speed = 80,
+                .speed = 60,
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 128,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16227,7 +16227,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_BUG },
             .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -16248,7 +16248,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHROOMISH] = {
         .textData = {
-            .name = "Shroomish",
+            .name = "SHROOMISH",
             .pokedexEntry = "If it senses danger, it scatters\\nspores from the top of its head to\\nprotect itself.",
             .classification = "Mushroom Pokémon",
             .height = "1’04”",
@@ -16265,7 +16265,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -16275,16 +16275,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_TINY_MUSHROOM,
-                .rare = ITEM_BIG_MUSHROOM,
+                .common = ITEM_NONE,
+                .rare = ITEM_KEBIA_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_EFFECT_SPORE, ABILITY_POISON_HEAL },
-            .safariFleeRate = 0,
+            .abilities = { 23067, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -16305,7 +16305,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BRELOOM] = {
         .textData = {
-            .name = "Breloom",
+            .name = "BRELOOM",
             .pokedexEntry = "It scatters poisonous spores and\\nthrows powerful punches while its\\nfoe is hampered by inhaled spores.",
             .classification = "Mushroom Pokémon",
             .height = "3’11”",
@@ -16322,7 +16322,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_FIGHTING },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -16332,16 +16332,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_TINY_MUSHROOM,
-                .rare = ITEM_BIG_MUSHROOM,
+                .common = ITEM_NONE,
+                .rare = ITEM_KEBIA_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_EFFECT_SPORE, ABILITY_POISON_HEAL },
-            .safariFleeRate = 0,
+            .abilities = { 23067, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -16362,7 +16362,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLAKOTH] = {
         .textData = {
-            .name = "Slakoth",
+            .name = "SLAKOTH",
             .pokedexEntry = "The way SLAKOTH lolls around makes\\nanyone who watches it feel like\\ndoing the same.",
             .classification = "Slacker Pokémon",
             .height = "2’07”",
@@ -16379,7 +16379,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 83,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -16419,7 +16419,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VIGOROTH] = {
         .textData = {
-            .name = "Vigoroth",
+            .name = "VIGOROTH",
             .pokedexEntry = "Its stress level rises if it\\ncannot keep moving constantly.\\nToo much stress makes it feel sick.",
             .classification = "Wild Monkey Pokémon",
             .height = "4’07”",
@@ -16436,7 +16436,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 126,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16455,7 +16455,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -16476,7 +16476,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SLAKING] = {
         .textData = {
-            .name = "Slaking",
+            .name = "SLAKING",
             .pokedexEntry = "The world’s laziest Pokémon.\\nIt moves to another spot when there’s\\nno food left within its reach.",
             .classification = "Lazy Pokémon",
             .height = "6’07”",
@@ -16493,7 +16493,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -16533,7 +16533,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NINCADA] = {
         .textData = {
-            .name = "Nincada",
+            .name = "NINCADA",
             .pokedexEntry = "It can sometimes live underground for\\nmore than 10 years. It absorbs\\nnutrients from the roots of trees.",
             .classification = "Trainee Pokémon",
             .height = "1’08”",
@@ -16550,7 +16550,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16561,11 +16561,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_SOFT_SAND,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE },
@@ -16590,7 +16590,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NINJASK] = {
         .textData = {
-            .name = "Ninjask",
+            .name = "NINJASK",
             .pokedexEntry = "Its cry leaves a lasting headache\\nif heard for too long. It moves so\\nquickly that it is almost invisible.",
             .classification = "Ninja Pokémon",
             .height = "2’07”",
@@ -16607,7 +16607,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 155,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -16622,7 +16622,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_SPEED_BOOST, ABILITY_NONE },
@@ -16647,7 +16647,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHEDINJA] = {
         .textData = {
-            .name = "Shedinja",
+            .name = "SHEDINJA",
             .pokedexEntry = "A strange Pokémon--it flies without\\nmoving its wings, has a hollow shell\\nfor a body, and does not breathe.",
             .classification = "Shed Pokémon",
             .height = "2’07”",
@@ -16664,7 +16664,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 95,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -16679,7 +16679,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_WONDER_GUARD, ABILITY_NONE },
@@ -16704,7 +16704,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WHISMUR] = {
         .textData = {
-            .name = "Whismur",
+            .name = "WHISMUR",
             .pokedexEntry = "If it senses danger, it scares\\nthe foe by crying out with the\\nvolume of a jet-plane engine.",
             .classification = "Whisper Pokémon",
             .height = "2’00”",
@@ -16721,7 +16721,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 68,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -16736,7 +16736,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SOUNDPROOF, ABILITY_NONE },
@@ -16761,7 +16761,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LOUDRED] = {
         .textData = {
-            .name = "Loudred",
+            .name = "LOUDRED",
             .pokedexEntry = "It shouts loudly by inhaling air, and\\nthen uses its well-developed\\nstomach muscles to exhale.",
             .classification = "Big Voice Pokémon",
             .height = "3’03”",
@@ -16778,7 +16778,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 126,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -16793,7 +16793,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SOUNDPROOF, ABILITY_NONE },
@@ -16818,7 +16818,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EXPLOUD] = {
         .textData = {
-            .name = "Exploud",
+            .name = "EXPLOUD",
             .pokedexEntry = "Its roar in battle shakes the\\nground like a tremor--or like\\nan earthquake has struck.",
             .classification = "Loud Noise Pokémon",
             .height = "4’11”",
@@ -16830,12 +16830,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 91,
                 .defense = 63,
                 .spAttack = 91,
-                .spDefense = 73,
+                .spDefense = 63,
                 .speed = 68,
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 184,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -16850,7 +16850,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SOUNDPROOF, ABILITY_NONE },
@@ -16875,7 +16875,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAKUHITA] = {
         .textData = {
-            .name = "Makuhita",
+            .name = "MAKUHITA",
             .pokedexEntry = "It toughens up by slamming into\\nthick trees over and over. It gains\\na sturdy body and dauntless spirit.",
             .classification = "Guts Pokémon",
             .height = "3’03”",
@@ -16892,7 +16892,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 180,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 87,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -16903,14 +16903,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_BLACK_BELT,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 63,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_GUTS },
+            .abilities = { 15919, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -16932,7 +16932,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HARIYAMA] = {
         .textData = {
-            .name = "Hariyama",
+            .name = "HARIYAMA",
             .pokedexEntry = "It loves challenging others to\\ntests of strength. It has the\\npower to stop a train with a slap.",
             .classification = "Arm Thrust Pokémon",
             .height = "7’07”",
@@ -16949,7 +16949,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 184,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -16967,7 +16967,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_GUTS },
+            .abilities = { 15919, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -16989,7 +16989,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AZURILL] = {
         .textData = {
-            .name = "Azurill",
+            .name = "AZURILL",
             .pokedexEntry = "Its tail is packed full of the\\nnutrients it needs to grow.",
             .classification = "Polka Dot Pokémon",
             .height = "0’08”",
@@ -17004,9 +17004,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 40,
                 .speed = 20,
             },
-            .types = { TYPE_NORMAL, TYPE_FAIRY },
+            .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 33,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -17019,13 +17019,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_NONE,
                 .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER },
-            .safariFleeRate = 0,
+            .abilities = { 9519, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -17046,7 +17046,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NOSEPASS] = {
         .textData = {
-            .name = "Nosepass",
+            .name = "NOSEPASS",
             .pokedexEntry = "If two of these meet, they cannot\\nget too close because their noses\\nrepel each other.",
             .classification = "Compass Pokémon",
             .height = "3’03”",
@@ -17063,7 +17063,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 108,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17073,7 +17073,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_MAGNET,
+                .common = ITEM_NONE,
                 .rare = ITEM_HARD_STONE,
             },
             .genderRatio = 127,
@@ -17081,8 +17081,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_STURDY, ABILITY_MAGNET_PULL },
-            .safariFleeRate = 0,
+            .abilities = { 10757, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -17103,7 +17103,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SKITTY] = {
         .textData = {
-            .name = "Skitty",
+            .name = "SKITTY",
             .pokedexEntry = "It’s adorable when it chases its own\\ntail. It’s difficult to earn its trust.",
             .classification = "Kitten Pokémon",
             .height = "2’00”",
@@ -17120,7 +17120,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17130,15 +17130,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_PECHA_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_LEPPA_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE },
+            .abilities = { 24632, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -17160,7 +17160,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DELCATTY] = {
         .textData = {
-            .name = "Delcatty",
+            .name = "DELCATTY",
             .pokedexEntry = "It dislikes dirty places. It often\\nsearches for a comfortable place\\nin which to groom itself.",
             .classification = "Prim Pokémon",
             .height = "3’07”",
@@ -17173,11 +17173,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .defense = 65,
                 .spAttack = 55,
                 .spDefense = 55,
-                .speed = 90,
+                .speed = 70,
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 138,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -17187,15 +17187,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_PECHA_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_LEPPA_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE },
+            .abilities = { 24632, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -17217,7 +17217,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SABLEYE] = {
         .textData = {
-            .name = "Sableye",
+            .name = "SABLEYE",
             .pokedexEntry = "It dwells in the darkness of caves.\\nIt uses its sharp claws to dig up\\ngems to nourish itself.",
             .classification = "Darkness Pokémon",
             .height = "1’08”",
@@ -17234,7 +17234,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 98,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -17245,14 +17245,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_WIDE_LENS,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_STALL },
+            .abilities = { 25651, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -17274,7 +17274,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAWILE] = {
         .textData = {
-            .name = "Mawile",
+            .name = "MAWILE",
             .pokedexEntry = "It chomps with its gaping mouth.\\nIts huge jaws are actually steel\\nhorns that have been transformed.",
             .classification = "Deceiver Pokémon",
             .height = "2’00”",
@@ -17289,9 +17289,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 55,
                 .speed = 50,
             },
-            .types = { TYPE_STEEL, TYPE_FAIRY },
+            .types = { TYPE_STEEL, TYPE_STEEL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 98,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -17301,15 +17301,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_IRON_BALL,
+                .common = ITEM_NONE,
                 .rare = ITEM_OCCA_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_INTIMIDATE },
+            .abilities = { 5684, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -17331,7 +17331,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARON] = {
         .textData = {
-            .name = "Aron",
+            .name = "ARON",
             .pokedexEntry = "When it evolves, it sheds the steel\\ncarapace that covered its whole body\\nand develops a new one.",
             .classification = "Iron Armor Pokémon",
             .height = "1’04”",
@@ -17348,7 +17348,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_ROCK },
             .catchRate = 180,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 96,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17366,8 +17366,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD },
-            .safariFleeRate = 0,
+            .abilities = { 17669, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -17388,7 +17388,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LAIRON] = {
         .textData = {
-            .name = "Lairon",
+            .name = "LAIRON",
             .pokedexEntry = "It loves iron ore. Groups of them\\nfight for territory by bashing one\\nanother with their steel bodies.",
             .classification = "Iron Armor Pokémon",
             .height = "2’11”",
@@ -17405,7 +17405,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_ROCK },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 152,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17423,8 +17423,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD },
-            .safariFleeRate = 0,
+            .abilities = { 17669, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -17445,7 +17445,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AGGRON] = {
         .textData = {
-            .name = "Aggron",
+            .name = "AGGRON",
             .pokedexEntry = "You can tell its age by the length\\nof its iron horns. It claims an\\nentire mountain as its territory.",
             .classification = "Iron Armor Pokémon",
             .height = "6’11”",
@@ -17462,7 +17462,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_ROCK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 205,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17480,7 +17480,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD },
+            .abilities = { 17669, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -17502,7 +17502,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEDITITE] = {
         .textData = {
-            .name = "Meditite",
+            .name = "MEDITITE",
             .pokedexEntry = "It meditates to heighten its inner\\nenergy and to float in the air.\\nIt eats one berry a day.",
             .classification = "Meditate Pokémon",
             .height = "2’00”",
@@ -17519,7 +17519,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_PSYCHIC },
             .catchRate = 180,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 91,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17538,7 +17538,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_PURE_POWER, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -17559,7 +17559,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MEDICHAM] = {
         .textData = {
-            .name = "Medicham",
+            .name = "MEDICHAM",
             .pokedexEntry = "Through yoga training, it gained\\nthe psychic power to predict\\nits foe’s next move.",
             .classification = "Meditate Pokémon",
             .height = "4’03”",
@@ -17576,7 +17576,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_PSYCHIC },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 153,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17595,7 +17595,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_PURE_POWER, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -17616,7 +17616,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ELECTRIKE] = {
         .textData = {
-            .name = "Electrike",
+            .name = "ELECTRIKE",
             .pokedexEntry = "It stores electricity in its fur. It\\ngives off sparks from all over its\\nbody in seasons when the air is dry.",
             .classification = "Lightning Pokémon",
             .height = "2’00”",
@@ -17633,7 +17633,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 104,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17648,11 +17648,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_STATIC, ABILITY_LIGHTNING_ROD },
-            .safariFleeRate = 0,
+            .abilities = { 7945, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -17673,7 +17673,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MANECTRIC] = {
         .textData = {
-            .name = "Manectric",
+            .name = "MANECTRIC",
             .pokedexEntry = "Its nest can be found where a\\nthunderbolt hits. It is discharging\\nelectricity from its mane.",
             .classification = "Discharge Pokémon",
             .height = "4’11”",
@@ -17690,7 +17690,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 168,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17705,11 +17705,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_STATIC, ABILITY_LIGHTNING_ROD },
-            .safariFleeRate = 0,
+            .abilities = { 7945, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -17730,7 +17730,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PLUSLE] = {
         .textData = {
-            .name = "Plusle",
+            .name = "PLUSLE",
             .pokedexEntry = "It absorbs electricity from\\ntelephone poles. It shorts out its\\nbody to create crackling noises.",
             .classification = "Cheering Pokémon",
             .height = "1’04”",
@@ -17747,7 +17747,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 120,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17758,7 +17758,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_CELL_BATTERY,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -17787,7 +17787,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MINUN] = {
         .textData = {
-            .name = "Minun",
+            .name = "MINUN",
             .pokedexEntry = "Exposure to electricity from MINUN\\nand PLUSLE promotes blood\\ncirculation and relaxes muscles.",
             .classification = "Cheering Pokémon",
             .height = "1’04”",
@@ -17804,7 +17804,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 120,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17815,7 +17815,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_CELL_BATTERY,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -17844,7 +17844,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VOLBEAT] = {
         .textData = {
-            .name = "Volbeat",
+            .name = "VOLBEAT",
             .pokedexEntry = "It emits light from its tail to\\ncommunicate. It loves the\\nsweet aroma given off by ILLUMISE.",
             .classification = "Firefly Pokémon",
             .height = "2’04”",
@@ -17854,14 +17854,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 65,
                 .attack = 73,
-                .defense = 75,
+                .defense = 55,
                 .spAttack = 47,
-                .spDefense = 85,
+                .spDefense = 75,
                 .speed = 85,
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 146,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17872,15 +17872,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_BRIGHT_POWDER,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 0,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_ILLUMINATE, ABILITY_SWARM },
-            .safariFleeRate = 0,
+            .abilities = { 17443, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -17901,7 +17901,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ILLUMISE] = {
         .textData = {
-            .name = "Illumise",
+            .name = "ILLUMISE",
             .pokedexEntry = "Its fragrance attracts a swarm of\\nVOLBEAT, so they draw over 200\\npatterns in the night sky.",
             .classification = "Firefly Pokémon",
             .height = "2’00”",
@@ -17911,14 +17911,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 65,
                 .attack = 47,
-                .defense = 75,
+                .defense = 55,
                 .spAttack = 73,
-                .spDefense = 85,
+                .spDefense = 75,
                 .speed = 85,
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 146,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17929,15 +17929,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_BRIGHT_POWDER,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 254,
             .hatchCycles = 15,
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_TINTED_LENS },
-            .safariFleeRate = 0,
+            .abilities = { 28172, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -17958,7 +17958,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ROSELIA] = {
         .textData = {
-            .name = "Roselia",
+            .name = "ROSELIA",
             .pokedexEntry = "ROSELIA that drink nutritionally\\nrich springwater are said to reveal\\nrare coloration when they bloom.",
             .classification = "Thorn Pokémon",
             .height = "1’00”",
@@ -17975,7 +17975,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 152,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -17985,18 +17985,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ABSORB_BULB,
+                .common = ITEM_NONE,
                 .rare = ITEM_POISON_BARB,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT },
-            .safariFleeRate = 0,
+            .abilities = { 9758, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 3,
@@ -18015,7 +18015,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GULPIN] = {
         .textData = {
-            .name = "Gulpin",
+            .name = "GULPIN",
             .pokedexEntry = "It has a small heart and brain. Its\\nstomach comprises most of its body,\\nwith enzymes to dissolve anything.",
             .classification = "Stomach Pokémon",
             .height = "1’04”",
@@ -18032,7 +18032,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -18042,7 +18042,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_BIG_PEARL,
             },
             .genderRatio = 127,
@@ -18050,8 +18050,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_LIQUID_OOZE, ABILITY_STICKY_HOLD },
-            .safariFleeRate = 0,
+            .abilities = { 15424, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -18072,7 +18072,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SWALOT] = {
         .textData = {
-            .name = "Swalot",
+            .name = "SWALOT",
             .pokedexEntry = "It gulps anything that fits in its\\nmouth. Its special enzymes can\\ndissolve anything.",
             .classification = "Poison Bag Pokémon",
             .height = "5’07”",
@@ -18089,7 +18089,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 168,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -18099,7 +18099,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ORAN_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_BIG_PEARL,
             },
             .genderRatio = 127,
@@ -18107,7 +18107,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_LIQUID_OOZE, ABILITY_STICKY_HOLD },
+            .abilities = { 15424, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -18129,7 +18129,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CARVANHA] = {
         .textData = {
-            .name = "Carvanha",
+            .name = "CARVANHA",
             .pokedexEntry = "They form packs to attack boats\\nand rip out their hulls to sink them.\\nThey live in rivers in the jungle.",
             .classification = "Savage Pokémon",
             .height = "2’07”",
@@ -18146,7 +18146,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_DARK },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 88,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18165,7 +18165,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
             .abilities = { ABILITY_ROUGH_SKIN, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -18186,7 +18186,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHARPEDO] = {
         .textData = {
-            .name = "Sharpedo",
+            .name = "SHARPEDO",
             .pokedexEntry = "It can swim at speeds of 75 mph by\\njetting seawater through its body.\\nIt is the bandit of the sea.",
             .classification = "Brutal Pokémon",
             .height = "5’11”",
@@ -18203,7 +18203,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_DARK },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 175,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -18243,7 +18243,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WAILMER] = {
         .textData = {
-            .name = "Wailmer",
+            .name = "WAILMER",
             .pokedexEntry = "It bounces playfully like a ball.\\nThe more seawater it swallows,\\nthe higher it bounces.",
             .classification = "Ball Whale Pokémon",
             .height = "6’07”",
@@ -18260,7 +18260,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 125,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 137,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -18275,10 +18275,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_WATER_VEIL, ABILITY_OBLIVIOUS },
+            .abilities = { 3113, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -18300,7 +18300,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WAILORD] = {
         .textData = {
-            .name = "Wailord",
+            .name = "WAILORD",
             .pokedexEntry = "It is the largest of all identified\\nPokémon. They jump as a pack\\nto herd their prey.",
             .classification = "Float Whale Pokémon",
             .height = "47’07”",
@@ -18317,7 +18317,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 206,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -18332,10 +18332,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_WATER_VEIL, ABILITY_OBLIVIOUS },
+            .abilities = { 3113, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -18357,7 +18357,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_NUMEL] = {
         .textData = {
-            .name = "Numel",
+            .name = "NUMEL",
             .pokedexEntry = "The flaming magma it stores in the\\nhump on its back is the source of\\nits tremendous power.",
             .classification = "Numb Pokémon",
             .height = "2’04”",
@@ -18374,7 +18374,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 88,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18385,14 +18385,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_RAWST_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_SIMPLE },
+            .abilities = { 22028, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
@@ -18414,7 +18414,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CAMERUPT] = {
         .textData = {
-            .name = "Camerupt",
+            .name = "CAMERUPT",
             .pokedexEntry = "It lives in the crater of a volcano.\\nIt is well known that the humps on\\nits back erupt every 10 years.",
             .classification = "Eruption Pokémon",
             .height = "6’03”",
@@ -18431,7 +18431,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_GROUND },
             .catchRate = 150,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 175,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18442,14 +18442,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_RAWST_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_RAWST_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK },
+            .abilities = { 29736, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -18471,11 +18471,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TORKOAL] = {
         .textData = {
-            .name = "Torkoal",
+            .name = "TORKOAL",
             .pokedexEntry = "You find abandoned coal mines full\\nof them. They dig tirelessly in\\nsearch of coal.",
             .classification = "Coal Pokémon",
             .height = "1’08”",
-            .weight = "177.3 lbs.",
+            .weight = "177.2 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -18488,7 +18488,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 161,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18499,15 +18499,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_CHARCOAL,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_WHITE_SMOKE, ABILITY_DROUGHT },
-            .safariFleeRate = 0,
+            .abilities = { ABILITY_WHITE_SMOKE, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -18528,7 +18528,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPOINK] = {
         .textData = {
-            .name = "Spoink",
+            .name = "SPOINK",
             .pokedexEntry = "It bounces around on its tail to\\nkeep its heart pumping. It carries\\na pearl from CLAMPERL on its head.",
             .classification = "Bounce Pokémon",
             .height = "2’04”",
@@ -18545,7 +18545,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 89,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18555,7 +18555,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PERSIM_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_TANGA_BERRY,
             },
             .genderRatio = 127,
@@ -18563,7 +18563,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_OWN_TEMPO },
+            .abilities = { 5167, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -18585,7 +18585,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GRUMPIG] = {
         .textData = {
-            .name = "Grumpig",
+            .name = "GRUMPIG",
             .pokedexEntry = "It can perform odd dance steps to\\ninfluence foes. Its style of dancing\\nbecame hugely popular overseas.",
             .classification = "Manipulate Pokémon",
             .height = "2’11”",
@@ -18602,7 +18602,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18612,7 +18612,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PERSIM_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_TANGA_BERRY,
             },
             .genderRatio = 127,
@@ -18620,7 +18620,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_OWN_TEMPO },
+            .abilities = { 5167, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -18642,7 +18642,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPINDA] = {
         .textData = {
-            .name = "Spinda",
+            .name = "SPINDA",
             .pokedexEntry = "The chances of two SPINDA having\\nidentical spot patterns is less\\nthan one in four billion.",
             .classification = "Spot Panda Pokémon",
             .height = "3’07”",
@@ -18659,7 +18659,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 85,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18677,10 +18677,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET },
-            .safariFleeRate = 0,
+            .abilities = { 19732, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 11,
@@ -18699,7 +18699,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TRAPINCH] = {
         .textData = {
-            .name = "Trapinch",
+            .name = "TRAPINCH",
             .pokedexEntry = "Its nest is a sloped, bowl-like pit\\nin the desert. Once something has\\nfallen in, there is no escape.",
             .classification = "Ant Pit Pokémon",
             .height = "2’04”",
@@ -18716,7 +18716,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 73,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18731,11 +18731,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_ARENA_TRAP },
-            .safariFleeRate = 0,
+            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+            .abilities = { 18228, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -18756,7 +18756,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VIBRAVA] = {
         .textData = {
-            .name = "Vibrava",
+            .name = "VIBRAVA",
             .pokedexEntry = "It vibrates its wings vigorously,\\ncreating ultrasonic waves that\\ncause serious headaches.",
             .classification = "Vibration Pokémon",
             .height = "3’07”",
@@ -18773,7 +18773,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_DRAGON },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 126,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18788,11 +18788,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+            .abilities = { 6682, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -18813,7 +18813,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FLYGON] = {
         .textData = {
-            .name = "Flygon",
+            .name = "FLYGON",
             .pokedexEntry = "It is nicknamed “The Desert\\nSpirit” because the flapping of its\\nwings sounds like a woman singing.",
             .classification = "Mystic Pokémon",
             .height = "6’07”",
@@ -18830,7 +18830,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 197,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18845,10 +18845,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+            .abilities = { 6682, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -18870,7 +18870,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CACNEA] = {
         .textData = {
-            .name = "Cacnea",
+            .name = "CACNEA",
             .pokedexEntry = "It lives in arid locations. Its\\nyellow flowers bloom once a year.",
             .classification = "Cactus Pokémon",
             .height = "1’04”",
@@ -18887,7 +18887,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 97,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -18897,8 +18897,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_STICKY_BARB,
-                .rare = ITEM_POISON_BARB,
+                .common = ITEM_NONE,
+                .rare = ITEM_STICKY_BARB,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -18906,7 +18906,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -18927,7 +18927,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CACTURNE] = {
         .textData = {
-            .name = "Cacturne",
+            .name = "CACTURNE",
             .pokedexEntry = "Packs of them follow travelers\\nthrough the desert until\\nthe travelers can no longer move.",
             .classification = "Scarecrow Pokémon",
             .height = "4’03”",
@@ -18944,7 +18944,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_DARK },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 177,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -18954,8 +18954,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_STICKY_BARB,
-                .rare = ITEM_POISON_BARB,
+                .common = ITEM_NONE,
+                .rare = ITEM_STICKY_BARB,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -18963,7 +18963,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -18984,7 +18984,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SWABLU] = {
         .textData = {
-            .name = "Swablu",
+            .name = "SWABLU",
             .pokedexEntry = "Its wings bring cottony clouds to\\nmind. It grooms with springwater\\nand loves to sit on heads.",
             .classification = "Cotton Bird Pokémon",
             .height = "1’04”",
@@ -19001,7 +19001,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19016,7 +19016,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_NATURAL_CURE, ABILITY_NONE },
@@ -19041,7 +19041,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ALTARIA] = {
         .textData = {
-            .name = "Altaria",
+            .name = "ALTARIA",
             .pokedexEntry = "It flies gracefully through the\\nsky. Its melodic humming makes\\nyou feel like you’re in a dream.",
             .classification = "Humming Pokémon",
             .height = "3’07”",
@@ -19058,7 +19058,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 188,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19073,7 +19073,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_NATURAL_CURE, ABILITY_NONE },
@@ -19098,7 +19098,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ZANGOOSE] = {
         .textData = {
-            .name = "Zangoose",
+            .name = "ZANGOOSE",
             .pokedexEntry = "Its fur would all stand on end if\\nit smelled a SEVIPER nearby.\\nIts sharp claws tear up its foes.",
             .classification = "Cat Ferret Pokémon",
             .height = "4’03”",
@@ -19115,7 +19115,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -19134,9 +19134,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_IMMUNITY, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_WHITE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 13,
@@ -19155,7 +19155,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEVIPER] = {
         .textData = {
-            .name = "Seviper",
+            .name = "SEVIPER",
             .pokedexEntry = "In battle, it uses its bladed tail to\\ncounter any ZANGOOSE. It secretes\\na deadly venom in its tail.",
             .classification = "Fang Snake Pokémon",
             .height = "8’10”",
@@ -19172,7 +19172,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_POISON },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -19182,8 +19182,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PERSIM_BERRY,
-                .rare = ITEM_SHED_SHELL,
+                .common = ITEM_NONE,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -19191,9 +19191,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLACK,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 27,
@@ -19212,7 +19212,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUNATONE] = {
         .textData = {
-            .name = "Lunatone",
+            .name = "LUNATONE",
             .pokedexEntry = "It was discovered at the site of a\\nmeteor strike 40 years ago. Its\\nstare can lull its foes to sleep.",
             .classification = "Meteorite Pokémon",
             .height = "3’03”",
@@ -19220,7 +19220,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 90,
+                .hp = 70,
                 .attack = 55,
                 .defense = 65,
                 .spAttack = 95,
@@ -19229,7 +19229,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 150,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19239,16 +19239,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_STARDUST,
+                .common = ITEM_NONE,
                 .rare = ITEM_MOON_STONE,
             },
             .genderRatio = 255,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -19269,7 +19269,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SOLROCK] = {
         .textData = {
-            .name = "Solrock",
+            .name = "SOLROCK",
             .pokedexEntry = "When it rotates itself, it gives off\\nlight similar to the sun, thus\\nblinding its foes.",
             .classification = "Meteorite Pokémon",
             .height = "3’11”",
@@ -19277,7 +19277,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 90,
+                .hp = 70,
                 .attack = 95,
                 .defense = 85,
                 .spAttack = 55,
@@ -19286,7 +19286,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 150,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -19296,16 +19296,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_STARDUST,
+                .common = ITEM_NONE,
                 .rare = ITEM_SUN_STONE,
             },
             .genderRatio = 255,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -19326,7 +19326,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BARBOACH] = {
         .textData = {
-            .name = "Barboach",
+            .name = "BARBOACH",
             .pokedexEntry = "BARBOACH uses its whiskers to\\ntaste things just as a person uses\\nhis or her tongue to taste things.",
             .classification = "Whiskers Pokémon",
             .height = "1’04”",
@@ -19343,7 +19343,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 92,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -19358,11 +19358,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION },
-            .safariFleeRate = 0,
+            .abilities = { 27404, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
@@ -19383,7 +19383,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WHISCASH] = {
         .textData = {
-            .name = "Whiscash",
+            .name = "WHISCASH",
             .pokedexEntry = "It claims a large swamp to itself.\\nIf a foe comes near it, it sets off\\ntremors by thrashing around.",
             .classification = "Whiskers Pokémon",
             .height = "2’11”",
@@ -19400,7 +19400,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 158,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -19415,10 +19415,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION },
+            .abilities = { 27404, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -19440,7 +19440,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CORPHISH] = {
         .textData = {
-            .name = "Corphish",
+            .name = "CORPHISH",
             .pokedexEntry = "It was originally a Pokémon from\\nafar that escaped to the wild. It\\ncan adapt to the dirtiest river.",
             .classification = "Ruffian Pokémon",
             .height = "2’00”",
@@ -19457,7 +19457,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 205,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 111,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -19472,11 +19472,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR },
-            .safariFleeRate = 0,
+            .abilities = { 19252, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
         },
@@ -19497,7 +19497,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CRAWDAUNT] = {
         .textData = {
-            .name = "Crawdaunt",
+            .name = "CRAWDAUNT",
             .pokedexEntry = "A brutish Pokémon that loves to\\nbattle. It will crash itself into any\\nfoe that approaches its nest.",
             .classification = "Rogue Pokémon",
             .height = "3’07”",
@@ -19514,7 +19514,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_DARK },
             .catchRate = 155,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 161,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -19529,10 +19529,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR },
+            .abilities = { 19252, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -19554,7 +19554,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BALTOY] = {
         .textData = {
-            .name = "Baltoy",
+            .name = "BALTOY",
             .pokedexEntry = "It moves while spinning around on\\nits single foot. Some BALTOY have\\nbeen seen spinning on their heads.",
             .classification = "Clay Doll Pokémon",
             .height = "1’08”",
@@ -19571,7 +19571,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_PSYCHIC },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 58,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19582,11 +19582,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_LIGHT_CLAY,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
@@ -19611,7 +19611,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLAYDOL] = {
         .textData = {
-            .name = "Claydol",
+            .name = "CLAYDOL",
             .pokedexEntry = "It is said that it originates from clay\\ndolls made by an ancient civilization.",
             .classification = "Clay Doll Pokémon",
             .height = "4’11”",
@@ -19628,7 +19628,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_PSYCHIC },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 189,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19639,11 +19639,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_LIGHT_CLAY,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
@@ -19668,7 +19668,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LILEEP] = {
         .textData = {
-            .name = "Lileep",
+            .name = "LILEEP",
             .pokedexEntry = "It disguises its tentacles as\\nflowers to attract and catch prey.\\nIt became extinct in ancient times.",
             .classification = "Sea Lily Pokémon",
             .height = "3’03”",
@@ -19685,7 +19685,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19700,7 +19700,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
             .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE },
@@ -19725,7 +19725,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CRADILY] = {
         .textData = {
-            .name = "Cradily",
+            .name = "CRADILY",
             .pokedexEntry = "It lives in warm seas. Its heavy\\nbody weighs it down so it won’t\\nget washed away in rough weather.",
             .classification = "Barnacle Pokémon",
             .height = "4’11”",
@@ -19742,7 +19742,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19757,7 +19757,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
             .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE },
@@ -19782,7 +19782,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ANORITH] = {
         .textData = {
-            .name = "Anorith",
+            .name = "ANORITH",
             .pokedexEntry = "An ancestral Pokémon that lived in\\nthe ocean. Over time, its eight feet\\ntransformed into wings.",
             .classification = "Old Shrimp Pokémon",
             .height = "2’04”",
@@ -19799,7 +19799,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_BUG },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -19814,7 +19814,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
             .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_NONE },
@@ -19839,7 +19839,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARMALDO] = {
         .textData = {
-            .name = "Armaldo",
+            .name = "ARMALDO",
             .pokedexEntry = "Its enormous, retractable claws\\ncan cut through most anything. Its\\nentire body is clad in sturdy plates.",
             .classification = "Plate Pokémon",
             .height = "4’11”",
@@ -19856,7 +19856,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_BUG },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -19871,7 +19871,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
             .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_NONE },
@@ -19896,7 +19896,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FEEBAS] = {
         .textData = {
-            .name = "Feebas",
+            .name = "FEEBAS",
             .pokedexEntry = "It is the shabbiest Pokémon of all.\\nIt forms in schools and lives at the\\nbottom of rivers.",
             .classification = "Fish Pokémon",
             .height = "2’00”",
@@ -19913,7 +19913,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 61,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19928,10 +19928,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_OBLIVIOUS },
+            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -19953,7 +19953,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MILOTIC] = {
         .textData = {
-            .name = "Milotic",
+            .name = "MILOTIC",
             .pokedexEntry = "It’s said that a glimpse of a\\nMILOTIC and its beauty will calm any\\nhostile emotions you’re feeling.",
             .classification = "Tender Pokémon",
             .height = "20’04”",
@@ -19970,7 +19970,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 213,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -19985,10 +19985,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-            .abilities = { ABILITY_MARVEL_SCALE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_MARVEL_SCALE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -20010,7 +20010,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CASTFORM] = {
         .textData = {
-            .name = "Castform",
+            .name = "CASTFORM",
             .pokedexEntry = "This Pokémon can change its cells,\\ntaking different forms based on\\nthe temperature and humidity.",
             .classification = "Weather Pokémon",
             .height = "1’00”",
@@ -20027,7 +20027,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 145,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -20038,7 +20038,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_MYSTIC_WATER,
-                .rare = ITEM_NONE,
+                .rare = ITEM_MYSTIC_WATER,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
@@ -20047,7 +20047,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_FORECAST, ABILITY_NONE },
             .safariFleeRate = 0,
-            .bodyColor = BODY_COLOR_GRAY,
+            .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
         .metricsData = {
@@ -20067,7 +20067,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KECLEON] = {
         .textData = {
-            .name = "Kecleon",
+            .name = "KECLEON",
             .pokedexEntry = "It changes its shading to match its\\nsurroundings so it can sneak up on prey.\\nOnly its belly patterns stay fixed.",
             .classification = "Color Swap Pokémon",
             .height = "3’03”",
@@ -20084,7 +20084,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 132,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -20103,7 +20103,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_COLOR_CHANGE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -20124,7 +20124,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHUPPET] = {
         .textData = {
-            .name = "Shuppet",
+            .name = "SHUPPET",
             .pokedexEntry = "It uses its horn to feed on envy\\nand malice, or so it’s said.\\nIt’s very active at night.",
             .classification = "Puppet Pokémon",
             .height = "2’00”",
@@ -20141,7 +20141,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 97,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -20159,8 +20159,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_FRISK },
-            .safariFleeRate = 0,
+            .abilities = { 30479, ABILITY_NONE },
+            .safariFleeRate = 150,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -20181,7 +20181,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BANETTE] = {
         .textData = {
-            .name = "Banette",
+            .name = "BANETTE",
             .pokedexEntry = "This Pokémon developed from an\\nabandoned doll that amassed a\\ngrudge. It is seen in dark alleys.",
             .classification = "Marionette Pokémon",
             .height = "3’07”",
@@ -20198,7 +20198,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 179,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -20216,8 +20216,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_FRISK },
-            .safariFleeRate = 0,
+            .abilities = { 30479, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -20238,7 +20238,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUSKULL] = {
         .textData = {
-            .name = "Duskull",
+            .name = "DUSKULL",
             .pokedexEntry = "If it finds bad children who won’t\\nlisten to their parents, it will\\nspirit them away--or so it’s said.",
             .classification = "Requiem Pokémon",
             .height = "2’07”",
@@ -20255,7 +20255,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 97,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -20265,7 +20265,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SPELL_TAG,
+                .common = ITEM_NONE,
                 .rare = ITEM_KASIB_BERRY,
             },
             .genderRatio = 127,
@@ -20274,7 +20274,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -20295,7 +20295,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUSCLOPS] = {
         .textData = {
-            .name = "Dusclops",
+            .name = "DUSCLOPS",
             .pokedexEntry = "Anyone who dares peer into its body\\nto see its spectral ball of fire\\nwill have their spirit stolen away.",
             .classification = "Beckon Pokémon",
             .height = "5’03”",
@@ -20312,7 +20312,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 179,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -20322,7 +20322,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SPELL_TAG,
+                .common = ITEM_NONE,
                 .rare = ITEM_KASIB_BERRY,
             },
             .genderRatio = 127,
@@ -20331,7 +20331,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
         },
@@ -20352,7 +20352,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TROPIUS] = {
         .textData = {
-            .name = "Tropius",
+            .name = "TROPIUS",
             .pokedexEntry = "The bunch of fruit around its neck\\nripens twice a year and is delicious.\\nIt’s a highly favored tropical snack.",
             .classification = "Fruit Pokémon",
             .height = "6’07”",
@@ -20369,7 +20369,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_FLYING },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 169,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -20387,8 +20387,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER },
-            .safariFleeRate = 0,
+            .abilities = { 24098, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -20409,7 +20409,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHIMECHO] = {
         .textData = {
-            .name = "Chimecho",
+            .name = "CHIMECHO",
             .pokedexEntry = "It uses the sucker on its head to\\nhang from a tree or from eaves. It\\ncan produce seven different tones.",
             .classification = "Wind Chime Pokémon",
             .height = "2’00”",
@@ -20417,16 +20417,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 75,
+                .hp = 65,
                 .attack = 50,
-                .defense = 80,
+                .defense = 70,
                 .spAttack = 95,
-                .spDefense = 90,
+                .spDefense = 80,
                 .speed = 65,
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 147,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -20436,7 +20436,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_CLEANSE_TAG,
+                .common = ITEM_NONE,
                 .rare = ITEM_COLBUR_BERRY,
             },
             .genderRatio = 127,
@@ -20445,7 +20445,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -20466,7 +20466,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ABSOL] = {
         .textData = {
-            .name = "Absol",
+            .name = "ABSOL",
             .pokedexEntry = "It has the ability to foretell\\nnatural disasters. Its life span is\\nover a hundred years.",
             .classification = "Disaster Pokémon",
             .height = "3’11”",
@@ -20483,7 +20483,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_DARK },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 174,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -20494,17 +20494,17 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_LIFE_ORB,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 25,
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PRESSURE, ABILITY_SUPER_LUCK },
+            .abilities = { 26926, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 12,
@@ -20523,7 +20523,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WYNAUT] = {
         .textData = {
-            .name = "Wynaut",
+            .name = "WYNAUT",
             .pokedexEntry = "It tends to move in a pack.\\nIndividuals squash against one\\nanother to toughen their spirits.",
             .classification = "Bright Pokémon",
             .height = "2’00”",
@@ -20540,7 +20540,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 125,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 44,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -20555,7 +20555,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_SHADOW_TAG, ABILITY_NONE },
@@ -20580,7 +20580,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SNORUNT] = {
         .textData = {
-            .name = "Snorunt",
+            .name = "SNORUNT",
             .pokedexEntry = "It’s said that if they are seen at\\nmidnight, they’ll cause heavy snow.\\nThey eat snow and ice to survive.",
             .classification = "Snow Hat Pokémon",
             .height = "2’04”",
@@ -20597,7 +20597,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_ICE },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -20607,15 +20607,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SNOWBALL,
+                .common = ITEM_NONE,
                 .rare = ITEM_BABIRI_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_INNER_FOCUS, ABILITY_ICE_BODY },
+            .abilities = { 29479, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -20637,7 +20637,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLALIE] = {
         .textData = {
-            .name = "Glalie",
+            .name = "GLALIE",
             .pokedexEntry = "It can instantly freeze moisture in\\nthe atmosphere. It uses this power\\nto freeze its foes.",
             .classification = "Face Pokémon",
             .height = "4’11”",
@@ -20654,7 +20654,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_ICE },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 187,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -20664,15 +20664,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_NEVER_MELT_ICE,
+                .common = ITEM_NONE,
                 .rare = ITEM_BABIRI_BERRY,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_INNER_FOCUS, ABILITY_ICE_BODY },
+            .abilities = { 29479, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -20694,7 +20694,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPHEAL] = {
         .textData = {
-            .name = "Spheal",
+            .name = "SPHEAL",
             .pokedexEntry = "It crosses the oceans by rolling itself\\non drifting ice. Fluffy fur keeps it warm\\nwhen the temperature is below freezing.",
             .classification = "Clap Pokémon",
             .height = "2’07”",
@@ -20711,7 +20711,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_WATER },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -20726,11 +20726,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_ICE_BODY },
-            .safariFleeRate = 0,
+            .abilities = { 29487, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -20751,7 +20751,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SEALEO] = {
         .textData = {
-            .name = "Sealeo",
+            .name = "SEALEO",
             .pokedexEntry = "It has a very sensitive nose.\\nIt touches new things with its nose\\nto examine them.",
             .classification = "Ball Roll Pokémon",
             .height = "3’07”",
@@ -20768,7 +20768,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_WATER },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 128,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -20783,11 +20783,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_ICE_BODY },
-            .safariFleeRate = 0,
+            .abilities = { 29487, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -20808,7 +20808,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WALREIN] = {
         .textData = {
-            .name = "Walrein",
+            .name = "WALREIN",
             .pokedexEntry = "It shatters drift ice with its\\nstrong tusks. Its thick layer of\\nblubber repels enemy attacks.",
             .classification = "Ice Break Pokémon",
             .height = "4’07”",
@@ -20825,7 +20825,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 192,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -20840,10 +20840,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_ICE_BODY },
+            .abilities = { 29487, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -20865,7 +20865,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CLAMPERL] = {
         .textData = {
-            .name = "Clamperl",
+            .name = "CLAMPERL",
             .pokedexEntry = "When it evolves, it makes a\\nmysterious pearl that amplifies\\npsychic powers when it’s held.",
             .classification = "Bivalve Pokémon",
             .height = "1’04”",
@@ -20882,7 +20882,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 142,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -20892,8 +20892,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_PEARL,
-                .rare = ITEM_BLUE_SHARD,
+                .common = ITEM_NONE,
+                .rare = ITEM_BIG_PEARL,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
@@ -20922,7 +20922,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HUNTAIL] = {
         .textData = {
-            .name = "Huntail",
+            .name = "HUNTAIL",
             .pokedexEntry = "It lives deep in the pitch-dark sea.\\nIt attracts prey by moving its tail\\nin mimicry of a small animal.",
             .classification = "Deep Sea Pokémon",
             .height = "5’07”",
@@ -20939,7 +20939,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -20979,7 +20979,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GOREBYSS] = {
         .textData = {
-            .name = "Gorebyss",
+            .name = "GOREBYSS",
             .pokedexEntry = "Its pink body becomes more vivid\\nwith the rise of water\\ntemperatures in the springtime.",
             .classification = "South Sea Pokémon",
             .height = "5’11”",
@@ -20996,7 +20996,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21036,7 +21036,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RELICANTH] = {
         .textData = {
-            .name = "Relicanth",
+            .name = "RELICANTH",
             .pokedexEntry = "Discovered by chance during\\ndeep-sea explorations, it has not\\nchanged since ancient times.",
             .classification = "Longevity Pokémon",
             .height = "3’03”",
@@ -21053,7 +21053,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_ROCK },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 198,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -21063,15 +21063,15 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DEEP_SEA_SCALE,
-                .rare = ITEM_GREEN_SHARD,
+                .common = ITEM_NONE,
+                .rare = ITEM_DEEP_SEA_SCALE,
             },
             .genderRatio = 31,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_ROCK_HEAD },
+            .abilities = { 17697, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -21093,7 +21093,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUVDISC] = {
         .textData = {
-            .name = "Luvdisc",
+            .name = "LUVDISC",
             .pokedexEntry = "Its heart-shaped body makes it\\npopular. In some places, you would\\ngive a LUVDISC to someone you love.",
             .classification = "Rendezvous Pokémon",
             .height = "2’00”",
@@ -21110,7 +21110,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 110,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21123,7 +21123,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_HEART_SCALE,
                 .rare = ITEM_NONE,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
@@ -21150,7 +21150,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BAGON] = {
         .textData = {
-            .name = "Bagon",
+            .name = "BAGON",
             .pokedexEntry = "Its well-developed neck muscles\\nand ironlike head can smash\\nboulders into pieces.",
             .classification = "Rock Head Pokémon",
             .height = "2’00”",
@@ -21167,7 +21167,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 89,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -21177,8 +21177,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DRAGON_FANG,
-                .rare = ITEM_DRAGON_SCALE,
+                .common = ITEM_NONE,
+                .rare = ITEM_DRAGON_FANG,
             },
             .genderRatio = 127,
             .hatchCycles = 40,
@@ -21186,7 +21186,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_ROCK_HEAD, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -21207,7 +21207,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHELGON] = {
         .textData = {
-            .name = "Shelgon",
+            .name = "SHELGON",
             .pokedexEntry = "It surrounds its body in an\\niron-hard shell to accumulate\\nenough power to evolve.",
             .classification = "Endurance Pokémon",
             .height = "3’07”",
@@ -21224,7 +21224,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_DRAGON },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 144,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21234,8 +21234,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DRAGON_FANG,
-                .rare = ITEM_DRAGON_SCALE,
+                .common = ITEM_NONE,
+                .rare = ITEM_DRAGON_FANG,
             },
             .genderRatio = 127,
             .hatchCycles = 40,
@@ -21243,7 +21243,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_ROCK_HEAD, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -21264,7 +21264,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SALAMENCE] = {
         .textData = {
-            .name = "Salamence",
+            .name = "SALAMENCE",
             .pokedexEntry = "It’s uncontrollable if enraged.\\nIt flies around spouting flames and\\nscorching fields and mountains.",
             .classification = "Dragon Pokémon",
             .height = "4’11”",
@@ -21281,7 +21281,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -21291,8 +21291,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_DRAGON_FANG,
-                .rare = ITEM_DRAGON_SCALE,
+                .common = ITEM_NONE,
+                .rare = ITEM_DRAGON_FANG,
             },
             .genderRatio = 127,
             .hatchCycles = 40,
@@ -21321,8 +21321,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BELDUM] = {
         .textData = {
-            .name = "Beldum",
-            .pokedexEntry = "The magnetic force generated by\\nits body repels the ground’s\\nnatural magnetism, letting it float.",
+            .name = "BELDUM",
+            .pokedexEntry = "The magnetic force generated by\\nits body repels the ground’s\\nnatural magnetism, letting it float. ",
             .classification = "Iron Ball Pokémon",
             .height = "2’00”",
             .weight = "209.9 lbs.",
@@ -21338,7 +21338,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 103,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21357,7 +21357,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -21378,7 +21378,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_METANG] = {
         .textData = {
-            .name = "Metang",
+            .name = "METANG",
             .pokedexEntry = "When two BELDUM fuse together, a\\nmagnetic nervous system places\\ntheir brains in union.",
             .classification = "Iron Claw Pokémon",
             .height = "3’11”",
@@ -21395,7 +21395,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 153,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21414,7 +21414,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
             .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -21435,7 +21435,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_METAGROSS] = {
         .textData = {
-            .name = "Metagross",
+            .name = "METAGROSS",
             .pokedexEntry = "It folds its four legs when flying.\\nIts four brains are said to be\\nsuperior to a supercomputer.",
             .classification = "Iron Leg Pokémon",
             .height = "5’03”",
@@ -21452,7 +21452,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21492,7 +21492,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_REGIROCK] = {
         .textData = {
-            .name = "Regirock",
+            .name = "REGIROCK",
             .pokedexEntry = "The same rocks that form its body\\nhave been found in ground layers\\naround the world.",
             .classification = "Rock Peak Pokémon",
             .height = "5’07”",
@@ -21509,7 +21509,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 217,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21549,7 +21549,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_REGICE] = {
         .textData = {
-            .name = "Regice",
+            .name = "REGICE",
             .pokedexEntry = "It is said to have slept in a glacier\\nfor thousands of years. Its body\\ncan’t be melted, even by magma.",
             .classification = "Iceberg Pokémon",
             .height = "5’11”",
@@ -21566,7 +21566,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_ICE },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 216,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21606,7 +21606,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_REGISTEEL] = {
         .textData = {
-            .name = "Registeel",
+            .name = "REGISTEEL",
             .pokedexEntry = "Its body is said to be harder than\\nany kind of metal. A study has\\nrevealed that its body is hollow.",
             .classification = "Iron Pokémon",
             .height = "6’03”",
@@ -21623,7 +21623,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_STEEL },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21663,7 +21663,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LATIAS] = {
         .textData = {
-            .name = "Latias",
+            .name = "LATIAS",
             .pokedexEntry = "It communicates using telepathy.\\nIts body is covered in down that\\nrefracts light to make it invisible.",
             .classification = "Eon Pokémon",
             .height = "4’07”",
@@ -21680,7 +21680,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 211,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21720,7 +21720,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LATIOS] = {
         .textData = {
-            .name = "Latios",
+            .name = "LATIOS",
             .pokedexEntry = "It understands human speech and is\\nhighly intelligent. It is a tender\\nPokémon that dislikes fighting.",
             .classification = "Eon Pokémon",
             .height = "6’07”",
@@ -21737,7 +21737,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 211,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21777,7 +21777,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KYOGRE] = {
         .textData = {
-            .name = "Kyogre",
+            .name = "KYOGRE",
             .pokedexEntry = "A mythical Pokémon said to have\\nswelled the seas with rain and tidal\\nwaves. It battled with GROUDON.",
             .classification = "Sea Basin Pokémon",
             .height = "14’09”",
@@ -21793,8 +21793,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 90,
             },
             .types = { TYPE_WATER, TYPE_WATER },
-            .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .catchRate = 5,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -21834,7 +21834,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GROUDON] = {
         .textData = {
-            .name = "Groudon",
+            .name = "GROUDON",
             .pokedexEntry = "Said to have expanded the lands by\\nevaporating water with raging heat.\\nIt battled titanically with KYOGRE.",
             .classification = "Continent Pokémon",
             .height = "11’06”",
@@ -21850,8 +21850,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 90,
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
-            .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .catchRate = 5,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -21891,11 +21891,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RAYQUAZA] = {
         .textData = {
-            .name = "Rayquaza",
+            .name = "RAYQUAZA",
             .pokedexEntry = "It flies in the ozone layer, way up\\nhigh in the sky. Until recently,\\nno one had ever seen it.",
             .classification = "Sky High Pokémon",
             .height = "23’00”",
-            .weight = "455.3 lbs.",
+            .weight = "455.2 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -21907,8 +21907,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 95,
             },
             .types = { TYPE_DRAGON, TYPE_FLYING },
-            .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .catchRate = 3,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -21948,7 +21948,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_JIRACHI] = {
         .textData = {
-            .name = "Jirachi",
+            .name = "JIRACHI",
             .pokedexEntry = "Generations have believed that any\\nwish written on a note on its head\\nwill come true when it awakens.",
             .classification = "Wish Pokémon",
             .height = "1’00”",
@@ -21965,7 +21965,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -21976,7 +21976,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_STAR_PIECE,
-                .rare = ITEM_NONE,
+                .rare = ITEM_STAR_PIECE,
             },
             .genderRatio = 255,
             .hatchCycles = 120,
@@ -22005,7 +22005,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DEOXYS] = {
         .textData = {
-            .name = "Deoxys",
+            .name = "DEOXYS",
             .pokedexEntry = "DNA from a space virus mutated and\\nbecame a Pokémon. It appears\\nwhere auroras are seen.",
             .classification = "DNA Pokémon",
             .height = "5’07”",
@@ -22022,7 +22022,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -22062,7 +22062,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TURTWIG] = {
         .textData = {
-            .name = "Turtwig",
+            .name = "TURTWIG",
             .pokedexEntry = "Photosynthesis occurs across its\\nbody under the sun. The shell on\\nits back is actually hardened soil.",
             .classification = "Tiny Leaf Pokémon",
             .height = "1’04”",
@@ -22079,7 +22079,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -22119,7 +22119,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GROTLE] = {
         .textData = {
-            .name = "Grotle",
+            .name = "GROTLE",
             .pokedexEntry = "A GROTLE that lives in the forest\\nis said to have its own secret\\nspringwater.",
             .classification = "Grove Pokémon",
             .height = "3’07”",
@@ -22136,7 +22136,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 141,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -22176,7 +22176,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TORTERRA] = {
         .textData = {
-            .name = "Torterra",
+            .name = "TORTERRA",
             .pokedexEntry = "Ancient people imagined that\\nbeneath the ground, a gigantic\\nTORTERRA dwelled.",
             .classification = "Continent Pokémon",
             .height = "7’03”",
@@ -22193,7 +22193,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -22214,7 +22214,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .abilities = { ABILITY_OVERGROW, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 22,
@@ -22233,7 +22233,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHIMCHAR] = {
         .textData = {
-            .name = "Chimchar",
+            .name = "CHIMCHAR",
             .pokedexEntry = "The gas made in its belly burns from\\nits rear end. The fire burns weakly\\nwhen it feels sick.",
             .classification = "Chimp Pokémon",
             .height = "1’08”",
@@ -22250,7 +22250,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 65,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22271,7 +22271,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 5,
@@ -22290,7 +22290,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MONFERNO] = {
         .textData = {
-            .name = "Monferno",
+            .name = "MONFERNO",
             .pokedexEntry = "A bigger fire on its tail and a\\nbrighter blue pattern on its face\\nmeans its rank in its pack is higher.",
             .classification = "Playful Pokémon",
             .height = "2’11”",
@@ -22307,7 +22307,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 142,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22328,7 +22328,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .abilities = { ABILITY_BLAZE, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 9,
@@ -22347,7 +22347,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_INFERNAPE] = {
         .textData = {
-            .name = "Infernape",
+            .name = "INFERNAPE",
             .pokedexEntry = "It tosses its enemies around with\\nagility. It uses all its limbs to\\nfight in its own unique style.",
             .classification = "Flame Pokémon",
             .height = "3’11”",
@@ -22364,7 +22364,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 209,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -22404,7 +22404,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PIPLUP] = {
         .textData = {
-            .name = "Piplup",
+            .name = "PIPLUP",
             .pokedexEntry = "It doesn’t like to be taken care\\nof. It’s difficult to bond with since\\nit won’t listen to its Trainer.",
             .classification = "Penguin Pokémon",
             .height = "1’04”",
@@ -22421,7 +22421,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 66,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22461,7 +22461,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PRINPLUP] = {
         .textData = {
-            .name = "Prinplup",
+            .name = "PRINPLUP",
             .pokedexEntry = "It lives a solitary life. Its wings\\ndeliver wicked blows that can\\nsnap even the thickest of trees.",
             .classification = "Penguin Pokémon",
             .height = "2’07”",
@@ -22478,7 +22478,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 143,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22518,7 +22518,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_EMPOLEON] = {
         .textData = {
-            .name = "Empoleon",
+            .name = "EMPOLEON",
             .pokedexEntry = "It avoids unnecessary disputes,\\nbut it will decimate anything that\\nthreatens its pride.",
             .classification = "Emperor Pokémon",
             .height = "5’07”",
@@ -22535,7 +22535,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_STEEL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22575,7 +22575,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STARLY] = {
         .textData = {
-            .name = "Starly",
+            .name = "STARLY",
             .pokedexEntry = "They flock around mountains and\\nfields, chasing after bug Pokémon.\\nTheir singing is noisy and annoying.",
             .classification = "Starling Pokémon",
             .height = "1’00”",
@@ -22592,7 +22592,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 56,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22611,7 +22611,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -22632,7 +22632,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STARAVIA] = {
         .textData = {
-            .name = "Staravia",
+            .name = "STARAVIA",
             .pokedexEntry = "They maintain huge flocks, although\\nfierce scuffles break out between\\nvarious flocks.",
             .classification = "Starling Pokémon",
             .height = "2’00”",
@@ -22649,7 +22649,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 113,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22668,7 +22668,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
             .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -22689,7 +22689,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STARAPTOR] = {
         .textData = {
-            .name = "Staraptor",
+            .name = "STARAPTOR",
             .pokedexEntry = "When STARAVIA evolve into\\nSTARAPTOR, they leave the flock to\\nlive alone. They have sturdy wings.",
             .classification = "Predator Pokémon",
             .height = "3’11”",
@@ -22701,12 +22701,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .attack = 120,
                 .defense = 70,
                 .spAttack = 50,
-                .spDefense = 60,
+                .spDefense = 50,
                 .speed = 100,
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 172,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -22746,7 +22746,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BIDOOF] = {
         .textData = {
-            .name = "Bidoof",
+            .name = "BIDOOF",
             .pokedexEntry = "It lives in groups by the water. \\nIt chews up boulders and trees\\naround its nest with its incisors.",
             .classification = "Plump Mouse Pokémon",
             .height = "1’08”",
@@ -22763,7 +22763,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 58,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -22781,8 +22781,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SIMPLE, ABILITY_UNAWARE },
-            .safariFleeRate = 0,
+            .abilities = { 27990, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -22803,7 +22803,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BIBAREL] = {
         .textData = {
-            .name = "Bibarel",
+            .name = "BIBAREL",
             .pokedexEntry = "It busily makes its nest with\\nstacks of branches and roots it\\nhas cut up with its sharp incisors.",
             .classification = "Beaver Pokémon",
             .height = "3’03”",
@@ -22820,7 +22820,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_WATER },
             .catchRate = 127,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 116,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -22838,8 +22838,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SIMPLE, ABILITY_UNAWARE },
-            .safariFleeRate = 0,
+            .abilities = { 27990, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -22860,7 +22860,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KRICKETOT] = {
         .textData = {
-            .name = "Kricketot",
+            .name = "KRICKETOT",
             .pokedexEntry = "When its antennae hit each other,\\nit sounds like the music of\\na xylophone.",
             .classification = "Cricket Pokémon",
             .height = "1’00”",
@@ -22877,7 +22877,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 54,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -22917,7 +22917,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_KRICKETUNE] = {
         .textData = {
-            .name = "Kricketune",
+            .name = "KRICKETUNE",
             .pokedexEntry = "By allowing its cry to resonate in\\nthe hollow of its belly, it produces\\na captivating sound.",
             .classification = "Cricket Pokémon",
             .height = "3’03”",
@@ -22934,7 +22934,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 159,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -22974,7 +22974,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHINX] = {
         .textData = {
-            .name = "Shinx",
+            .name = "SHINX",
             .pokedexEntry = "The extension and contraction of\\nits muscles generates electricity.\\nIts fur glows when it’s in trouble.",
             .classification = "Flash Pokémon",
             .height = "1’08”",
@@ -22991,7 +22991,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 235,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 60,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -23006,11 +23006,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE },
-            .safariFleeRate = 0,
+            .abilities = { 5711, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -23031,8 +23031,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUXIO] = {
         .textData = {
-            .name = "Luxio",
-            .pokedexEntry = "By gathering their tails together,\\nthey collectively generate powerful\\nelectricity from their claws.",
+            .name = "LUXIO",
+            .pokedexEntry = "By gathering their tails together,\\nthey collectively generate powerful\\nelectricity from their claws. ",
             .classification = "Spark Pokémon",
             .height = "2’11”",
             .weight = "67.2 lbs.",
@@ -23048,7 +23048,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 117,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -23066,8 +23066,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 100,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE },
-            .safariFleeRate = 0,
+            .abilities = { 5711, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -23088,7 +23088,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUXRAY] = {
         .textData = {
-            .name = "Luxray",
+            .name = "LUXRAY",
             .pokedexEntry = "LUXRAY’s ability to see through\\nobjects comes in handy when it’s\\nscouting for danger.",
             .classification = "Gleam Eyes Pokémon",
             .height = "4’07”",
@@ -23105,7 +23105,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 194,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -23120,10 +23120,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE },
+            .abilities = { 5711, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -23145,7 +23145,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BUDEW] = {
         .textData = {
-            .name = "Budew",
+            .name = "BUDEW",
             .pokedexEntry = "When it feels the sun’s warm touch,\\nit opens its bud to release pollen.\\nIt lives alongside clear pools.",
             .classification = "Bud Pokémon",
             .height = "0’08”",
@@ -23162,7 +23162,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 68,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23177,13 +23177,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT },
-            .safariFleeRate = 0,
+            .abilities = { 9758, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_GREEN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 2,
@@ -23202,7 +23202,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ROSERADE] = {
         .textData = {
-            .name = "Roserade",
+            .name = "ROSERADE",
             .pokedexEntry = "Its sweet aroma attracts prey.\\nThen it spews poison. The more\\ntoxic it is, the sweeter its aroma.",
             .classification = "Bouquet Pokémon",
             .height = "2’11”",
@@ -23212,14 +23212,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 60,
                 .attack = 70,
-                .defense = 65,
+                .defense = 55,
                 .spAttack = 125,
                 .spDefense = 105,
                 .speed = 90,
             },
             .types = { TYPE_GRASS, TYPE_POISON },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23229,18 +23229,18 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ABSORB_BULB,
+                .common = ITEM_NONE,
                 .rare = ITEM_POISON_BARB,
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT },
+            .abilities = { 9758, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 9,
@@ -23259,7 +23259,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CRANIDOS] = {
         .textData = {
-            .name = "Cranidos",
+            .name = "CRANIDOS",
             .pokedexEntry = "CRANIDOS toughen up their already\\nrock-hard heads by headbutting\\none another.",
             .classification = "Head Butt Pokémon",
             .height = "2’11”",
@@ -23276,7 +23276,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -23316,7 +23316,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RAMPARDOS] = {
         .textData = {
-            .name = "Rampardos",
+            .name = "RAMPARDOS",
             .pokedexEntry = "Its skull withstands impacts of any\\nmagnitude. As a result, its brain\\nnever gets the chance to grow.",
             .classification = "Head Butt Pokémon",
             .height = "5’03”",
@@ -23333,7 +23333,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -23373,7 +23373,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHIELDON] = {
         .textData = {
-            .name = "Shieldon",
+            .name = "SHIELDON",
             .pokedexEntry = "It was generated from a fossil dug out\\nof a layer of clay that was older than\\nanyone knows. It has a sturdy face.",
             .classification = "Shield Pokémon",
             .height = "1’08”",
@@ -23390,7 +23390,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_STEEL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 99,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23430,7 +23430,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BASTIODON] = {
         .textData = {
-            .name = "Bastiodon",
+            .name = "BASTIODON",
             .pokedexEntry = "When attacked, they form a wall.\\nTheir rock-hard faces serve to\\nprotect them from the attacks.",
             .classification = "Shield Pokémon",
             .height = "4’03”",
@@ -23447,7 +23447,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_STEEL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23487,7 +23487,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BURMY] = {
         .textData = {
-            .name = "Burmy",
+            .name = "BURMY",
             .pokedexEntry = "It covers itself with a cloak to\\nshelter from the cold. When it’s\\nhot, its cloak is thinner.",
             .classification = "Bagworm Pokémon",
             .height = "0’08”",
@@ -23504,7 +23504,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_BUG },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 61,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23524,7 +23524,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE },
             .safariFleeRate = 0,
-            .bodyColor = BODY_COLOR_GREEN,
+            .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
         .metricsData = {
@@ -23544,7 +23544,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WORMADAM] = {
         .textData = {
-            .name = "Wormadam",
+            .name = "WORMADAM",
             .pokedexEntry = "It is said that a WORMADAM that\\nevolves on a cold day will have a\\nthicker cloak.",
             .classification = "Bagworm Pokémon",
             .height = "1’08”",
@@ -23561,7 +23561,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 159,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23581,7 +23581,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE },
             .safariFleeRate = 0,
-            .bodyColor = BODY_COLOR_GREEN,
+            .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
         .metricsData = {
@@ -23601,7 +23601,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MOTHIM] = {
         .textData = {
-            .name = "Mothim",
+            .name = "MOTHIM",
             .pokedexEntry = "It flutters around at night and\\nsteals honey from the COMBEE hive.",
             .classification = "Moth Pokémon",
             .height = "2’11”",
@@ -23618,7 +23618,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 159,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -23658,7 +23658,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_COMBEE] = {
         .textData = {
-            .name = "Combee",
+            .name = "COMBEE",
             .pokedexEntry = "At night, COMBEE sleep in a group of\\nabout a thousand, packed closely\\ntogether in a lump.",
             .classification = "Tiny Bee Pokémon",
             .height = "1’00”",
@@ -23675,7 +23675,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 63,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23686,11 +23686,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_HONEY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_HONEY,
             },
             .genderRatio = 31,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_HONEY_GATHER, ABILITY_NONE },
@@ -23715,7 +23715,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_VESPIQUEN] = {
         .textData = {
-            .name = "Vespiquen",
+            .name = "VESPIQUEN",
             .pokedexEntry = "It raises grubs in the holes in its\\nbody. It secretes pheromones to\\ncontrol COMBEE.",
             .classification = "Beehive Pokémon",
             .height = "3’11”",
@@ -23732,7 +23732,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 188,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23747,7 +23747,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 15,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
             .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
@@ -23772,7 +23772,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PACHIRISU] = {
         .textData = {
-            .name = "Pachirisu",
+            .name = "PACHIRISU",
             .pokedexEntry = "It’s one of the kinds of Pokémon \\nwith electric cheek pouches.\\nIt shoots charges from its tail.",
             .classification = "EleSquirrel Pokémon",
             .height = "1’04”",
@@ -23789,7 +23789,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 120,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23807,8 +23807,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 100,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_PICKUP },
-            .safariFleeRate = 0,
+            .abilities = { 13618, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
         },
@@ -23829,7 +23829,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BUIZEL] = {
         .textData = {
-            .name = "Buizel",
+            .name = "BUIZEL",
             .pokedexEntry = "It inflates its flotation sac,\\nkeeping its face above water in\\norder to watch for prey movement.",
             .classification = "Sea Weasel Pokémon",
             .height = "2’04”",
@@ -23846,7 +23846,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 75,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23865,7 +23865,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -23886,7 +23886,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FLOATZEL] = {
         .textData = {
-            .name = "Floatzel",
+            .name = "FLOATZEL",
             .pokedexEntry = "With its flotation sac inflated, it\\ncan carry people on its back. It\\ndeflates the sac before it dives.",
             .classification = "Sea Weasel Pokémon",
             .height = "3’07”",
@@ -23903,7 +23903,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23922,7 +23922,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -23943,7 +23943,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHERUBI] = {
         .textData = {
-            .name = "Cherubi",
+            .name = "CHERUBI",
             .pokedexEntry = "It evolves by sucking the energy\\nout of the small ball where it had\\nbeen storing nutrients.",
             .classification = "Cherry Pokémon",
             .height = "1’04”",
@@ -23960,7 +23960,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 68,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -23975,7 +23975,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
             .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE },
@@ -24000,7 +24000,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHERRIM] = {
         .textData = {
-            .name = "Cherrim",
+            .name = "CHERRIM",
             .pokedexEntry = "During times of strong sunlight,\\nits bud blooms, its petals open\\nfully, and it becomes very active.",
             .classification = "Blossom Pokémon",
             .height = "1’08”",
@@ -24017,7 +24017,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 133,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24032,12 +24032,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
             .abilities = { ABILITY_FLOWER_GIFT, ABILITY_NONE },
             .safariFleeRate = 0,
-            .bodyColor = BODY_COLOR_PURPLE,
+            .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
         },
         .metricsData = {
@@ -24057,7 +24057,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHELLOS] = {
         .textData = {
-            .name = "Shellos",
+            .name = "SHELLOS",
             .pokedexEntry = "Its shape and coloration vary,\\ndepending on its habitat.",
             .classification = "Sea Slug Pokémon",
             .height = "1’00”",
@@ -24074,7 +24074,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 73,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -24089,10 +24089,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN },
+            .abilities = { 29244, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24114,7 +24114,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GASTRODON] = {
         .textData = {
-            .name = "Gastrodon",
+            .name = "GASTRODON",
             .pokedexEntry = "When its natural enemy attacks,\\nit oozes purple fluid and escapes.",
             .classification = "Sea Slug Pokémon",
             .height = "2’11”",
@@ -24131,7 +24131,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_GROUND },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 176,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -24146,10 +24146,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN },
+            .abilities = { 29244, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24171,7 +24171,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AMBIPOM] = {
         .textData = {
-            .name = "Ambipom",
+            .name = "AMBIPOM",
             .pokedexEntry = "They live on large trees. They are\\nsaid to communicate by connecting\\ntheir tails to those of others.",
             .classification = "Long Tail Pokémon",
             .height = "3’11”",
@@ -24188,7 +24188,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 186,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24206,7 +24206,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 100,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_TECHNICIAN, ABILITY_PICKUP },
+            .abilities = { 13669, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24228,7 +24228,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRIFLOON] = {
         .textData = {
-            .name = "Drifloon",
+            .name = "DRIFLOON",
             .pokedexEntry = "It is whispered that any child who\\nmistakes DRIFLOON for a balloon and\\nholds on to it could wind up missing.",
             .classification = "Balloon Pokémon",
             .height = "1’04”",
@@ -24245,7 +24245,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_FLYING },
             .catchRate = 125,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 127,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -24260,10 +24260,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_AFTERMATH, ABILITY_UNBURDEN },
+            .abilities = { 21610, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24285,7 +24285,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRIFBLIM] = {
         .textData = {
-            .name = "Drifblim",
+            .name = "DRIFBLIM",
             .pokedexEntry = "It can generate and release gas\\nwithin its body. That’s how it can\\ncontrol the altitude of its drift.",
             .classification = "Blimp Pokémon",
             .height = "3’11”",
@@ -24302,7 +24302,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_FLYING },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -24313,14 +24313,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_NONE,
-                .rare = ITEM_AIR_BALLOON,
+                .rare = ITEM_NONE,
             },
             .genderRatio = 127,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FLUCTUATING,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_AFTERMATH, ABILITY_UNBURDEN },
+            .abilities = { 21610, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24342,7 +24342,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BUNEARY] = {
         .textData = {
-            .name = "Buneary",
+            .name = "BUNEARY",
             .pokedexEntry = "You can tell how it feels by the way\\nit rolls its ears. When it’s scared,\\nboth ears are rolled up.",
             .classification = "Rabbit Pokémon",
             .height = "1’04”",
@@ -24359,7 +24359,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 84,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24369,7 +24369,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 1,
             },
             .wildHeldItems = {
-                .common = ITEM_PECHA_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_CHOPLE_BERRY,
             },
             .genderRatio = 127,
@@ -24377,7 +24377,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 0,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ },
+            .abilities = { 26418, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -24399,7 +24399,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LOPUNNY] = {
         .textData = {
-            .name = "Lopunny",
+            .name = "LOPUNNY",
             .pokedexEntry = "It sheds its fur twice a year.\\nIts winter fur is soft and fluffy.",
             .classification = "Rabbit Pokémon",
             .height = "3’11”",
@@ -24416,7 +24416,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 178,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24426,7 +24426,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 2,
             },
             .wildHeldItems = {
-                .common = ITEM_PECHA_BERRY,
+                .common = ITEM_NONE,
                 .rare = ITEM_CHOPLE_BERRY,
             },
             .genderRatio = 127,
@@ -24434,7 +24434,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 140,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_CUTE_CHARM, ABILITY_KLUTZ },
+            .abilities = { 26424, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -24456,7 +24456,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MISMAGIUS] = {
         .textData = {
-            .name = "Mismagius",
+            .name = "MISMAGIUS",
             .pokedexEntry = "Its cries sound like incantations\\nto torment the foe. It appears\\nwhere you least expect it.",
             .classification = "Magical Pokémon",
             .height = "2’11”",
@@ -24473,7 +24473,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 187,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24513,7 +24513,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HONCHKROW] = {
         .textData = {
-            .name = "Honchkrow",
+            .name = "HONCHKROW",
             .pokedexEntry = "It is merciless by nature. It is said\\nthat it never forgives the mistakes\\nof its MURKROW followers.",
             .classification = "Big Boss Pokémon",
             .height = "2’11”",
@@ -24530,7 +24530,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 187,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -24548,7 +24548,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_INSOMNIA, ABILITY_SUPER_LUCK },
+            .abilities = { 26895, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -24570,7 +24570,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLAMEOW] = {
         .textData = {
-            .name = "Glameow",
+            .name = "GLAMEOW",
             .pokedexEntry = "When it’s happy, GLAMEOW\\ndemonstrates beautiful movements\\nof its tail, like a dancing ribbon.",
             .classification = "Catty Pokémon",
             .height = "1’08”",
@@ -24587,7 +24587,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 71,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24600,12 +24600,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_NONE,
                 .rare = ITEM_CHERI_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LIMBER, ABILITY_OWN_TEMPO },
+            .abilities = { 5127, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -24627,7 +24627,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PURUGLY] = {
         .textData = {
-            .name = "Purugly",
+            .name = "PURUGLY",
             .pokedexEntry = "It would claim another Pokémon’s\\nnest as its own if it finds a nest\\nsufficiently comfortable.",
             .classification = "Tiger Cat Pokémon",
             .height = "3’03”",
@@ -24644,7 +24644,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 183,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24657,12 +24657,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .common = ITEM_NONE,
                 .rare = ITEM_CHERI_BERRY,
             },
-            .genderRatio = 190,
+            .genderRatio = 191,
             .hatchCycles = 20,
             .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_THICK_FAT, ABILITY_OWN_TEMPO },
+            .abilities = { 5167, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -24684,8 +24684,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHINGLING] = {
         .textData = {
-            .name = "Chingling",
-            .pokedexEntry = "It emits high-frequency cries that \\npeople can’t hear. Once it starts,\\nit can cry for an awfully long time.",
+            .name = "CHINGLING",
+            .pokedexEntry = "It emits high-frequency cries that \\npeople can’t hear. Once it starts,\\nit can cry for an awfully long time. ",
             .classification = "Bell Pokémon",
             .height = "0’08”",
             .weight = "1.3 lbs.",
@@ -24701,7 +24701,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 74,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24711,7 +24711,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_CLEANSE_TAG,
+                .common = ITEM_NONE,
                 .rare = ITEM_COLBUR_BERRY,
             },
             .genderRatio = 127,
@@ -24720,7 +24720,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_YELLOW,
             .flipSprite = 0,
         },
@@ -24741,7 +24741,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_STUNKY] = {
         .textData = {
-            .name = "Stunky",
+            .name = "STUNKY",
             .pokedexEntry = "The foul fluid from its rear is so\\nrevolting that it can make people feel\\nqueasy up to a mile and a quarter away.",
             .classification = "Skunk Pokémon",
             .height = "1’04”",
@@ -24758,7 +24758,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_DARK },
             .catchRate = 225,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 79,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24773,10 +24773,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_STENCH, ABILITY_AFTERMATH },
+            .abilities = { 27137, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24798,7 +24798,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SKUNTANK] = {
         .textData = {
-            .name = "Skuntank",
+            .name = "SKUNTANK",
             .pokedexEntry = "It attacks by spraying a repugnant\\nfluid from its tail, but the stench\\ndulls after a few squirts.",
             .classification = "Skunk Pokémon",
             .height = "3’03”",
@@ -24815,7 +24815,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_DARK },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 209,
             .evYields = {
                 .hp = 2,
                 .attack = 0,
@@ -24830,10 +24830,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_STENCH, ABILITY_AFTERMATH },
+            .abilities = { 27137, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -24855,7 +24855,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BRONZOR] = {
         .textData = {
-            .name = "Bronzor",
+            .name = "BRONZOR",
             .pokedexEntry = "Ancient people believed that the\\npattern on BRONZOR’s back\\ncontained a mysterious power.",
             .classification = "Bronze Pokémon",
             .height = "1’08”",
@@ -24872,7 +24872,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 72,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24887,11 +24887,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_LEVITATE, ABILITY_HEATPROOF },
-            .safariFleeRate = 0,
+            .abilities = { 21786, ABILITY_NONE },
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -24912,7 +24912,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BRONZONG] = {
         .textData = {
-            .name = "Bronzong",
+            .name = "BRONZONG",
             .pokedexEntry = "Ancient people believed that\\npetitioning BRONZONG for rain\\nwas the way to make crops grow.",
             .classification = "Bronze Bell Pokémon",
             .height = "4’03”",
@@ -24929,7 +24929,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_STEEL, TYPE_PSYCHIC },
             .catchRate = 90,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 188,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -24944,11 +24944,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_LEVITATE, ABILITY_HEATPROOF },
-            .safariFleeRate = 0,
+            .abilities = { 21786, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -24969,7 +24969,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_BONSLY] = {
         .textData = {
-            .name = "Bonsly",
+            .name = "BONSLY",
             .pokedexEntry = "In order to adjust the level of fluids in\\nits body, it exudes water from its eyes.\\nThis makes it appear to be crying.",
             .classification = "Bonsai Pokémon",
             .height = "1’08”",
@@ -24986,7 +24986,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_ROCK },
             .catchRate = 255,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 68,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25001,10 +25001,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD },
+            .abilities = { 17669, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -25026,7 +25026,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MIME_JR] = {
         .textData = {
-            .name = "Mime Jr.",
+            .name = "MIME JR.",
             .pokedexEntry = "In an attempt to confuse its enemy,\\nit mimics the enemy’s movements. Then\\nit wastes no time in making itself scarce!",
             .classification = "Mime Pokémon",
             .height = "2’00”",
@@ -25041,9 +25041,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 90,
                 .speed = 60,
             },
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 145,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 78,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25058,10 +25058,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_SOUNDPROOF, ABILITY_FILTER },
+            .abilities = { 28459, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -25083,7 +25083,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HAPPINY] = {
         .textData = {
-            .name = "Happiny",
+            .name = "HAPPINY",
             .pokedexEntry = "It carefully carries a round, white rock\\nthat it thinks is an egg. It’s bothered\\nby how curly its hair looks.",
             .classification = "Playhouse Pokémon",
             .height = "2’00”",
@@ -25100,7 +25100,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 130,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 255,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -25111,14 +25111,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_OVAL_STONE,
-                .rare = ITEM_LUCKY_EGG,
+                .rare = ITEM_LUCKY_PUNCH,
             },
             .genderRatio = 254,
             .hatchCycles = 40,
             .baseFriendship = 140,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE },
+            .abilities = { 8222, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -25140,7 +25140,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CHATOT] = {
         .textData = {
-            .name = "Chatot",
+            .name = "CHATOT",
             .pokedexEntry = "It mimics the cries of other Pokémon to\\ntrick them into thinking it’s one of them.\\nThis way they won’t attack it.",
             .classification = "Music Note Pokémon",
             .height = "1’08”",
@@ -25157,7 +25157,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 107,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -25175,7 +25175,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
-            .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET },
+            .abilities = { 19763, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -25197,7 +25197,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SPIRITOMB] = {
         .textData = {
-            .name = "Spiritomb",
+            .name = "SPIRITOMB",
             .pokedexEntry = "It was formed by uniting 108 spirits.\\nIt has been bound to the Odd Keystone\\nto keep it from doing any mischief.",
             .classification = "Forbidden Pokémon",
             .height = "3’03”",
@@ -25214,7 +25214,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_DARK },
             .catchRate = 100,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 168,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25229,7 +25229,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
@@ -25254,7 +25254,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GIBLE] = {
         .textData = {
-            .name = "Gible",
+            .name = "GIBLE",
             .pokedexEntry = "It nests in horizontal holes warmed by\\ngeothermal heat. Foes who get too close\\ncan expect to be pounced on and bitten.",
             .classification = "Land Shark Pokémon",
             .height = "2’04”",
@@ -25271,7 +25271,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 67,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -25286,11 +25286,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 90,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -25311,7 +25311,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GABITE] = {
         .textData = {
-            .name = "Gabite",
+            .name = "GABITE",
             .pokedexEntry = "As it digs to expand its nest, it\\nhabitually digs up gems that it\\nthen hoards in its nest.",
             .classification = "Cave Pokémon",
             .height = "4’07”",
@@ -25328,7 +25328,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 144,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -25343,7 +25343,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
@@ -25368,7 +25368,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GARCHOMP] = {
         .textData = {
-            .name = "Garchomp",
+            .name = "GARCHOMP",
             .pokedexEntry = "Its body is covered in fine scales that\\nreduce drag, enabling it to fly at\\nhigh speeds.",
             .classification = "Mach Pokémon",
             .height = "6’03”",
@@ -25385,7 +25385,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DRAGON, TYPE_GROUND },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 218,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -25400,7 +25400,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
             .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE },
@@ -25425,7 +25425,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MUNCHLAX] = {
         .textData = {
-            .name = "Munchlax",
+            .name = "MUNCHLAX",
             .pokedexEntry = "It conceals food under the long fur on\\nits body. It carts around this food\\nstash and swallows it without chewing.",
             .classification = "Big Eater Pokémon",
             .height = "2’00”",
@@ -25442,7 +25442,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 50,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 94,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -25453,14 +25453,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_LEFTOVERS,
-                .rare = ITEM_NONE,
+                .rare = ITEM_LEFTOVERS,
             },
             .genderRatio = 31,
             .hatchCycles = 40,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_PICKUP, ABILITY_THICK_FAT },
+            .abilities = { 12085, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -25482,7 +25482,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RIOLU] = {
         .textData = {
-            .name = "Riolu",
+            .name = "RIOLU",
             .pokedexEntry = "They communicate with one another\\nusing their auras. They are able to run\\nall through the night.",
             .classification = "Emanation Pokémon",
             .height = "2’04”",
@@ -25499,7 +25499,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_FIGHTING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 72,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -25514,11 +25514,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_STEADFAST, ABILITY_INNER_FOCUS },
-            .safariFleeRate = 0,
+            .abilities = { 10064, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -25539,7 +25539,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUCARIO] = {
         .textData = {
-            .name = "Lucario",
+            .name = "LUCARIO",
             .pokedexEntry = "It’s said that no foe can remain invisible\\nto LUCARIO, since it can detect auras.\\nEven foes it could not otherwise see.",
             .classification = "Aura Pokémon",
             .height = "3’11”",
@@ -25556,7 +25556,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIGHTING, TYPE_STEEL },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -25571,10 +25571,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_STEADFAST, ABILITY_INNER_FOCUS },
+            .abilities = { 10064, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -25596,7 +25596,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HIPPOPOTAS] = {
         .textData = {
-            .name = "Hippopotas",
+            .name = "HIPPOPOTAS",
             .pokedexEntry = "It shrouds itself in sand to ward off\\ngerms. It travels easily through the\\nsands of the desert.",
             .classification = "Hippo Pokémon",
             .height = "2’07”",
@@ -25613,7 +25613,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 140,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 95,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25628,11 +25628,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SAND_STREAM, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
         },
@@ -25653,7 +25653,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HIPPOWDON] = {
         .textData = {
-            .name = "Hippowdon",
+            .name = "HIPPOWDON",
             .pokedexEntry = "It brandishes its gaping mouth in a\\ndisplay of fearsome strength. It raises\\nvast quantities of sand while attacking.",
             .classification = "Heavyweight Pokémon",
             .height = "6’07”",
@@ -25670,7 +25670,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_GROUND },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 198,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25685,7 +25685,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 30,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
             .abilities = { ABILITY_SAND_STREAM, ABILITY_NONE },
@@ -25710,7 +25710,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SKORUPI] = {
         .textData = {
-            .name = "Skorupi",
+            .name = "SKORUPI",
             .pokedexEntry = "It burrows under the sand to lie in\\nwait for prey. Its tail claws can inject\\nits prey with a savage poison.",
             .classification = "Scorpion Pokémon",
             .height = "2’07”",
@@ -25727,7 +25727,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_BUG },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 114,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25742,11 +25742,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_SNIPER },
-            .safariFleeRate = 0,
+            .abilities = { 24836, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -25767,7 +25767,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DRAPION] = {
         .textData = {
-            .name = "Drapion",
+            .name = "DRAPION",
             .pokedexEntry = "It attacks people and Pokémon that\\ncross the desert. This has only\\nfurthered its bad reputation.",
             .classification = "Ogre Scorp Pokémon",
             .height = "4’03”",
@@ -25784,7 +25784,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_DARK },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 204,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -25799,11 +25799,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_WATER_3 },
-            .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_SNIPER },
-            .safariFleeRate = 0,
+            .abilities = { 24836, ABILITY_NONE },
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
         },
@@ -25824,7 +25824,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CROAGUNK] = {
         .textData = {
-            .name = "Croagunk",
+            .name = "CROAGUNK",
             .pokedexEntry = "Fluid squeezed from its finger, albeit\\npoisonous, is a significant ingredient in\\nremedies for lower-back pain.",
             .classification = "Toxic Mouth Pokémon",
             .height = "2’04”",
@@ -25841,7 +25841,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_FIGHTING },
             .catchRate = 140,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 83,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -25859,8 +25859,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 100,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_ANTICIPATION, ABILITY_DRY_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 22379, ABILITY_NONE },
+            .safariFleeRate = 150,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -25881,7 +25881,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TOXICROAK] = {
         .textData = {
-            .name = "Toxicroak",
+            .name = "TOXICROAK",
             .pokedexEntry = "Swaying and dodging the attacks of its\\nfoes, it weaves its flexible body in close,\\nthen lunges out with its poisonous claws.",
             .classification = "Toxic Mouth Pokémon",
             .height = "4’03”",
@@ -25898,7 +25898,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_POISON, TYPE_FIGHTING },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 181,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -25913,11 +25913,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
-            .abilities = { ABILITY_ANTICIPATION, ABILITY_DRY_SKIN },
-            .safariFleeRate = 0,
+            .abilities = { 22379, ABILITY_NONE },
+            .safariFleeRate = 120,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
         },
@@ -25938,7 +25938,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CARNIVINE] = {
         .textData = {
-            .name = "Carnivine",
+            .name = "CARNIVINE",
             .pokedexEntry = "It walks around on its tentacles in\\nsearch of a tree branch where it\\ncan dangle down and ambush prey.",
             .classification = "Bug Catcher Pokémon",
             .height = "4’07”",
@@ -25955,7 +25955,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 200,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 164,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -25974,7 +25974,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-            .safariFleeRate = 0,
+            .safariFleeRate = 60,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
         },
@@ -25995,7 +25995,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FINNEON] = {
         .textData = {
-            .name = "Finneon",
+            .name = "FINNEON",
             .pokedexEntry = "Swimming and fluttering its two tail fins,\\nit looks like a BEAUTIFLY. At night, the\\npatterns on its tail fins softly shine.",
             .classification = "Wing Fish Pokémon",
             .height = "1’04”",
@@ -26012,7 +26012,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 190,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 90,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26030,7 +26030,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_STORM_DRAIN },
+            .abilities = { 29217, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -26052,7 +26052,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LUMINEON] = {
         .textData = {
-            .name = "Lumineon",
+            .name = "LUMINEON",
             .pokedexEntry = "LUMINEON swimming in the darkness\\nof the deep sea look like stars shining\\nin the night sky.",
             .classification = "Neon Pokémon",
             .height = "3’11”",
@@ -26069,7 +26069,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 156,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26087,7 +26087,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_ERRATIC,
             .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_STORM_DRAIN },
+            .abilities = { 29217, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -26109,7 +26109,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MANTYKE] = {
         .textData = {
-            .name = "Mantyke",
+            .name = "MANTYKE",
             .pokedexEntry = "When it swims close to the surface of the\\nocean, people aboard ships are able to\\nobserve the pattern on its back.",
             .classification = "Kite Pokémon",
             .height = "3’03”",
@@ -26126,7 +26126,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_FLYING },
             .catchRate = 25,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 108,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26141,10 +26141,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
-            .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB },
+            .abilities = { 2849, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -26166,7 +26166,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SNOVER] = {
         .textData = {
-            .name = "Snover",
+            .name = "SNOVER",
             .pokedexEntry = "During cold seasons, it migrates to the\\nmountain’s lower reaches. It returns to\\nthe snow-covered summit in the spring.",
             .classification = "Frost Tree Pokémon",
             .height = "3’03”",
@@ -26183,7 +26183,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_ICE },
             .catchRate = 120,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 131,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -26198,7 +26198,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
             .abilities = { ABILITY_SNOW_WARNING, ABILITY_NONE },
@@ -26223,7 +26223,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ABOMASNOW] = {
         .textData = {
-            .name = "Abomasnow",
+            .name = "ABOMASNOW",
             .pokedexEntry = "It lives a quiet life on mountains that\\nare perpetually covered in snow.\\nIt hides itself by whipping up blizzards.",
             .classification = "Frost Tree Pokémon",
             .height = "7’03”",
@@ -26240,7 +26240,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_ICE },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 214,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -26255,7 +26255,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
             .abilities = { ABILITY_SNOW_WARNING, ABILITY_NONE },
@@ -26280,7 +26280,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_WEAVILE] = {
         .textData = {
-            .name = "Weavile",
+            .name = "WEAVILE",
             .pokedexEntry = "It lives in snowy regions. It carves\\npatterns in trees with its claws as\\na signal to others.",
             .classification = "Sharp Claw Pokémon",
             .height = "3’07”",
@@ -26297,7 +26297,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_ICE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -26315,7 +26315,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
+            .abilities = { 11822, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLACK,
             .flipSprite = 0,
@@ -26337,7 +26337,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGNEZONE] = {
         .textData = {
-            .name = "Magnezone",
+            .name = "MAGNEZONE",
             .pokedexEntry = "Exposure to a special magnetic field\\nchanged MAGNETON’s molecular\\nstructure, turning it into MAGNEZONE.",
             .classification = "Magnet Area Pokémon",
             .height = "3’11”",
@@ -26354,7 +26354,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_STEEL },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 211,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26369,10 +26369,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY },
+            .abilities = { 1322, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -26394,7 +26394,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LICKILICKY] = {
         .textData = {
-            .name = "Lickilicky",
+            .name = "LICKILICKY",
             .pokedexEntry = "Its saliva can decompose anything.\\nIt wraps its long tongue around things\\nto coat them with its sticky saliva.",
             .classification = "Licking Pokémon",
             .height = "5’07”",
@@ -26411,7 +26411,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 193,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -26426,10 +26426,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
-            .abilities = { ABILITY_OWN_TEMPO, ABILITY_OBLIVIOUS },
+            .abilities = { 3092, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PINK,
             .flipSprite = 0,
@@ -26451,7 +26451,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_RHYPERIOR] = {
         .textData = {
-            .name = "Rhyperior",
+            .name = "RHYPERIOR",
             .pokedexEntry = "From holes in its palms, it fires out\\nGEODUDE. Its carapace \\ncan withstand volcanic eruptions.",
             .classification = "Drill Pokémon",
             .height = "7’10”",
@@ -26468,7 +26468,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_ROCK },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 217,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -26483,10 +26483,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_SOLID_ROCK },
+            .abilities = { 29727, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -26508,7 +26508,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TANGROWTH] = {
         .textData = {
-            .name = "Tangrowth",
+            .name = "TANGROWTH",
             .pokedexEntry = "When it remains still, it appears to be a\\nlarge shrub. Unsuspecting prey that\\nwander near get ensnared by its vines.",
             .classification = "Vine Pokémon",
             .height = "6’07”",
@@ -26525,7 +26525,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 211,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26540,10 +26540,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD },
+            .abilities = { 26146, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -26565,7 +26565,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ELECTIVIRE] = {
         .textData = {
-            .name = "Electivire",
+            .name = "ELECTIVIRE",
             .pokedexEntry = "As its electric charge amplifies,\\nblue sparks begin to crackle between\\nits horns.",
             .classification = "Thunderbolt Pokémon",
             .height = "5’11”",
@@ -26582,7 +26582,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -26592,12 +26592,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_ELECTIRIZER,
-                .rare = ITEM_NONE,
+                .common = ITEM_NONE,
+                .rare = ITEM_ELECTIRIZER,
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_MOTOR_DRIVE, ABILITY_NONE },
@@ -26622,7 +26622,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAGMORTAR] = {
         .textData = {
-            .name = "Magmortar",
+            .name = "MAGMORTAR",
             .pokedexEntry = "It blasts fireballs of over\\n3,600 degrees Fahrenheit out of its\\narms. Its breath also sears and sizzles.",
             .classification = "Blast Pokémon",
             .height = "5’03”",
@@ -26639,7 +26639,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_FIRE },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 199,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26654,13 +26654,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 63,
             .hatchCycles = 25,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
             .abilities = { ABILITY_FLAME_BODY, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 16,
@@ -26679,7 +26679,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_TOGEKISS] = {
         .textData = {
-            .name = "Togekiss",
+            .name = "TOGEKISS",
             .pokedexEntry = "As everyone knows, it visits peaceful\\nregions, bringing them gifts of kindness\\nand sweet blessings.",
             .classification = "Jubilee Pokémon",
             .height = "4’11”",
@@ -26694,9 +26694,9 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .spDefense = 115,
                 .speed = 80,
             },
-            .types = { TYPE_FAIRY, TYPE_FLYING },
+            .types = { TYPE_NORMAL, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26711,13 +26711,13 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 31,
             .hatchCycles = 10,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_FAST,
             .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FAIRY },
-            .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE },
+            .abilities = { 8247, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
-            .flipSprite = 0,
+            .flipSprite = 1,
         },
         .metricsData = {
             .heightDecimetres = 15,
@@ -26736,7 +26736,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_YANMEGA] = {
         .textData = {
-            .name = "Yanmega",
+            .name = "YANMEGA",
             .pokedexEntry = "This six-legged Pokémon is easily capable\\nof transporting an adult in flight. The\\nwings on its tail help it stay balanced.",
             .classification = "Ogre Darner Pokémon",
             .height = "6’03”",
@@ -26753,7 +26753,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_BUG, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 198,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -26771,7 +26771,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_SPEED_BOOST, ABILITY_TINTED_LENS },
+            .abilities = { 28163, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -26793,7 +26793,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_LEAFEON] = {
         .textData = {
-            .name = "Leafeon",
+            .name = "LEAFEON",
             .pokedexEntry = "When you see LEAFEON asleep in a patch\\nof sunshine, you’ll know it is using\\nphotosynthesis to produce clean air.",
             .classification = "Verdant Pokémon",
             .height = "3’03”",
@@ -26810,7 +26810,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 196,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26828,7 +26828,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_LEAF_GUARD, ABILITY_NONE },
+            .abilities = { 26214, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GREEN,
             .flipSprite = 0,
@@ -26850,7 +26850,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLACEON] = {
         .textData = {
-            .name = "Glaceon",
+            .name = "GLACEON",
             .pokedexEntry = "It causes small ice crystals to form by\\nlowering the temperature of the\\nsurrounding atmosphere.",
             .classification = "Fresh Snow Pokémon",
             .height = "2’07”",
@@ -26867,7 +26867,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_ICE },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 196,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26885,7 +26885,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 35,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE },
+            .abilities = { 20817, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BLUE,
             .flipSprite = 0,
@@ -26907,7 +26907,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GLISCOR] = {
         .textData = {
-            .name = "Gliscor",
+            .name = "GLISCOR",
             .pokedexEntry = "Its flight is soundless. It uses its\\nlengthy tail to carry off its prey...\\nThen its elongated fangs do the rest.",
             .classification = "Fang Scorp Pokémon",
             .height = "6’07”",
@@ -26924,7 +26924,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GROUND, TYPE_FLYING },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 192,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -26942,7 +26942,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_SLOW,
             .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-            .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL },
+            .abilities = { 2100, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_PURPLE,
             .flipSprite = 0,
@@ -26964,7 +26964,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MAMOSWINE] = {
         .textData = {
-            .name = "Mamoswine",
+            .name = "MAMOSWINE",
             .pokedexEntry = "A frozen MAMOSWINE was dug from ice\\ndating back 10,000 years. This Pokémon\\nhas been around a long, long, long time.",
             .classification = "Twin Tusk Pokémon",
             .height = "8’02”",
@@ -26981,7 +26981,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_GROUND },
             .catchRate = 50,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 207,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -26996,10 +26996,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 127,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_SLOW,
             .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-            .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK },
+            .abilities = { 20748, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_BROWN,
             .flipSprite = 0,
@@ -27021,7 +27021,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PORYGON_Z] = {
         .textData = {
-            .name = "Porygon-Z",
+            .name = "PORYGON-Z",
             .pokedexEntry = "Its programming was modified to enable\\nit to travel through alien dimensions.\\nSeems there might have been an error...",
             .classification = "Virtual Pokémon",
             .height = "2’11”",
@@ -27038,7 +27038,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 185,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27053,10 +27053,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_ADAPTABILITY, ABILITY_DOWNLOAD },
+            .abilities = { 22619, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_RED,
             .flipSprite = 0,
@@ -27078,7 +27078,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GALLADE] = {
         .textData = {
-            .name = "Gallade",
+            .name = "GALLADE",
             .pokedexEntry = "Because it can sense what its foe\\nis thinking, its attacks burst out\\nfirst, fast, and fierce.",
             .classification = "Blade Pokémon",
             .height = "5’03”",
@@ -27095,7 +27095,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_FIGHTING },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 208,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -27112,8 +27112,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .hatchCycles = 20,
             .baseFriendship = 35,
             .expRate = GROWTH_SLOW,
-            .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS },
-            .abilities = { ABILITY_STEADFAST, ABILITY_SHARPNESS },
+            .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+            .abilities = { 20560, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -27135,7 +27135,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PROBOPASS] = {
         .textData = {
-            .name = "Probopass",
+            .name = "PROBOPASS",
             .pokedexEntry = "It controls three units called Mini-Noses\\nusing magnetic force. With them, it can\\nattack the foe from three directions.",
             .classification = "Compass Pokémon",
             .height = "4’07”",
@@ -27152,7 +27152,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ROCK, TYPE_STEEL },
             .catchRate = 60,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 198,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27162,7 +27162,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_MAGNET,
+                .common = ITEM_NONE,
                 .rare = ITEM_HARD_STONE,
             },
             .genderRatio = 127,
@@ -27170,7 +27170,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_STURDY, ABILITY_MAGNET_PULL },
+            .abilities = { 10757, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
@@ -27192,7 +27192,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DUSKNOIR] = {
         .textData = {
-            .name = "Dusknoir",
+            .name = "DUSKNOIR",
             .pokedexEntry = "This feared Pokémon is said to travel to\\nworlds unknown. Some even believe that\\nit takes lost spirits along with it.",
             .classification = "Gripper Pokémon",
             .height = "7’03”",
@@ -27209,7 +27209,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27219,7 +27219,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 0,
             },
             .wildHeldItems = {
-                .common = ITEM_SPELL_TAG,
+                .common = ITEM_NONE,
                 .rare = ITEM_KASIB_BERRY,
             },
             .genderRatio = 127,
@@ -27249,7 +27249,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_FROSLASS] = {
         .textData = {
-            .name = "Froslass",
+            .name = "FROSLASS",
             .pokedexEntry = "Legends in snowy regions say that\\na woman who was lost on an icy\\nmountain was reborn as FROSLASS.",
             .classification = "Snow Land Pokémon",
             .height = "4’03”",
@@ -27266,7 +27266,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ICE, TYPE_GHOST },
             .catchRate = 75,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 187,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27281,10 +27281,10 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 254,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_MINERAL },
-            .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE },
+            .abilities = { 20817, ABILITY_NONE },
             .safariFleeRate = 0,
             .bodyColor = BODY_COLOR_WHITE,
             .flipSprite = 0,
@@ -27306,7 +27306,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ROTOM] = {
         .textData = {
-            .name = "Rotom",
+            .name = "ROTOM",
             .pokedexEntry = "Research continues on this Pokémon,\\nwhich could be the power source of a\\nunique motor.",
             .classification = "Plasma Pokémon",
             .height = "1’00”",
@@ -27323,7 +27323,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_ELECTRIC, TYPE_GHOST },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 132,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27338,7 +27338,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .genderRatio = 255,
             .hatchCycles = 20,
-            .baseFriendship = 50,
+            .baseFriendship = 70,
             .expRate = GROWTH_MEDIUM_FAST,
             .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
             .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
@@ -27363,7 +27363,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_UXIE] = {
         .textData = {
-            .name = "Uxie",
+            .name = "UXIE",
             .pokedexEntry = "According to some sources, this Pokémon\\nprovided people with the intelligence\\nnecessary to solve various problems.",
             .classification = "Knowledge Pokémon",
             .height = "1’00”",
@@ -27380,7 +27380,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27420,7 +27420,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MESPRIT] = {
         .textData = {
-            .name = "Mesprit",
+            .name = "MESPRIT",
             .pokedexEntry = "This Pokémon is said to have endowed\\nthe human heart with emotions, such as\\nsorrow and joy.",
             .classification = "Emotion Pokémon",
             .height = "1’00”",
@@ -27437,7 +27437,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 1,
@@ -27477,7 +27477,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_AZELF] = {
         .textData = {
-            .name = "Azelf",
+            .name = "AZELF",
             .pokedexEntry = "This Pokémon is said to have endowed\\nhumans with the determination needed\\nto face any of life’s difficulties.",
             .classification = "Willpower Pokémon",
             .height = "1’00”",
@@ -27494,7 +27494,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 2,
@@ -27534,7 +27534,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DIALGA] = {
         .textData = {
-            .name = "Dialga",
+            .name = "DIALGA",
             .pokedexEntry = "This Pokémon completely controls the\\nflow of time. It uses its power to travel\\nat will through the past and future.",
             .classification = "Temporal Pokémon",
             .height = "17’09”",
@@ -27550,8 +27550,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 90,
             },
             .types = { TYPE_STEEL, TYPE_DRAGON },
-            .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .catchRate = 30,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27591,7 +27591,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PALKIA] = {
         .textData = {
-            .name = "Palkia",
+            .name = "PALKIA",
             .pokedexEntry = "Its total control over the boundaries\\nof space enable it to transport itself to\\nfaraway places or even other dimensions.",
             .classification = "Spatial Pokémon",
             .height = "13’09”",
@@ -27607,8 +27607,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
                 .speed = 100,
             },
             .types = { TYPE_WATER, TYPE_DRAGON },
-            .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .catchRate = 30,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27648,7 +27648,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_HEATRAN] = {
         .textData = {
-            .name = "Heatran",
+            .name = "HEATRAN",
             .pokedexEntry = "Boiling blood, like magma, circulates\\nthrough its body. It makes its dwelling\\nplace in volcanic caves.",
             .classification = "Lava Dome Pokémon",
             .height = "5’07”",
@@ -27665,7 +27665,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_FIRE, TYPE_STEEL },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27705,7 +27705,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_REGIGIGAS] = {
         .textData = {
-            .name = "Regigigas",
+            .name = "REGIGIGAS",
             .pokedexEntry = "It is believed to have shaped\\nREGIROCK, REGICE, and REGISTEEL\\nout of clay, ice, and magma.",
             .classification = "Colossal Pokémon",
             .height = "12’02”",
@@ -27722,7 +27722,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 0,
                 .attack = 3,
@@ -27762,11 +27762,11 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_GIRATINA] = {
         .textData = {
-            .name = "Giratina",
+            .name = "GIRATINA",
             .pokedexEntry = "This Pokémon is said to live in a world on\\nthe reverse side of ours, where common\\nknowledge is distorted and strange.",
             .classification = "Renegade Pokémon",
-            .height = "14’09”",
-            .weight = "1653.5 lbs.",
+            .height = "22’08”",
+            .weight = "1433.0 lbs.",
         },
         .speciesData = {
             .baseStats = {
@@ -27779,7 +27779,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GHOST, TYPE_DRAGON },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 220,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -27819,7 +27819,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_CRESSELIA] = {
         .textData = {
-            .name = "Cresselia",
+            .name = "CRESSELIA",
             .pokedexEntry = "Those who sleep holding CRESSELIA’s\\nfeather are assured of joyful dreams. It\\nis said to represent the crescent moon.",
             .classification = "Lunar Pokémon",
             .height = "4’11”",
@@ -27829,14 +27829,14 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .baseStats = {
                 .hp = 120,
                 .attack = 70,
-                .defense = 110,
+                .defense = 120,
                 .spAttack = 75,
-                .spDefense = 120,
+                .spDefense = 130,
                 .speed = 85,
             },
             .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -27876,7 +27876,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_PHIONE] = {
         .textData = {
-            .name = "Phione",
+            .name = "PHIONE",
             .pokedexEntry = "When the water warms, they inflate the\\nflotation sac on their heads and drift\\nlanguidly on the sea in packs.",
             .classification = "Sea Drifter Pokémon",
             .height = "1’04”",
@@ -27893,7 +27893,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 30,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 165,
             .evYields = {
                 .hp = 1,
                 .attack = 0,
@@ -27933,7 +27933,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_MANAPHY] = {
         .textData = {
-            .name = "Manaphy",
+            .name = "MANAPHY",
             .pokedexEntry = "It starts its life with a wondrous power\\nthat permits it to bond with any kind\\nof Pokémon.",
             .classification = "Seafaring Pokémon",
             .height = "1’00”",
@@ -27950,7 +27950,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_WATER, TYPE_WATER },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 215,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -27990,7 +27990,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_DARKRAI] = {
         .textData = {
-            .name = "Darkrai",
+            .name = "DARKRAI",
             .pokedexEntry = "It chases people and Pokémon from its\\nterritory by causing them to experience\\ndeep, nightmarish slumbers.",
             .classification = "Pitch-Black Pokémon",
             .height = "4’11”",
@@ -28007,7 +28007,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_DARK, TYPE_DARK },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 210,
             .evYields = {
                 .hp = 0,
                 .attack = 0,
@@ -28047,7 +28047,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_SHAYMIN] = {
         .textData = {
-            .name = "Shaymin",
+            .name = "SHAYMIN",
             .pokedexEntry = "The blooming of Gracidea flowers confers\\nthe power of flight upon it. Feelings \\nof gratitude are the message it delivers.",
             .classification = "Gratitude Pokémon",
             .height = "0’08”",
@@ -28064,7 +28064,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_GRASS, TYPE_GRASS },
             .catchRate = 45,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 64,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -28075,7 +28075,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .wildHeldItems = {
                 .common = ITEM_LUM_BERRY,
-                .rare = ITEM_NONE,
+                .rare = ITEM_LUM_BERRY,
             },
             .genderRatio = 255,
             .hatchCycles = 120,
@@ -28104,8 +28104,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
 
     [SPECIES_ARCEUS] = {
         .textData = {
-            .name = "Arceus",
-            .pokedexEntry = "It is told in mythology that this\\nPokémon was born before the universe\\neven existed.",
+            .name = "ARCEUS",
+            .pokedexEntry = "According to the legends of Sinnoh, this\\nPokémon emerged from an egg and\\nshaped all there is in this world.",
             .classification = "Alpha Pokémon",
             .height = "10’06”",
             .weight = "705.5 lbs.",
@@ -28121,7 +28121,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             },
             .types = { TYPE_NORMAL, TYPE_NORMAL },
             .catchRate = 3,
-            .baseExpRewardPadding = 0,
+            .baseExpRewardPadding = 255,
             .evYields = {
                 .hp = 3,
                 .attack = 0,
@@ -28141,7 +28141,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
             .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
             .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },
             .safariFleeRate = 0,
-            .bodyColor = BODY_COLOR_WHITE,
+            .bodyColor = BODY_COLOR_GRAY,
             .flipSprite = 0,
         },
         .metricsData = {
@@ -28162,7 +28162,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
     [SPECIES_EGG] = {
         .textData = {
             .name = "Egg",
-            .pokedexEntry = "-----",
+            .pokedexEntry = "",
             .classification = "????? Pokémon",
             .height = "???’??”",
             .weight = "????.? lbs.",
@@ -28203,23 +28203,23 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .metricsData = {
             .heightDecimetres = 0,
-            .weightHectograms = 69,
+            .weightHectograms = 0,
             .bodyType = DEX_SEARCH_BODYTYPE_QUADRUPED,
-            .femaleTrainerScale = 272,
-            .femalePokemonScale = 256,
-            .maleTrainerScale = 256,
-            .malePokemonScale = 337,
-            .femaleTrainerYOffset = 8,
-            .femalePokemonYOffset = 24,
-            .maleTrainerYOffset = 9,
-            .malePokemonYOffset = 24,
+            .femaleTrainerScale = 0,
+            .femalePokemonScale = 0,
+            .maleTrainerScale = 0,
+            .malePokemonScale = 0,
+            .femaleTrainerYOffset = 0,
+            .femalePokemonYOffset = 0,
+            .maleTrainerYOffset = 0,
+            .malePokemonYOffset = 0,
         },
     },
 
     [SPECIES_BAD_EGG] = {
         .textData = {
             .name = "Bad Egg",
-            .pokedexEntry = "-----",
+            .pokedexEntry = "",
             .classification = "????? Pokémon",
             .height = "???’??”",
             .weight = "????.? lbs.",
@@ -28260,16 +28260,16 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .metricsData = {
             .heightDecimetres = 0,
-            .weightHectograms = 69,
+            .weightHectograms = 0,
             .bodyType = DEX_SEARCH_BODYTYPE_QUADRUPED,
-            .femaleTrainerScale = 272,
-            .femalePokemonScale = 256,
-            .maleTrainerScale = 256,
-            .malePokemonScale = 337,
-            .femaleTrainerYOffset = 8,
-            .femalePokemonYOffset = 24,
-            .maleTrainerYOffset = 9,
-            .malePokemonYOffset = 24,
+            .femaleTrainerScale = 0,
+            .femalePokemonScale = 0,
+            .maleTrainerScale = 0,
+            .malePokemonScale = 0,
+            .femaleTrainerYOffset = 0,
+            .femalePokemonYOffset = 0,
+            .maleTrainerYOffset = 0,
+            .malePokemonYOffset = 0,
         },
     },
 
