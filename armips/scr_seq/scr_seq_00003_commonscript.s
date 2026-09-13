@@ -1749,13 +1749,38 @@ scr_seq_0003_073_autobattle_testing:
 // Caretaker cue - queued from PlayerStepEvent_RepelCounterDecrement (src/egg_caretaker.c)
 // on the first step after the following Pokemon becomes a Chansey or Blissey
 // while an Egg is in the party.  Text archive 040.txt index 121.
+//
+// SetFollowingPokeMovement (command 604) hands the follower a raw MovementAction
+// and takes it off its normal follow-the-player behaviour until something hands
+// it back.  In pret/pokeheartgold ScrCmd_FollowingPokemonMovement passes the
+// halfword straight to sub_0205FC94 on the follow-mon map object, and the
+// companion LockFollowingPoke (602) is ScrCmd_ToggleFollowingPokemonMovement:
+// arg 1 pauses the object's movement, arg 0 unpauses it.  WaitFollowingPoke
+// (603) polls MapObject_IsMovementPaused, i.e. it waits for the action to
+// settle.
+//
+// Every one of the 665 vanilla uses in this ROM therefore brackets a custom
+// movement as
+//     LockFollowingPoke 0 / WaitFollowingPoke / SetFollowingPokeMovement <n>
+//     ... / WaitFollowingPoke / LockFollowingPoke 1 / SetFollowingPokeMovement 48
+// and 48 is strictly the terminal value (375 uses, vs 254 of 55 and 36 of 56).
+// 48 is the one value the decomp names - MOVEMENT_WALK_UNK_48, used by
+// map_preview_graphic.c to put the follower back into ordinary walking.
+//
+// The first version of this script issued SetFollowingPokeMovement with no
+// bracket and no closing 48, so the follower kept the emote action forever and
+// stood still from the cue onwards.  That was the play-test bug.  Do not remove
+// the closing pair below.
 scr_seq_0003_074_egg_caretaker_cue:
     lockall
+    LockFollowingPoke 0                 // unpause, so the manual action is accepted
+    WaitFollowingPoke
     SetFollowingPokeMovement Exclamation
-    WaitFollowingPoke
     play_se SEQ_SE_DP_SELECT
-    CMD_734 1 // FollowingPokeJump
     WaitFollowingPoke
+    LockFollowingPoke 1
+    SetFollowingPokeMovement 48         // MOVEMENT_WALK_UNK_48 - resume normal following
+    CMD_734 1 // FollowingPokeJump
     get_party_lead_alive VAR_SPECIAL_x8004
     buffer_mon_species_name 0, VAR_SPECIAL_x8004
     npc_msg 121
@@ -1767,7 +1792,7 @@ scr_seq_0003_074_egg_caretaker_cue:
 // Caretaker talk - called with CommonScript 2075 from ROM script file 163, the
 // "press A on your following Pokemon" script.  This is ONLY the caretaker
 // reaction: one of three lines (text archive 040.txt indices 122-124) with a
-// sparkle and a hop.
+// hop and a mood bump.
 //
 // Script 163 owns everything else and calls this only when it already knows the
 // follower is a Chansey or Blissey and there is an Egg in the party.  163 does
@@ -1794,7 +1819,14 @@ scr_seq_0003_074_egg_caretaker_cue:
 // follow_poke_interact in a common script; it belongs in the map's own context.
 scr_seq_0003_075_egg_caretaker_talk:
     get_party_lead_alive VAR_SPECIAL_x8004
-    CMD_728 16, 2 // FollowingPokeFlash
+    // CMD_728 (FollowingPokeFlash) was guessed to be a sparkle.  It is not: its
+    // only vanilla use is 0146.script:825-826, immediately before `Flash 1` /
+    // `FlashAnimation`, i.e. it is the HM Flash whiteout.  On screen it made
+    // Blissey flash white on the first frame of every caretaker line, so it is
+    // gone.  What is left is the attested vanilla "follower is happy" pair -
+    // FollowingPokeJump then AdjustFollowingPokeMood - exactly as 0146.script
+    // Functions 75/76/78 do it.  Neither touches the movement-pause state, so
+    // unlike script 074 above this needs no lock bracket.
     CMD_734 2 // FollowingPokeJump
     CMD_732 1 // AdjustFollowingPokeMood
     buffer_mon_species_name 0, VAR_SPECIAL_x8004
