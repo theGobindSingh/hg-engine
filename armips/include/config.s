@@ -14,7 +14,7 @@ FAIRY_TYPE_IMPLEMENTED equ 0
 // SNOW_WARNING_GENERATION controls whether to summon Snow or Hail when the ability is activated.
 // 9 or above: Snow
 // Otherwise: Hail
-SNOW_WARNING_GENERATION equ GEN_LATEST
+SNOW_WARNING_GENERATION equ 4
 
 // SLEEP_TURNS_GENERATION controls the number of turns a Pokémon can be asleep.
 // 4 : 2-5 turns (Prevents movement for 1-4 turns.)
