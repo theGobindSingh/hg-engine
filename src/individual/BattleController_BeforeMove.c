@@ -4227,7 +4227,31 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_COPYCAT: {
-        // TODO
+        // Copycat's effect script calls TryCopycat, which is *vanilla* ARM9 code (battle-script
+        // command 152, BattleScriptCmdTable[152] -> 0x02243A0C; hg-engine does not reimplement
+        // it). That command fails when no move has been used in the battle yet, or when the last
+        // move used is one Copycat may not copy - and on failure it takes its failure branch,
+        // which only raises MOVE_STATUS_FAILED and ends the script.
+        //
+        // In retail HGSS that is enough, because the effect script runs at move-execution time.
+        // hg-engine runs it much earlier, as a submove queued by BattleController_CheckSubmove
+        // during BeforeMove, and at that point MOVE_STATUS_FAILED does *not* stop the BeforeMove
+        // pipeline - only MOVE_STATUS_NO_MORE_WORK does. So a failed Copycat fell straight
+        // through and the move went on to execute with waza_work (0x124) never written, i.e. as
+        // move 0: blank name, 0 base power, no effect.
+        //
+        // Fail it here instead, which is where BeforeMove's own "But it failed!" path lives.
+        // This runs after the submove script (ANNOUNCE_SUB_MOVE is earlier than
+        // MOVE_FAILURES_4_SINGLE_TARGET), so on a *successful* Copycat current_move_index has
+        // already been replaced by the copied move and this case no longer matches.
+        //
+        // CheckLegalMetronomeMove is the same function TryCopycat itself calls for the ban-list
+        // test (hg-engine hooks it over vanilla's 0x02257DA4), so this guard cannot disagree
+        // with it.
+        if (ctx->waza_no_last == MOVE_NONE
+            || CheckLegalMetronomeMove(bsys, ctx, ctx->attack_client, (u16)ctx->waza_no_last) == FALSE) {
+            butItFailedFlag = TRUE;
+        }
         break;
     }
     case MOVE_COURT_CHANGE: {
