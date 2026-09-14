@@ -261,4 +261,10 @@ const u16 UNUSED RegionalDex[] =
     [SPECIES_MEWTWO] = 254,
     [SPECIES_MEW] = 255,
     [SPECIES_CELEBI] = 256,
+    // Caretaker Retirement: the starter Happiny, appended as Johto #257.
+    // Vanilla HGSS's Johto dex carries the Gen IV *evolutions* (Ambipom 424 ... Mamoswine 473)
+    // but none of the Gen IV *babies*, so our starter was registered seen+caught yet never
+    // rendered or counted in the regional dex. SPECIES_HAPPINY (440) is below the existing
+    // highest designator (473), so the emitted pokezukan.bin stays 948 bytes.
+    [SPECIES_HAPPINY] = 257,
 };
