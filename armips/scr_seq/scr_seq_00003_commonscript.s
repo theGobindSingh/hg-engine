@@ -1779,7 +1779,11 @@ scr_seq_0003_074_egg_caretaker_cue:
     WaitFollowingPoke
     LockFollowingPoke 1
     SetFollowingPokeMovement 48         // MOVEMENT_WALK_UNK_48 - resume normal following
-    CMD_734 1 // FollowingPokeJump
+    // CMD_734's operand is a jump COUNT (scrcmd db: "u8: Jumps"), not a flag - so
+    // `CMD_734 1` above hopped only once.  Matched to the "delighted" pair used by
+    // scr_seq_0003_075 and by 0146.script Functions 75/76/78/87.
+    CMD_734 2 // FollowingPokeJump 2 - two hops; operand is a jump COUNT (scrcmd db: "u8: Jumps")
+    CMD_732 1 // AdjustFollowingPokeMood 1 - the attested vanilla "delighted" pair, as 0146.script Fn 75/76/78/87
     get_party_lead_alive VAR_SPECIAL_x8004
     buffer_mon_species_name 0, VAR_SPECIAL_x8004
     npc_msg 121
