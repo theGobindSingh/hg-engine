@@ -1749,41 +1749,44 @@ scr_seq_0003_073_autobattle_testing:
 // on the first step after the following Pokemon becomes a Chansey or Blissey
 // while an Egg is in the party.  Text archive 040.txt index 121.
 //
-// SetFollowingPokeMovement (command 604) hands the follower a raw MovementAction
-// and takes it off its normal follow-the-player behaviour until something hands
-// it back.  In pret/pokeheartgold ScrCmd_FollowingPokemonMovement passes the
-// halfword straight to sub_0205FC94 on the follow-mon map object, and the
-// companion LockFollowingPoke (602) is ScrCmd_ToggleFollowingPokemonMovement:
-// arg 1 pauses the object's movement, arg 0 unpauses it.  WaitFollowingPoke
-// (603) polls MapObject_IsMovementPaused, i.e. it waits for the action to
-// settle.
+// DO NOT reintroduce SetFollowingPokeMovement / LockFollowingPoke here.  Command
+// 604 does NOT take a MovementAction.  It indexes a 57-entry follower-behaviour
+// table (_020FD1F4, valid 0-56) with no effective bounds check.  `Exclamation`
+// is 0x4B = 75, a value from the apply_movement action enum - a different table
+// entirely - so passing it read far past the end and installed garbage
+// callbacks: follow-init was skipped, and the later restore
+// (`SetFollowingPokeMovement 48`) jumped through a garbage cleanup pointer.
+// That corrupted the follower's position bookkeeping for the rest of the map
+// session, which is what produced the lag and the diagonal drift at sprint
+// speed, and why pressing A did nothing afterwards - follower interaction is
+// keyed off that position.
 //
-// Every one of the 665 vanilla uses in this ROM therefore brackets a custom
-// movement as
-//     LockFollowingPoke 0 / WaitFollowingPoke / SetFollowingPokeMovement <n>
-//     ... / WaitFollowingPoke / LockFollowingPoke 1 / SetFollowingPokeMovement 48
-// and 48 is strictly the terminal value (375 uses, vs 254 of 55 and 36 of 56).
-// 48 is the one value the decomp names - MOVEMENT_WALK_UNK_48, used by
-// map_preview_graphic.c to put the follower back into ordinary walking.
+// The whole lock/movement bracket only ever existed to show the "!" emote.  The
+// emote is now done the way vanilla does it, through the ordinary movement
+// system: apply_movement (opcode 94) on target 253 (Following) with a movement
+// block, then wait_movement.  Attested in this ROM at 0092.script:999 -
+// `Movement Following Action#37` / `WaitMovement`, where Action 37 opens with
+// `EmoteExclamation 0x1`.  That path does not touch the follow-behaviour table.
 //
-// The first version of this script issued SetFollowingPokeMovement with no
-// bracket and no closing 48, so the follower kept the emote action forever and
-// stood still from the cue onwards.  That was the play-test bug.  Do not remove
-// the closing pair below.
+// The hop is the attested vanilla "delighted" pair - FollowingPokeJump 2 then
+// AdjustFollowingPokeMood 1, UNWAITED - exactly as 0146.script Functions
+// 75/76/78/87 do it.  Those four use no wait command around the jump; do not
+// add one.
+//
+// scrcmd_609 first, then lockall, is the vanilla step-trigger prologue (see
+// 0111.script Script 1, 0053.script Scripts 2/3/4, and scr_seq_0003_003 / _010 /
+// _012 / _013 / _020 / _028 in this file).
+//
+// Started top-level by EventSet_Script (src/egg_caretaker.c:89), so it ends with
+// a bare `end`, never `endstd`.
 scr_seq_0003_074_egg_caretaker_cue:
+    scrcmd_609
     lockall
-    LockFollowingPoke 0                 // unpause, so the manual action is accepted
-    WaitFollowingPoke
-    SetFollowingPokeMovement Exclamation
+    apply_movement Following, _egg_caretaker_cue_emote
+    wait_movement
     play_se SEQ_SE_DP_SELECT
-    WaitFollowingPoke
-    LockFollowingPoke 1
-    SetFollowingPokeMovement 48         // MOVEMENT_WALK_UNK_48 - resume normal following
-    // CMD_734's operand is a jump COUNT (scrcmd db: "u8: Jumps"), not a flag - so
-    // `CMD_734 1` above hopped only once.  Matched to the "delighted" pair used by
-    // scr_seq_0003_075 and by 0146.script Functions 75/76/78/87.
-    CMD_734 2 // FollowingPokeJump 2 - two hops; operand is a jump COUNT (scrcmd db: "u8: Jumps")
-    CMD_732 1 // AdjustFollowingPokeMood 1 - the attested vanilla "delighted" pair, as 0146.script Fn 75/76/78/87
+    CMD_734 2 // FollowingPokeJump 2 - operand is a jump COUNT (scrcmd db: "u8: Jumps")
+    CMD_732 1 // AdjustFollowingPokeMood 1 - the attested vanilla "delighted" pair
     get_party_lead_alive VAR_SPECIAL_x8004
     buffer_mon_species_name 0, VAR_SPECIAL_x8004
     npc_msg 121
@@ -1792,10 +1795,15 @@ scr_seq_0003_074_egg_caretaker_cue:
     releaseall
     end
 
+_egg_caretaker_cue_emote:
+    step Exclamation, 1
+    step_end
+
 // Caretaker talk - called with CommonScript 2075 from ROM script file 163, the
 // "press A on your following Pokemon" script.  This is ONLY the caretaker
-// reaction: one of three lines (text archive 040.txt indices 122-124) with a
-// hop and a mood bump.
+// reaction: a single line (text archive 040.txt index 121, the same line the cue
+// uses) with a hop and a mood bump.  The client asked for one line, not three.
+// Indices 122-124 stay in the archive, unreferenced, so that no index shifts.
 //
 // Script 163 owns everything else and calls this only when it already knows the
 // follower is a Chansey or Blissey and there is an Egg in the party.  163 does
@@ -1828,28 +1836,15 @@ scr_seq_0003_075_egg_caretaker_talk:
     // Blissey flash white on the first frame of every caretaker line, so it is
     // gone.  What is left is the attested vanilla "follower is happy" pair -
     // FollowingPokeJump then AdjustFollowingPokeMood - exactly as 0146.script
-    // Functions 75/76/78 do it.  Neither touches the movement-pause state, so
-    // unlike script 074 above this needs no lock bracket.
-    CMD_734 2 // FollowingPokeJump
-    CMD_732 1 // AdjustFollowingPokeMood
+    // Functions 75/76/78/87 do it.  Neither touches the movement-pause state, so
+    // unlike script 074 above this needs no lock bracket and no emote.
+    CMD_734 2 // FollowingPokeJump 2
+    CMD_732 1 // AdjustFollowingPokeMood 1
     buffer_mon_species_name 0, VAR_SPECIAL_x8004
-    random VAR_SPECIAL_x8007, 3
-    compare VAR_SPECIAL_x8007, 1
-    goto_if_eq _egg_caretaker_talk_line_1
-    compare VAR_SPECIAL_x8007, 2
-    goto_if_eq _egg_caretaker_talk_line_2
-    npc_msg 122
-    goto _egg_caretaker_talk_wait
-_egg_caretaker_talk_line_1:
-    npc_msg 123
-    goto _egg_caretaker_talk_wait
-_egg_caretaker_talk_line_2:
-    npc_msg 124
-_egg_caretaker_talk_wait:
+    npc_msg 121
     wait_button
     closemsg
     endstd
-    end
 
 
 
