@@ -419,10 +419,12 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 #endif
 
     // 6.4 Critical hit modifier
-    // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-10498744
-    // note: this may change - BDSP is `* 15 / 10`
+    // Gen 4 (vanilla) value: critical hits are a flat 2x, not the Gen 6+ 1.5x.
+    // Confirmed against pret/pokeheartgold's TryCriticalHit/criticalMultiplier
+    // (src/battle/overlay_12_0224E4FC.c, src/battle/battle_command.c), where
+    // ctx->damage *= ctx->criticalMultiplier and a normal crit sets that to 2.
     if (sp->critical > 1) {
-        damage = damage * 150 / 100;
+        damage = damage * 200 / 100;
     }
 
 #ifdef DEBUG_DAMAGE_CALC

@@ -153,7 +153,8 @@
 // SNOW_WARNING_GENERATION controls whether to summon Snow or Hail when the ability is activated.
 // 9 or above: Snow
 // Otherwise: Hail
-#define SNOW_WARNING_GENERATION GEN_LATEST
+// Vanilla Gen 4 baseline: Snow Warning summons Hail, not the Gen 9 Snow condition.
+#define SNOW_WARNING_GENERATION 4
 
 // IMPLEMENT_REUSABLE_REPELS defines whether or not a prompt to use another repel automatically appears upon the previous repel being used up
 #define IMPLEMENT_REUSABLE_REPELS

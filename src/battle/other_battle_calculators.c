@@ -730,6 +730,38 @@ u16 sMetronomeMimicMoveBanList[] = {
     0xFFFF
 };
 
+// vanilla HGSS overlay 12 Copycat ban list, RAM 0x0226CC04 (overlay 12, file offset 0x35344).
+// Confirmed against Bulbapedia's Copycat page, Generation IV column - exactly these 25 moves.
+// Copycat-only, so this ends with 0xFFFF and has no 0xFFFE segment marker.
+static const u16 sCopycatMoveBanList[] = {
+    MOVE_METRONOME,
+    MOVE_STRUGGLE,
+    MOVE_SKETCH,
+    MOVE_MIMIC,
+    MOVE_CHATTER,
+    MOVE_SLEEP_TALK,
+    MOVE_ASSIST,
+    MOVE_MIRROR_MOVE,
+    MOVE_COUNTER,
+    MOVE_MIRROR_COAT,
+    MOVE_PROTECT,
+    MOVE_DETECT,
+    MOVE_ENDURE,
+    MOVE_DESTINY_BOND,
+    MOVE_THIEF,
+    MOVE_FOLLOW_ME,
+    MOVE_SNATCH,
+    MOVE_HELPING_HAND,
+    MOVE_COVET,
+    MOVE_TRICK,
+    MOVE_FOCUS_PUNCH,
+    MOVE_FEINT,
+    MOVE_COPYCAT,
+    MOVE_ME_FIRST,
+    MOVE_SWITCHEROO,
+    0xFFFF
+};
+
 // TODO: code table to store the above, as well as Explosive, Mental, Healing moves list
 
 u16 sLowKickWeightToPower[6][2] = {
@@ -1716,12 +1748,15 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
     }
 }
 
+// Gen 4 (vanilla) critical-hit stage odds: 1/16, 1/8, 1/4, 1/3, 1/2.
+// Confirmed against pret/pokeheartgold's sCritChance table
+// (src/battle/overlay_12_0224E4FC.c): { 16, 8, 4, 3, 2 }.
 const u8 CriticalRateTable[] = {
-    24,
+    16,
     8,
-    2,
-    1,
-    1
+    4,
+    3,
+    2
 };
 
 // calculates the critical hit multiplier
@@ -3729,7 +3764,7 @@ BOOL LONG_CALL ov12_02251A28(struct BattleSystem *bsys, struct BattleStruct *ctx
         ret = FALSE;
     }
 
-    else if (ctx->moveTbl[ctx->battlemon[battlerId].move[movePos]].flag & FLAG_UNUSED_MOVE) {
+    else if (ctx->moveTbl[ctx->battlemon[battlerId].move[movePos]].engineFlags & FLAG_UNUSED_MOVE) {
 #ifdef DEBUG_ENABLE_UNIMPLEMENTED_MOVES
         debug_printf("Move %d at position %d for battler %d is not implemented/dexited\n", ctx->moveTbl[ctx->battlemon[battlerId].move[movePos]], movePos, battlerId);
 #endif
@@ -4098,6 +4133,20 @@ BOOL LONG_CALL CheckLegalMetronomeMove(struct BattleSystem *bsys UNUSED, struct 
     } while (sMetronomeMimicMoveBanList[i] != 0xFFFF);
 
     return sMetronomeMimicMoveBanList[i] == 0xFFFF;
+}
+
+BOOL LONG_CALL CheckLegalCopycatMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo)
+{
+    int i = 0;
+
+    do {
+        if (sCopycatMoveBanList[i] == moveNo) {
+            break;
+        }
+        i++;
+    } while (sCopycatMoveBanList[i] != 0xFFFF);
+
+    return sCopycatMoveBanList[i] == 0xFFFF;
 }
 
 u32 LONG_CALL RollMetronomeMove(struct BattleSystem *bsys)

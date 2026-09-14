@@ -765,7 +765,7 @@ enum {
     MOVE_DATA_TARGET,
     MOVE_DATA_PRIORITY,
     MOVE_DATA_FLAGS,
-    MOVE_DATA_UNK,
+    MOVE_DATA_ENGINE_FLAGS, // was MOVE_DATA_UNK; reads struct BattleMove's engineFlags byte (0xE) - see FLAG_UNUSED_MOVE in battle.h
 };
 
 #define FLAVOR_SPICY  0

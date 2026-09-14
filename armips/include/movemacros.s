@@ -177,7 +177,11 @@ FLAG_PROTECT     equ 0x02
 FLAG_MAGIC_COAT  equ 0x04
 FLAG_SNATCH      equ 0x08
 FLAG_MIRROR_MOVE equ 0x10
-// FLAG_KINGS_ROCK  equ 0x20 // unused
+// FLAG_KINGS_ROCK  equ 0x20 // unused here (no asm reads it); the C side (include/move_data.h)
+                              // now populates it for real on vanilla moves 1-467 as pure
+                              // vanilla-ROM-matching data. FLAG_UNUSABLE_UNIMPLEMENTED below used
+                              // to collide with this same bit; on the C side it now lives in a
+                              // separate byte (engineFlags) instead.
 FLAG_KEEP_HP_BAR equ 0x40
 FLAG_HIDE_SHADOW equ 0x80
 

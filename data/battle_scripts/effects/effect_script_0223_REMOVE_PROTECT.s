@@ -11,6 +11,5 @@ _000:
     End 
 
 _008:
-    CalcCrit 
-    CalcDamage 
+    UpdateVar OPCODE_FLAG_ON, BSCRIPT_VAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
     End 

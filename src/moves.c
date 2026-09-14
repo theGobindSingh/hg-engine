@@ -279,6 +279,9 @@ u32 LONG_CALL GetMoveData(u16 id, u32 field)
     case MOVE_DATA_FLAGS:
         ret = bm->flag;
         break;
+    case MOVE_DATA_ENGINE_FLAGS:
+        ret = bm->engineFlags;
+        break;
     }
 
     sys_FreeMemoryEz(bm);
@@ -295,7 +298,7 @@ u32 LONG_CALL GetMoveData(u16 id, u32 field)
 BOOL LONG_CALL IsMoveUnimplemented(u16 move)
 {
 #ifdef BLOCK_LEARNING_UNIMPLEMENTED_MOVES
-    return (GetMoveData(move, MOVE_DATA_FLAGS) & FLAG_UNUSED_MOVE) != 0;
+    return (GetMoveData(move, MOVE_DATA_ENGINE_FLAGS) & FLAG_UNUSED_MOVE) != 0;
 #else
     return FALSE;
 #endif

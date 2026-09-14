@@ -4245,11 +4245,11 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         // MOVE_FAILURES_4_SINGLE_TARGET), so on a *successful* Copycat current_move_index has
         // already been replaced by the copied move and this case no longer matches.
         //
-        // CheckLegalMetronomeMove is the same function TryCopycat itself calls for the ban-list
+        // CheckLegalCopycatMove is the same function TryCopycat itself calls for the ban-list
         // test (hg-engine hooks it over vanilla's 0x02257DA4), so this guard cannot disagree
         // with it.
         if (ctx->waza_no_last == MOVE_NONE
-            || CheckLegalMetronomeMove(bsys, ctx, ctx->attack_client, (u16)ctx->waza_no_last) == FALSE) {
+            || CheckLegalCopycatMove(bsys, ctx, ctx->attack_client, (u16)ctx->waza_no_last) == FALSE) {
             butItFailedFlag = TRUE;
         }
         break;

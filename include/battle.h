@@ -119,7 +119,11 @@
 #define FLAG_SNATCH      (0x08)
 #define FLAG_MIRROR_MOVE (0x10)
 
-#define FLAG_UNUSED_MOVE (0x20) // encompasses FLAG_UNUSABLE_IN_GEN_8, FLAG_UNUSABLE_IN_GEN_9 and FLAG_UNUSABLE_UNIMPLEMENTED as they all share 1 bit
+// Checked against struct BattleMove's engineFlags byte (0xE), NOT flag (0xB). Encompasses
+// FLAG_UNUSABLE_IN_GEN_8, FLAG_UNUSABLE_IN_GEN_9 and FLAG_UNUSABLE_UNIMPLEMENTED, which all
+// share this one bit of engineFlags. 0xB (flag) bit 0x20 is unrelated vanilla data (King's
+// Rock-affected, see FLAG_KINGS_ROCK in move_data.h) and must not be read here.
+#define FLAG_UNUSED_MOVE (0x20)
 
 #define FLAG_KEEP_HP_BAR (0x40)
 #define FLAG_HIDE_SHADOW (0x80)
@@ -256,7 +260,9 @@ struct __attribute__((packed)) BattleMove {
     /* 0x8 */ u16 target; /**< target bitfield for the move */
     /* 0xA */ s8 priority; /**< move priority */
     /* 0xB */ u8 flag; /**< various flags for the move, see FLAG_* constants */
-    /* 0xC */ u8 unk[4]; /**< battle effect script to run */
+    /* 0xC */ u8 unk0C[2]; /**< vanilla contest appeal/contest-type bytes; HGSS has no Contests, always 0, never read by the engine */
+    /* 0xE */ u8 engineFlags; /**< engine-only flags (FLAG_UNUSABLE_* via FLAG_UNUSED_MOVE) - NOT vanilla data. Lives here, in vanilla's always-0 padding byte, so it can never collide with real move data in `flag` (0xB) */
+    /* 0xF */ u8 unk0F; /**< vanilla padding byte, always 0, unused */
 }; // size = 0x10
 
 /**
@@ -3793,6 +3799,7 @@ BOOL LONG_CALL ShouldPreventMonCapture(struct BattleSystem *bsys);
 
 u32 LONG_CALL RollMetronomeMove(struct BattleSystem *bsys);
 BOOL LONG_CALL CheckLegalMetronomeMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo);
+BOOL LONG_CALL CheckLegalCopycatMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo);
 
 PokepicManager LONG_CALL *BattleSystem_GetPokepicManager(struct BattleSystem *battleSystem);
 BOOL LONG_CALL sub_02017068(void *animManager, int battlerId);

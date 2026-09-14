@@ -85,7 +85,11 @@ static void WriteMoveMember(const char *dir, int index, const MoveSourceEntry *e
     data[11] = entry->battle.flags;
     data[12] = entry->contest.appeal;
     data[13] = entry->contest.contestType;
-    data[14] = entry->contest.padding02[0];
+    // Offset 14 is vanilla's always-0 contest padding byte (HGSS has no Contests). hg-engine
+    // repurposes it to carry engineFlags (FLAG_UNUSABLE_* / FLAG_UNUSED_MOVE) so that byte 11
+    // (flags) is free to hold real vanilla move data, including bit 0x20
+    // (FLAG_KINGS_ROCK), for moves 1-467 without a collision.
+    data[14] = entry->battle.engineFlags;
     data[15] = entry->contest.padding02[1];
 
     if (fwrite(data, sizeof(data), 1, file) != 1) {

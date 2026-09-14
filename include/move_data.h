@@ -21,6 +21,15 @@
 #define FLAG_KEEP_HP_BAR 0x40
 #define FLAG_HIDE_SHADOW 0x80
 
+// Real vanilla flags-byte bit, not an hg-engine invention. Per the Gen III move-data layout
+// (which Gen IV/HGSS inherited byte-for-byte - Bulbapedia "Move data structure (Generation
+// III)", bit 0x20) this marks a move as affected by King's Rock/Razor Fang's bonus flinch
+// chance. hg-engine's own battle code never reads this bit (King's Rock is implemented
+// elsewhere, in src/battle/ability.c), so setting it here is pure vanilla-data fidelity: it
+// must survive byte-identical for moves 1-467, and it must NOT be confused with
+// FLAG_UNUSABLE_* below, which is why the latter now lives in engineFlags instead.
+#define FLAG_KINGS_ROCK 0x20
+
 #define CONTEST_COOL   0
 #define CONTEST_BEAUTY 1
 #define CONTEST_CUTE   2
@@ -51,6 +60,9 @@
 #define APPEAL_AFTER_MAX_VOLTAGE_HEARTS 0x16
 #define APPEAL_PITY_HEARTS              0x17
 
+// These three are assigned to MoveSourceEntry.battle.engineFlags in data/Moves.c, never to
+// .flags - .flags is real vanilla data (see FLAG_KINGS_ROCK above) and engineFlags is
+// the ROM's separate always-0 padding byte, so reusing 0x20 here does not collide with it.
 #if DISALLOW_DEXIT_GEN == 8
 #define FLAG_UNUSABLE_IN_GEN_8 0x20
 #else
@@ -104,6 +116,10 @@ typedef struct MoveBattleFields {
     u16 target;
     s8 priority;
     u8 flags;
+    // engineFlags is packed into the ROM's move-data padding byte (offset 0xE), never into
+    // `flags` (offset 0xB). That byte is real vanilla data for moves 1-467 - see
+    // FLAG_KINGS_ROCK below - so FLAG_UNUSABLE_* must not share a bit with it.
+    u8 engineFlags;
 } MoveBattleFields;
 
 typedef struct MoveContestFields {
