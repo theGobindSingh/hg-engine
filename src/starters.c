@@ -162,6 +162,42 @@ static void SetHappinyStarterMoves(struct PartyPokemon *mon)
     }
 }
 
+/**
+ *  @brief register the starter in the Pokedex as both seen and caught
+ *
+ *  Vanilla registers the starter twice over: `GivePokemon`'s handler calls
+ *  UpdatePokedexWithReceivedSpecies, and the touchscreen starter application
+ *  (pret's choose_starter.c) *also* calls the caught-flag setter directly on
+ *  the party mon straight after adding it. We skip that application entirely,
+ *  so this restores the half of the registration that lived inside it.
+ *
+ *  Done with the mon-based setters rather than a raw species bitmask, because
+ *  those are what record the gender and language bits a Pokedex entry shows -
+ *  a species-only write would leave the entry half-filled. They are the same
+ *  two functions the capture path uses.
+ *
+ *  Safe to call even if `GivePokemon` already registered the species: they are
+ *  idempotent bit-sets. armips/asm/pokedex.s rewrites both for the expanded
+ *  0x700-byte dex struct, and the species-validity guard they call
+ *  (IsMonNotValid, 0x02029408) is rewritten there to return "valid"
+ *  unconditionally, so neither can early-out for Happiny.
+ *
+ *  Nothing here depends on the player owning the Pokedex yet: the dex save
+ *  struct is allocated and initialised at save creation, long before Elm's lab,
+ *  so the flags simply persist until the Pokedex itself is handed over after
+ *  the Mr Pokemon errand.
+ *
+ *  @param fsys the field system, for the save data
+ *  @param mon the PartyPokemon to register
+ */
+static void RegisterStarterInPokedex(FieldSystem *fsys, struct PartyPokemon *mon)
+{
+    void *dex = SaveData_GetDexPtr(fsys->savedata);
+
+    SetPokemonSee(dex, mon);
+    SetPokemonGet(dex, mon);
+}
+
 // ---------------------------------------------------------------------------
 // scrcmd 0xA7 (167), vanilla arm9 0x020430C4, pret's ScrCmd_ChooseStarter.
 // ---------------------------------------------------------------------------
@@ -189,6 +225,7 @@ BOOL LONG_CALL ScrCmd_ChooseStarter(SCRIPTCONTEXT *ctx)
     if (count > 0) {
         SetFourRandomPerfectIVs(&party->members[count - 1]);
         SetHappinyStarterMoves(&party->members[count - 1]);
+        RegisterStarterInPokedex(fsys, &party->members[count - 1]);
     }
 
     // Give the new starter its map object, so it walks behind the player
