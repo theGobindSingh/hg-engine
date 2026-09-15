@@ -1761,29 +1761,74 @@ scr_seq_0003_073_autobattle_testing:
 // speed, and why pressing A did nothing afterwards - follower interaction is
 // keyed off that position.
 //
-// The whole lock/movement bracket only ever existed to show the "!" emote.  The
-// emote is now done the way vanilla does it, through the ordinary movement
-// system: apply_movement (opcode 94) on target 253 (Following) with a movement
-// block, then wait_movement.  Attested in this ROM at 0092.script:999 -
-// `Movement Following Action#37` / `WaitMovement`, where Action 37 opens with
-// `EmoteExclamation 0x1`.  That path does not touch the follow-behaviour table.
+// THE "!" EMOTE IS GONE, DELIBERATELY - do not add it back without an
+// emulator-verified test.  The whole lock/movement bracket only ever existed to
+// show it.  0.2.7 replaced that bracket with `apply_movement Following,
+// <block>` + `wait_movement` (opcode 94 on target 253, then 95), modelled on
+// 0092.script:999, and THAT BUILD HARD-FROZE the moment the cue fired.
+//
+// The differential is clean: 0.2.6 had no apply_movement and did not freeze;
+// 0.2.7 added apply_movement + wait_movement and froze.  The plausible
+// mechanism - ScrCmd_ApplyMovement creates an EventObjectMovementMan and
+// increments SCRIPTENV_ACTIVE_MOVEMENT_COUNTER without checking whether the
+// target already has a movement in flight, while ScrCmd_WaitMovement spins
+// until that counter reaches 0 via EventObjectMovementMan_IsFinish (pret
+// src/scrcmd_c.c:1134, 1212-1220, 1243) - could NOT be proven, because
+// EventObjectMovementMan_Create/IsFinish are still un-decompiled asm.  A second
+// candidate is object 253 simply not resolving here
+// (MapObjectManager_GetFirstActiveObjectByID returning NULL, which makes
+// ScrCmd_ApplyMovement return FALSE via its GF_ASSERT path).
+//
+// Since neither could be settled from source and nothing can be emulator-tested
+// this round, the unproven mechanism was removed rather than patched.  The cue
+// is now hop-only.  Note this is a CONTENT change the client will see: the "!"
+// above the follower is gone; the hop, the sound and the prompt remain.
+//
+// Why the obvious defence was not enough: a WaitFollowingPoke ahead of the
+// apply_movement looked like the fix, but ScrCmd_LockAll already runs its own
+// _WaitFollowMonPaused guard on the follow-mon (pret src/scrcmd_c.c:1262), so
+// such a wait resolves on the same condition lockall waits on immediately
+// after - close to a no-op against this freeze.
 //
 // The hop is the attested vanilla "delighted" pair - FollowingPokeJump 2 then
 // AdjustFollowingPokeMood 1, UNWAITED - exactly as 0146.script Functions
 // 75/76/78/87 do it.  Those four use no wait command around the jump; do not
 // add one.
 //
-// scrcmd_609 first, then lockall, is the vanilla step-trigger prologue (see
-// 0111.script Script 1, 0053.script Scripts 2/3/4, and scr_seq_0003_003 / _010 /
-// _012 / _013 / _020 / _028 in this file).
+// scrcmd_609 was ALSO removed, and for the same reason.  It is not a suspect -
+// it is `MecScript` in the scrcmd-database (0x0261, no operands, non-blocking:
+// no vanilla call site puts a wait after it), it is the conventional vanilla
+// step-trigger prologue (0111.script Script 1, 0053.script Scripts 2/3/4, and
+// scr_seq_0003_003 / _010 / _012 / _013 / _020 / _028 in this file), and
+// scr_seq_0003_003 in particular is the poison step-event script launched
+// through the same EventSet_Script path as this one.
+//
+// But it was added by 80d6d85c6, the SAME commit as the emote - it was not in
+// 0.2.6, and 0.2.6 did not freeze.  With no emulator available this round, the
+// rule applied was that script 074 carries no untested variable at all, so its
+// command sequence is now exactly 0.2.6's minus the follower bracket.  If a
+// later round wants the 609 prologue back, that is a reasonable change - just
+// make it the only change in its build so it can be attributed.
+//
+// Two further findings from that investigation, recorded so they are not
+// re-derived.  Neither is a reason to change this script.
+//
+// 1. A lock bracket around a follower movement is NOT what makes it safe.
+//    Vanilla applies `Movement Following` with the follow system live at 251 of
+//    its 260 call sites - 0044.script:61 (waited by Function 8's WaitMovement
+//    at :82) has no LockFollowingPoke in the whole file, and 0092.script:995-
+//    1003 sits AFTER `LockFollowingPoke 1`, not inside a 0/1 pair.
+// 2. lockall's MAPOBJECTFLAG_MOVEMENT_PAUSED (1<<6) does not gate an applied
+//    movement either.  Per object per frame (pret asm/unk_0205FD20.s:27-72), if
+//    the 0x10 held-movement bit is set the queued movement runs unconditionally
+//    via sub_02062400; only the idle/AI path consults
+//    MapObject_CheckMovementPaused.  So a paused follower still executes
+//    apply_movement, and the pause bit cannot by itself hang wait_movement.
 //
 // Started top-level by EventSet_Script (src/egg_caretaker.c:89), so it ends with
 // a bare `end`, never `endstd`.
 scr_seq_0003_074_egg_caretaker_cue:
-    scrcmd_609
     lockall
-    apply_movement Following, _egg_caretaker_cue_emote
-    wait_movement
     play_se SEQ_SE_DP_SELECT
     CMD_734 2 // FollowingPokeJump 2 - operand is a jump COUNT (scrcmd db: "u8: Jumps")
     CMD_732 1 // AdjustFollowingPokeMood 1 - the attested vanilla "delighted" pair
@@ -1794,10 +1839,6 @@ scr_seq_0003_074_egg_caretaker_cue:
     closemsg
     releaseall
     end
-
-_egg_caretaker_cue_emote:
-    step Exclamation, 1
-    step_end
 
 // Caretaker talk - called with CommonScript 2075 from ROM script file 163, the
 // "press A on your following Pokemon" script.  This is ONLY the caretaker
