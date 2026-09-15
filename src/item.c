@@ -429,6 +429,10 @@ u16 GetItemIndex(u16 item, u16 type)
         if (item == ITEM_RETURN_ID) {
             return GFX_ITEM_RETURN_ID;
         }
+        if (item == ITEM_MR_PAINT) {
+            // no dedicated graphics yet; reuse ITEM_PREMIER_BALL's icon slot verbatim
+            item = ITEM_PREMIER_BALL;
+        }
         ret = item * 2 + 2;
         return ret;
 
@@ -438,6 +442,10 @@ u16 GetItemIndex(u16 item, u16 type)
         }
         if (item == ITEM_RETURN_ID) {
             return GFX_ITEM_RETURN_ID + 1;
+        }
+        if (item == ITEM_MR_PAINT) {
+            // no dedicated graphics yet; reuse ITEM_PREMIER_BALL's palette slot verbatim
+            item = ITEM_PREMIER_BALL;
         }
         ret = item * 2 + 3;
         return ret;

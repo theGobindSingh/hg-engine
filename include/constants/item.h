@@ -2693,8 +2693,9 @@
 
 // define your custom move effects below like this
 // #define ITEM_CUSTOM_1 (MAX_BASE_ITEM_NUM + 1)
+#define ITEM_MR_PAINT (MAX_BASE_ITEM_NUM + 1) // custom key item "Mr. Paint" (name/description are placeholders, see itemdata.c)
 
-#define MAX_TOTAL_ITEM_NUM ITEM_CANARI_BREAD
+#define MAX_TOTAL_ITEM_NUM ITEM_MR_PAINT
 
 #define NUM_MEGA_STONES (48) // includes the pixie plate, doesn't include plza megas due to overflowing bag
 #define NUM_HMS         (ITEM_HM08 - ITEM_HM01 + 1) // intentionally do not include HM07_ORAS (Dive)
