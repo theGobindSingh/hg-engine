@@ -2,6 +2,7 @@
 #define GUARD_MR_PAINT_H
 
 #include "types.h"
+#include "script.h"
 
 // Mr. Paint (feature 3, slice 0.3.1 "learn") - see docs/mr-paint.md in the james-game repo for
 // the full research record. This header is the single source of truth shared by src/bag.c
@@ -33,5 +34,14 @@ u16 MrPaintFlagForMove(u16 move);
 // 1-based index into gMrPaintMoveEntries, matching archive-40 messages 121-130
 // (data/text/040.txt) in the same order. 0 if move isn't one Mr. Paint tracks.
 u16 MrPaintMessageIndexForMove(u16 move);
+
+// Slice 0.3.2 "obstacles" - full-function hook (see hg-engine `hooks`) replacing retail
+// ScrCmd_GetPartySlotWithMove (ROM script command 141, CheckMoveInParty) at 0x0204D3CC.
+// Reproduces the vanilla search exactly, then falls back to party slot 0 (the lead mon, used
+// as the visible stand-in actor) when nothing in the party knows the move but the player holds
+// Mr. Paint, has already "learned" that move on it (the matching reserved flag), and the move
+// is one of the ones Mr. Paint tracks. Badge gating happens later in the calling ROM script and
+// is untouched by this.
+BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx);
 
 #endif // GUARD_MR_PAINT_H

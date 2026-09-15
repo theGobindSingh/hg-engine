@@ -491,6 +491,9 @@ arm9 MonTryLearnMoveOnLevelUp 02071534 3
 
 arm9 ScrCmd_DaycareSanitizeMon 0204CFB8 1
 
+# Mr. Paint (0.3.2 obstacles) - CheckMoveInParty fallback to the item when nothing knows the move
+arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
+
 0012 BattleSystem_CheckMoveEffect 0224C018
 
 # 0012 BattleControllerPlayer_UpdateMonCondition 02249CC4 2
