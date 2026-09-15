@@ -494,6 +494,14 @@ arm9 ScrCmd_DaycareSanitizeMon 0204CFB8 1
 # Mr. Paint (0.3.2 obstacles) - CheckMoveInParty fallback to the item when nothing knows the move
 arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
 
+# Mr. Paint (0.3.3 Smeargle actor) - Cut/RockSmash/Headbutt/Strength/Flash actor + name buffer,
+# the Surf/Waterfall/Whirlpool/Rock Climb actor resolver (overlay 1), and ScrCmd_End so a
+# cancelled prompt can't leave the actor flag stuck set.
+arm9 ScrCmd_183 02043724 1
+arm9 ScrCmd_BufferPartyMonNick 020486F0 1
+arm9 ScrCmd_End 02040898 1
+0001 MrPaintFieldMoveActorMon 021F3100 2
+
 0012 BattleSystem_CheckMoveEffect 0224C018
 
 # 0012 BattleControllerPlayer_UpdateMonCondition 02249CC4 2
