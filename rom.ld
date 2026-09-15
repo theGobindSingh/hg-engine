@@ -102,6 +102,13 @@ SaveData_GetRepelPtr = 0x0202DB05;
 SaveData_GetEventPtr = 0x020503D0 | 1;
 SaveData_GetDexPtr = 0x0202A634 |1;
 SaveData_GetPlayerPartyPtr = 0x02074904 |1;
+
+/* Mr. Paint slice 0.3.3 "Smeargle actor" */
+PlayerAvatar_GetGender = 0x0205C724 | 1;
+ov02_02249458          = 0x02249458 | 1;
+SetupNativeScript      = 0x0203FD58 | 1;
+StopScript             = 0x0203FD60 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
