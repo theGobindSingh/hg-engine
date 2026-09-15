@@ -19,9 +19,19 @@
 // 12 reserved flags 0x8A0-0x8AB (Cut..Dig - the first 10). Headbutt (0x8AA) and Sweet Scent
 // (0x8AB) have no machine that teaches them and are deliberately absent from this table; their
 // flags stay reserved and unset by this slice.
+//
+// 2026-09-16 user decision: Mr. Paint's scope is the seven context-aware OBSTACLE moves - Cut,
+// Surf, Rock Smash, Strength, Waterfall, Whirlpool, Rock Climb. Fly (0x8A1), Flash (0x8A4) and
+// Dig (0x8A9) are CUT from this build: receiving HM02/TM70/TM28 while holding Mr. Paint behaves
+// exactly like vanilla - item obtained, no flag set, no inspiration message. Their rows below
+// stay in place (flag ids and the archive-40 message index mapping 1..10 are unchanged) so the
+// message-index contract doesn't shift, but `learnable` is 0 for them. Along with Headbutt
+// (0x8AA) and Sweet Scent (0x8AB), which have no machine at all, all five flags stay reserved
+// and are never set by this build; their data/text/040.txt lines stay in place, unreferenced.
 typedef struct MrPaintMoveEntry {
     u16 move;
     u16 flag;
+    u16 learnable;
 } MrPaintMoveEntry;
 
 #define MR_PAINT_NUM_MACHINE_MOVES 10
@@ -34,6 +44,12 @@ u16 MrPaintFlagForMove(u16 move);
 // 1-based index into gMrPaintMoveEntries, matching archive-40 messages 121-130
 // (data/text/040.txt) in the same order. 0 if move isn't one Mr. Paint tracks.
 u16 MrPaintMessageIndexForMove(u16 move);
+
+// Same lookup as MrPaintFlagForMove, but returns 0 unless the entry is also marked
+// `learnable` (the seven obstacle moves). This is the learning path (Bag_AddItem) only -
+// the obstacle path (ScrCmd_GetPartySlotWithMove) keeps using MrPaintFlagForMove, since a
+// flag can be set on an already-learned move without this build ever setting it itself.
+u16 MrPaintLearnableFlagForMove(u16 move);
 
 // Slice 0.3.2 "obstacles" - full-function hook (see hg-engine `hooks`) replacing retail
 // ScrCmd_GetPartySlotWithMove (ROM script command 141, CheckMoveInParty) at 0x0204D3CC.
