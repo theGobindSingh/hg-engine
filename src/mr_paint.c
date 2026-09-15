@@ -3,9 +3,11 @@
 #include "../include/constants/file.h"
 #include "../include/constants/item.h"
 #include "../include/constants/moves.h"
+#include "../include/constants/species.h"
 #include "../include/types.h"
 
 #include "../include/bag.h"
+#include "../include/message.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
 #include "../include/script.h"
@@ -54,6 +56,34 @@ u16 MrPaintMessageIndexForMove(u16 move)
     return 0;
 }
 
+// Slice 0.3.3 "Smeargle actor". Set-or-cleared on EVERY call of the 0.3.2
+// CheckMoveInParty hook, read (never cleared) by the three actor hooks, and
+// force-cleared whenever any script ends - see ScrCmd_End below. Overlay-129
+// BSS, proven zero at boot, so this fails safe to vanilla.
+static u8 sMrPaintActorActive;
+
+// The stand-in actor. Rebuilt deterministically on every use, so nothing
+// depends on lazy-init state. 0xEC (236) bytes of overlay-129 BSS.
+static struct PartyPokemon sMrPaintActor;
+
+// "Mr. Paint" in the HGSS charmap (charmap.txt: M=0137 r=0156 .=01AE
+// space=01DE P=013A a=0145 i=014D n=0152 t=0158), 0xFFFF-terminated.
+// 9 characters; the nickname field holds 11.
+static const u16 sMrPaintActorNickname[] = {
+    0x0137, 0x0156, 0x01AE, 0x01DE, 0x013A, 0x0145, 0x014D, 0x0152, 0x0158, 0xFFFF
+};
+
+// Fixed PID ('MrPa'): deterministic, and non-shiny against the forced OT id 0.
+#define MR_PAINT_ACTOR_PID 0x4D725061u
+
+static struct PartyPokemon *MrPaintActorMon(void)
+{
+    ZeroMonData(&sMrPaintActor);
+    PokeParaSet(&sMrPaintActor, SPECIES_SMEARGLE, 5, 31, TRUE, MR_PAINT_ACTOR_PID, TRUE, 0);
+    SetMonData(&sMrPaintActor, MON_DATA_NICKNAME, (void *)sMrPaintActorNickname);
+    return &sMrPaintActor;
+}
+
 // Slice 0.3.2 "obstacles". Full-function hook (see hg-engine `hooks`:
 // "arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1") replacing retail ScrCmd_GetPartySlotWithMove
 // (ROM script command 141, CheckMoveInParty) at 0x0204D3CC. Reads, in order, the destination
@@ -97,6 +127,7 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
         }
     }
 
+    sMrPaintActorActive = 0;
     if (*destVar == MR_PAINT_SLOT_NOT_FOUND && partyCount > 0) {
         u16 flag = MrPaintFlagForMove(move);
 
@@ -105,9 +136,87 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
 
             if (Bag_HasItem(bag, ITEM_MR_PAINT, 1, HEAPID_WORLD)) {
                 *destVar = 0;
+                sMrPaintActorActive = 1;
             }
         }
     }
 
+    return FALSE;
+}
+
+// Slice 0.3.3 "Smeargle actor". Four hooks that make the cutscene actor and the
+// "<name> used X!" message read Mr. Paint / SMEARGLE instead of the real lead
+// mon, whenever sMrPaintActorActive says the 0.3.2 hook just fell back to the
+// item. Faithful reimplementations of the vanilla bodies, each with one
+// substitution, in the same call order as the shipped disassembly.
+
+extern u32 LONG_CALL PlayerAvatar_GetGender(void *playerAvatar);
+extern void *LONG_CALL ov02_02249458(FieldSystem *fsys, int a1, struct PartyPokemon *mon, int gender);
+extern void LONG_CALL SetupNativeScript(SCRIPTCONTEXT *ctx, ScrCmdFunc ptr);
+extern void LONG_CALL StopScript(SCRIPTCONTEXT *ctx);
+
+#define MR_PAINT_SCRCMD183_CALLBACK ((ScrCmdFunc)0x0204378D)
+
+// Replaces retail ScrCmd_183 (0x02043724) - the Cut/RockSmash/Headbutt/Strength/Flash
+// cutscene actor setup. MUST return TRUE: the script yields on the native callback.
+BOOL ScrCmd_183(SCRIPTCONTEXT *ctx)
+{
+    void **pWork = (void **)FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_GENERIC_WORK_PTR);
+    u16 partyIdx = ScriptGetVar(ctx);
+    struct PartyPokemon *mon =
+        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(ctx->fsys->savedata), partyIdx);
+    u32 gender;
+
+    if (sMrPaintActorActive) {
+        mon = MrPaintActorMon();
+    }
+
+    gender = PlayerAvatar_GetGender(ctx->fsys->playerAvatar);
+    *pWork = ov02_02249458(ctx->fsys, 0, mon, gender);
+    SetupNativeScript(ctx, MR_PAINT_SCRCMD183_CALLBACK);
+    return TRUE;
+}
+
+// Replaces retail ScrCmd_BufferPartyMonNick (0x020486F0) - the "<name> used X!"
+// name buffer. MUST return FALSE: synchronous, no wait state.
+BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fsys;
+    void **msgFmt = (void **)FieldSysGetAttrAddr(fieldSystem, SCRIPTENV_MSGFMT);
+    u8 idx = ScriptReadByte(ctx);          // must be read BEFORE the var - keep separate statements
+    u16 partyMonIdx = ScriptGetVar(ctx);
+    struct PartyPokemon *mon =
+        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyMonIdx);
+
+    if (sMrPaintActorActive) {
+        mon = MrPaintActorMon();
+    }
+
+    BufferBoxMonNickname((MessageFormat *)*msgFmt, idx, (struct BoxPokemon *)mon);
+    return FALSE;
+}
+
+// Replaces overlay 1's ov01_021F3100 (0x021F3100) - the actor resolver the
+// Surf / Waterfall / Whirlpool / Rock Climb field tasks all funnel through.
+struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 partyIdx)
+{
+    struct PartyPokemon *mon =
+        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyIdx);
+
+    if (sMrPaintActorActive) {
+        mon = MrPaintActorMon();
+    }
+    return mon;
+}
+
+// Replaces ScrCmd_End (opcode 2, 0x02040898). The ONLY reason it exists is to
+// make a stale actor flag impossible: if the player cancels the "Use CUT?"
+// prompt, nothing else consumes the flag, so it is cleared here whenever the
+// script terminates. Vanilla body is StopScript(ctx) + return FALSE, reproduced
+// exactly plus the one clear.
+BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
+{
+    sMrPaintActorActive = 0;
+    StopScript(ctx);
     return FALSE;
 }

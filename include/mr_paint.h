@@ -44,4 +44,23 @@ u16 MrPaintMessageIndexForMove(u16 move);
 // is untouched by this.
 BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx);
 
+// Slice 0.3.3 "Smeargle actor" - full-function hooks (see hg-engine `hooks`) that make the
+// cutscene actor and the "<name> used X!" message read Mr. Paint / SMEARGLE instead of the
+// real lead mon, whenever the 0.3.2 hook above just fell back to the item. See src/mr_paint.c
+// for the shared state contract (sMrPaintActorActive) these four coordinate through.
+
+// Replaces retail ScrCmd_183 (0x02043724) - Cut/RockSmash/Headbutt/Strength/Flash actor setup.
+BOOL ScrCmd_183(SCRIPTCONTEXT *ctx);
+
+// Replaces retail ScrCmd_BufferPartyMonNick (0x020486F0) - the "<name> used X!" name buffer.
+BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx);
+
+// Replaces overlay 1's ov01_021F3100 (0x021F3100) - actor resolver for
+// Surf / Waterfall / Whirlpool / Rock Climb.
+struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 partyIdx);
+
+// Replaces ScrCmd_End (opcode 2, 0x02040898) - clears sMrPaintActorActive on every script end,
+// so a cancelled prompt can never leave a stale actor flag set.
+BOOL ScrCmd_End(SCRIPTCONTEXT *ctx);
+
 #endif // GUARD_MR_PAINT_H
