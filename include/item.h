@@ -243,6 +243,12 @@ void LONG_CALL SetUpItemScript(void *iuwk, const void *icwk, u32 scr_id);
  */
 u32 LONG_CALL GetItemData(u16 item, u32 param, u32 heap_id);
 
+/**
+ *  @brief converts an item id (TM/HM/TR) to the move it teaches; MOVE_NONE if it isn't one
+ *  @see   src/item.c
+ */
+u16 ItemToMachineMove(u16 itemId);
+
 /* item use funcs */
 BOOL LONG_CALL THUMB_FUNC ItemFieldUseFunc_Generic(struct ItemFieldUseData *data);
 void LONG_CALL THUMB_FUNC ItemMenuUseFunc_HealingItem(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2);

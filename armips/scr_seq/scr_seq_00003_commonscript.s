@@ -642,6 +642,7 @@ _084E:
     npc_msg 31
 _0851:
     wait_button_or_walk_away
+    call _MrPaintShowInspiration
     return
 
 scr_seq_0003_033_give_item_verbose:
@@ -658,6 +659,7 @@ _085F:
     compare VAR_SPECIAL_RESULT, 7
     call_if_ne _08A3
     npc_msg 89
+    call _MrPaintShowInspiration
     return
 
 _0892:
@@ -742,6 +744,73 @@ _09D8:
     goto _09E9
 
 _09E9:
+    return
+
+// Mr. Paint (feature 3, slice 0.3.1): called from the tail of scr_seq_0003_008 and
+// scr_seq_0003_033_give_item_verbose, right before their own `return`, after the native
+// "Obtained X!" give sequence has already run. src/bag.c's Bag_AddItem sets flag 0x8A0-0x8A9
+// and var 0x4059 the moment the matching HM/TM lands in the bag while Mr. Paint is held;
+// this only ever shows the client's inspiration line the one time that happens, then no-ops.
+_MrPaintShowInspiration:
+    mr_paint_pending_inspiration VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintInspirationDone
+    buffer_item_name 0, VAR_SPECIAL_x8001
+    switch VAR_SPECIAL_x8000
+    case 1, _MrPaintMsgCut
+    case 2, _MrPaintMsgFly
+    case 3, _MrPaintMsgSurf
+    case 4, _MrPaintMsgStrength
+    case 5, _MrPaintMsgFlash
+    case 6, _MrPaintMsgWhirlpool
+    case 7, _MrPaintMsgWaterfall
+    case 8, _MrPaintMsgRockSmash
+    case 9, _MrPaintMsgRockClimb
+    case 10, _MrPaintMsgDig
+    end
+
+_MrPaintMsgCut:
+    npc_msg 121
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgFly:
+    npc_msg 122
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgSurf:
+    npc_msg 123
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgStrength:
+    npc_msg 124
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgFlash:
+    npc_msg 125
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgWhirlpool:
+    npc_msg 126
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgWaterfall:
+    npc_msg 127
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgRockSmash:
+    npc_msg 128
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgRockClimb:
+    npc_msg 129
+    goto _MrPaintInspirationShown
+
+_MrPaintMsgDig:
+    npc_msg 130
+
+_MrPaintInspirationShown:
+    wait_button_or_walk_away
+_MrPaintInspirationDone:
     return
 
 scr_seq_0003_009:

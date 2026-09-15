@@ -7,8 +7,40 @@
 #include "../include/item.h"
 #include "../include/map_events_internal.h"
 #include "../include/message.h"
+#include "../include/mr_paint.h"
 #include "../include/save.h"
 #include "../include/script.h"
+
+// ItemToMachineMove/ItemToMachineMoveIndex (src/item.c:509-551) fall through to index 0 -
+// sMachineMoves[0], NOT MOVE_NONE - for any item id >= ITEM_TM001 that isn't in one of their
+// recognized sub-ranges (this covers most items above the vanilla TM/HM/TR block, including
+// ITEM_MR_PAINT itself). Calling ItemToMachineMove on an arbitrary received item without this
+// guard would misfire on hundreds of unrelated items. Mirrors item.c's own range checks exactly.
+static BOOL MrPaintIsMachineItem(u16 itemId)
+{
+    if (itemId >= ITEM_TM001 && itemId <= ITEM_HM08) {
+        return TRUE;
+    }
+    if (itemId == ITEM_HM07_ORAS) {
+        return TRUE;
+    }
+    if (itemId == ITEM_TM00) {
+        return TRUE;
+    }
+    if (itemId >= ITEM_TM093 && itemId <= ITEM_TM095) {
+        return TRUE;
+    }
+    if (itemId >= ITEM_TM096 && itemId <= ITEM_TM100) {
+        return TRUE;
+    }
+    if (itemId >= ITEM_TM100_SV && itemId <= ITEM_TM229) {
+        return TRUE;
+    }
+    if (itemId >= ITEM_TR00 && itemId <= ITEM_TR99) {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "../include/test_battle.h"
@@ -222,6 +254,22 @@ BOOL Bag_AddItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
             SortTMHMPocket(slot, count);
         }
     }
+
+    // Mr. Paint: if this item is an HM/TM/TR, its move maps to one of the 10 reachable
+    // reserved flags, that flag isn't already set, and the player is holding Mr. Paint,
+    // "teach" it and stash the item id for the inspiration message. Every other item, and
+    // every other case of this one, is untouched.
+    {
+        if (MrPaintIsMachineItem(itemId)) {
+            u16 move = ItemToMachineMove(itemId);
+            u16 flag = MrPaintFlagForMove(move);
+            if (flag != 0 && !CheckScriptFlag(flag) && Bag_HasItem(bag, ITEM_MR_PAINT, 1, heap_id)) {
+                SetScriptFlag(flag);
+                SetScriptVar(MR_PAINT_PENDING_ITEM_VAR, itemId);
+            }
+        }
+    }
+
     return TRUE;
 }
 

@@ -1540,6 +1540,17 @@ PLAYER_TRANSITION_x4000            equ 16384
 RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
 .endmacro
 
+// Mr. Paint (feature 3, slice 0.3.1): resultVar gets the 1-based index of the move Mr. Paint
+// just learned (0 = nothing pending), itemVar gets the HM/TM item id so the caller can
+// buffer_item_name it into the inspiration message. See src/script_new_cmds.c and
+// src/mr_paint.c. Emitted directly (not through RunNewCommand, which only carries one operand).
+.macro mr_paint_pending_inspiration,resultVar,itemVar
+.halfword 208
+.byte NEW_COMMAND_MR_PAINT_PENDING_INSPIRATION
+.halfword resultVar
+.halfword itemVar
+.endmacro
+
 // Dummy
 .macro scrcmd_209,slot,unk
 .halfword 209
@@ -6751,6 +6762,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 
 // 208 has been reused for new script commands
 .equ NEW_COMMAND_QUEUE_NEW_REPEL, 0
+// Mr. Paint (feature 3, slice 0.3.1) - see mr_paint_pending_inspiration above and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_PENDING_INSPIRATION, which must match.
+.equ NEW_COMMAND_MR_PAINT_PENDING_INSPIRATION, 1
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
