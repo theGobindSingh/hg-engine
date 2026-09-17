@@ -231,3 +231,33 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
     StopScript(ctx);
     return FALSE;
 }
+
+// Slice 0.3.7 "deferred inspiration". Bug 2a: the 0.3.1 build called
+// _MrPaintShowInspiration from inside the shared give-item routine, which
+// returns to the giver BEFORE the giver's own closing dialogue - so the
+// congratulation cut into the conversation. Both inline calls are gone; the
+// prompt is now a common script of its own, started from here.
+//
+// The trigger point is the vanilla player-step event (hooked in src/repel.c),
+// which by construction only runs when the player completes a step in the
+// overworld under their own control - never during a battle, a cutscene, a map
+// transition, or while a script holds the player. That structural guarantee is
+// the whole safety argument; there is no state here to go stale. Vanilla itself
+// starts a script from this callback ("REPEL's effect wore off", 2022), and
+// hg-engine already ships scr_seq_0003_072_repels through it the same way.
+//
+// This only ever PEEKS at the var - opcode 208 subcommand 1 is what clears it
+// (src/script_new_cmds.c), so the prompt fires at most once per HM learned.
+BOOL MrPaintTryQueueInspiration(FieldSystem *fieldSystem)
+{
+    if (fieldSystem == NULL) {
+        return FALSE;
+    }
+
+    if (GetScriptVar(MR_PAINT_PENDING_ITEM_VAR) == 0) {
+        return FALSE;
+    }
+
+    EventSet_Script(fieldSystem, MR_PAINT_INSPIRATION_SCRIPT, NULL);
+    return TRUE;
+}

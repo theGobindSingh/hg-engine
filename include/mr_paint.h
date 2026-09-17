@@ -79,4 +79,15 @@ struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 part
 // so a cancelled prompt can never leave a stale actor flag set.
 BOOL ScrCmd_End(SCRIPTCONTEXT *ctx);
 
+// Slice 0.3.7 "deferred inspiration" - common-script 3 entry id as EventSet_Script takes it,
+// i.e. 2000 + the scrdef index of scr_seq_0003_074_mr_paint_inspiration. Same numbering as
+// src/repel.c's 2072/2022 and src/bag.c's 2073.
+#define MR_PAINT_INSPIRATION_SCRIPT 2074
+
+// Queues the inspiration prompt as a script of its own when one is pending (var 0x4059 != 0),
+// so it plays AFTER the giver's whole conversation instead of cutting into it. Called once per
+// completed player step from PlayerStepEvent_RepelCounterDecrement; returns TRUE if it queued
+// a script, matching that callback's "an event was set for this step" contract.
+BOOL MrPaintTryQueueInspiration(FieldSystem *fieldSystem);
+
 #endif // GUARD_MR_PAINT_H

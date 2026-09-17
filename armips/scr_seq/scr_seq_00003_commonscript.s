@@ -88,6 +88,7 @@ scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
+scrdef scr_seq_0003_074_mr_paint_inspiration
 scrdef_end
 
 scr_seq_0003_002:
@@ -642,7 +643,6 @@ _084E:
     npc_msg 31
 _0851:
     wait_button_or_walk_away
-    call _MrPaintShowInspiration
     return
 
 scr_seq_0003_033_give_item_verbose:
@@ -659,7 +659,6 @@ _085F:
     compare VAR_SPECIAL_RESULT, 7
     call_if_ne _08A3
     npc_msg 89
-    call _MrPaintShowInspiration
     return
 
 _0892:
@@ -756,11 +755,24 @@ _09D8:
 _09E9:
     return
 
-// Mr. Paint (feature 3, slice 0.3.1): called from the tail of scr_seq_0003_008 and
-// scr_seq_0003_033_give_item_verbose, right before their own `return`, after the native
-// "Obtained X!" give sequence has already run. src/bag.c's Bag_AddItem sets flag 0x8A0-0x8A9
-// and var 0x4059 the moment the matching HM/TM lands in the bag while Mr. Paint is held;
-// this only ever shows the client's inspiration line the one time that happens, then no-ops.
+// Mr. Paint (feature 3, slice 0.3.7 "deferred inspiration"): the client's congratulation as a
+// script of its own, started by src/mr_paint.c's MrPaintTryQueueInspiration from the player-step
+// event once the giver's whole conversation has finished and the player is walking again. Shape
+// copied from scr_seq_0003_072_repels, the repel prompt fired through the very same callback.
+scr_seq_0003_074_mr_paint_inspiration:
+    lockall
+    call _MrPaintShowInspiration
+    closemsg
+    releaseall
+    end
+
+// Mr. Paint (feature 3, slice 0.3.1, re-homed in 0.3.7): the message body itself. src/bag.c's
+// Bag_AddItem sets flag 0x8A0-0x8A9 and var 0x4059 the moment a matching HM/TM lands in the bag
+// while Mr. Paint is held; this only ever shows the client's inspiration line the one time that
+// happens, then no-ops. Until 0.3.6 it was `call`ed from the tails of scr_seq_0003_008 and
+// scr_seq_0003_033_give_item_verbose, which ran it BEFORE the giver's own closing dialogue -
+// bug 2a. Its only caller now is scr_seq_0003_074_mr_paint_inspiration above. It locks nothing
+// and releases nothing itself, so every path through it must reach its `return`.
 _MrPaintShowInspiration:
     mr_paint_pending_inspiration VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
     compare VAR_SPECIAL_x8000, 0
@@ -777,7 +789,10 @@ _MrPaintShowInspiration:
     case 8, _MrPaintMsgRockSmash
     case 9, _MrPaintMsgRockClimb
     case 10, _MrPaintMsgDig
-    end
+    // Unreachable: the native handler returns 0 or 1-10 and 0 is filtered above. A bare
+    // `end` here would leave the 074 entry's lockall without its releaseall, so route the
+    // switch's default through the same return every other path uses.
+    goto _MrPaintInspirationDone
 
 _MrPaintMsgCut:
     npc_msg 121

@@ -4,6 +4,15 @@
 #include "../include/constants/file.h"
 #include "../include/constants/item.h"
 #include "../include/item.h"
+#include "../include/mr_paint.h"
+
+// Mr. Paint's deferred inspiration cue (slice 0.3.7) rides the player-step event below, and the
+// hook entry that installs it (`hooks`: PlayerStepEvent_RepelCounterDecrement) is gated on this
+// same flag. If reusable repels were ever switched off, the whole function would compile out and
+// the cue would silently stop appearing - so fail the build loudly rather than ship that.
+#ifndef IMPLEMENT_REUSABLE_REPELS
+#error "Mr. Paint's inspiration cue needs PlayerStepEvent_RepelCounterDecrement: re-enable IMPLEMENT_REUSABLE_REPELS, or give MrPaintTryQueueInspiration a player-step hook of its own."
+#endif
 
 void Repel_SetCurrentType();
 
@@ -29,6 +38,13 @@ bool32 PlayerStepEvent_RepelCounterDecrement(SaveData *saveData, FieldSystem *fi
 
             return TRUE;
         }
+    }
+
+    // Mr. Paint, slice 0.3.7. Deliberately LAST, after every repel path has had its chance to
+    // return TRUE: on a step where both would fire, repel keeps its vanilla behaviour and the
+    // inspiration prompt simply shows on the following step.
+    if (MrPaintTryQueueInspiration(fieldSystem)) {
+        return TRUE;
     }
 
     return FALSE;
