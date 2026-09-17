@@ -119,14 +119,14 @@ NOT TELLING
 The repellent’s effect wore off!\nWould you like to use another one?
 You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Cut!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Fly!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Surf!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Strength!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Flash!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Whirlpool!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Waterfall!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Rock Smash!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Rock Climb!!!
-Mr Paint was inspired by {STRVAR_1 8, 0, 0}! Mr Paint learned Dig!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Cut!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Fly!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Surf!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Strength!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Flash!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Whirlpool!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Waterfall!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Smash!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Climb!!!
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Dig!!!
 {STRVAR_1 3, 0, 0} obtained\n{COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
