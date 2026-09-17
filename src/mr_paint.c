@@ -19,6 +19,29 @@ extern int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
 // Not-found literal vanilla ScrCmd_GetPartySlotWithMove writes into *destVar before searching.
 #define MR_PAINT_SLOT_NOT_FOUND 6
 
+// Slice 0.3.8 "actor slot". Bug 3: 0.3.2 returned a hardcoded slot 0 for the stand-in actor.
+// ROM script 146 then does `CompareVars 0x8004 0x8005` - the actor slot against the FOLLOWING
+// Pokemon's slot (`GetFollowingPokePartySlot`) - and a player whose follower is party slot 0
+// (the overwhelmingly common case) makes that EQUAL, sending the flow down the "the follower
+// performs the move" branch. That branch never calls CutAnimation (opcode 183), so the 0.3.3
+// Smeargle substitution never ran and the real lead animated the move, even though the name
+// buffer - which runs earlier and unconditionally - already said "Mr. Paint".
+//
+// The fix returns a slot the follower can never have. It is deliberately NOT a real alternative
+// party index: the follower's slot is unreachable from C here (opcode 727 has no named handler,
+// no symbol and no gScriptCmdTable reference anywhere in hg-engine, and the FollowMon struct in
+// include/pokemon.h names no party-index field), and a one-Pokemon party has no alternative slot
+// to pick anyway. 7 is out of range for both a party slot (0-5) and the not-found value (6), and
+// script 146 tests these vars with EQUAL/DIFFERENT only - there is not one ordered comparison in
+// the whole 1025-line file - so 7 is never swept into the "nobody knows this move" path.
+// See docs/mr-paint-polish.md "Bug 3 - design" for the full consumer audit.
+//
+// This is safe ONLY because the two commands that dereference the actor slot as a party index
+// (opcode 183 CutAnimation and opcode 199 TextPokeNickname) are both hooked below, and both now
+// skip the party lookup entirely while substituting. Nothing else on those script paths reads
+// the actor slot; HiddenMachineEffect takes the follower's var, not this one.
+#define MR_PAINT_ACTOR_SENTINEL_SLOT 7
+
 // Order matches the client's reserved flag block 0x8A0-0x8AB (docs/mr-paint.md) and
 // data/text/040.txt indices 121-130. Headbutt/Sweet Scent have no machine and are omitted.
 const MrPaintMoveEntry gMrPaintMoveEntries[MR_PAINT_NUM_MACHINE_MOVES] = {
@@ -65,6 +88,20 @@ u16 MrPaintLearnableFlagForMove(u16 move)
         }
     }
     return 0;
+}
+
+// Slice 0.3.8. The three obstacle moves whose ROM script 146 flow compares the actor slot
+// against the follower's slot - Cut (Function 48), Rock Smash (Function 50), Strength
+// (Function 65) - and which therefore need the sentinel to force the non-follower branch.
+//
+// Headbutt has the same shape at Function 60 but is unreachable: its flag 0x8AA is never set.
+// Surf, Waterfall, Whirlpool and Rock Climb have no follower branch and no CompareVars at all
+// (their flows are terminal: CheckMoveInParty / copy / TextPokeNickname / <Move>Animation /
+// Jump Function#11), so they keep slot 0 and behave byte-for-byte as they shipped in 0.3.7 -
+// which is what the client's note about those moves requires.
+static BOOL MrPaintMoveHasFollowerBranch(u16 move)
+{
+    return move == MOVE_CUT || move == MOVE_ROCK_SMASH || move == MOVE_STRENGTH;
 }
 
 // Slice 0.3.3 "Smeargle actor". Set-or-cleared on EVERY call of the 0.3.2
@@ -146,7 +183,9 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
             BAG_DATA *bag = Sav2_Bag_get(fieldSystem->savedata);
 
             if (Bag_HasItem(bag, ITEM_MR_PAINT, 1, HEAPID_WORLD)) {
-                *destVar = 0;
+                // Slice 0.3.8: the sentinel for the three moves whose flow compares this slot
+                // against the follower's; slot 0, exactly as 0.3.7 shipped, for every other move.
+                *destVar = MrPaintMoveHasFollowerBranch(move) ? MR_PAINT_ACTOR_SENTINEL_SLOT : 0;
                 sMrPaintActorActive = 1;
             }
         }
@@ -174,12 +213,17 @@ BOOL ScrCmd_183(SCRIPTCONTEXT *ctx)
 {
     void **pWork = (void **)FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_GENERIC_WORK_PTR);
     u16 partyIdx = ScriptGetVar(ctx);
-    struct PartyPokemon *mon =
-        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(ctx->fsys->savedata), partyIdx);
+    struct PartyPokemon *mon;
     u32 gender;
 
+    // Slice 0.3.8: look the slot up ONLY when we are not going to replace the result anyway.
+    // 0.3.3 did the lookup first and then overwrote `mon`, which was harmless while the 0.3.2
+    // hook returned slot 0 but would hand Party_GetMonByIndex the out-of-range sentinel now.
+    // The script stream is still read in the same order - ScriptGetVar above is untouched.
     if (sMrPaintActorActive) {
         mon = MrPaintActorMon();
+    } else {
+        mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(ctx->fsys->savedata), partyIdx);
     }
 
     gender = PlayerAvatar_GetGender(ctx->fsys->playerAvatar);
@@ -196,11 +240,14 @@ BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx)
     void **msgFmt = (void **)FieldSysGetAttrAddr(fieldSystem, SCRIPTENV_MSGFMT);
     u8 idx = ScriptReadByte(ctx);          // must be read BEFORE the var - keep separate statements
     u16 partyMonIdx = ScriptGetVar(ctx);
-    struct PartyPokemon *mon =
-        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyMonIdx);
+    struct PartyPokemon *mon;
 
+    // Slice 0.3.8 - same reordering as ScrCmd_183 above, and for the same reason. The byte and
+    // the var are still read first, in that order, so the script stream is consumed identically.
     if (sMrPaintActorActive) {
         mon = MrPaintActorMon();
+    } else {
+        mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyMonIdx);
     }
 
     BufferBoxMonNickname((MessageFormat *)*msgFmt, idx, (struct BoxPokemon *)mon);
@@ -211,13 +258,13 @@ BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx)
 // Surf / Waterfall / Whirlpool / Rock Climb field tasks all funnel through.
 struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 partyIdx)
 {
-    struct PartyPokemon *mon =
-        Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyIdx);
-
+    // Slice 0.3.8 - reordered for consistency with the two hooks above. These four moves keep
+    // slot 0 (MrPaintMoveHasFollowerBranch excludes them), so this one can never see the
+    // sentinel; the lookup is skipped anyway rather than leaving one ordering different.
     if (sMrPaintActorActive) {
-        mon = MrPaintActorMon();
+        return MrPaintActorMon();
     }
-    return mon;
+    return Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyIdx);
 }
 
 // Replaces ScrCmd_End (opcode 2, 0x02040898). The ONLY reason it exists is to
