@@ -665,7 +665,17 @@ _085F:
 _0892:
     buffer_players_name 0
     buffer_item_name_indef 1, VAR_SPECIAL_x8004
+    // Mr. Paint (ITEM_MR_PAINT = 2685, include/constants/item.h) is a proper
+    // noun, so it takes the article-free receipt line (040.txt index 131)
+    // instead of the shared key-item template at index 28, which hardcodes
+    // "the ". Every other key item is untouched.
+    compare VAR_SPECIAL_x8004, 2685
+    goto_if_eq _MrPaintObtainedMsg
     npc_msg 28
+    goto _08C9
+
+_MrPaintObtainedMsg:
+    npc_msg 131
     goto _08C9
 
 _08A3:
