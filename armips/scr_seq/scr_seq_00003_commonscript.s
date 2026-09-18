@@ -634,9 +634,22 @@ _080A:
     call_if_eq _0892
     compare VAR_SPECIAL_RESULT, 7
     call_if_ne _08A3
+    // Same class test as _085F, placed above the quantity split so one branch
+    // covers both. 040.txt indices 30 and 31 are byte-identical, so a single
+    // article-free clone (index 133) serves both. All three arms reconverge on
+    // _0851, exactly where retail's did.
+    compare VAR_SPECIAL_x8004, 2685
+    goto_if_eq _NoArticlePocket2008
+    getitempocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 3
+    goto_if_eq _NoArticlePocket2008
     compare VAR_SPECIAL_x8005, 1
     goto_if_gt _084E
     npc_msg 30
+    goto _0851
+
+_NoArticlePocket2008:
+    npc_msg 133
     goto _0851
 
 _084E:
@@ -658,7 +671,24 @@ _085F:
     call_if_eq _0892
     compare VAR_SPECIAL_RESULT, 7
     call_if_ne _08A3
+    // Mr. Paint (ITEM_MR_PAINT = 2685) and TMs/HMs (POCKET_TMHMS = 3,
+    // include/constants/item.h) are proper nouns that take no article, so they
+    // print the article-free clone of the pocket line at 040.txt index 132.
+    // Every other item keeps retail's shared template 89 ("put the X").
+    // getitempocket is re-run rather than trusting VAR_SPECIAL_RESULT across
+    // the call_if_ne above, which _08A3 clobbers - the same pattern _08EB,
+    // _09D8 and the 0.3.9 pocket-3 arm already use in this file.
+    compare VAR_SPECIAL_x8004, 2685
+    goto_if_eq _NoArticlePocket2033
+    getitempocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 3
+    goto_if_eq _NoArticlePocket2033
     npc_msg 89
+    goto _085FEnd
+
+_NoArticlePocket2033:
+    npc_msg 132
+_085FEnd:
     return
 
 _0892:

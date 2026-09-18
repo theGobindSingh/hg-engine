@@ -130,3 +130,5 @@ Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Smash!!!
 Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Climb!!!
 Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Dig!!!
 {STRVAR_1 3, 0, 0} received\n{COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
+{STRVAR_1 3, 0, 0} put {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r
+{STRVAR_1 3, 0, 0} put {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket.
