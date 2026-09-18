@@ -99,7 +99,10 @@
 
 // UPDATE_OVERWORLD_POISON will remove overworld poison if enabled
 // comment the line out below to retain overworld poison
-#define UPDATE_OVERWORLD_POISON
+// Disabled 2026-09-19 at the client's request: retail HGSS overworld poison (1 HP per 4 steps,
+// screen flash, cured at 1 HP) must work. Undefined => bytereplacement's #else branch restores
+// the retail 0x88 status mask at arm9 0x02054474.
+// #define UPDATE_OVERWORLD_POISON
 
 // DISABLE_END_OF_TURN_WEATHER_MESSAGE removes the weather messages at the end of the turn.  instead the bottom screen icon can be used
 // uncomment the line out to get this functionality
