@@ -663,24 +663,46 @@ _085F:
 
 _0892:
     buffer_players_name 0
-    buffer_item_name_indef 1, VAR_SPECIAL_x8004
     // Mr. Paint (ITEM_MR_PAINT = 2685, include/constants/item.h) is a proper
     // noun, so it takes the article-free receipt line (040.txt index 131)
     // instead of the shared key-item template at index 28, which hardcodes
     // "the ". Every other key item is untouched.
     compare VAR_SPECIAL_x8004, 2685
     goto_if_eq _MrPaintObtainedMsg
+    // Every other key item uses the PLAIN name buffer, because template 28
+    // hardcodes "the " - retail's own pairing. The indefinite-article buffer
+    // here produced "the an Apricorn Box!".
+    buffer_item_name 1, VAR_SPECIAL_x8004
     npc_msg 28
     goto _08C9
 
 _MrPaintObtainedMsg:
+    // Mr. Paint keeps the indefinite-article buffer it has had since 0.3.0:
+    // for item 2685 that buffer reads the overflow entry, which 0.3.5 already
+    // made article-free, and it carries its own colour codes. Left exactly as
+    // it was so this already-correct line does not change at all.
+    buffer_item_name_indef 1, VAR_SPECIAL_x8004
     npc_msg 131
     goto _08C9
 
 _08A3:
     compare VAR_SPECIAL_x8005, 1
     goto_if_gt _08BB
+    // TMs and HMs (POCKET_TMHMS = 3, include/constants/item.h) are named
+    // "TM001"/"HM01" - proper nouns that take no article - so they use the
+    // plain name buffer. Every other pocket keeps the indefinite-article
+    // buffer ("a Potion", "an Antidote"). Both arms reconverge on 040.txt
+    // index 25, which no longer hardcodes "the ". getitempocket is re-run
+    // rather than trusting VAR_SPECIAL_RESULT across the call, exactly as
+    // _08EB and _09D8 do.
+    getitempocket VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 3
+    goto_if_eq _TmHmObtainedName
     buffer_item_name_indef 0, VAR_SPECIAL_x8004
+    goto _08C0
+
+_TmHmObtainedName:
+    buffer_item_name 0, VAR_SPECIAL_x8004
     goto _08C0
 
 _08BB:

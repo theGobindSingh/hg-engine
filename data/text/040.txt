@@ -23,7 +23,7 @@ Saving a lot of data...\nDon’t turn off the power.
                      
                    
                               
-Obtained the {STRVAR_1 8, 0, 0}!
+Obtained {STRVAR_1 8, 0, 0}!
                          
 Too bad!\nThe Bag is full...
 {STRVAR_1 3, 0, 0} obtained\nthe {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
