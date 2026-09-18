@@ -129,4 +129,4 @@ Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Waterfall!!!
 Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Smash!!!
 Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Climb!!!
 Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Dig!!!
-{STRVAR_1 3, 0, 0} obtained\n{COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
+{STRVAR_1 3, 0, 0} received\n{COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
