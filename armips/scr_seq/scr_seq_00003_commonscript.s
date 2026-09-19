@@ -341,6 +341,13 @@ _0468:
     step 104, 1
     step_end
 
+// Mr. Paint (feature 0.4.0): the native "!" bubble, played on the player just before the
+// inspiration message. Same idiom as _0460 above; Exclamation equ 0x004B in scriptmacros.s,
+// which the ROM disassembler spells EmoteExclamation 0x1.
+_MrPaintEmoteExclaim:
+    step Exclamation, 1
+    step_end
+
 
 scr_seq_0003_069:
     fade_screen 6, 1, 0, RGB_BLACK
@@ -830,6 +837,11 @@ _MrPaintShowInspiration:
     compare VAR_SPECIAL_x8000, 0
     goto_if_eq _MrPaintInspirationDone
     buffer_item_name 0, VAR_SPECIAL_x8001
+    // 0.4.0: "!" over the player first, waited out before any box opens. Placed after the
+    // nothing-pending guard so an empty fire emotes nothing, and before the switch so the
+    // bubble always precedes the dialogue. lockall is already in force from the 074 entry.
+    apply_movement obj_player, _MrPaintEmoteExclaim
+    wait_movement
     switch VAR_SPECIAL_x8000
     case 1, _MrPaintMsgCut
     case 2, _MrPaintMsgFly
