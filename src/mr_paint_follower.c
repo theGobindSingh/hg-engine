@@ -137,6 +137,20 @@ BOOL MrPaintFollowerSubstitutes(u16 species)
 // free. The register-free form preserves every register (it saves lr into a word at entry+0x18 and
 // `bl`s here), needs 0x1C bytes of entry space - the body is 0x20 - and is what upstream already
 // uses for 4-argument hooks such as `arm9 Bag_AddItem 02078398`.
+// The four offsets above are a CONTRACT with retail, not a comment. A reproduction that stores the
+// right values at the wrong addresses is worse than no hook at all: it silently corrupts whatever
+// really lives there. This is not hypothetical - it is what shipped in 0.4.3, because FieldSystem
+// carried an s64 member whose 8-byte alignment padding moved followMon from 0xE4 to 0xE8, so every
+// store landed four bytes high and the species write zeroed retail's `active` byte at +0xFA. Assert
+// the layout at build time so it can never drift silently again.
+#define MR_PAINT_FOLLOWMON_OFS(field) \
+    (__builtin_offsetof(FieldSystem, followMon) + __builtin_offsetof(FollowMon, field))
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(species) == 0xF4, "followMon.species must sit at FieldSystem+0xF4");
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(gender) == 0xF8, "followMon.gender must sit at FieldSystem+0xF8");
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(active) == 0xFA, "followMon.active must sit at FieldSystem+0xFA");
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(shiny) == 0xFB, "followMon.shiny must sit at FieldSystem+0xFB");
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(forme) == 0xFC, "followMon.forme must sit at FieldSystem+0xFC");
+
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender)
 {
     if (MrPaintFollowerSubstitutes((u16)species)) {

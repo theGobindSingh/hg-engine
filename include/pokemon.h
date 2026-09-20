@@ -608,7 +608,12 @@ typedef struct FieldSystem {
     /* 0x50 */ u8 unk50[0x5C];
     /* 0xAC */ u32 unkAC;
     /* 0xB0 */ u8 unkB0[0x4];
-    /* 0xB4 */ s64 unkB4;
+    // NOT s64: an s64 here needs 8-byte alignment, which the compiler supplies by inserting 4
+    // bytes of padding at 0xB4 - silently pushing unkBC to 0xC0 and followMon to 0xE8, four bytes
+    // past every offset commented in this struct. The retail disassembly of FollowPokeFsysParamSet
+    // (0x02069F3C) stores species at FieldSystem+0xF4, so followMon really is at 0xE4. Keeping the
+    // eight bytes as a byte array preserves both the size and the documented offsets.
+    /* 0xB4 */ u8 unkB4[0x8];
     /* 0xBC */ u8 unkBC[0x28];
     /* 0xE4 */ FollowMon followMon;
     // u8 unk104[4];
