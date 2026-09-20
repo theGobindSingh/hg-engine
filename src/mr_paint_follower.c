@@ -6,6 +6,7 @@
 #include "../include/types.h"
 
 #include "../include/bag.h"
+#include "../include/item.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
 #include "../include/script.h"
@@ -148,4 +149,35 @@ void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 for
     fieldSystem->followMon.shiny = shiny;
     fieldSystem->followMon.forme = forme;
     fieldSystem->followMon.gender = gender;
+}
+
+// The toggle itself, reached as the `field` column of sNewItemFieldUseFuncs[] row 6 (src/item.c),
+// i.e. when Mr. Paint is REGISTERED TO SELECT and SELECT is pressed on the overworld. The item
+// already ships .selectable = TRUE, so this needs nothing else.
+//
+// Shape copied from retail ItemFieldUseFunc_Bicycle (0x02064C30), the one attested example of a
+// key item whose effect happens on the field with no sub-application: read what is needed out of
+// `data`, act, and RETURN FALSE. TRUE is what the app-opening use functions return - returning it
+// without having started an app is the soft-lock risk, so FALSE is the only correct value here.
+// We deliberately do NOT copy the Bicycle's `fieldSystem[0xD2] |= 0x80`: that bit accompanies a
+// field task that later clears it, and setting it without one is how a field lock gets stuck.
+//
+// The `menu` column of our row is NULL on purpose - the Bag USE path needs an idiom this project
+// has not yet established, and guessing it risks soft-locking the Bag. See
+// docs/mr-paint-follower.md "Finding G" in the james-game repo; it is build 0.4.4's job.
+//
+// Edge cases are all the same case, by design: this only ever flips a save flag. If no follower
+// can exist right now - lead fainted, on a bike, surfing, or a map that forbids followers - the
+// flag still flips and nothing else happens, and Mr. Paint appears when a follower legitimately
+// next can. We never force a follower where vanilla would show none: retail's own permission check
+// runs on the REAL species upstream of every substitution point, so it is untouched.
+BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data UNUSED)
+{
+    if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
+        ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+    } else {
+        SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+    }
+
+    return FALSE;
 }

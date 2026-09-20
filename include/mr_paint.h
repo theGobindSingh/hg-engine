@@ -123,4 +123,10 @@ BOOL MrPaintFollowerSubstitutes(u16 species);
 // the retail body (a leaf: four stores, no calls) with the one substitution.
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
 
+// The toggle. Row 6 of sNewItemFieldUseFuncs[] (src/item.c) carries it in the `field` column, so it
+// runs when Mr. Paint is registered to SELECT and SELECT is pressed on the overworld. The row's
+// `menu` column is deliberately NULL - the Bag USE path is build 0.4.4's job.
+struct ItemFieldUseData;
+BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data);
+
 #endif // GUARD_MR_PAINT_H

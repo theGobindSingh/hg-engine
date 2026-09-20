@@ -5,6 +5,7 @@
 #include "../include/constants/item.h"
 #include "../include/constants/moves.h"
 #include "../include/message.h"
+#include "../include/mr_paint.h"
 #include "../include/script.h"
 #include "../include/types.h"
 
@@ -386,6 +387,16 @@ const struct ItemUseFuncDat sNewItemFieldUseFuncs[] = {
     { ItemMenuUseFunc_Mint, NULL, NULL },
     { ItemMenuUseFunc_Nectar, NULL, NULL },
     { ItemMenuUseFunc_RotomCatalog, NULL, NULL },
+    // Row 6 -> .fieldUseFunc = 36 (NUM_VANILLA_FIELD_USE_FUNCS + 6). Mr. Paint's companion toggle,
+    // src/mr_paint_follower.c. The `menu` column is NULL ON PURPOSE, mirroring retail's own row 0
+    // of sItemFieldUseFuncs (0x020FE264), which also has a NULL menu: the six rows above all build
+    // a "use this on a party Pokemon" application via sub_0203FAE8, which is the wrong shape for a
+    // plain toggle, and the retail idiom that IS the right shape (ItemMenuUseFunc_Bicycle,
+    // 0x02064BFC) pokes BagViewAppWork.state = 12 with a TaskFunc whose contract this project has
+    // not established. So 0.4.3 ships the attested SELECT-registered path only; the Bag USE entry
+    // is build 0.4.4, after that dispatcher gets its own RCA. See docs/mr-paint-follower.md
+    // "Finding G" in the james-game repo.
+    { NULL, ItemFieldUseFunc_MrPaintToggle, NULL },
 };
 
 extern const struct ItemUseFuncDat sItemFieldUseFuncs[NUM_VANILLA_FIELD_USE_FUNCS];
