@@ -502,6 +502,22 @@ arm9 ScrCmd_BufferPartyMonNick 020486F0 1
 arm9 ScrCmd_End 02040898 1
 0001 MrPaintFieldMoveActorMon 021F3100 2
 
+# Mr. Paint (0.4.3 companion deployment) - the cached follower identity, so the game's own live
+# state agrees with the drawn sprite (and so the headless harness can assert it at
+# [gFieldSysPtr] + 0xF4).
+#
+# NOTE the missing 4th column. It is required, not stylistic: this function takes FIVE arguments,
+# so there is no free scratch register - r0-r3 are all live and r4-r7 are callee-saved, and a
+# register hook destroys its register before our C runs. The register-free full-replacement form
+# preserves every register; it needs 0x1C bytes of entry space and the retail body is 0x20. Same
+# form as `arm9 Bag_AddItem 02078398` above, which is a 4-argument function.
+#
+# The DRAWN SPRITE needs no hook here: retail FollowingPokemon_GetSpriteID (0x02069D70) is already
+# replaced by upstream's `arm9 get_mon_ow_tag 08069D70 3` on line 218 - written in the 0x08 address
+# form, which is why grepping this file for "02069D70" finds nothing - so the substitution lives
+# inside that C function instead.
+arm9 MrPaintFollowPokeFsysParamSet 02069F3C
+
 0012 BattleSystem_CheckMoveEffect 0224C018
 
 # 0012 BattleControllerPlayer_UpdateMonCondition 02249CC4 2

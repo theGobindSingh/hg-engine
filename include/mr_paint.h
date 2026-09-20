@@ -90,4 +90,37 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx);
 // a script, matching that callback's "an event was set for this step" contract.
 BOOL MrPaintTryQueueInspiration(FieldSystem *fieldSystem);
 
+// Side feature 0.4.3 "companion deployment" - src/mr_paint_follower.c.
+//
+// Using Mr. Paint from the Bag toggles this flag; while it is set, the walking follower RENDERS as
+// SMEARGLE instead of the party lead. Nothing is written to the party - the substitution lives
+// entirely at the overworld sprite layer, which is what makes the client's "do not mutate the
+// party struct" constraint hold by construction rather than by care.
+//
+// FLAG_UNK_8B0 in armips/include/flags.s. Verified unclaimed: zero hits across all 497 disassembled
+// ROM scripts (against a positive control - flag 2218, the 0.4.2 Headbutt tutor flag, DOES hit),
+// zero hits in armips/, src/ and include/, and FLAG_UNK_8A0..8B1 are all unnamed in
+// pret/pokeheartgold. It sits clear of Mr. Paint's own reserved block 0x8A0-0x8AB. Flags are a
+// fixed-size bit array of NUM_FLAGS = 2912 allocated at compile time, so using an id inside
+// 0-2911 flips an already-allocated bit and the save layout CANNOT change.
+#define FLAG_MR_PAINT_FOLLOWING 2224
+
+// TRUE when the follower should be drawn as Mr. Paint INSTEAD of `species`.
+//
+// Both conditions are required: the flag is set AND the player still holds the item. The held-item
+// half exists so a flag left set by a corrupt or hand-edited save can never strand a player with a
+// Smeargle they have no way to dismiss.
+//
+// `species` is matched against the CURRENT FOLLOWER's real species - the first alive, non-egg party
+// member, which is what retail's GetFirstAliveMonInParty_CrashIfNone resolves the follower to. That
+// match is what keeps the substitution narrow: get_mon_ow_tag (the sprite lookup we piggyback on)
+// is NOT follower-specific, so without it a Hall of Fame or Pokeathlon overworld would swap every
+// species at once. See src/mr_paint_follower.c for why the gate cannot instead use followMon.active.
+BOOL MrPaintFollowerSubstitutes(u16 species);
+
+// Full-function hook (see hg-engine `hooks`) replacing retail FollowPokeFsysParamSet at
+// 0x02069F3C - the writer of the cached follower identity in FieldSystem->followMon. Reproduces
+// the retail body (a leaf: four stores, no calls) with the one substitution.
+void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
+
 #endif // GUARD_MR_PAINT_H

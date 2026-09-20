@@ -174537,8 +174537,13 @@ const ITEMDATA __data[] =
 },
 
 // Custom key item, mirrors ITEM_APRICORN_BOX's inert-key-item flags (prevent_toss/selectable/
-// pocket); fieldUseFunc left at 0 (no effect yet) and icon reused from ITEM_PREMIER_BALL via a
-// special case in GetItemIndex (src/item.c) rather than new graphics.
+// pocket); icon reused from ITEM_PREMIER_BALL via a special case in GetItemIndex (src/item.c)
+// rather than new graphics.
+//
+// Side feature 0.4.3 "companion deployment": fieldUseFunc is 36, which is
+// NUM_VANILLA_FIELD_USE_FUNCS (30) + row 6 of sNewItemFieldUseFuncs[] (src/item.c) - the Bag USE
+// toggle that flips FLAG_MR_PAINT_FOLLOWING. Dispatch is purely by this byte; there is no item-id
+// whitelist gating which key items show USE.
 [ITEM_MR_PAINT] =
 {
     ITEM_PRICE(0),
@@ -174553,7 +174558,7 @@ const ITEMDATA __data[] =
     .selectable = TRUE,
     .fieldPocket = POCKET_KEY_ITEMS,
     .battlePocket = BATTLE_POCKET_NONE,
-    .fieldUseFunc = 0,
+    .fieldUseFunc = 36,
     .battleUseFunc = 0,
     .partyUse = 0,
     .partyUseParam = {
