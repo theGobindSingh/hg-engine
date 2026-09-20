@@ -119,16 +119,16 @@ NOT TELLING
 The repellent’s effect wore off!\nWould you like to use another one?
 You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Cut!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Fly!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Surf!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Strength!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Flash!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Whirlpool!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Waterfall!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Smash!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Rock Climb!!!
-What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\nMr. Paint learned Dig!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Cut!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Fly!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Surf!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Strength!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Flash!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Whirlpool!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Waterfall!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Rock Smash!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Rock Climb!!!
+What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned Dig!!!
 {STRVAR_1 3, 0, 0} received\n{COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!
 {STRVAR_1 3, 0, 0} put {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r
 {STRVAR_1 3, 0, 0} put {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket.
