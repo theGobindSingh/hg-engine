@@ -123,6 +123,15 @@ BOOL MrPaintFollowerSubstitutes(u16 species);
 // the retail body (a leaf: four stores, no calls) with the one substitution.
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
 
+// 0.4.7 "obstacle move from the follower" (client DoD 5) - src/mr_paint_follower.c. Returns the
+// deployed follower's own party slot when, and only when, the object currently drawn behind the
+// player really is Mr. Paint (flag set, item held, follower active, and - the load-bearing check
+// - followMon.species == SPECIES_SMEARGLE, since the toggle is not immediate and the follower
+// cache only updates on a map load). Returns -1 otherwise, which callers treat as "not deployed".
+// Consumed by ScrCmd_GetPartySlotWithMove (src/mr_paint.c) so Cut/Rock Smash/Strength take
+// script 146's overworld branch (no cut-in) instead of the 0.3.8 sentinel's cutscene branch.
+int MrPaintDeployedFollowerSlot(FieldSystem *fieldSystem);
+
 // The toggle, reached from TWO entry points that must never drift apart - both funnel through the
 // same static helper in src/mr_paint_follower.c:
 //   - `field` column of row 6: Mr. Paint registered to SELECT, SELECT pressed on the overworld.

@@ -70,7 +70,11 @@ extern int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
 // Matching the requested species against the follower's REAL species is order-independent - it
 // depends on nothing the follower chain has done yet - and it keeps the blast radius to "the one
 // species that is currently the player's follower".
-static u16 MrPaintFollowerBaseSpecies(FieldSystem *fieldSystem)
+//
+// 0.4.7: the party walk below is also exactly what a caller needs when it wants the follower's
+// SLOT rather than its species (DoD 5 - routing an obstacle move to the follower's own party
+// index). Factored out so both callers share one walk instead of two copies drifting apart.
+static int MrPaintFollowerBaseSlot(FieldSystem *fieldSystem)
 {
     struct Party *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
     int partyCount = PokeParty_GetPokeCount(party);
@@ -88,10 +92,25 @@ static u16 MrPaintFollowerBaseSpecies(FieldSystem *fieldSystem)
         if (GetMonData(mon, MON_DATA_HP, NULL) == 0) {
             continue;
         }
-        return (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
+        return i;
     }
 
-    return SPECIES_NONE;
+    return -1;
+}
+
+static u16 MrPaintFollowerBaseSpecies(FieldSystem *fieldSystem)
+{
+    int slot = MrPaintFollowerBaseSlot(fieldSystem);
+    struct Party *party;
+    struct PartyPokemon *mon;
+
+    if (slot < 0) {
+        return SPECIES_NONE;
+    }
+
+    party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
+    mon = Party_GetMonByIndex(party, slot);
+    return (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
 }
 
 BOOL MrPaintFollowerSubstitutes(u16 species)
@@ -150,6 +169,7 @@ _Static_assert(MR_PAINT_FOLLOWMON_OFS(gender) == 0xF8, "followMon.gender must si
 _Static_assert(MR_PAINT_FOLLOWMON_OFS(active) == 0xFA, "followMon.active must sit at FieldSystem+0xFA");
 _Static_assert(MR_PAINT_FOLLOWMON_OFS(shiny) == 0xFB, "followMon.shiny must sit at FieldSystem+0xFB");
 _Static_assert(MR_PAINT_FOLLOWMON_OFS(forme) == 0xFC, "followMon.forme must sit at FieldSystem+0xFC");
+_Static_assert(MR_PAINT_FOLLOWMON_OFS(mapObject) == 0xE4, "followMon.mapObject must sit at FieldSystem+0xE4");
 
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender)
 {
@@ -163,6 +183,68 @@ void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 for
     fieldSystem->followMon.shiny = shiny;
     fieldSystem->followMon.forme = forme;
     fieldSystem->followMon.gender = gender;
+}
+
+// 0.4.7 "obstacle move from the follower" (client DoD 5). ScrCmd_GetPartySlotWithMove
+// (src/mr_paint.c) wants the follower's OWN party slot, not the sentinel, whenever the follower
+// currently on screen really is Mr. Paint - so ROM script 146's `CompareVars 0x8004 0x8005`
+// comes out EQUAL and Cut/Rock Smash/Strength take vanilla's own no-cut-in, overworld branch
+// instead of the cutscene one.
+//
+// Every condition here earns its place:
+//
+//   - fieldSystem / savedata NULL: same defensive shape as MrPaintFollowerSubstitutes above -
+//     ScrCmd_GetPartySlotWithMove always has a live ctx->fsys in practice, but failing safe to
+//     "not deployed" costs nothing and matches this file's existing style.
+//   - FLAG_MR_PAINT_FOLLOWING / Bag_HasItem: the same two-part gate MrPaintFollowerSubstitutes
+//     uses - a flag left set on a corrupt or hand-edited save, with the item since removed from
+//     the Bag, must never claim the follower is Mr. Paint.
+//   - followMon.active: cheap early-out once the flag/item gate has passed, but NOT sufficient
+//     on its own - see the ordering note below.
+//   - followMon.mapObject NULL: defensive against reading a follower record that has been
+//     cleared (FsysFollowMonClear) but not yet reflected in `active`, if such a window exists;
+//     costs nothing to check before touching followMon.species.
+//   - followMon.species == SPECIES_SMEARGLE: the LOAD-BEARING check. The toggle is not
+//     immediate - FLAG_MR_PAINT_FOLLOWING can be set while the on-screen follower is still
+//     whatever it was before the last map load, because the follower cache
+//     (FollowPokeFsysParamSet, hooked above) only runs again on a map load. This was proven in
+//     game, not assumed: toggling Mr. Paint on mid-map leaves the previous species walking
+//     behind the player until the next door/warp/cave transition. So "the flag is set" is NOT
+//     the same fact as "Smeargle is what's actually drawn right now" - only followMon.species,
+//     the game's own live record of what the follower object was built as (written by the very
+//     hook above), tells us that. Everything above this line is a cheap gate; this line is the
+//     one that is actually correct.
+//
+// A wrong answer here can only make script 146's compare come out DIFFERENT (the cut-in plays,
+// exactly 0.4.6 behaviour) - never a crash and never a wrong Pokemon animating, since the actor
+// substitution in src/mr_paint.c is driven by sMrPaintActorActive, not by this return value.
+int MrPaintDeployedFollowerSlot(FieldSystem *fieldSystem)
+{
+    if (fieldSystem == NULL || fieldSystem->savedata == NULL) {
+        return -1;
+    }
+
+    if (!CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
+        return -1;
+    }
+
+    if (!Bag_HasItem(Sav2_Bag_get(fieldSystem->savedata), ITEM_MR_PAINT, 1, HEAPID_WORLD)) {
+        return -1;
+    }
+
+    if (fieldSystem->followMon.active == 0) {
+        return -1;
+    }
+
+    if (fieldSystem->followMon.mapObject == NULL) {
+        return -1;
+    }
+
+    if (fieldSystem->followMon.species != SPECIES_SMEARGLE) {
+        return -1;
+    }
+
+    return MrPaintFollowerBaseSlot(fieldSystem);
 }
 
 // The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the
