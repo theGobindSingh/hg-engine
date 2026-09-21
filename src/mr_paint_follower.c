@@ -225,6 +225,19 @@ BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data UNUSED)
 //
 // atexit_TaskEnv MUST be explicitly zeroed: case 13 forwards it straight into TaskManager_Jump as
 // the new task's environment, and unlike state 5, state 12's retail users always zero it.
+//
+// P7 Finding 26 (docs/mr-paint-follower.md): every retail state=12 writer calls
+// FieldSystem_LoadFieldOverlay(fieldSystem) immediately before setting state. The case-12 handler
+// (arm9 START_MENU_STATE_12) waits on sub_020505C8(fieldSystem), a bool wrapper around
+// sub_0203DF8C ("processManager->parent != NULL && runningFieldMap") that only ever becomes true
+// once FieldSystem_LoadFieldOverlay's async overlay load (ov01_02206378) finishes. Without the
+// call, that predicate is never true and the state machine stalls in case 12 forever - a
+// permanent black-screen stall indistinguishable from a crash, which is exactly what 0.4.5 showed
+// byte-for-byte. rom.ld already names this address (FieldSystem_LoadFieldOverlay = 0x020505C0|1)
+// but no C header had declared it; declared here, matching the existing LONG_CALL/THUMB_FUNC
+// convention (include/item.h's ItemMenuUseFunc_* prototypes) rather than a raw-address call.
+extern void LONG_CALL THUMB_FUNC FieldSystem_LoadFieldOverlay(FieldSystem *fieldSystem);
+
 struct BagViewAppWork;
 #define MR_PAINT_BAGVIEW_OFS(field) __builtin_offsetof(struct BagViewAppWork, field)
 _Static_assert(MR_PAINT_BAGVIEW_OFS(state) == 0x26, "BagViewAppWork.state must sit at +0x26");
@@ -241,9 +254,11 @@ BOOL Task_MrPaintToggle(TaskManager *taskman UNUSED)
 
 void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2 UNUSED)
 {
+    FieldSystem *fieldSystem = data->taskManager->fieldSystem; // TaskManager_GetFieldSystem(data->taskManager);
     struct BagViewAppWork *env = data->taskManager->env;
 
     env->atexit_TaskFunc = Task_MrPaintToggle;
     env->atexit_TaskEnv = NULL;
+    FieldSystem_LoadFieldOverlay(fieldSystem);
     env->state = 12;
 }
