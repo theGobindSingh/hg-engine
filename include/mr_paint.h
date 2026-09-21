@@ -123,10 +123,19 @@ BOOL MrPaintFollowerSubstitutes(u16 species);
 // the retail body (a leaf: four stores, no calls) with the one substitution.
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
 
-// The toggle. Row 6 of sNewItemFieldUseFuncs[] (src/item.c) carries it in the `field` column, so it
-// runs when Mr. Paint is registered to SELECT and SELECT is pressed on the overworld. The row's
-// `menu` column is deliberately NULL - the Bag USE path is build 0.4.4's job.
+// The toggle, reached from TWO entry points that must never drift apart - both funnel through the
+// same static helper in src/mr_paint_follower.c:
+//   - `field` column of row 6: Mr. Paint registered to SELECT, SELECT pressed on the overworld.
+//   - `menu` column of row 6 (0.4.5): Bag -> USE, via the state-12 "close Bag, hand off to field"
+//     idiom proven from this ROM's own ItemMenuUseFunc_EscapeRope/_Honey bytes - see
+//     docs/mr-paint-follower.md Findings 21-22 in the james-game repo. Do NOT use sub_0203C8F0
+//     (state 5, WAIT_APP) - it keeps the Bag alive and was REJECTED with evidence.
+#include "task.h" // TaskManager, TaskFunc
 struct ItemFieldUseData;
+struct ItemMenuUseData;
+struct ItemCheckUseData;
 BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data);
+void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2);
+BOOL Task_MrPaintToggle(TaskManager *taskman);
 
 #endif // GUARD_MR_PAINT_H

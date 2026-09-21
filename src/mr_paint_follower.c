@@ -165,9 +165,21 @@ void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 for
     fieldSystem->followMon.gender = gender;
 }
 
-// The toggle itself, reached as the `field` column of sNewItemFieldUseFuncs[] row 6 (src/item.c),
-// i.e. when Mr. Paint is REGISTERED TO SELECT and SELECT is pressed on the overworld. The item
-// already ships .selectable = TRUE, so this needs nothing else.
+// The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the
+// 0.4.5 Bag/USE path - call this and nothing else, so they cannot drift apart the way two copies
+// of the same three lines eventually would.
+static void MrPaintToggleFollowingFlag(void)
+{
+    if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
+        ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+    } else {
+        SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+    }
+}
+
+// Entry point 1: the `field` column of sNewItemFieldUseFuncs[] row 6 (src/item.c), i.e. when
+// Mr. Paint is REGISTERED TO SELECT and SELECT is pressed on the overworld. The item already
+// ships .selectable = TRUE, so this needs nothing else.
 //
 // Shape copied from retail ItemFieldUseFunc_Bicycle (0x02064C30), the one attested example of a
 // key item whose effect happens on the field with no sub-application: read what is needed out of
@@ -176,10 +188,6 @@ void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 for
 // We deliberately do NOT copy the Bicycle's `fieldSystem[0xD2] |= 0x80`: that bit accompanies a
 // field task that later clears it, and setting it without one is how a field lock gets stuck.
 //
-// The `menu` column of our row is NULL on purpose - the Bag USE path needs an idiom this project
-// has not yet established, and guessing it risks soft-locking the Bag. See
-// docs/mr-paint-follower.md "Finding G" in the james-game repo; it is build 0.4.4's job.
-//
 // Edge cases are all the same case, by design: this only ever flips a save flag. If no follower
 // can exist right now - lead fainted, on a bike, surfing, or a map that forbids followers - the
 // flag still flips and nothing else happens, and Mr. Paint appears when a follower legitimately
@@ -187,11 +195,55 @@ void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 for
 // runs on the REAL species upstream of every substitution point, so it is untouched.
 BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data UNUSED)
 {
-    if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
-        ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
-    } else {
-        SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
-    }
-
+    MrPaintToggleFollowingFlag();
     return FALSE;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Entry point 2 (0.4.5): the `menu` column - Bag -> USE
+// ---------------------------------------------------------------------------------------------
+//
+// FROZEN by docs/mr-paint-follower.md Findings 21-22 in the james-game repo, transcribed from
+// THIS ROM's own arm9 bytes, not inferred:
+//
+//   - ItemMenuUseFunc_Bicycle (0x02064BFC) and retail's ItemMenuUseFunc_EscapeRope/_Honey (pret
+//     src/field_use_item.c) all write atexit_TaskFunc + atexit_TaskEnv=NULL + state=12. State 12
+//     is retail's GENERAL "close the Bag, hand off to the field" mechanism - not a Bicycle-only
+//     trick - and it fades the screen back IN before Task 13 does
+//     `TaskManager_Jump(taskManager, exitTaskFunc, exitTaskEnvironment); Heap_Free(startMenu);`.
+//     The Bag is destroyed before our TaskFunc runs, so a Bag wedge is structurally impossible.
+//   - sub_0203C8F0 (state 5, WAIT_APP - what hg-engine's six existing ItemMenuUseFunc_* use) is
+//     REJECTED: it keeps the Bag allocated and calls exitTaskFunc every frame until THAT func
+//     drives state to RETURN itself, a shape with zero shipped precedent for a plain toggle. Do
+//     not "simplify" this back to sub_0203C8F0 - it was tried, and disproven.
+//   - A TaskManager_Jump target MAY return TRUE on its very first call: proven from pret
+//     src/task.c - FieldSystem_RunTaskFrame's `while (taskman->func(taskman) == TRUE)` loop pops
+//     and frees that taskman the same frame and continues on prevTask (the field task
+//     underneath). Retail's own Task_JumpToFieldEscapeRope is exactly this shape: a one-line
+//     relay that itself calls TaskManager_Jump again and returns FALSE - but our case needs no
+//     further jump, so TRUE on the first call is correct and matches the one-shot pattern.
+//
+// atexit_TaskEnv MUST be explicitly zeroed: case 13 forwards it straight into TaskManager_Jump as
+// the new task's environment, and unlike state 5, state 12's retail users always zero it.
+struct BagViewAppWork;
+#define MR_PAINT_BAGVIEW_OFS(field) __builtin_offsetof(struct BagViewAppWork, field)
+_Static_assert(MR_PAINT_BAGVIEW_OFS(state) == 0x26, "BagViewAppWork.state must sit at +0x26");
+_Static_assert(MR_PAINT_BAGVIEW_OFS(atexit_TaskFunc) == 0x354, "BagViewAppWork.atexit_TaskFunc must sit at +0x354");
+_Static_assert(MR_PAINT_BAGVIEW_OFS(atexit_TaskEnv) == 0x380, "BagViewAppWork.atexit_TaskEnv must sit at +0x380");
+
+// The TaskFunc TaskManager_Jump hands control to. Flips the exact same flag as the field path,
+// through the shared helper above, and completes in one frame.
+BOOL Task_MrPaintToggle(TaskManager *taskman UNUSED)
+{
+    MrPaintToggleFollowingFlag();
+    return TRUE;
+}
+
+void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2 UNUSED)
+{
+    struct BagViewAppWork *env = data->taskManager->env;
+
+    env->atexit_TaskFunc = Task_MrPaintToggle;
+    env->atexit_TaskEnv = NULL;
+    env->state = 12;
 }

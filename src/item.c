@@ -388,15 +388,17 @@ const struct ItemUseFuncDat sNewItemFieldUseFuncs[] = {
     { ItemMenuUseFunc_Nectar, NULL, NULL },
     { ItemMenuUseFunc_RotomCatalog, NULL, NULL },
     // Row 6 -> .fieldUseFunc = 36 (NUM_VANILLA_FIELD_USE_FUNCS + 6). Mr. Paint's companion toggle,
-    // src/mr_paint_follower.c. The `menu` column is NULL ON PURPOSE, mirroring retail's own row 0
-    // of sItemFieldUseFuncs (0x020FE264), which also has a NULL menu: the six rows above all build
-    // a "use this on a party Pokemon" application via sub_0203FAE8, which is the wrong shape for a
-    // plain toggle, and the retail idiom that IS the right shape (ItemMenuUseFunc_Bicycle,
-    // 0x02064BFC) pokes BagViewAppWork.state = 12 with a TaskFunc whose contract this project has
-    // not established. So 0.4.3 ships the attested SELECT-registered path only; the Bag USE entry
-    // is build 0.4.4, after that dispatcher gets its own RCA. See docs/mr-paint-follower.md
-    // "Finding G" in the james-game repo.
-    { NULL, ItemFieldUseFunc_MrPaintToggle, NULL },
+    // src/mr_paint_follower.c. Two live columns now, both funnelled through one shared helper so
+    // they cannot drift apart:
+    //   field: Mr. Paint registered to SELECT, SELECT pressed on the field (0.4.3, attested by
+    //          retail ItemFieldUseFunc_Bicycle's shape).
+    //   menu:  Bag -> USE (0.4.5). Writes BagViewAppWork.state = 12, mirroring retail's OWN
+    //          ItemMenuUseFunc_EscapeRope/_Honey - the general "close the Bag, hand off to the
+    //          field" idiom, proven byte-for-byte from this ROM in docs/mr-paint-follower.md
+    //          Findings 21-22 (james-game repo). Deliberately NOT the six rows-above's
+    //          sub_0203C8F0 (state 5, WAIT_APP): that keeps the Bag allocated and was REJECTED
+    //          with evidence - it has no shipped precedent for a plain toggle and risks a wedge.
+    { ItemMenuUseFunc_MrPaintToggle, ItemFieldUseFunc_MrPaintToggle, NULL },
 };
 
 extern const struct ItemUseFuncDat sItemFieldUseFuncs[NUM_VANILLA_FIELD_USE_FUNCS];
