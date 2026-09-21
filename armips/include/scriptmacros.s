@@ -6765,6 +6765,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (feature 3, slice 0.3.1) - see mr_paint_pending_inspiration above and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_PENDING_INSPIRATION, which must match.
 .equ NEW_COMMAND_MR_PAINT_PENDING_INSPIRATION, 1
+// Mr. Paint (side feature 0.4.12) - see mr_paint_swap_follower_model below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, which must match.
+.equ NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 2
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6772,6 +6775,16 @@ DummyTextTrap slot, unk
 
 .macro QueueNewRepel
 RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
+.endmacro
+
+// Mr. Paint (side feature 0.4.12 "the ball animation"): re-binds the follower's 3D model to the
+// sprite id it already carries. Only ever used inside scr_seq_0003_075_mr_paint_follower_swap,
+// between opcode 600 (which hides the old follower in the ball) and 606 (which pops the new one
+// out), so the model change happens where nobody can see it. Takes no operand of its own - the
+// one slot RunNewCommand always emits is a 0 the C side ignores - because the state it needs is
+// the pre-swap sprite tag, which src/mr_paint_follower.c already holds in a file-static.
+.macro mr_paint_swap_follower_model
+RunNewCommand NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 0
 .endmacro
 
 // Dummy

@@ -54,6 +54,17 @@ SysTask *LONG_CALL CreateSysTask(SysTaskFunc func, void *data, int priority);
 void LONG_CALL DestroySysTask(SysTask *task);
 SysTask *LONG_CALL SysTask_CreateOnVBlankQueue(SysTaskFunc func, void *data, int priority);
 void LONG_CALL TaskManager_Call(TaskManager *taskman, TaskFunc taskFunc, void *env);
+// Starts an event script from INSIDE a TaskFunc, which include/script.h's EventSet_Script cannot
+// do: that one ends in FieldSystem_CreateTask, whose GF_ASSERT(taskman == NULL) is compiled into
+// retail and which then overwrites fieldSystem->taskman with a task whose prev is NULL, orphaning
+// the running chain - the field-task pump re-reads taskman after the task function returns, so a
+// script started that way is freed the same frame. This one ends in TaskManager_Jump, which
+// REUSES the calling task struct in place, so the caller MUST `return FALSE`: returning TRUE
+// frees the very task just aimed at the script. All 13 of pret's call sites are TaskFuncs
+// returning FALSE, with no counter-example.
+// The third parameter is the "last interacted" map object, mirroring EventSet_Script's own
+// `void *obj` (include/script.h:105); pass NULL when the script is attached to no object.
+void LONG_CALL StartScriptFromMenu(TaskManager *taskman, u16 script, void *lastInteracted);
 BOOL LONG_CALL Task_TutorialBattle(TaskManager *taskManager);
 
 void LONG_CALL CallTask_StartEncounter(TaskManager *taskManager, BattleSetup *setup, s32 effect, s32 bgm, u32 *winFlag);

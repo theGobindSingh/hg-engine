@@ -835,6 +835,16 @@ SetupAndStartWildBattle = 0x02051020 | 1;
 BattleSetup_New_Tutorial = 0x02051AAC | 1;
 Encounter_New = 0x020506BC | 1;
 TaskManager_Call = 0x02050530 | 1;
+/* pret's StartScriptFromMenu (src/script_manager.c:90-95), the third of three consecutive script
+   starters, verified instruction-by-instruction against THIS ROM's arm9 bytes: it calls
+   TaskManager_GetFieldSystem -> ScriptEnvironment_New -> SetupScriptEngine(..., NULL) ->
+   TaskManager_Jump(taskman, Task_RunScripts, env). Its neighbours are EventSet_Script
+   (0x0203FE74) and QueueScript (0x0203FED4, tail-calls TaskManager_Call above). This is the ONLY
+   one of the three that is correct from inside a TaskFunc: the other two end in
+   FieldSystem_CreateTask, whose GF_ASSERT(taskman == NULL) is compiled into retail and which then
+   overwrites fieldSystem->taskman anyway. See docs/mr-paint-ball-animation.md section A6 in the
+   james-game repo. */
+StartScriptFromMenu = 0x0203FF0C | 1;
 Task_TutorialBattle = 0x0205128C | 1;
 
 GetItemAttrSub = 0x02077E48 | 1;

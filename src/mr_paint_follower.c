@@ -360,6 +360,14 @@ _Static_assert(__builtin_offsetof(FieldSystem, mapObjectMan) == 0x3C, "FieldSyst
 _Static_assert(__builtin_offsetof(FieldSystem, location) == 0x20, "FieldSystem.location must sit at +0x20");
 _Static_assert(__builtin_offsetof(Location, mapId) == 0x00, "Location.mapId must be Location's first word");
 
+// 0.4.12: the changed-tag guard now spans two functions that run ~24 frames apart, so the tag the
+// follower was drawn with BEFORE FollowMon_ChangeMon has to survive the gap. A file-static is the
+// whole mechanism: MrPaintRefreshFollower records it, MrPaintRebindFollowerModel (called from the
+// swap script, between the recall and the hop-out) compares against it. It cannot go stale in a
+// way that matters - the only writer is the toggle itself, the only reader is the script it
+// queues, and a toggle that queues no script leaves a value nothing will ever read.
+static u32 sMrPaintTagBeforeSwap;
+
 // Swap the walking follower's identity NOW, in place, and let the game play its own Poke Ball
 // animation over the change.
 //
@@ -389,10 +397,29 @@ _Static_assert(__builtin_offsetof(Location, mapId) == 0x00, "Location.mapId must
 //     ROM. EventSet_Script is the same mechanism MrPaintTryQueueInspiration (src/mr_paint.c) and
 //     src/repel.c already use to start a script from C.
 //
-//     The identity change happens BEFORE the script is queued, so the Pokemon that hops out is
-//     always the new one. That ordering is correct whether opcode 606 rebuilds the model or
-//     merely un-hides it, because the show happens after the sprite id was written either way -
-//     which is exactly why no custom script command is needed to sequence it.
+//     0.4.12 CORRECTS TWO CLAIMS THIS COMMENT USED TO MAKE, both disproven by measurement; see
+//     docs/mr-paint-ball-animation.md in the james-game repo for the full RCA.
+//
+//     (a) "EventSet_Script is the mechanism" - true on the Y path only. On the Bag USE path our
+//         caller is a TaskFunc, and EventSet_Script ends in FieldSystem_CreateTask, whose
+//         GF_ASSERT(taskman == NULL) is compiled into retail; it then clobbers
+//         fieldSystem->taskman anyway, and because the field-task pump re-reads taskman AFTER the
+//         task function returns, the freshly created script task was being freed the same frame.
+//         The script never ran at all from the Bag. So the starter is now chosen per path:
+//         StartScriptFromMenu (include/task.h) inside a task, EventSet_Script outside one. That
+//         is not inconsistency - retail's own ItemFieldUseFunc_Bicycle has the EventSet_Script
+//         shape exactly where we use it, and A2 proved in game that the Y path already worked.
+//
+//     (b) "the refresh does NOT need to sit between the two lines" - wrong, and doubly so. With
+//         the two opcodes back-to-back the whole script ran in ~2 frames and nothing was drawn:
+//         opcode 600 yields at most ONE frame and 606 returns FALSE, where vanilla separates them
+//         by hundreds of frames. Once the script waits properly, re-binding the model beforehand
+//         means the player watches MR. PAINT get sucked into the ball and Mr. Paint hop back out
+//         - the opposite of what the client asked for. The re-bind therefore moved OUT of this
+//         function and into MrPaintRebindFollowerModel below, which the script calls while the
+//         follower is hidden. The IDENTITY (FollowMon_ChangeMon and its restore guard) stays
+//         here, so the cache is correct the instant the flag flips and map-load persistence is
+//         untouched.
 //
 //     Queued ONLY when a live follower object exists. A script-level reset toggles an
 //     already-initialised follower; it cannot build one from nothing (docs/log.md,
@@ -438,12 +465,20 @@ _Static_assert(__builtin_offsetof(Location, mapId) == 0x00, "Location.mapId must
 //     two readings disagree and nothing cheap settles which is right - so write the tag back
 //     ourselves and the object provably holds it under either one. MapObject_SetGfxID cannot
 //     allocate and cannot fail.
-static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
+//
+//     0.4.12 MOVES THOSE TWO CALLS OUT of this function, unchanged, into
+//     MrPaintRebindFollowerModel below - see (b) above for why. Everything this paragraph argues
+//     still holds; only the moment it happens changed. The pre-swap tag travels to the new home
+//     in sMrPaintTagBeforeSwap so the changed-tag guard survives the move intact.
+//
+// `taskman` is the TaskManager of the caller when there is one (the Bag USE path, where we run
+// inside Task_MrPaintToggle) and NULL when there is not (the Y path, a plain field-use func). It
+// exists ONLY to pick the script starter - see (a) above - and is threaded through rather than
+// re-derived because a field-use func genuinely has no task to derive it from.
+static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskman)
 {
     LocalMapObject *mapObject;
     u8 active;
-    u32 tagBefore;
-    u32 tagAfter;
 
     if (fieldSystem == NULL || fieldSystem->mapObjectMan == NULL || fieldSystem->location == NULL) {
         return;
@@ -451,7 +486,7 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
 
     mapObject = fieldSystem->followMon.mapObject;
     active = fieldSystem->followMon.active;
-    tagBefore = (mapObject != NULL) ? MapObject_GetGfxID(mapObject) : 0;
+    sMrPaintTagBeforeSwap = (mapObject != NULL) ? MapObject_GetGfxID(mapObject) : 0;
 
     FollowMon_ChangeMon(fieldSystem->mapObjectMan, fieldSystem->location->mapId);
 
@@ -465,15 +500,42 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
     }
 
     if (fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) {
-        tagAfter = MapObject_GetGfxID(fieldSystem->followMon.mapObject);
-        if (tagAfter != tagBefore) {
-            ChangeMapObjSprite(fieldSystem->followMon.mapObject, tagAfter);
-            MapObject_SetGfxID(fieldSystem->followMon.mapObject, tagAfter);
+        if (taskman != NULL) {
+            StartScriptFromMenu(taskman, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
+        } else {
+            EventSet_Script(fieldSystem, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
         }
     }
+}
 
-    if (fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) {
-        EventSet_Script(fieldSystem, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
+// The half of the old refresh that now runs from INSIDE the swap script, one line after opcode
+// 600 has finished sucking the old follower into the ball and one line before 606 pops the new
+// one out - i.e. entirely inside the window where the object is hidden, which is the whole point.
+// Reached through src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL (2), which
+// must keep matching NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
+//
+// It re-reads followMon.mapObject and followMon.active rather than trusting anything captured
+// earlier: opcode 606 restores the follower only if FollowMon_IsActive passes, so this must never
+// be the thing that zeroes it. The restore guard in MrPaintRefreshFollower has already run by the
+// time we get here, so both fields are live if they can be.
+void MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
+{
+    LocalMapObject *mapObject;
+    u32 tag;
+
+    if (fieldSystem == NULL) {
+        return;
+    }
+
+    mapObject = fieldSystem->followMon.mapObject;
+    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
+        return;
+    }
+
+    tag = MapObject_GetGfxID(mapObject);
+    if (tag != sMrPaintTagBeforeSwap) {
+        ChangeMapObjSprite(mapObject, tag);
+        MapObject_SetGfxID(mapObject, tag);
     }
 }
 
@@ -482,7 +544,11 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
 // of the same three lines eventually would. 0.4.9 puts the refresh here for the same reason: the
 // client reported the deferred swap from the Bag, but the Y path deferred identically, and one
 // shared body is the only way the two stay honest.
-static void MrPaintToggleFollowingFlag(FieldSystem *fieldSystem)
+//
+// 0.4.12 threads `taskman` straight through for the same reason: one shared body, and the ONE
+// thing the two paths legitimately differ on (which script starter is legal in their context)
+// travels as an argument rather than as a second copy of the body.
+static void MrPaintToggleFollowingFlag(FieldSystem *fieldSystem, TaskManager *taskman)
 {
     if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
         ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
@@ -490,7 +556,7 @@ static void MrPaintToggleFollowingFlag(FieldSystem *fieldSystem)
         SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
     }
 
-    MrPaintRefreshFollower(fieldSystem);
+    MrPaintRefreshFollower(fieldSystem, taskman);
 }
 
 // Entry point 1: the `field` column of sNewItemFieldUseFuncs[] row 6 (src/item.c), i.e. when
@@ -516,7 +582,10 @@ static void MrPaintToggleFollowingFlag(FieldSystem *fieldSystem)
 // that did nothing at all, while the Bag arm gains 0x40 and never loses it.
 BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data)
 {
-    MrPaintToggleFollowingFlag(data == NULL ? NULL : data->fieldSystem);
+    // NULL taskman: a field-use func runs in the idle context, with no task of its own, which is
+    // exactly the context EventSet_Script's FieldSystem_CreateTask asserts for. A2 proved in game
+    // that the swap script really does run on this path.
+    MrPaintToggleFollowingFlag(data == NULL ? NULL : data->fieldSystem, NULL);
     return FALSE;
 }
 
@@ -543,6 +612,13 @@ BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data)
 //     underneath). Retail's own Task_JumpToFieldEscapeRope is exactly this shape: a one-line
 //     relay that itself calls TaskManager_Jump again and returns FALSE - but our case needs no
 //     further jump, so TRUE on the first call is correct and matches the one-shot pattern.
+//
+//     0.4.12 RETRACTS THAT LAST SENTENCE. It was true only while this task did nothing but flip a
+//     flag. Now it starts a script through StartScriptFromMenu, which ends in TaskManager_Jump,
+//     and TaskManager_Jump reuses the CALLING task struct in place rather than allocating a new
+//     one - so returning TRUE pops and frees the very task just aimed at the script, and the
+//     script silently never runs. Retail's ten Task_Use*InField field-move tasks are structurally
+//     identical to ours and every one of them returns FALSE. See the comment at the return below.
 //
 // atexit_TaskEnv MUST be explicitly zeroed: case 13 forwards it straight into TaskManager_Jump as
 // the new task's environment, and unlike state 5, state 12's retail users always zero it.
@@ -598,8 +674,19 @@ BOOL Task_MrPaintToggle(TaskManager *taskman)
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjectMan);
     }
 
-    MrPaintToggleFollowingFlag(fieldSystem);
-    return TRUE;
+    // 0.4.12: `taskman` goes down so the refresh can start the swap script with
+    // StartScriptFromMenu instead of EventSet_Script - the only starter that is legal from inside
+    // a task, and the fix for the script never having run on this path at all.
+    MrPaintToggleFollowingFlag(fieldSystem, taskman);
+
+    // MANDATORY FALSE, not a style choice. StartScriptFromMenu tail-calls TaskManager_Jump, which
+    // re-aims THIS task struct at Task_RunScripts in place; FieldSystem_RunTaskFrame's
+    // `while (taskman->func(taskman) == TRUE)` loop would then pop and free it on this very
+    // frame, taking the script with it. The failure mode is silent - it looks exactly like the
+    // feature not firing - which is why it is spelled out here rather than left to the reader.
+    // Nothing leaks by returning FALSE: ItemMenuUseFunc_MrPaintToggle below sets
+    // atexit_TaskEnv = NULL, so this task owns no environment to free.
+    return FALSE;
 }
 
 void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2 UNUSED)

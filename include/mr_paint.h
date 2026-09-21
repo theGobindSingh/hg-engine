@@ -172,4 +172,13 @@ BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data);
 void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2);
 BOOL Task_MrPaintToggle(TaskManager *taskman);
 
+// 0.4.12 "the ball animation": the second half of the old instant refresh, split out so it can run
+// from INSIDE the swap script (MR_PAINT_FOLLOWER_SWAP_SCRIPT above) rather than before it - in the
+// window where opcode 600 has already hidden the follower and 606 has not yet popped it back out.
+// Re-binding the 3D model there is what makes the player see the LEAD go into the ball and
+// Mr. Paint come out, instead of Mr. Paint doing both. Its only caller is src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, whose value must match
+// NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
+void MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
+
 #endif // GUARD_MR_PAINT_H

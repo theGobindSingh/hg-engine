@@ -15,6 +15,14 @@
 // Two result operands, unlike NEW_COMMAND_QUEUE_NEW_REPEL's one - the caller needs both which
 // message to show (resultVar) and what item name to buffer into it (itemVar).
 #define SCRIPT_NEW_CMD_MR_PAINT_PENDING_INSPIRATION 1
+// Mr. Paint (side feature 0.4.12 "the ball animation"): re-binds the follower's 3D model in the
+// middle of the swap script, while opcode 600 has it hidden. Carries no operand at all - arg0 is
+// read before the switch for every command and is simply ignored here, the way
+// NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL emits a 0 for it. The state it needs (the tag the
+// follower was drawn with before the swap) lives in a file-static in src/mr_paint_follower.c,
+// written by the same toggle that queued this script, so there is nothing for a script operand to
+// carry. Must match NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL 2
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -43,6 +51,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
             SetScriptVar(MR_PAINT_PENDING_ITEM_VAR, 0);
         }
         SetScriptVar(arg0, msgIndex);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL:
+        MrPaintRebindFollowerModel(ctx->fsys);
         break;
 
     default:

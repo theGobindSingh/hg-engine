@@ -841,18 +841,42 @@ scr_seq_0003_074_mr_paint_inspiration:
 // proving for us that it is safe on a live follower, mid-map, with no map load - the one thing
 // this feature needed and could not get from follow_mon.c.
 //
-// No message, no text index, no new opcode. The identity is already correct before this runs, so
-// whatever 606 does internally - rebuild the model or just un-hide it - the Pokemon that hops out
-// is the new one. That is why the refresh does NOT need to sit between the two lines, which would
-// have cost a custom script command for no extra correctness.
-//
 // MrPaintRefreshFollower only queues this when followMon.mapObject and followMon.active are both
 // live, so it never runs with no follower to send back: a script-level reset toggles an
 // already-initialised follower object and cannot build one from nothing.
+//
+// 0.4.12 REWRITES THIS SCRIPT AND RETRACTS WHAT THIS COMMENT USED TO CLAIM. Through 0.4.11 the
+// body was `lockall / 600 / 606 / releaseall / end`, and this block argued that the refresh did
+// NOT need to sit between the two lines and that no custom script command was needed. Both halves
+// of that are disproven by measurement; see docs/mr-paint-ball-animation.md in the james-game
+// repo for the full RCA.
+//
+// (1) THE TWO OPCODES MUST BE SEPARATED BY A WAIT. ScrCmd_600 yields at most ONE frame and
+//     ScrCmd_606 returns FALSE, so back-to-back the whole script ran in ~2 frames and the player
+//     saw nothing at all. Vanilla never puts them adjacent - in retail they are hundreds of frames
+//     apart, with the nurse's entire healing sequence in between. Captured frame by frame on the Y
+//     path of 0.4.11, the native recall runs: SHRINK on frames 1-10, a POKE BALL drawn on the
+//     follower's own tile frames 11-16, TILE EMPTY from frame 17. `wait 24` therefore clears the
+//     last drawn ball frame by eight frames of margin, and the second one mirrors it so the
+//     hop-out finishes before releaseall/end can tear the script down. `wait` (opcode 3) is a
+//     plain FRAME COUNTER, not an event wait, so neither line can block on an animation that did
+//     not play - the worst case is a fixed ~50-frame lock, never a soft-lock.
+//
+// (2) THE RE-BIND MUST HAPPEN INSIDE THE HIDDEN WINDOW, which is what the new command buys. The
+//     identity swap (FollowMon_ChangeMon) still happens in C before this script starts, so the
+//     cache is right the instant the flag flips - but the 3D MODEL re-bind cannot: done before
+//     600, the player watches Mr. Paint get sucked into the ball and Mr. Paint hop back out, the
+//     exact opposite of what the client asked for. Run between the recall and the hop-out, the
+//     model changes while the object is hidden, so the LEAD goes in and MR. PAINT comes out.
+//     mr_paint_swap_follower_model reaches src/mr_paint_follower.c's MrPaintRebindFollowerModel;
+//     it carries no operand, and 0.4.11's changed-tag guard survives the move intact.
 scr_seq_0003_075_mr_paint_follower_swap:
     lockall
     send_follower_to_ball
+    wait 24, VAR_SPECIAL_RESULT
+    mr_paint_swap_follower_model
     reset_follower_with_ball
+    wait 24, VAR_SPECIAL_RESULT
     releaseall
     end
 
