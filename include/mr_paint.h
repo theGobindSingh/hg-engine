@@ -181,4 +181,14 @@ BOOL Task_MrPaintToggle(TaskManager *taskman);
 // NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
 void MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
 
+// 0.4.13 "the follower comes back": clears the hidden state that opcode 606 LATCHES rather than
+// lifts. 606 calls sub_02069DEC(object, TRUE), setting a persistent "keep hidden" bit in the map
+// object's param 2, so after 0.4.12's recall the follower stayed invisible until the player took a
+// step. sub_02069DC8(obj, FALSE) is the exact inverse - it clears both flag bits AND that latch,
+// so the restore survives the next map load. Called from the swap script AFTER both `wait 24`s,
+// because retail only ever un-hides from inside the task that owns the recall effect. Its only
+// caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, whose value must match
+// NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
+void MrPaintShowFollower(FieldSystem *fieldSystem);
+
 #endif // GUARD_MR_PAINT_H

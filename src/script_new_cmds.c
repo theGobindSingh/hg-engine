@@ -23,6 +23,12 @@
 // written by the same toggle that queued this script, so there is nothing for a script operand to
 // carry. Must match NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL 2
+// Mr. Paint (side feature 0.4.13 "the follower comes back"): clears the hidden latch opcode 606
+// sets, so the follower is drawn again the moment the swap script ends instead of at the player's
+// next step. Operand-less for the same reason as the command above - arg0 is read before the
+// switch and ignored here - because everything it needs is reachable from ctx->fsys. Must match
+// NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER 3
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -55,6 +61,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL:
         MrPaintRebindFollowerModel(ctx->fsys);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER:
+        MrPaintShowFollower(ctx->fsys);
         break;
 
     default:

@@ -539,6 +539,66 @@ void MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
     }
 }
 
+// ---------------------------------------------------------------------------------------------
+// 0.4.13: putting the follower BACK on screen, which 606 does not do
+// ---------------------------------------------------------------------------------------------
+//
+// 0.4.12 made the native recall play - the follower shrinks and a Poke Ball is drawn on its tile,
+// on both entry paths - and then the follower NEVER CAME BACK. It stayed invisible until the
+// player took a step, measured at ~50 s of no input, with the follower object's flags word parked
+// at 0x200CE621 against a baseline 0x2004E421 for the whole window. Two facts out of the
+// disassembly explain that exactly, and both are counter-intuitive enough to be worth writing
+// down rather than leaving to the next reader to re-derive:
+//
+// (1) THE FLAG'S NAME IS INVERTED. MapObject_SetVisible writes bit 9 and MapObject_SetFlag19
+//     writes bit 19, but bit 9 SET means HIDDEN, not shown - pret's own FollowMon_IsVisible
+//     returns TRUE when MAPOBJECTFLAG_VISIBLE is CLEAR. Reading the flags word with the name as a
+//     guide gives the opposite answer to the truth, which is part of why 0.4.12's watch on that
+//     word looked benign.
+//
+// (2) ScrCmd_606 IS NOT INERT - IT LATCHES THE FOLLOWER HIDDEN. It calls sub_02069DEC(object,
+//     TRUE), which sets bit 1 of the object's PARAM 2, a persistent "keep hidden" latch that
+//     FollowMon_ChangeMon itself re-hides on. Because that is a map-object PARAM and not the flags
+//     word, a flags-word watch shows no trace of it at all - which is why 0.4.12's measurement
+//     found the symptom and not the cause. So the thing we were relying on to pop the follower
+//     back out is the very thing pinning it down.
+//
+// sub_02069DC8(obj, FALSE) is the complete inverse of both halves in one call: it performs
+// sub_0206A040(obj, FALSE), which clears BOTH flag bits, and it clears the param-2 latch - so the
+// restore also survives the next map load instead of being undone by the next ChangeMon. It is
+// attested in retail at src/field_take_photo.c:809, it was already linked (rom.ld:385) and already
+// prototyped (include/map_events_internal.h:241), and nothing in this tree used it before now, so
+// this build adds nothing to rom.ld.
+//
+// POLARITY, spelled out because the parameter name reads backwards too: pass FALSE to make the
+// follower DRAWN. TRUE hides it.
+//
+// WHY THE SCRIPT CALLS THIS AND NOT THE C TOGGLE: retail only ever un-hides a follower from inside
+// the task that owns the recall effect, once that effect has finished. Ours has no such task, so
+// the script stands in for one - this runs after BOTH `wait 24`s, i.e. after the recall and the
+// hop-out have each had their frames, so it can never clear the latch out from under an animation
+// that is still playing.
+//
+// The NULL / `active` guard is mandatory, not defensive padding: MapObject_SetBits dereferences
+// its argument with no null check of its own, so a follower-less fire would fault rather than
+// no-op. Both fields are re-read here rather than captured earlier, for the same reason
+// MrPaintRebindFollowerModel re-reads them.
+void MrPaintShowFollower(FieldSystem *fieldSystem)
+{
+    LocalMapObject *mapObject;
+
+    if (fieldSystem == NULL) {
+        return;
+    }
+
+    mapObject = fieldSystem->followMon.mapObject;
+    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
+        return;
+    }
+
+    sub_02069DC8(mapObject, FALSE);
+}
+
 // The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the
 // 0.4.5 Bag/USE path - call this and nothing else, so they cannot drift apart the way two copies
 // of the same three lines eventually would. 0.4.9 puts the refresh here for the same reason: the

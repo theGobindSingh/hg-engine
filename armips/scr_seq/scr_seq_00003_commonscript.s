@@ -870,6 +870,19 @@ scr_seq_0003_074_mr_paint_inspiration:
 //     model changes while the object is hidden, so the LEAD goes in and MR. PAINT comes out.
 //     mr_paint_swap_follower_model reaches src/mr_paint_follower.c's MrPaintRebindFollowerModel;
 //     it carries no operand, and 0.4.11's changed-tag guard survives the move intact.
+//
+// (3) 0.4.13 ADDS THE LAST LINE, because reset_follower_with_ball DOES NOT PUT THE FOLLOWER BACK.
+//     0.4.12 shipped everything above and the recall visibly played - shrink, then a Poke Ball
+//     drawn on the follower's own tile - and then the follower never returned: invisible until the
+//     player took a step, measured at ~50 s of no input. ScrCmd_606 is not the "show it again"
+//     half of the pair it looks like. It calls sub_02069DEC(object, TRUE), which SETS bit 1 of the
+//     object's param 2 - a persistent "keep hidden" latch that FollowMon_ChangeMon itself re-hides
+//     on. Because that is a map-object param and not the flags word, 0.4.12's flags-word watch saw
+//     nothing of it. So the script has to clear the latch itself, and mr_paint_show_follower does
+//     exactly that, through sub_02069DC8(obj, FALSE) - the complete inverse, clearing both
+//     visibility flag bits and the latch in one call. It goes AFTER both waits, never between
+//     them: retail only ever un-hides a follower from inside the task that owns the recall effect,
+//     once that effect has finished, and this is the nearest equivalent moment we have.
 scr_seq_0003_075_mr_paint_follower_swap:
     lockall
     send_follower_to_ball
@@ -877,6 +890,7 @@ scr_seq_0003_075_mr_paint_follower_swap:
     mr_paint_swap_follower_model
     reset_follower_with_ball
     wait 24, VAR_SPECIAL_RESULT
+    mr_paint_show_follower
     releaseall
     end
 

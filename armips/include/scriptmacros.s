@@ -6768,6 +6768,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (side feature 0.4.12) - see mr_paint_swap_follower_model below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, which must match.
 .equ NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 2
+// Mr. Paint (side feature 0.4.13) - see mr_paint_show_follower below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, which must match.
+.equ NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 3
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6785,6 +6788,19 @@ RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
 // the pre-swap sprite tag, which src/mr_paint_follower.c already holds in a file-static.
 .macro mr_paint_swap_follower_model
 RunNewCommand NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.13 "the follower comes back"): puts the follower back on screen
+// after the ball animation. Opcode 606 does NOT do this - it LATCHES the object hidden, by setting
+// bit 1 of its param 2 through sub_02069DEC(obj, TRUE), which is why 0.4.12's follower stayed
+// invisible until the player took a step. This reaches src/mr_paint_follower.c's
+// MrPaintShowFollower, which calls the exact inverse, sub_02069DC8(obj, FALSE) - it clears both
+// visibility flag bits AND that latch, so the restore survives the next map load too. Operand-less
+// for the same reason as mr_paint_swap_follower_model above. Used only at the tail of
+// scr_seq_0003_075_mr_paint_follower_swap, after BOTH waits, so it can never lift the latch while
+// the recall or hop-out is still drawing.
+.macro mr_paint_show_follower
+RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
 .endmacro
 
 // Dummy
