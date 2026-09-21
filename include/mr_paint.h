@@ -132,6 +132,22 @@ BOOL MrPaintFollowerSubstitutes(u16 species);
 // the retail body (a leaf: four stores, no calls) with the one substitution.
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
 
+// Side feature 0.4.10 "shiny Mr. Paint" - src/mr_paint_follower.c. Full-function hook (see
+// hg-engine `hooks`) replacing retail FollowMon_SetObjectShiny at 0x0206A080 - the ONLY code in
+// the ROM that writes the walking follower's shiny bit. Both of its callers reach it (0x02069EE8,
+// and the undocumented 5-argument sibling 0x02069F0C, which is called from overlay 1 and has no
+// arm9 caller), so hooking this funnel covers the map load, 0.4.9's instant swap and script
+// opcode 606 in one place. Forces the bit on while Mr. Paint is what is drawn, and otherwise
+// passes the caller's own value straight through, so a genuinely shiny party lead keeps its
+// sparkle and a normal one can never gain one.
+//
+// Only a pointer to LocalMapObject is needed here, so forward-declare the typedef rather than
+// pulling map_events_internal.h into every consumer of this header. Repeating an identical
+// typedef is fine - include/pokemon.h:568 already declares this exact line, and
+// src/field/hidden_items.c includes both headers today.
+typedef struct LocalMapObject LocalMapObject;
+void MrPaintFollowMonSetObjectShiny(LocalMapObject *mapObject, BOOL enable);
+
 // 0.4.7 "obstacle move from the follower" (client DoD 5) - src/mr_paint_follower.c. Returns the
 // deployed follower's own party slot when, and only when, the object currently drawn behind the
 // player really is Mr. Paint (flag set, item held, follower active, and - the load-bearing check

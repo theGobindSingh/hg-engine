@@ -518,6 +518,20 @@ arm9 ScrCmd_End 02040898 1
 # inside that C function instead.
 arm9 MrPaintFollowPokeFsysParamSet 02069F3C
 
+# Mr. Paint (0.4.10 shiny) - the DRAWN shiny bit, the map object's own copy, which is a different
+# store from the cache hooked above and has to be forced to match it.
+#
+# 0x0206A080 is FollowMon_SetObjectShiny, the ONLY code in the ROM that writes that bit. It is
+# hooked instead of its caller FollowPokeMapObjectSetParams (0x02069EE8) because it is the funnel:
+# the other caller is an undocumented 5-argument sibling at 0x02069F0C, reached from overlay 1
+# (0x0220201E) with no arm9 caller of its own, so hooking 0x02069EE8 alone would miss a live path.
+# One hook here covers the map load, 0.4.9's instant swap and script opcode 606.
+#
+# NOTE the 4th column is back, unlike the line above. This function takes TWO arguments, so r2 and
+# r3 are free and the ordinary register hook form applies - same shape as `arm9 ScrCmd_183
+# 02043724 1`.
+arm9 MrPaintFollowMonSetObjectShiny 0206A080 2
+
 0012 BattleSystem_CheckMoveEffect 0224C018
 
 # 0012 BattleControllerPlayer_UpdateMonCondition 02249CC4 2

@@ -121,8 +121,30 @@ static const u16 sMrPaintActorNickname[] = {
     0x0137, 0x0156, 0x01AE, 0x01DE, 0x013A, 0x0145, 0x014D, 0x0152, 0x0158, 0xFFFF
 };
 
-// Fixed PID ('MrPa'): deterministic, and non-shiny against the forced OT id 0.
-#define MR_PAINT_ACTOR_PID 0x4D725061u
+// Fixed PID ('PaPa'): deterministic, and SHINY against the forced OT id 0 (0.4.10 - it was 'MrPa',
+// 0x4D725061, and non-shiny until then).
+//
+// The cut-in provably reads its shininess off this mon, traced through this ROM's own bytes:
+// ScrCmd_183 -> ov02_02249458 stashes the Pokemon * at work+0x5C -> overlay-2 thunk 0x0224A7A8 ->
+// arm9 0x02070124 -> 0x0207013C, which calls BoxMonIsShiny (0x02070044, rom.ld:94) at 0x02070168
+// and feeds the answer into the char/palette NARC-id selection. So the PID is the palette.
+//
+// SHINY_VALUE(0, 0x50615061) = 0x5061 ^ 0x5061 = 0, comfortably inside SHINY_ODDS (8,
+// include/config.h:130). The whole expansion is integer & >> ^ <=, so it folds at compile time and
+// can be asserted rather than trusted. GenerateShinyPIDKeepSubstructuresIntact is deliberately NOT
+// used: it calls gf_rand(), so it is non-deterministic and cannot appear in a constant assertion.
+//
+// 'PaPa' is chosen over the equally shiny 'MrMr' (0x4D724D72) because it keeps the low byte at
+// 0x61, byte-identical to the old PID - the sprite resolver reads MON_DATA_GENDER as well as
+// shininess, and gender is derived from that byte, so the rendered gender cannot shift. The cry
+// path reads only species and form, so the cry is unaffected either way.
+//
+// Scope limit worth stating plainly: since 0.4.7, Cut / Rock Smash / Strength with the follower
+// DEPLOYED take vanilla's overworld branch and play no cut-in at all. So the shiny cut-in shows on
+// Surf / Waterfall / Whirlpool / Rock Climb always, and on Cut / Rock Smash / Strength only when
+// Mr. Paint is not deployed.
+#define MR_PAINT_ACTOR_PID 0x50615061u
+_Static_assert(SHINY_CHECK(0, MR_PAINT_ACTOR_PID), "the Mr. Paint cut-in actor must be shiny");
 
 static struct PartyPokemon *MrPaintActorMon(void)
 {

@@ -7,6 +7,7 @@
 
 #include "../include/bag.h"
 #include "../include/item.h"
+#include "../include/map_events_internal.h"
 #include "../include/pokemon.h"
 #include "../include/save.h"
 #include "../include/script.h"
@@ -173,16 +174,87 @@ _Static_assert(MR_PAINT_FOLLOWMON_OFS(mapObject) == 0xE4, "followMon.mapObject m
 
 void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender)
 {
+    // 0.4.10: Mr. Paint is SHINY. This store is the CACHE at FieldSystem+0xFB - a second,
+    // independent copy of the shiny bit, separate from the one the map object carries (written by
+    // FollowMon_SetObjectShiny, hooked below). The two must agree: if the cache says FALSE while
+    // the drawn object says TRUE, the game's own live state contradicts the screen, and the cache
+    // is the only half the headless harness can read back.
     if (MrPaintFollowerSubstitutes((u16)species)) {
         species = SPECIES_SMEARGLE;
         forme = 0;
-        shiny = FALSE;
+        shiny = TRUE;
     }
 
     fieldSystem->followMon.species = species;
     fieldSystem->followMon.shiny = shiny;
     fieldSystem->followMon.forme = forme;
     fieldSystem->followMon.gender = gender;
+}
+
+// ---------------------------------------------------------------------------------------------
+// 0.4.10: the DRAWN shiny bit
+// ---------------------------------------------------------------------------------------------
+//
+// "Is the follower currently being drawn as Mr. Paint?", answered WITHOUT a species argument -
+// FollowMon_SetObjectShiny below is handed an object and a boolean and nothing else. Composed
+// from the two predicates this file already has rather than duplicating their gates, so the
+// flag/item/lead conditions can never drift between the two answers.
+//
+// THE `base == SPECIES_NONE` GUARD IS LOAD-BEARING, not defensive padding. MrPaintFollowerBaseSpecies
+// returns SPECIES_NONE (0) when no party member is alive, and MrPaintFollowerSubstitutes(0) would
+// then evaluate its final line as `0 == MrPaintFollowerBaseSpecies(...)`, i.e. `0 == 0`, and return
+// TRUE - forcing shiny on with an all-fainted party. Without this line the gate inverts in exactly
+// that edge case.
+static BOOL MrPaintFollowerIsSubstitutedNow(void)
+{
+    FieldSystem *fieldSystem = gFieldSysPtr;
+    u16 base;
+
+    if (fieldSystem == NULL || fieldSystem->savedata == NULL) {
+        return FALSE;
+    }
+
+    base = MrPaintFollowerBaseSpecies(fieldSystem);
+    if (base == SPECIES_NONE) {
+        return FALSE;
+    }
+
+    return MrPaintFollowerSubstitutes(base);
+}
+
+// Full-function hook replacing retail FollowMon_SetObjectShiny (0x0206A080).
+//
+// THE FUNNEL, AND WHY IT IS HOOKED INSTEAD OF FollowPokeMapObjectSetParams (0x02069EE8):
+// 0x0206A080 is the ONLY code in the ROM that writes the follower's shiny bit. Its two callers
+// are 0x02069EE8 and an undocumented 5-argument sibling at 0x02069F0C, which is called from
+// overlay 1 (0x0220201E) and has no arm9 caller at all - so hooking 0x02069EE8 alone would miss
+// a live path. Hooking the funnel covers all three rebuild routes at once: the map load
+// (FollowMon_InitMapObject), 0.4.9's instant swap (FollowMon_ChangeMon), and script opcode 606.
+//
+// The retail body, read from this ROM's bytes: MapObject_GetParam(obj, 2), clear bit 0 only
+// (retail does `asrs r0,r0,#1` then `lsls r1,r0,#1`; pret writes the same thing as
+// `param = (u32)(param >> 1) << 1`), OR in bit 0 when enabled, MapObject_SetParam(obj, param, 2).
+// Both accessors were already linked (rom.ld:357-358) and already declared
+// (include/map_events_internal.h:221-222), so this build adds nothing to rom.ld.
+//
+// When the gate is FALSE the caller's own `enable` passes through untouched, so THE REAL LEAD'S
+// OWN SHININESS IS PRESERVED IN BOTH DIRECTIONS - a shiny lead stays shiny, a normal lead stays
+// normal. That is the client's "must not leak either way" requirement, met by construction rather
+// than by a second code path that could disagree with the first.
+void MrPaintFollowMonSetObjectShiny(LocalMapObject *mapObject, BOOL enable)
+{
+    int param;
+
+    if (MrPaintFollowerIsSubstitutedNow()) {
+        enable = TRUE;
+    }
+
+    param = MapObject_GetParam(mapObject, 2);
+    param = (int)(((u32)param >> 1) << 1);
+    if (enable) {
+        param |= 1;
+    }
+    MapObject_SetParam(mapObject, param, 2);
 }
 
 // 0.4.7 "obstacle move from the follower" (client DoD 5). ScrCmd_GetPartySlotWithMove
@@ -274,7 +346,12 @@ extern void LONG_CALL THUMB_FUNC FollowMon_ChangeMon(void *mapObjectMan, int map
 // MAPOBJECTFLAG_MOVEMENT_PAUSED - on the flags word at each object's offset +0. Its Pause twin at
 // 0x0205F574 is the identical function with an `orr` instead of a `bic`. Neither ever touches
 // bit 9 (0x200, VISIBLE), which is why a paused object stays drawn while it stops being stepped.
-extern void LONG_CALL THUMB_FUNC MapObjectMan_UnpauseAllMovement(void *mapObjectMan);
+//
+// 0.4.10: the hand-written extern that used to sit here is gone. This file now includes
+// map_events_internal.h for MapObject_Get/SetParam, and that header already declares this function
+// - better typed, too (MapObjectMan * rather than void *). Two declarations of it is a hard error,
+// so the header's wins; the research above is kept because the symbol name alone does not prove
+// what the function does.
 
 // We write through fieldSystem->mapObjectMan and fieldSystem->location, so pin both the way the
 // followMon block above is pinned. 0.4.3 shipped a build where an alignment pad silently moved a
