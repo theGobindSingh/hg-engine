@@ -186,13 +186,13 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
                 if (MrPaintMoveHasFollowerBranch(move)) {
                     int followerSlot = MrPaintDeployedFollowerSlot(fieldSystem);
 
-                    /* Matching the follower's own slot makes script 146's
-                       `CompareVars 0x8004 0x8005` come out EQUAL, which routes Cut /
-                       Rock Smash / Strength down vanilla's own overworld branch - the
-                       follower performs the move where it stands, with no cut-in.
-                       Not deployed -> the 0.3.8 sentinel, i.e. exactly 0.4.6 behaviour.
-                       A wrong slot can only make the compare DIFFERENT, which is the
-                       cut-in again: the failure mode is "no improvement", never a crash. */
+                    // Slice 0.4.7: matching the follower's own slot makes script 146's
+                    // `CompareVars 0x8004 0x8005` come out EQUAL, which routes Cut / Rock
+                    // Smash / Strength down vanilla's own overworld branch - the follower
+                    // performs the move where it stands, with no cut-in. Not deployed ->
+                    // the 0.3.8 sentinel, i.e. exactly 0.4.6 behaviour. A wrong slot can
+                    // only make the compare DIFFERENT, which is the cut-in again: the
+                    // failure mode is "no improvement", never a crash.
                     *destVar = (followerSlot >= 0) ? (u16)followerSlot : MR_PAINT_ACTOR_SENTINEL_SLOT;
                 } else {
                     *destVar = 0;
