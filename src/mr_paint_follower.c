@@ -247,16 +247,123 @@ int MrPaintDeployedFollowerSlot(FieldSystem *fieldSystem)
     return MrPaintFollowerBaseSlot(fieldSystem);
 }
 
+// ---------------------------------------------------------------------------------------------
+// 0.4.9: the INSTANT swap
+// ---------------------------------------------------------------------------------------------
+//
+// Retail's own mid-session "the follower is now a different Pokemon" entry point. Disassembled
+// from THIS ROM (0x02069B74, Thumb, 0x1F0 bytes): its sole vanilla call site 0x02053278 loads
+// r0 = the map-object manager and r1 = the first word of Location, i.e. the map id - so from C
+// it is FollowMon_ChangeMon(fieldSystem->mapObjectMan, fieldSystem->location->mapId).
+//
+// It MUTATES THE EXISTING OBJECT IN PLACE: zero calls to the map-object allocator 0x0205E294 or
+// to CreateFollowingSpriteFieldObject, and no call into overlay 1 at all. That is why it, and
+// not a despawn/respawn, is the right answer to the client's "no frozen duplicate" - an orphan
+// is structurally impossible on this path rather than merely unlikely.
+//
+// It also re-runs BOTH hooks this feature already ships: FollowPokeFsysParamSet (the cache,
+// MrPaintFollowPokeFsysParamSet above) and FollowingPokemon_GetSpriteID (upstream's
+// get_mon_ow_tag, which decides what is drawn). We are not building a new swap mechanism; we are
+// invoking the game's own one at a new moment. Added to rom.ld for this build - every function it
+// calls was already there.
+extern void LONG_CALL THUMB_FUNC FollowMon_ChangeMon(void *mapObjectMan, int mapId);
+
+// rom.ld:387. Proven from this ROM's bytes rather than from the symbol name: 0x0205F5A4 is Thumb,
+// takes the manager alone, reads the object count from [mgr+0x04] and the array base from
+// [mgr+0x124], walks it at a 300-byte stride, and CLEARS 0x40 - bit 6,
+// MAPOBJECTFLAG_MOVEMENT_PAUSED - on the flags word at each object's offset +0. Its Pause twin at
+// 0x0205F574 is the identical function with an `orr` instead of a `bic`. Neither ever touches
+// bit 9 (0x200, VISIBLE), which is why a paused object stays drawn while it stops being stepped.
+extern void LONG_CALL THUMB_FUNC MapObjectMan_UnpauseAllMovement(void *mapObjectMan);
+
+// We write through fieldSystem->mapObjectMan and fieldSystem->location, so pin both the way the
+// followMon block above is pinned. 0.4.3 shipped a build where an alignment pad silently moved a
+// member four bytes and every store landed on the wrong field; an offset comment is not an offset.
+_Static_assert(__builtin_offsetof(FieldSystem, mapObjectMan) == 0x3C, "FieldSystem.mapObjectMan must sit at +0x3C");
+_Static_assert(__builtin_offsetof(FieldSystem, location) == 0x20, "FieldSystem.location must sit at +0x20");
+_Static_assert(__builtin_offsetof(Location, mapId) == 0x00, "Location.mapId must be Location's first word");
+
+// Swap the walking follower's identity NOW, in place, and let the game play its own Poke Ball
+// animation over the change.
+//
+// Two halves, and the split is deliberate.
+//
+// (1) The identity. FollowMon_ChangeMon re-derives what the follower is from the party and from
+//     our flag, so the flag MUST already be flipped before this runs - toggle direction is
+//     carried entirely by the flag, and MrPaintFollowerSubstitutes reads it. Toggling ON, retail
+//     hands it the real lead's species and we substitute; toggling OFF, the flag is clear, we
+//     return FALSE, and the real lead comes back. No direction argument is needed anywhere.
+//
+//     THE GUARD is not defensive padding. FsysFollowMonClear (0x0206A06C) runs unconditionally at
+//     the top of ChangeMon and zeroes followMon.mapObject (+0xE4) and followMon.active (+0xFA).
+//     Of its five exit paths only the two success paths write them back; the eligibility-gate
+//     path at 0x02074640 does not, and that gate was NOT disassembled. If it ever returns 0 with
+//     a follower still on screen we would silently leave both zeroed - and 0.4.7's obstacle gate
+//     (MrPaintDeployedFollowerSlot above) requires BOTH non-zero, so the follower would quietly
+//     stop being able to use Cut/Rock Smash/Strength. Snapshotting and restoring costs four lines
+//     and removes the need to prove anything about 0x02074640 at all. followMon.species (+0xF4)
+//     is NOT among the fields FsysFollowMonClear zeroes, so a restore returns the exact pre-call
+//     state.
+//
+// (2) The animation, which is the client's explicit request: "the same animation that plays when
+//     you select your starter, or any time you visit a Pokemon center and your lead hops back out
+//     after being healed." It exists, as two ordinary script commands - see
+//     MR_PAINT_FOLLOWER_SWAP_SCRIPT in include/mr_paint.h for where they are attested in this
+//     ROM. EventSet_Script is the same mechanism MrPaintTryQueueInspiration (src/mr_paint.c) and
+//     src/repel.c already use to start a script from C.
+//
+//     The identity change happens BEFORE the script is queued, so the Pokemon that hops out is
+//     always the new one. That ordering is correct whether opcode 606 rebuilds the model or
+//     merely un-hides it, because the show happens after the sprite id was written either way -
+//     which is exactly why no custom script command is needed to sequence it.
+//
+//     Queued ONLY when a live follower object exists. A script-level reset toggles an
+//     already-initialised follower; it cannot build one from nothing (docs/log.md,
+//     2026-09-13T06:51:14+05:30, where NoBallResetFollowingPoke was tried for that and failed).
+//     So on a bike, while surfing, with a fainted lead, or on a map that forbids followers, this
+//     queues nothing at all and the flag simply flips - preserving 0.4.3's edge-case contract.
+static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
+{
+    LocalMapObject *mapObject;
+    u8 active;
+
+    if (fieldSystem == NULL || fieldSystem->mapObjectMan == NULL || fieldSystem->location == NULL) {
+        return;
+    }
+
+    mapObject = fieldSystem->followMon.mapObject;
+    active = fieldSystem->followMon.active;
+
+    FollowMon_ChangeMon(fieldSystem->mapObjectMan, fieldSystem->location->mapId);
+
+    if (mapObject != NULL && active != 0) {
+        if (fieldSystem->followMon.mapObject == NULL) {
+            fieldSystem->followMon.mapObject = mapObject;
+        }
+        if (fieldSystem->followMon.active == 0) {
+            fieldSystem->followMon.active = active;
+        }
+    }
+
+    if (fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) {
+        EventSet_Script(fieldSystem, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
+    }
+}
+
 // The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the
 // 0.4.5 Bag/USE path - call this and nothing else, so they cannot drift apart the way two copies
-// of the same three lines eventually would.
-static void MrPaintToggleFollowingFlag(void)
+// of the same three lines eventually would. 0.4.9 puts the refresh here for the same reason: the
+// client reported the deferred swap from the Bag, but the Y path deferred identically, and one
+// shared body is the only way the two stay honest.
+static void MrPaintToggleFollowingFlag(FieldSystem *fieldSystem)
 {
     if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
         ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
     } else {
         SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
     }
+
+    MrPaintRefreshFollower(fieldSystem);
 }
 
 // Entry point 1: the `field` column of sNewItemFieldUseFuncs[] row 6 (src/item.c), i.e. when
@@ -275,9 +382,14 @@ static void MrPaintToggleFollowingFlag(void)
 // flag still flips and nothing else happens, and Mr. Paint appears when a follower legitimately
 // next can. We never force a follower where vanilla would show none: retail's own permission check
 // runs on the REAL species upstream of every substitution point, so it is untouched.
-BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data UNUSED)
+// 0.4.9: `data` is no longer UNUSED - struct ItemFieldUseData's first member IS the FieldSystem
+// (include/item.h:107-108), so the refresh needs nothing new here. This path runs on the live
+// overworld, so it deliberately does NOT unpause: nothing ever paused for it. Confirmed in game
+// on 0.4.7 - across a Y toggle the follower object's flags word is byte-identical to a control
+// that did nothing at all, while the Bag arm gains 0x40 and never loses it.
+BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data)
 {
-    MrPaintToggleFollowingFlag();
+    MrPaintToggleFollowingFlag(data == NULL ? NULL : data->fieldSystem);
     return FALSE;
 }
 
@@ -328,9 +440,38 @@ _Static_assert(MR_PAINT_BAGVIEW_OFS(atexit_TaskEnv) == 0x380, "BagViewAppWork.at
 
 // The TaskFunc TaskManager_Jump hands control to. Flips the exact same flag as the field path,
 // through the shared helper above, and completes in one frame.
-BOOL Task_MrPaintToggle(TaskManager *taskman UNUSED)
+// 0.4.9 fixes the client's "frozen, static duplicate of the lead Pokemon" here, and it is one
+// call. Opening the Bag pauses EVERY active map object - MapObjectManager_PauseAllMovement sets
+// MAPOBJECTFLAG_MOVEMENT_PAUSED, bit 6, on each one - and start-menu state 13 frees the menu and
+// TaskManager_Jumps here WITHOUT unpausing, handing that obligation to the exit task. Every
+// retail state=12 exit task that does not end in a warp discharges it itself:
+// Task_MountOrDismountBicycle's state 2 is literally this one call. Ours was the odd one out, in
+// every build since 0.4.6.
+//
+// Bit 6 is movement; VISIBLE is bit 9 and pause/unpause never touch it - so a paused object stays
+// drawn, on its tile, and simply stops being stepped. That is exactly the client's sentence,
+// "unlinks the lead Pokemon's movement logic without despawning its sprite". It was never an
+// orphaned object: no second follower is ever created on this path (proven headlessly, three arms
+// from one savestate), and the flags word gains exactly 0x40 the instant the Bag closes, in the
+// Bag arm alone, and is never cleared.
+//
+// The unpause goes FIRST, before the toggle, so the field is already live when the swap script's
+// own lockall/releaseall pair runs. That releaseall would unpause too - but the fix must not
+// depend on a script that is only queued when a follower happens to exist, and the NPCs frozen
+// alongside the follower need releasing whether one does or not.
+//
+// It stays HERE and not in MrPaintToggleFollowingFlag: the Y path never enters the start-menu
+// state machine, so nothing paused for it, and unpausing there could clear a pause some other
+// system legitimately set.
+BOOL Task_MrPaintToggle(TaskManager *taskman)
 {
-    MrPaintToggleFollowingFlag();
+    FieldSystem *fieldSystem = (taskman == NULL) ? NULL : taskman->fieldSystem;
+
+    if (fieldSystem != NULL && fieldSystem->mapObjectMan != NULL) {
+        MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjectMan);
+    }
+
+    MrPaintToggleFollowingFlag(fieldSystem);
     return TRUE;
 }
 

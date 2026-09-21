@@ -84,6 +84,15 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx);
 // src/repel.c's 2072/2022 and src/bag.c's 2073.
 #define MR_PAINT_INSPIRATION_SCRIPT 2074
 
+// Side feature 0.4.9 "instant follower swap". Same numbering rule: 2000 + the scrdef index of
+// scr_seq_0003_075_mr_paint_follower_swap. Its whole body is retail's own send_follower_to_ball
+// (opcode 600) / reset_follower_with_ball (opcode 606) pair - the follower returns to its Poke
+// Ball and hops straight back out, which is the animation the client asked for by name. Both
+// commands are attested in THIS ROM, not taken from an opcode table: the Poke Center nurse
+// script (archive 4, Function#49 and Function#59/#78 - the exact moment he described) and
+// script 146 Function#80, where retail itself brackets CutAnimation with the same two lines.
+#define MR_PAINT_FOLLOWER_SWAP_SCRIPT 2075
+
 // Queues the inspiration prompt as a script of its own when one is pending (var 0x4059 != 0),
 // so it plays AFTER the giver's whole conversation instead of cutting into it. Called once per
 // completed player step from PlayerStepEvent_RepelCounterDecrement; returns TRUE if it queued

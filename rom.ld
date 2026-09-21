@@ -370,6 +370,10 @@ FollowingPokemon_GetSpriteID = 0x02069D70 | 1;
 FollowPokeFsysParamSet = 0x02069F3C | 1;
 FollowPokeMapObjectSetParams = 0x02069EE8 | 1;
 FsysFollowMonClear = 0x0206A06C | 1;
+/* Mid-session "the follower is now a different Pokemon". Thumb, 0x1F0 bytes ending 0x02069D64,
+   args (mapObjectMan, mapId) - read from its sole retail call site 0x02053278. Mutates the
+   existing map object in place; never allocates, never enters overlay 1. */
+FollowMon_ChangeMon = 0x02069B74 | 1;
 
 CreateSpecialFieldObject = 0x0205E294 | 1;
 DeleteMapObject = 0x0205E400 | 1;

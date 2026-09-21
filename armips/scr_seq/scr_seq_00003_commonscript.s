@@ -89,6 +89,7 @@ scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_mr_paint_inspiration
+scrdef scr_seq_0003_075_mr_paint_follower_swap
 scrdef_end
 
 scr_seq_0003_002:
@@ -822,6 +823,36 @@ scr_seq_0003_074_mr_paint_inspiration:
     lockall
     call _MrPaintShowInspiration
     closemsg
+    releaseall
+    end
+
+// Mr. Paint (side feature 0.4.9 "instant follower swap"): the Poke Ball animation, queued by
+// src/mr_paint_follower.c's MrPaintRefreshFollower right after FollowMon_ChangeMon has already
+// changed WHAT the follower is. The client asked for this by name - "the same animation that
+// plays when you select your starter, or any time you visit a Pokemon center and your lead hops
+// back out after being healed."
+//
+// Both commands are retail's own and are attested in THIS ROM, not taken from an opcode table:
+//   send_follower_to_ball    (600) - 0004.script:653 and :896, the Poke Center nurse sending the
+//                                    follower back just before HealPokemon; 0146.script:943/1006
+//   reset_follower_with_ball (606) - 0004.script:558, the nurse's follow-up sequence, the exact
+//                                    moment he described; 0146.script:944/1007
+// Script 146 Function#80 runs the pair back-to-back to bracket CutAnimation, which is retail
+// proving for us that it is safe on a live follower, mid-map, with no map load - the one thing
+// this feature needed and could not get from follow_mon.c.
+//
+// No message, no text index, no new opcode. The identity is already correct before this runs, so
+// whatever 606 does internally - rebuild the model or just un-hide it - the Pokemon that hops out
+// is the new one. That is why the refresh does NOT need to sit between the two lines, which would
+// have cost a custom script command for no extra correctness.
+//
+// MrPaintRefreshFollower only queues this when followMon.mapObject and followMon.active are both
+// live, so it never runs with no follower to send back: a script-level reset toggles an
+// already-initialised follower object and cannot build one from nothing.
+scr_seq_0003_075_mr_paint_follower_swap:
+    lockall
+    send_follower_to_ball
+    reset_follower_with_ball
     releaseall
     end
 
