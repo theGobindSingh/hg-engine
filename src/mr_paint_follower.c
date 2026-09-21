@@ -399,10 +399,51 @@ _Static_assert(__builtin_offsetof(Location, mapId) == 0x00, "Location.mapId must
 //     2026-09-13T06:51:14+05:30, where NoBallResetFollowingPoke was tried for that and failed).
 //     So on a bike, while surfing, with a fainted lead, or on a map that forbids followers, this
 //     queues nothing at all and the flag simply flips - preserving 0.4.3's edge-case contract.
+//
+// (3) 0.4.11 - THE RE-BIND, and why the two halves above were not enough. 0.4.9 shipped (1) and
+//     (2) and verified them IN RAM ONLY: the cached species became 235, the map object's sprite
+//     id at +0x10 became 2735, and every assertion passed - while the screen kept drawing
+//     Cyndaquil until the next map load. A RAM assertion is not proof of what is drawn.
+//
+//     The cause: MapObject_SetGfxID (0x0205F258) is a bare `str r1,[r0,#16]; bx lr`. The 3D model
+//     is bound to the object when the object is created and is released and re-requested only
+//     through a dirty-bit chain - sub_0205E420 (frees the stale resource when MAPOBJECTFLAG_UNK14
+//     is set, then invalidates the sprite id) -> ov01_021FA108 (the swap worker that writes the
+//     render substruct) -> sub_0205E38C (re-stamps the id and clears the bit). Nothing on the
+//     toggle path ever entered that chain. Opcodes 600/606 do not either: pret's ScrCmd_606
+//     re-checks permission using the species the object ALREADY has and then only un-hides it and
+//     plays the ball effect - it carries no identity and rebuilds no model.
+//
+//     ChangeMapObjSprite (rom.ld:363, 0x021FA930, overlay 1) is the function that runs that chain,
+//     and this is not a guess: retail's own Gracidea Land/Sky Forme swap calls it on a LIVE
+//     FOLLOWER map object, mid-cutscene, with no warp - FollowMon_SetObjectParams(...) then
+//     ov01_021FA930(followMon.mapObject, SPRITE_FOLLOWER_MON_SHAYMIN). Its second argument is an
+//     overworld TAG, which is what upstream's own include/map_events_internal.h:245 has always
+//     declared it to be and what this ROM's bytes confirm (the slow path stores it at node+0 as
+//     the resource lookup key). 0.4.9 rejected this call partly because "its 2nd argument is not
+//     a bare species id" - true, but the wrong objection: nobody wants to pass a species.
+//
+//     Overlay-1 residency is guaranteed at both entry points: the Bag path runs only after
+//     start-menu state 12 has waited on runningFieldMap, and the Y path runs on the live field.
+//
+//     THE CHANGED-TAG GUARD is deliberate. ChangeMapObjSprite has a fast path that allocates
+//     nothing and a slow path that allocates a 0x58-byte load-request node whose free is handed to
+//     an asynchronous consumer and was NOT located in the disassembly. Firing only when the drawn
+//     tag actually changed bounds that to real swaps, and the 20-toggle heap measurement in
+//     docs/mr-paint-follower-refresh.md is the gate that says it does not drift.
+//
+//     THE RE-STAMP afterwards is eight bytes of belt and braces. pret has sub_0205E38C re-writing
+//     the sprite id from its second argument; this ROM's disassembly reads that function as
+//     ignoring its second argument, with sub_0205E420 invalidating the id on the way through. The
+//     two readings disagree and nothing cheap settles which is right - so write the tag back
+//     ourselves and the object provably holds it under either one. MapObject_SetGfxID cannot
+//     allocate and cannot fail.
 static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
 {
     LocalMapObject *mapObject;
     u8 active;
+    u32 tagBefore;
+    u32 tagAfter;
 
     if (fieldSystem == NULL || fieldSystem->mapObjectMan == NULL || fieldSystem->location == NULL) {
         return;
@@ -410,6 +451,7 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
 
     mapObject = fieldSystem->followMon.mapObject;
     active = fieldSystem->followMon.active;
+    tagBefore = (mapObject != NULL) ? MapObject_GetGfxID(mapObject) : 0;
 
     FollowMon_ChangeMon(fieldSystem->mapObjectMan, fieldSystem->location->mapId);
 
@@ -419,6 +461,14 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem)
         }
         if (fieldSystem->followMon.active == 0) {
             fieldSystem->followMon.active = active;
+        }
+    }
+
+    if (fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) {
+        tagAfter = MapObject_GetGfxID(fieldSystem->followMon.mapObject);
+        if (tagAfter != tagBefore) {
+            ChangeMapObjSprite(fieldSystem->followMon.mapObject, tagAfter);
+            MapObject_SetGfxID(fieldSystem->followMon.mapObject, tagAfter);
         }
     }
 
