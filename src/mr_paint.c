@@ -110,20 +110,22 @@ static BOOL MrPaintMoveHasFollowerBranch(u16 move)
 // BSS, proven zero at boot, so this fails safe to vanilla.
 static u8 sMrPaintActorActive;
 
-// Slice 0.4.14 "attribution". A SECOND, independent latch, set/cleared in exactly
-// the same two places as sMrPaintActorActive above, and read only by
-// ScrCmd_BufferPartyMonNick. It says "name this move's performer Mr. Paint",
-// without saying anything about which mon ANIMATES it - the two concerns must stay
-// decoupled, because while Mr. Paint is deployed the follower branch performs the
-// move with no cut-in at all, so widening sMrPaintActorActive would change the
-// actor on paths the client has already signed off.
+// Slice 0.4.14 "attribution". The 0.4.13 gate only ran when the party search FAILED, so the one
+// case the client reported - Mr. Paint deployed AND a party Pokemon also knows the move - fell
+// straight through to vanilla and named that Pokemon. The gate below is now entered regardless of
+// the search result, and DEPLOYED is decided by the 0.4.7 follower gate itself.
 //
-// It MUST be a per-invocation latch and never a live CheckScriptFlag read inside
-// BufferPartyMonNick: opcode 199 is used by 17 different script files, most with
-// nothing to do with Mr. Paint (the Day Care among them), so a live check would
-// print "Mr. Paint" in unrelated dialogue for as long as flag 2224 is set. Opcode
-// 141 runs only on the seven obstacle flows, which is what scopes the override.
-static u8 sMrPaintNameOverride;
+// One latch, not two. Every deployed path wants Mr. Paint as the actor as well as the name - the
+// client asked for both in one sentence - so sMrPaintActorActive is set on all of them, and the
+// three readers stay in agreement by construction. It also preserves 0.4.13's failure mode: if the
+// follower slot ever failed to match script 146's own CompareVars, the flow falls back to the
+// cut-in, and the cut-in still draws Mr. Paint rather than somebody else under his name.
+//
+// It MUST stay a per-invocation latch and never become a live CheckScriptFlag read inside
+// BufferPartyMonNick: opcode 199 is used by 17 different script files, most with nothing to do
+// with Mr. Paint (the Day Care among them), so a live check would print "Mr. Paint" in unrelated
+// dialogue for as long as flag 2224 is set. Opcode 141 runs only on the seven obstacle flows,
+// which is what scopes the override.
 
 // The stand-in actor. Rebuilt deterministically on every use, so nothing
 // depends on lazy-init state. 0xEC (236) bytes of overlay-129 BSS.
@@ -213,7 +215,6 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
     }
 
     sMrPaintActorActive = 0;
-    sMrPaintNameOverride = 0;
 
     // Slice 0.4.14: the gate is no longer conditional on the search having failed. The client
     // reported the one case it used to skip - Mr. Paint deployed AND a party Pokemon also knows
@@ -236,7 +237,7 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
                     // move. Requested verbatim by the client: "If Mr. Paint is active, the text
                     // should ALWAYS attribute the move to Mr. Paint, and Mr. Paint should ALWAYS
                     // perform the animation."
-                    sMrPaintNameOverride = 1;
+                    sMrPaintActorActive = 1;
 
                     if (MrPaintMoveHasFollowerBranch(move)) {
                         // Slice 0.4.7, now applied UNCONDITIONALLY rather than only when nothing
@@ -255,7 +256,6 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
                         // say "Mr. Paint" over somebody else's animation. Both actor hooks skip the
                         // party lookup while substituting, so leaving *destVar on the real knower's
                         // slot is safe; it is never dereferenced.
-                        sMrPaintActorActive = 1;
                         if (*destVar == MR_PAINT_SLOT_NOT_FOUND) {
                             *destVar = 0;
                         }
@@ -325,10 +325,9 @@ BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx)
     // Slice 0.3.8 - same reordering as ScrCmd_183 above, and for the same reason. The byte and
     // the var are still read first, in that order, so the script stream is consumed identically.
     //
-    // Slice 0.4.14 adds the second latch: sMrPaintActorActive means "Mr. Paint is the cut-in
-    // actor", sMrPaintNameOverride means "Mr. Paint is deployed and performs this move himself".
-    // Either one names him.
-    if (sMrPaintActorActive || sMrPaintNameOverride) {
+    // Slice 0.4.14 widens WHEN sMrPaintActorActive is set (see the opcode-141 hook), not what it
+    // means here: Mr. Paint is this move's performer, so he is the name on the box.
+    if (sMrPaintActorActive) {
         mon = MrPaintActorMon();
     } else {
         mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyMonIdx);
@@ -359,7 +358,6 @@ struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 part
 BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
 {
     sMrPaintActorActive = 0;
-    sMrPaintNameOverride = 0;   // 0.4.14: the name latch has the same staleness risk, so the same cure
     StopScript(ctx);
     return FALSE;
 }
