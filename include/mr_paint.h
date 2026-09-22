@@ -191,4 +191,22 @@ void MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 void MrPaintShowFollower(FieldSystem *fieldSystem);
 
+// Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
+// `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not
+// deployed (MrPaintDeployedFollowerSlot < 0): byte-identical to vanilla
+// (FieldSystem_FollowMonInteract(fsys); return TRUE;). Deployed: runs vanilla's own
+// Task_FollowMonInteract (ov2 0x02250111) through TaskManager_Call exactly as retail does, with
+// the talk latch below set for the duration so GetFirstAliveMonInParty_CrashIfNone (also hooked)
+// substitutes the static Mr. Paint actor for every "the lead" read inside it. The real party is
+// never read for this nor written.
+BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx);
+
+// Full-function hook (see hg-engine `hooks`) replacing retail GetFirstAliveMonInParty_CrashIfNone
+// (arm9 0x02054388, 14+ callers project-wide). Reproduces the vanilla search exactly (same
+// PokeParty_GetPokeCount/Party_GetMonByIndex loop, same RetailPartyMonAliveTest call retail's own
+// body makes, same crash-if-none fallback) UNLESS the 0.4.17 talk latch is active for the SAME
+// FieldSystem's player party, in which case it returns the static shiny Smeargle actor
+// (MrPaintActorMon(), friendship forced to 255) instead of searching the real party at all.
+struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
+
 #endif // GUARD_MR_PAINT_H

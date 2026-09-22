@@ -10,3 +10,4 @@ It has taken a picture successfully.
 The Photo Album is full.\rPlease delete some pictures before you\ncome back.
 You don’t have a Photo Album.\rPlease go to Goldenrod City.\nThere is a tunnel there...\fAnd come back with a Photo Album.
 Oh, I’ve never seen a Smeargle like\nthat before.
+Do you want Mr. Paint to do a trick? {YESNO 0}

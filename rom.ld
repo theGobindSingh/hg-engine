@@ -109,6 +109,16 @@ ov02_02249458          = 0x02249458 | 1;
 SetupNativeScript      = 0x0203FD58 | 1;
 StopScript             = 0x0203FD60 | 1;
 
+/* Mr. Paint side feature 0.4.17 "follower talk". FieldSystem_FollowMonInteract is retail's
+   ScrCmd_FollowMonInteract (opcode 711) body verbatim - a two-instruction tail into
+   TaskManager_Call(fsys->taskman, Task_FollowMonInteract, NULL), disassembled at ov2 0x0224EF80.
+   RetailPartyMonAliveTest is the single-argument "is this party slot alive and not an egg" test
+   GetFirstAliveMonInParty_CrashIfNone itself calls (ov2/arm9 0x020541B0) - reused rather than
+   reimplemented so the vanilla fallback in our hook can never drift from retail's own definition
+   of "alive". Both addresses confirmed by disassembling THIS ROM's arm9.bin / ov002.bin. */
+FieldSystem_FollowMonInteract = 0x0224EF80 | 1;
+RetailPartyMonAliveTest       = 0x020541B0 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;

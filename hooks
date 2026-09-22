@@ -502,6 +502,17 @@ arm9 ScrCmd_BufferPartyMonNick 020486F0 1
 arm9 ScrCmd_End 02040898 1
 0001 MrPaintFieldMoveActorMon 021F3100 2
 
+# Mr. Paint (0.4.17 "follower talk") - opcode 711 (ROM script command FollowMonInteract/
+# TalkFollowingPoke) and the retail "the lead" resolver its task calls internally. Both are
+# full-function replacements at each function's own entry point (register 1 is free in both -
+# each is a single-pointer-argument function with nothing live in r1-r3 on entry), disassembled
+# from THIS ROM: ScrCmd_FollowMonInteract at arm9 0x02047414 (opcode-711 table entry, found by
+# locating gScriptCmdTable in arm9.bin), GetFirstAliveMonInParty_CrashIfNone at arm9 0x02054388
+# (the function Task_FollowMonInteract itself calls at ov2 0x022503C0, right after
+# SaveData_GetPlayerPartyPtr at 0x022503BC).
+arm9 ScrCmd_FollowMonInteract 02047414 1
+arm9 GetFirstAliveMonInParty_CrashIfNone 02054388 1
+
 # Mr. Paint (0.4.3 companion deployment) - the cached follower identity, so the game's own live
 # state agrees with the drawn sprite (and so the headless harness can assert it at
 # [gFieldSysPtr] + 0xF4).

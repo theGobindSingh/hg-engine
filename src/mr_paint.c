@@ -110,6 +110,11 @@ static BOOL MrPaintMoveHasFollowerBranch(u16 move)
 // BSS, proven zero at boot, so this fails safe to vanilla.
 static u8 sMrPaintActorActive;
 
+// Side feature 0.4.17 "follower talk" (defined in full further down this file). Declared here,
+// ahead of ScrCmd_End, purely so ScrCmd_End's backstop clear can reach them.
+static u8 sMrPaintTalkActive;
+static FieldSystem *sMrPaintTalkFieldSystem;
+
 // Slice 0.4.14 "attribution". The 0.4.13 gate only ran when the party search FAILED, so the one
 // case the client reported - Mr. Paint deployed AND a party Pokemon also knows the move - fell
 // straight through to vanilla and named that Pokemon. The gate below is now entered regardless of
@@ -358,6 +363,13 @@ struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 part
 BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
 {
     sMrPaintActorActive = 0;
+    // 0.4.17 backstop: the 711 handler clears this itself when MrPaintTalkTask's wrapped
+    // Task_FollowMonInteract returns TRUE, but a script that ends by some other path (e.g. the
+    // player forcing a map change mid-conversation, if that is ever possible) must not leave it
+    // stuck set, since it would otherwise misattribute a LATER, unrelated
+    // GetFirstAliveMonInParty_CrashIfNone call for the same FieldSystem.
+    sMrPaintTalkActive = 0;
+    sMrPaintTalkFieldSystem = NULL;
     StopScript(ctx);
     return FALSE;
 }
@@ -390,4 +402,118 @@ BOOL MrPaintTryQueueInspiration(FieldSystem *fieldSystem)
 
     EventSet_Script(fieldSystem, MR_PAINT_INSPIRATION_SCRIPT, NULL);
     return TRUE;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Side feature 0.4.17 "follower talk"
+// ---------------------------------------------------------------------------------------------
+//
+// Talking to the deployed Mr. Paint follower (script opcode 711, ROM's TalkFollowingPoke /
+// ScrCmd_FollowMonInteract) should run vanilla's own follower-talk task, but every read of "the
+// lead" inside it must see the static shiny Smeargle actor (MrPaintActorMon() above) with
+// friendship 255 - never the real party, which is neither read nor written for this.
+//
+// Disassembled from THIS ROM (arm9.bin / ov002.bin):
+//   - ScrCmd_FollowMonInteract, the opcode-711 handler, is at arm9 0x02047414 - located by
+//     finding gScriptCmdTable's opcode-141 entry (0204D3CD, the address ScrCmd_GetPartySlotWithMove
+//     already hooks above) and reading forward to slot 711. Its whole body is
+//     `FieldSystem_FollowMonInteract(ctx->fsys); return TRUE;` - a tail call into ov2 0x0224EF80,
+//     itself `TaskManager_Call(fsys->taskman, Task_FollowMonInteract, NULL)`
+//     (Task_FollowMonInteract = ov2 0x02250111).
+//   - Task_FollowMonInteract (ov2 0x02250110-0x02250482, 882 bytes) was disassembled in full: it
+//     is an ordinary state-machine TaskFunc returning BOOL(done), with NO call to
+//     TaskManager_Call/_Jump anywhere in its body and no PC-relative load of its own address - so
+//     it never reschedules or re-enters itself, and calling it directly from our own TaskFunc and
+//     forwarding its return value is exactly what TaskManager_Call's normal dispatch does. Its one
+//     call to SaveData_GetPlayerPartyPtr (0x02074904) is immediately followed by a call to
+//     0x02054388 (ov2 0x022503BC/0x022503C0) - GetFirstAliveMonInParty_CrashIfNone, "the lead".
+//   - GetFirstAliveMonInParty_CrashIfNone (arm9 0x02054388) itself calls PokeParty_GetPokeCount,
+//     Party_GetMonByIndex and a single-argument aliveness test at 0x020541B0
+//     (RetailPartyMonAliveTest, rom.ld) in a loop, crashing via GF_ASSERT_INTERNAL (0x0202551C,
+//     already declared in include/types.h) if none qualifies - reproduced exactly below for the
+//     not-latched path.
+
+extern void LONG_CALL FieldSystem_FollowMonInteract(FieldSystem *fieldSystem);
+extern u32 LONG_CALL RetailPartyMonAliveTest(struct PartyPokemon *mon);
+
+// Task_FollowMonInteract, ov2 0x02250111 (thumb+1). Not a named retail symbol anywhere in this
+// project; used purely as a TaskFunc pointer value passed to TaskManager_Call, so it needs no
+// rom.ld entry of its own.
+#define TASK_FOLLOW_MON_INTERACT ((TaskFunc)0x02250111)
+
+// sMrPaintTalkActive / sMrPaintTalkFieldSystem (declared near sMrPaintActorActive above, so
+// ScrCmd_End's backstop clear can reach them) are set for the duration of one MrPaintTalkTask run
+// (opcode 711 -> ScrCmd_End at the latest), so GetFirstAliveMonInParty_CrashIfNone below knows to
+// substitute. sMrPaintTalkFieldSystem scopes the substitution to the exact FieldSystem/party the
+// 711 handler was invoked for, so an unrelated caller of the same retail function (14+ call sites
+// project-wide) that happened to run while the latch is set can never be affected. Overlay-129
+// BSS, proven zero at boot like sMrPaintActorActive.
+
+static BOOL MrPaintTalkTask(TaskManager *taskman)
+{
+    BOOL done = TASK_FOLLOW_MON_INTERACT(taskman);
+
+    if (done) {
+        sMrPaintTalkActive = 0;
+        sMrPaintTalkFieldSystem = NULL;
+    }
+
+    return done;
+}
+
+// Replaces retail ScrCmd_FollowMonInteract (opcode 711, 0x02047414). Not deployed: vanilla,
+// byte-for-byte. Deployed: same TaskManager_Call retail makes, wrapped in MrPaintTalkTask so the
+// talk latch tracks exactly one task's lifetime.
+BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fsys;
+
+    if (MrPaintDeployedFollowerSlot(fieldSystem) < 0) {
+        FieldSystem_FollowMonInteract(fieldSystem);
+        return TRUE;
+    }
+
+    sMrPaintTalkActive = 1;
+    sMrPaintTalkFieldSystem = fieldSystem;
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, MrPaintTalkTask, NULL);
+    return TRUE;
+}
+
+// MrPaintActorMon() (above) plus friendship forced to 255 - the one extra field the follower-talk
+// task reads that the cutscene actor never did (dialogue tier and the friendship bump both key off
+// it). Rebuilt on every call like MrPaintActorMon() itself; nothing here is persisted.
+static struct PartyPokemon *MrPaintTalkMon(void)
+{
+    struct PartyPokemon *mon = MrPaintActorMon();
+    u8 friendship = 255;
+    SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    return mon;
+}
+
+// Replaces retail GetFirstAliveMonInParty_CrashIfNone (arm9 0x02054388). While the 0.4.17 talk
+// latch is active for THIS party, returns the static Mr. Paint actor instead of searching; every
+// other caller, and every path once the latch is clear, gets retail's own search reproduced
+// exactly, including the crash-if-none-alive fallback (0x0202551C).
+struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party)
+{
+    int count;
+    int i;
+
+    if (sMrPaintTalkActive && sMrPaintTalkFieldSystem != NULL
+        && party == SaveData_GetPlayerPartyPtr(sMrPaintTalkFieldSystem->savedata)) {
+        return MrPaintTalkMon();
+    }
+
+    count = PokeParty_GetPokeCount(party);
+
+    for (i = 0; i < count; i++) {
+        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
+
+        if (RetailPartyMonAliveTest(mon)) {
+            return mon;
+        }
+    }
+
+    GF_ASSERT_INTERNAL();
+    return NULL;
 }
