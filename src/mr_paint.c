@@ -110,6 +110,21 @@ static BOOL MrPaintMoveHasFollowerBranch(u16 move)
 // BSS, proven zero at boot, so this fails safe to vanilla.
 static u8 sMrPaintActorActive;
 
+// Slice 0.4.14 "attribution". A SECOND, independent latch, set/cleared in exactly
+// the same two places as sMrPaintActorActive above, and read only by
+// ScrCmd_BufferPartyMonNick. It says "name this move's performer Mr. Paint",
+// without saying anything about which mon ANIMATES it - the two concerns must stay
+// decoupled, because while Mr. Paint is deployed the follower branch performs the
+// move with no cut-in at all, so widening sMrPaintActorActive would change the
+// actor on paths the client has already signed off.
+//
+// It MUST be a per-invocation latch and never a live CheckScriptFlag read inside
+// BufferPartyMonNick: opcode 199 is used by 17 different script files, most with
+// nothing to do with Mr. Paint (the Day Care among them), so a live check would
+// print "Mr. Paint" in unrelated dialogue for as long as flag 2224 is set. Opcode
+// 141 runs only on the seven obstacle flows, which is what scopes the override.
+static u8 sMrPaintNameOverride;
+
 // The stand-in actor. Rebuilt deterministically on every use, so nothing
 // depends on lazy-init state. 0xEC (236) bytes of overlay-129 BSS.
 static struct PartyPokemon sMrPaintActor;
@@ -198,28 +213,60 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
     }
 
     sMrPaintActorActive = 0;
-    if (*destVar == MR_PAINT_SLOT_NOT_FOUND && partyCount > 0) {
-        u16 flag = MrPaintFlagForMove(move);
+    sMrPaintNameOverride = 0;
+
+    // Slice 0.4.14: the gate is no longer conditional on the search having failed. The client
+    // reported the one case it used to skip - Mr. Paint deployed AND a party Pokemon also knows
+    // the move - which fell straight through to vanilla and named the wrong Pokemon.
+    if (partyCount > 0) {
+        // MrPaintLearnableFlagForMove, not MrPaintFlagForMove: observably identical (Fly, Flash
+        // and Dig have flags that are never set, so CheckScriptFlag already rejected them) but it
+        // makes it structurally impossible for the three cut moves to reach this code.
+        u16 flag = MrPaintLearnableFlagForMove(move);
 
         if (flag != 0 && CheckScriptFlag(flag)) {
             BAG_DATA *bag = Sav2_Bag_get(fieldSystem->savedata);
 
             if (Bag_HasItem(bag, ITEM_MR_PAINT, 1, HEAPID_WORLD)) {
-                if (MrPaintMoveHasFollowerBranch(move)) {
-                    int followerSlot = MrPaintDeployedFollowerSlot(fieldSystem);
+                int followerSlot = MrPaintDeployedFollowerSlot(fieldSystem);
 
-                    // Slice 0.4.7: matching the follower's own slot makes script 146's
-                    // `CompareVars 0x8004 0x8005` come out EQUAL, which routes Cut / Rock
-                    // Smash / Strength down vanilla's own overworld branch - the follower
-                    // performs the move where it stands, with no cut-in. Not deployed ->
-                    // the 0.3.8 sentinel, i.e. exactly 0.4.6 behaviour. A wrong slot can
-                    // only make the compare DIFFERENT, which is the cut-in again: the
-                    // failure mode is "no improvement", never a crash.
-                    *destVar = (followerSlot >= 0) ? (u16)followerSlot : MR_PAINT_ACTOR_SENTINEL_SLOT;
-                } else {
-                    *destVar = 0;
+                if (followerSlot >= 0) {
+                    // DEPLOYED. The Smeargle walking behind the player IS Mr. Paint, so he is the
+                    // performer in name and in fact, whether or not a party Pokemon also knows the
+                    // move. Requested verbatim by the client: "If Mr. Paint is active, the text
+                    // should ALWAYS attribute the move to Mr. Paint, and Mr. Paint should ALWAYS
+                    // perform the animation."
+                    sMrPaintNameOverride = 1;
+
+                    if (MrPaintMoveHasFollowerBranch(move)) {
+                        // Slice 0.4.7, now applied UNCONDITIONALLY rather than only when nothing
+                        // was found. Matching the follower's own slot makes script 146's
+                        // `CompareVars 0x8004 0x8005` come out EQUAL, which routes Cut / Rock
+                        // Smash / Strength down vanilla's own overworld branch - the follower
+                        // performs the move where it stands, with no cut-in. Doing it here as well
+                        // as in the not-found case is what closes the hole: the client's "the
+                        // animation is already correct" only held while the knower happened to be
+                        // the party lead, i.e. the follower itself. A non-lead knower used to make
+                        // the compare DIFFERENT and play a cut-in of the wrong Pokemon.
+                        *destVar = (u16)followerSlot;
+                    } else {
+                        // Surf / Waterfall / Whirlpool / Rock Climb have no follower branch at all,
+                        // so their performer is the cut-in actor - substitute it, or the box would
+                        // say "Mr. Paint" over somebody else's animation. Both actor hooks skip the
+                        // party lookup while substituting, so leaving *destVar on the real knower's
+                        // slot is safe; it is never dereferenced.
+                        sMrPaintActorActive = 1;
+                        if (*destVar == MR_PAINT_SLOT_NOT_FOUND) {
+                            *destVar = 0;
+                        }
+                    }
+                } else if (*destVar == MR_PAINT_SLOT_NOT_FOUND) {
+                    // NOT deployed and nobody knows the move: exactly 0.4.6 behaviour - the static
+                    // cut-in actor, reached through the 0.3.8 sentinel for the three moves whose
+                    // flow would otherwise mistake slot 0 for the follower's.
+                    *destVar = MrPaintMoveHasFollowerBranch(move) ? MR_PAINT_ACTOR_SENTINEL_SLOT : 0;
+                    sMrPaintActorActive = 1;
                 }
-                sMrPaintActorActive = 1;
             }
         }
     }
@@ -277,7 +324,11 @@ BOOL ScrCmd_BufferPartyMonNick(SCRIPTCONTEXT *ctx)
 
     // Slice 0.3.8 - same reordering as ScrCmd_183 above, and for the same reason. The byte and
     // the var are still read first, in that order, so the script stream is consumed identically.
-    if (sMrPaintActorActive) {
+    //
+    // Slice 0.4.14 adds the second latch: sMrPaintActorActive means "Mr. Paint is the cut-in
+    // actor", sMrPaintNameOverride means "Mr. Paint is deployed and performs this move himself".
+    // Either one names him.
+    if (sMrPaintActorActive || sMrPaintNameOverride) {
         mon = MrPaintActorMon();
     } else {
         mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fieldSystem->savedata), partyMonIdx);
@@ -308,6 +359,7 @@ struct PartyPokemon *MrPaintFieldMoveActorMon(FieldSystem *fieldSystem, u32 part
 BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
 {
     sMrPaintActorActive = 0;
+    sMrPaintNameOverride = 0;   // 0.4.14: the name latch has the same staleness risk, so the same cure
     StopScript(ctx);
     return FALSE;
 }
