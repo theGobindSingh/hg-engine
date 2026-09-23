@@ -29,6 +29,17 @@
 // switch and ignored here - because everything it needs is reachable from ctx->fsys. Must match
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER 3
+// Mr. Paint (side feature 0.4.23 "spawn tile fix"): records the outgoing follower's tile/facing
+// before opcode 600 hides it. Operand-less; the record lives in a file-static in
+// src/mr_paint_follower.c. Must match NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE in
+// armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE 4
+// Mr. Paint (side feature 0.4.23 "spawn tile fix"): places the incoming follower on the recorded
+// tile and plays the native emerge effect, replacing opcode 606 and
+// SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER together. Falls back to 606's own behaviour with no usable
+// record. Operand-less. Must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE 5
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -65,6 +76,14 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER:
         MrPaintShowFollower(ctx->fsys);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE:
+        MrPaintRecordFollowerTile(ctx->fsys);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
+        MrPaintEmergeAtRecordedTile(ctx->fsys);
         break;
 
     default:

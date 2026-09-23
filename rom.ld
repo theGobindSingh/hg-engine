@@ -395,6 +395,20 @@ MapObject_SetFlag29 = 0x0205F89C | 1;
 sub_02069DC8 = 0x02069DC8 | 1;
 ov01_021F9048 = 0x021F9048 | 1;
 
+/* 0.4.23 (docs/mr-paint-swap-polish.md, james-game): addresses disassembled against this ROM's
+   arm9.bin / overlay 1 to fix the follower-swap spawning on the player's tile. See the comments
+   at their C prototypes in map_events_internal.h and src/mr_paint_follower.c. */
+MapObject_GetYCoord = 0x0205F924 | 1;
+MapObject_GetZCoord = 0x0205F934 | 1; /* same address as MapObject_GetCurrentY above */
+MapObject_GetFacingDirection = 0x0205F2A8 | 1;
+MapObject_SetPositionFromXYZAndDirection = 0x0205FC2C | 1;
+sub_02069DEC = 0x02069DEC | 1;
+sub_02069E84 = 0x02069E84 | 1;
+/* overlay 1 (resident on the field, base 0x021E5900) */
+ov01_0220329C = 0x0220329C | 1; /* native field-effect starter; mode 0 is the follower emerge */
+ov01_02205790 = 0x02205790 | 1; /* copies the PLAYER's position onto a map object; used only in
+                                    the emerge fallback, to reproduce ScrCmd_606 exactly */
+
 MapObject_PauseMovement = 0x0205F6FC | 1;
 MapObject_UnpauseMovement = 0x0205F708 | 1;
 MapObjectMan_PauseAllMovement = 0x0205F574 | 1;

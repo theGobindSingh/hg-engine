@@ -883,14 +883,35 @@ scr_seq_0003_074_mr_paint_inspiration:
 //     visibility flag bits and the latch in one call. It goes AFTER both waits, never between
 //     them: retail only ever un-hides a follower from inside the task that owns the recall effect,
 //     once that effect has finished, and this is the nearest equivalent moment we have.
+//
+// 0.4.23 REWRITES THE TAIL OF THIS SCRIPT (James 0.4.17 item 3, "spawn tile fix";
+// docs/mr-paint-swap-polish.md in james-game, design B). The client's report: the incoming
+// Pokemon spawns on the PLAYER's tile, not the outgoing follower's own tile. Replaying 0.4.17 on
+// the frozen control proved why - reset_follower_with_ball (606) does not merely "pop the follower
+// back out"; retail's own bytes show it, and the retail recall task, both call
+// ov01_02205790(fieldSystem, dir), which copies the PLAYER's position vector onto the follower.
+// That is how vanilla places a follower coming out of its ball, always - 0.4.13's un-hide was
+// never the whole story.
+//
+// mr_paint_record_follower_tile (new) runs FIRST, before 600 hides the outgoing follower, and
+// records its tile and facing in a file-static (src/mr_paint_follower.c). 606 is gone entirely;
+// mr_paint_emerge_at_recorded_tile (new) replaces it AND mr_paint_show_follower in one call: it
+// places the incoming follower back on the recorded tile
+// (MapObject_SetPositionFromXYZAndDirection, 0x0205FC2C) and plays the native emerge effect
+// (ov01_0220329C mode 0) immediately, rather than deferring to the player's next step. With no
+// live follower, no recorded tile, or the recorded tile already equal to the player's own, it
+// falls back to reproducing 606's own behaviour exactly (design A) - never worse than the previous
+// shape. The second `wait` below still gives that effect (or the fallback's hop-out, on the
+// player's next step) room to play before releaseall/end tear the script down; its length was
+// measured in game to cover the ~28-frame emerge effect (0.4.23 build record).
 scr_seq_0003_075_mr_paint_follower_swap:
     lockall
+    mr_paint_record_follower_tile
     send_follower_to_ball
     wait 24, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
-    reset_follower_with_ball
+    mr_paint_emerge_at_recorded_tile
     wait 24, VAR_SPECIAL_RESULT
-    mr_paint_show_follower
     releaseall
     end
 

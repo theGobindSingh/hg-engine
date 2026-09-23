@@ -191,6 +191,21 @@ void MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 void MrPaintShowFollower(FieldSystem *fieldSystem);
 
+// 0.4.23 "spawn tile fix" (James 0.4.17 item 3, docs/mr-paint-swap-polish.md design B). Together
+// these two replace BOTH `reset_follower_with_ball` (606) and mr_paint_show_follower above at the
+// tail of the swap script: instead of letting 606 park the incoming follower on the PLAYER's tile
+// (what it always does - copies the player's own position, see mr_paint_show_follower's comment
+// history), the outgoing follower's tile is recorded before the recall and the incoming one is
+// placed there directly, with the native emerge effect played immediately instead of deferred to
+// the player's next step. Falls back to exactly 606's own behaviour (design A) with no follower,
+// no recorded tile, or the recorded tile already equal to the player's - see the .c file.
+// Callers are src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4) and
+// SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5), whose values must match
+// NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE / NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s.
+void MrPaintRecordFollowerTile(FieldSystem *fieldSystem);
+void MrPaintEmergeAtRecordedTile(FieldSystem *fieldSystem);
+
 // Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
 // `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not
 // deployed (MrPaintDeployedFollowerSlot < 0): byte-identical to vanilla

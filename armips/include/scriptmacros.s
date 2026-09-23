@@ -6771,6 +6771,12 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (side feature 0.4.13) - see mr_paint_show_follower below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, which must match.
 .equ NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 3
+// Mr. Paint (side feature 0.4.23 "spawn tile fix") - see mr_paint_record_follower_tile and
+// mr_paint_emerge_at_recorded_tile below, and src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE / SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE,
+// which must match.
+.equ NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 4
+.equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6801,6 +6807,25 @@ RunNewCommand NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 0
 // the recall or hop-out is still drawing.
 .macro mr_paint_show_follower
 RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.23 "spawn tile fix"): records the outgoing follower's tile and
+// facing. Placed first, right after `lockall`, before `send_follower_to_ball` (600) hides the
+// object - see docs/mr-paint-swap-polish.md (james-game) design B and
+// src/mr_paint_follower.c's MrPaintRecordFollowerTile. Operand-less for the same reason as the
+// two macros above.
+.macro mr_paint_record_follower_tile
+RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.23 "spawn tile fix"): places the incoming follower on the recorded
+// tile and plays the native emerge effect immediately, instead of letting opcode 606 park it on
+// the PLAYER's tile the way it always has. Replaces BOTH `reset_follower_with_ball` (606) and
+// mr_paint_show_follower at the tail of scr_seq_0003_075 - see
+// src/mr_paint_follower.c's MrPaintEmergeAtRecordedTile for the fallback that reproduces 606
+// exactly when there is no follower, no recorded tile, or the tile is already the player's own.
+.macro mr_paint_emerge_at_recorded_tile
+RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
 .endmacro
 
 // Dummy
