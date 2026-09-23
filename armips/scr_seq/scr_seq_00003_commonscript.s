@@ -140,14 +140,19 @@ _01AA:
     // get_player_state's own result, so nothing downstream ever sees the recall's 0/1/2.
     //
     // Result 1 means the flag was set, is now cleared, and a live follower survived the identity
-    // swap MrPaintNurseRecall just ran - so slot 0 (not Mr. Paint) is what mr_paint_swap_body's
+    // swap MrPaintNurseRecall just ran - so slot 0 (not Mr. Paint) is what the swap body's
     // send_follower_to_ball/mr_paint_emerge_at_recorded_tile pair sends into the ball and pops back
     // out, exactly as scr_seq_0003_075_mr_paint_follower_swap already does for the Bag/Y toggle.
     // Result 0 (flag already clear) or 2 (cleared, no live follower to animate) both skip the call
     // and fall straight through to the unchanged vanilla path below.
+    //
+    // 0.4.27: calls _mr_paint_swap_body_center, NOT _mr_paint_swap_body - see that label's own
+    // comment above. The nurse's `pokecen_anim` a few lines below re-engages this same follower
+    // object a second time, so the Center keeps 0.4.26's proven `wait 24` margin instead of the
+    // Bag/Y toggle's shortened `wait 8`.
     mr_paint_nurse_recall VAR_SPECIAL_RESULT
     compare VAR_SPECIAL_RESULT, 1
-    call_if_eq _mr_paint_swap_body
+    call_if_eq _mr_paint_swap_body_center
     get_player_state VAR_SPECIAL_RESULT
     compare VAR_SPECIAL_RESULT, PLAYER_STATE_ROCKET
     goto_if_ne _01C5
@@ -937,10 +942,10 @@ scr_seq_0003_075_mr_paint_follower_swap:
 
 // The shared animation body: recall the current follower into its ball, rebind its model while
 // hidden, then emerge at the recorded tile. Callable as a subroutine (ends in `return`, not `end`)
-// so BOTH the Bag/Y toggle's own script entry above AND the nurse's YES branch (_01AA) can run it
-// under whichever lockall they already hold, without a second copy to drift out of step. Not a
-// scrdef entry itself - `call`/`return` address it directly, the same way _MrPaintShowInspiration
-// above is a plain label `call`ed from scr_seq_0003_074_mr_paint_inspiration, never a scrdef.
+// so the Bag/Y toggle's own script entry above can run it under whichever lockall it already
+// holds, without a second copy to drift out of step. Not a scrdef entry itself - `call`/`return`
+// address it directly, the same way _MrPaintShowInspiration above is a plain label `call`ed from
+// scr_seq_0003_074_mr_paint_inspiration, never a scrdef.
 _mr_paint_swap_body:
     mr_paint_record_follower_tile
     send_follower_to_ball
@@ -949,6 +954,37 @@ _mr_paint_swap_body:
     // emerge - see MrPaintBeginFollowerModelSwapWait in src/mr_paint_follower.c - so this margin
     // only needs to cover the recall (absorb + ball) animation, not the load as well.
     wait 8, VAR_SPECIAL_RESULT
+    mr_paint_swap_follower_model
+    mr_paint_emerge_at_recorded_tile
+    wait 24, VAR_SPECIAL_RESULT
+    return
+
+// 0.4.27 SPLITS THE BODY (James 0.4.25 item 1 follow-up, docs/mr-paint-swap-polish2.md /
+// mr-paint-swap-timing-center.md in james-game). In game, shortening the margin above to `wait 8`
+// left the Violet Center's nurse `_01AA` with the ball shown once and then NO follower ever drawn
+// again, through the heal and past walking away; the diagnostic build removing the poll but
+// keeping `wait 8` failed identically, which rules out the async ChangeMapObjSprite load bit
+// specifically - `mr_paint_swap_follower_model`'s own poll genuinely yields the WHOLE script until
+// that bit clears (src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, 0.4.27),
+// so by the time this returns that load is provably finished either way. What is NOT covered by
+// that poll is retail's own `pokecen_anim` a few script lines later at `_0216`
+// (docs/mr-paint-pokecenter.md:55-59): it re-engages the SAME follower map object a second time -
+// hop it beside the counter with `ov01_0220329C`, then hide it on the player's tile with
+// `ov01_02205790` until the player's first post-heal step re-shows it, the identical deferred-
+// unhide idiom `send_follower_to_ball`'s own spawned task and ScrCmd_606's fallback both use
+// (docs/mr-paint-ball-animation.md; mr_paint_follower.c:739-748 below). Outdoors nothing ever
+// touches the object again after `_mr_paint_swap_body` returns, so any state `send_follower_to_ball`
+// (600)'s own ov1 task (0x02205FCC) has not yet settled by `wait 8` is invisible; at the Center
+// `pokecen_anim` grabs the same object seconds later and needs it to have fully settled first.
+// There is no existing attested primitive that polls 600's own task completion (only the
+// ChangeMapObjSprite bit above is instrumented), so rather than invent an unverified address this
+// keeps the Center on 0.4.26's own proven-safe margin - `wait 24` on both sides, unchanged from
+// before 0.4.27 - while the Bag/Y toggle keeps 0.4.27's shortened `wait 8`. Byte-for-byte identical
+// to `_mr_paint_swap_body` above except for the first `wait`.
+_mr_paint_swap_body_center:
+    mr_paint_record_follower_tile
+    send_follower_to_ball
+    wait 24, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
     mr_paint_emerge_at_recorded_tile
     wait 24, VAR_SPECIAL_RESULT
