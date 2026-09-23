@@ -206,6 +206,18 @@ void MrPaintShowFollower(FieldSystem *fieldSystem);
 void MrPaintRecordFollowerTile(FieldSystem *fieldSystem);
 void MrPaintEmergeAtRecordedTile(FieldSystem *fieldSystem);
 
+// 0.4.24 "Poke Center nurse recall" (James 0.4.17 item 4, docs/mr-paint-pokecenter.md) -
+// src/mr_paint_follower.c. Runs the SAME identity half the Bag/Y toggle runs (the tag record,
+// FollowMon_ChangeMon, and the restore guard) from inside the nurse's own common script, before
+// her `get_player_state`/`set_avatar_bits`/step-to-the-counter. Vanilla by construction with the
+// flag clear (returns 0, does nothing). With the flag set, clears it and returns 1 if a live
+// follower exists afterward (the caller then `call`s the Bag/Y script's own animation body, so
+// slot 0 - not Mr. Paint - is what hops onto the counter) or 2 if none does (edge case: bike,
+// surfing, fainted lead, or a follower-forbidding map - flag is off, nothing to animate). Its only
+// caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, whose value must match
+// NEW_COMMAND_MR_PAINT_NURSE_RECALL in armips/include/scriptmacros.s.
+u16 MrPaintNurseRecall(FieldSystem *fieldSystem);
+
 // Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
 // `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not
 // deployed (MrPaintDeployedFollowerSlot < 0): byte-identical to vanilla

@@ -129,6 +129,25 @@ _019B:
     end
 
 _01AA:
+    // 0.4.24 "Poke Center nurse recall" (James 0.4.17 item 4, docs/mr-paint-pokecenter.md): this
+    // is the SINGLE entry point for both the direct YES branch above (_0175) and the trainer-card
+    // detour (_0445 -> goto _01AA, ~line 345 below) - routing both through the recall is correct
+    // and harmless, since mr_paint_nurse_recall no-ops (returns 0) whenever the flag is already
+    // clear, which is the trainer-card path's only difference from the direct one (VAR_SPECIAL_
+    // x8004, read much later at _023A, is untouched by any of this).
+    //
+    // VAR_SPECIAL_RESULT is safe to clobber here: the very next line overwrites it with
+    // get_player_state's own result, so nothing downstream ever sees the recall's 0/1/2.
+    //
+    // Result 1 means the flag was set, is now cleared, and a live follower survived the identity
+    // swap MrPaintNurseRecall just ran - so slot 0 (not Mr. Paint) is what mr_paint_swap_body's
+    // send_follower_to_ball/mr_paint_emerge_at_recorded_tile pair sends into the ball and pops back
+    // out, exactly as scr_seq_0003_075_mr_paint_follower_swap already does for the Bag/Y toggle.
+    // Result 0 (flag already clear) or 2 (cleared, no live follower to animate) both skip the call
+    // and fall straight through to the unchanged vanilla path below.
+    mr_paint_nurse_recall VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 1
+    call_if_eq _mr_paint_swap_body
     get_player_state VAR_SPECIAL_RESULT
     compare VAR_SPECIAL_RESULT, PLAYER_STATE_ROCKET
     goto_if_ne _01C5
@@ -904,16 +923,32 @@ scr_seq_0003_074_mr_paint_inspiration:
 // shape. The second `wait` below still gives that effect (or the fallback's hop-out, on the
 // player's next step) room to play before releaseall/end tear the script down; its length was
 // measured in game to cover the ~28-frame emerge effect (0.4.23 build record).
+// 0.4.24 REWRITES THIS ENTRY as a thin lockall/call/releaseall/end shell around
+// `_mr_paint_swap_body` below (James 0.4.17 item 4, docs/mr-paint-pokecenter.md). The Poke Center
+// nurse's own YES branch (_01AA above) needs to run this SAME recall-and-emerge sequence, already
+// inside her own lockall (held since scr_seq_0003_002's top), so the sequence had to become a
+// `call`-able subroutine rather than staying end-to-end inside this scrdef entry alone. The body
+// is byte-for-byte the same five commands 0.4.23 shipped; only the shell around it changed.
 scr_seq_0003_075_mr_paint_follower_swap:
     lockall
+    call _mr_paint_swap_body
+    releaseall
+    end
+
+// The shared animation body: recall the current follower into its ball, rebind its model while
+// hidden, then emerge at the recorded tile. Callable as a subroutine (ends in `return`, not `end`)
+// so BOTH the Bag/Y toggle's own script entry above AND the nurse's YES branch (_01AA) can run it
+// under whichever lockall they already hold, without a second copy to drift out of step. Not a
+// scrdef entry itself - `call`/`return` address it directly, the same way _MrPaintShowInspiration
+// above is a plain label `call`ed from scr_seq_0003_074_mr_paint_inspiration, never a scrdef.
+_mr_paint_swap_body:
     mr_paint_record_follower_tile
     send_follower_to_ball
     wait 24, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
     mr_paint_emerge_at_recorded_tile
     wait 24, VAR_SPECIAL_RESULT
-    releaseall
-    end
+    return
 
 // Mr. Paint (feature 3, slice 0.3.1, re-homed in 0.3.7): the message body itself. src/bag.c's
 // Bag_AddItem sets flag 0x8A0-0x8A9 and var 0x4059 the moment a matching HM/TM lands in the bag

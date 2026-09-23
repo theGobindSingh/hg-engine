@@ -475,13 +475,21 @@ static u32 sMrPaintTagBeforeSwap;
 // inside Task_MrPaintToggle) and NULL when there is not (the Y path, a plain field-use func). It
 // exists ONLY to pick the script starter - see (a) above - and is threaded through rather than
 // re-derived because a field-use func genuinely has no task to derive it from.
-static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskman)
+// 0.4.24 split: this is ONLY the identity half of the old MrPaintRefreshFollower - the tag record,
+// FollowMon_ChangeMon, and the restore guard - with none of the "start the swap script" decision
+// that follows it. The Poke Center nurse (src/script_new_cmds.c's MrPaintNurseRecall, below) needs
+// exactly this half and nothing else: her own common script decides whether to run the swap
+// script's animation body, through a plain `call`, once it knows a live follower survived.
+//
+// Returns TRUE when a live follower (non-NULL mapObject AND active != 0) exists after the swap,
+// the same test MrPaintRefreshFollower used to inline before deciding whether to queue anything.
+static BOOL MrPaintSwapFollowerIdentity(FieldSystem *fieldSystem)
 {
     LocalMapObject *mapObject;
     u8 active;
 
     if (fieldSystem == NULL || fieldSystem->mapObjectMan == NULL || fieldSystem->location == NULL) {
-        return;
+        return FALSE;
     }
 
     mapObject = fieldSystem->followMon.mapObject;
@@ -499,12 +507,22 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskma
         }
     }
 
-    if (fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) {
-        if (taskman != NULL) {
-            StartScriptFromMenu(taskman, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
-        } else {
-            EventSet_Script(fieldSystem, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
-        }
+    return fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0;
+}
+
+// The Bag/Y toggle's caller: identity swap, then (only with a live follower afterward) start the
+// animation script. Logic is unchanged from before the 0.4.24 split - MrPaintSwapFollowerIdentity
+// inlines exactly what used to sit here, so this remains byte-for-byte equivalent in behaviour.
+static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskman)
+{
+    if (!MrPaintSwapFollowerIdentity(fieldSystem)) {
+        return;
+    }
+
+    if (taskman != NULL) {
+        StartScriptFromMenu(taskman, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
+    } else {
+        EventSet_Script(fieldSystem, MR_PAINT_FOLLOWER_SWAP_SCRIPT, NULL);
     }
 }
 
@@ -726,6 +744,48 @@ void MrPaintEmergeAtRecordedTile(FieldSystem *fieldSystem)
     ov01_0220329C(mapObject, 0);
     sub_02069E84(mapObject, FALSE);
     sub_02069DC8(mapObject, FALSE);
+}
+
+// ---------------------------------------------------------------------------------------------
+// 0.4.24: the Poke Center nurse recall (James 0.4.17 item 4, docs/mr-paint-pokecenter.md)
+// ---------------------------------------------------------------------------------------------
+//
+// Client's ask: healing at a Center must turn Mr. Paint off and put the real party's slot-0
+// Pokemon on the counter, "identical to pressing USE to deactivate him". The frozen design's
+// first cut assumed `clearflag 2224; call scr_seq_0003_mr_paint_swap_body` was the whole thing -
+// it is NOT. The Bag/Y toggle's IDENTITY change (FollowMon_ChangeMon plus the restore guard,
+// recording sMrPaintTagBeforeSwap above) happens here in C, in MrPaintSwapFollowerIdentity,
+// strictly BEFORE script 2075/scr_seq_0003_mr_paint_follower_swap is ever queued or called -
+// script 2075's mr_paint_swap_follower_model only re-binds the 3D model to whatever the identity
+// ALREADY is. No script opcode reaches FollowMon_ChangeMon. So a `clearflag` followed by nothing
+// but the swap script's body would rebind the model to the SAME identity it already had - visibly
+// nothing would change, and slot 0 would never appear.
+//
+// The fix: give the nurse's own script the identity half as one new command, exactly what
+// MrPaintRefreshFollower already runs for the Bag/Y path, and let her script `call` the shared
+// swap-body subroutine (armips label _mr_paint_swap_body, scr_seq_00003_commonscript.s) for the
+// animation half - but ONLY when a live follower survived the identity swap, the same gate
+// MrPaintRefreshFollower already applies before queuing anything.
+//
+// Return value is the resultVar contract src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_
+// RECALL writes into a script var, which the nurse script then `compare`s against 1:
+//   0 - flag was already clear. Vanilla by construction; nothing else runs.
+//   1 - flag was set, now cleared, and a live follower exists after the swap. The caller `call`s
+//       the shared swap-body subroutine (Mr. Paint's model goes into the ball, the real lead's
+//       hops out at the recorded tile) before continuing to the vanilla heal.
+//   2 - flag was set, now cleared, but no live follower survived the swap - the same edge cases
+//       MrPaintRefreshFollower's own "queues nothing" comment documents (bike, surfing, fainted
+//       lead, a follower-forbidding map). The item is off; there is nothing to animate, so the
+//       caller must not call the swap body.
+u16 MrPaintNurseRecall(FieldSystem *fieldSystem)
+{
+    if (!CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
+        return 0;
+    }
+
+    ClearScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+
+    return MrPaintSwapFollowerIdentity(fieldSystem) ? 1 : 2;
 }
 
 // The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the

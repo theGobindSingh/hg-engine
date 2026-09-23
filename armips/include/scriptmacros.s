@@ -6777,6 +6777,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // which must match.
 .equ NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 4
 .equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
+// Mr. Paint (side feature 0.4.24 "Poke Center nurse recall") - see mr_paint_nurse_recall below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, which must match.
+.equ NEW_COMMAND_MR_PAINT_NURSE_RECALL, 6
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6826,6 +6829,19 @@ RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
 // exactly when there is no follower, no recorded tile, or the tile is already the player's own.
 .macro mr_paint_emerge_at_recorded_tile
 RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.24 "Poke Center nurse recall", James 0.4.17 item 4): runs the same
+// IDENTITY swap the Bag/Y toggle runs (src/mr_paint_follower.c's MrPaintSwapFollowerIdentity, via
+// MrPaintNurseRecall) from inside the nurse's own common script, writing 0 (flag was already
+// clear), 1 (cleared, live follower - caller should `call` the shared swap-body subroutine) or 2
+// (cleared, no live follower - nothing to animate) into resultVar. Unlike the four macros above,
+// this ONE carries an operand - RunNewCommand's second argument is the same "unk" halfword
+// QueueNewRepel already uses to pass a var id (0x800C) through as arg0 - so resultVar rides in the
+// slot Script_RunNewCmd already reads before the switch; no new operand-reading code needed on
+// the C side beyond SetScriptVar(arg0, ...).
+.macro mr_paint_nurse_recall,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_NURSE_RECALL, resultVar
 .endmacro
 
 // Dummy

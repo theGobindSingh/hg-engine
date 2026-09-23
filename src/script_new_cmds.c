@@ -40,6 +40,12 @@
 // record. Operand-less. Must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
 // armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE 5
+// Mr. Paint (side feature 0.4.24 "Poke Center nurse recall"): runs the IDENTITY half of the Bag/Y
+// toggle (FollowMon_ChangeMon plus its restore guard) from inside the nurse's own common script,
+// writing into resultVar (arg0, this command's one operand) 0/1/2 per src/mr_paint_follower.c's
+// MrPaintNurseRecall. Must match NEW_COMMAND_MR_PAINT_NURSE_RECALL in
+// armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL 6
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -84,6 +90,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
         MrPaintEmergeAtRecordedTile(ctx->fsys);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:
+        SetScriptVar(arg0, MrPaintNurseRecall(ctx->fsys));
         break;
 
     default:
