@@ -179,6 +179,75 @@ static struct PartyPokemon *MrPaintActorMon(void)
     return &sMrPaintActor;
 }
 
+// Side feature "Surf gate" (james-0417-feedback.md sections 4/4b). Full-function hook (hg-engine
+// `hooks`: "arm9 GetIdxOfFirstPartyMonWithMove 020542E8 2") replacing retail
+// GetIdxOfFirstPartyMonWithMove at 0x020542E8. Disassembled from THIS ROM's control build
+// (0.4.21) before writing this: 0x020542E8-0x02054355 (110 bytes) is
+//   push {r3,r4,r5,r6,r7,lr}; bl PokeParty_GetPokeCount(0x2074640);
+//   loop: bl Party_GetMonByIndex(0x2074644); GetMonData(mon,#76/*IS_EGG*/) skip-if-true;
+//         GetMonData(mon,#54/*MOVE1*/)==move? / #55/*MOVE2*/ / #56/*MOVE3*/ / #57/*MOVE4*/ -> found;
+//   not found: movs r0,#255; pop.
+// Exactly the vanilla loop this function reproduces below - not-found is 0xFF, not the 6 the
+// ScrCmd_GetPartySlotWithMove wrapper below writes into its own destVar (that 6 is that OTHER
+// function's convention, unrelated to this one).
+//
+// ABI note - a DEVIATION from the frozen design's literal hooks line, caught by disassembling
+// before hooking per the project's own hard rule: the design's draft line used register "1", copied
+// from the ScrCmd_GetPartySlotWithMove line below without adjusting for a different signature. This
+// function takes TWO arguments (struct Party *party in r0, u16 move in r1) - the register the
+// hg-engine `hooks` mechanism clobbers as scratch for its "ldr rN,[pc,#0]; bx rN" trampoline (see
+// scripts/make.py Hook(), the `register != 0xFF` branch) must be a register NOT carrying a live
+// incoming argument, i.e. r2 (or r3), never r1: this function's convention already reserves r1 for
+// the "move" argument, matching MonTryLearnMoveOnLevelUp's own hooks line ("...3", a 3-arg function
+// hooked with the first free register r3) and ScrCmd_GetPartySlotWithMove's ("...1", a 1-arg
+// ScrCmd_ function whose only argument is r0=ctx, so r1 is free). Using "1" here would have the
+// trampoline overwrite r1 with the jump target BEFORE this function's own prologue ever reads
+// "move" out of it, corrupting every call. The shipped `hooks` line for this function uses register
+// 2, matching the convention exactly (2 live argument registers -> first free register is r2).
+int GetIdxOfFirstPartyMonWithMove(struct Party *party, u16 move)
+{
+    int partyCount = PokeParty_GetPokeCount(party);
+    int i;
+
+    for (i = 0; i < partyCount; i++) {
+        // Re-derive nothing extra here: unlike ScrCmd_GetPartySlotWithMove, retail's own
+        // disassembly for THIS function re-reads Party_GetMonByIndex(party, i) fresh off the
+        // caller-supplied `party` pointer every iteration too (there is no FieldSystem here to
+        // re-derive it from) - reproduced identically.
+        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
+
+        if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) {
+            continue;
+        }
+
+        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move
+            || GetMonData(mon, MON_DATA_MOVE2, NULL) == move
+            || GetMonData(mon, MON_DATA_MOVE3, NULL) == move
+            || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) {
+            return i;
+        }
+    }
+
+    // Vanilla found nothing. Mr. Paint fallback: only for a move he can perform AND has already
+    // "learned" (its reserved flag set) - reuses gMrPaintMoveEntries[]/MrPaintLearnableFlagForMove
+    // untouched, no new flag, no new data. Deliberately narrower than the opcode-141 hook: no
+    // Bag_HasItem check (ITEM_MR_PAINT is prevent_toss, so "learned" already implies "held" for the
+    // life of the save - data/itemdata/itemdata.c) and no deployed/follower check (this hook only
+    // answers "does the prompt exist at all"; who performs the move and what the box says is
+    // decided downstream, entirely by the already-shipped opcode-141/183/199 hooks above).
+    // CheckScriptFlag(u16) takes no FieldSystem/SaveData argument (include/save.h - it reads
+    // SaveBlock2_get() internally), so it is reachable here with only the bare Party* this function
+    // is handed.
+    if (MrPaintLearnableFlagForMove(move) != 0 && CheckScriptFlag(MrPaintLearnableFlagForMove(move))) {
+        // Any index != 0xFF works: both known callers (field_control.c's Surf/Waterfall checks,
+        // confirmed by exhaustive BL/BLX scan - see james-0417-feedback.md section 4b) test the
+        // result only as a found/not-found boolean, never dereference it as a party slot.
+        return 0;
+    }
+
+    return 0xFF;
+}
+
 // Slice 0.3.2 "obstacles". Full-function hook (see hg-engine `hooks`:
 // "arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1") replacing retail ScrCmd_GetPartySlotWithMove
 // (ROM script command 141, CheckMoveInParty) at 0x0204D3CC. Reads, in order, the destination

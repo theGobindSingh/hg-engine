@@ -494,6 +494,13 @@ arm9 ScrCmd_DaycareSanitizeMon 0204CFB8 1
 # Mr. Paint (0.3.2 obstacles) - CheckMoveInParty fallback to the item when nothing knows the move
 arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
 
+# Mr. Paint (Surf gate, james-0417-feedback.md section 4/4b) - GetIdxOfFirstPartyMonWithMove
+# fallback so Surf's C-level party search (field_control.c) also finds Mr. Paint when learned.
+# Register 2, NOT 1: this function takes TWO live arguments (r0=party, r1=move), so the hook
+# trampoline's scratch register must be the first one NOT carrying an incoming argument - see the
+# comment on GetIdxOfFirstPartyMonWithMove in src/mr_paint.c for the full ABI derivation.
+arm9 GetIdxOfFirstPartyMonWithMove 020542E8 2
+
 # Mr. Paint (0.3.3 Smeargle actor) - Cut/RockSmash/Headbutt/Strength/Flash actor + name buffer,
 # the Surf/Waterfall/Whirlpool/Rock Climb actor resolver (overlay 1), and ScrCmd_End so a
 # cancelled prompt can't leave the actor flag stuck set.
