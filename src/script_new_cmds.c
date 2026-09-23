@@ -77,7 +77,14 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL:
-        MrPaintRebindFollowerModel(ctx->fsys);
+        // 0.4.27: only arm the load-complete poll when a swap actually started - see
+        // MrPaintRebindFollowerModel / MrPaintBeginFollowerModelSwapWait in
+        // src/mr_paint_follower.c. Returning TRUE here yields the script on the native callback,
+        // the same contract src/mr_paint.c's ScrCmd_183 uses for its own native wait.
+        if (MrPaintRebindFollowerModel(ctx->fsys)) {
+            MrPaintBeginFollowerModelSwapWait(ctx);
+            return TRUE;
+        }
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER:

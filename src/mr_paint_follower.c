@@ -536,25 +536,80 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskma
 // earlier: opcode 606 restores the follower only if FollowMon_IsActive passes, so this must never
 // be the thing that zeroes it. The restore guard in MrPaintRefreshFollower has already run by the
 // time we get here, so both fields are live if they can be.
-void MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
+BOOL MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
 {
     LocalMapObject *mapObject;
     u32 tag;
 
     if (fieldSystem == NULL) {
-        return;
+        return FALSE;
     }
 
     mapObject = fieldSystem->followMon.mapObject;
     if (mapObject == NULL || fieldSystem->followMon.active == 0) {
-        return;
+        return FALSE;
     }
 
     tag = MapObject_GetGfxID(mapObject);
     if (tag != sMrPaintTagBeforeSwap) {
         ChangeMapObjSprite(mapObject, tag);
         MapObject_SetGfxID(mapObject, tag);
+        return TRUE;
     }
+    return FALSE;
+}
+
+// ---------------------------------------------------------------------------------------------
+// 0.4.27 "load-complete poll" (James 0.4.25 item 1, docs/mr-paint-swap-polish2.md in james-game)
+// ---------------------------------------------------------------------------------------------
+//
+// Disassembly of THIS ROM's overlay 1 (base/overlay/overlay_0001.bin, load address 0x021E5900)
+// proves the shape pret's src/field/event_cutscene_shaymin.c already documents for the Shaymin
+// Sky Forme swap: ov01_021FA930 (ChangeMapObjSprite) opens by calling ov01_021FA2D4(obj) itself
+// (0x21fa936: `bl 0x21fa2d4`, r0 still the caller's `obj` - the value ISN'T reloaded first) to
+// decide whether to take the synchronous hidden-object triplet at 0x21fa948
+// (sub_0205F25C/sub_0205F35C/sub_0205E420/ov01_021FA108/sub_0205E38C - the very chain James's own
+// RCA proposed calling by hand) or fall into the async load-request path at 0x21fa97c, which
+// allocates the 0x58-byte node the 0.4.11 build notes already flagged
+// (`movs r0,#4; movs r1,#88; bl 0x201aacc`). ov01_021FA2D4 itself (0x21fa2d4: `push {r3,lr};
+// movs r1,#1; lsls r1,r1,#22; bl 0x205f220; cmp r0,#0; ...`) is nothing but
+// MapObject_SetBits's sibling read - MapObject_TestBits(obj, 1<<22) - returning 1 while that bit
+// is set, 0 once it clears, exactly the poll pret's Shaymin state machine runs after its own call
+// to ov01_021FA930: `if (ov01_021FA2D4(fieldSystem->followMon.mapObject) == 0) { ...; state++; }`.
+// The 0.4.11-era notes about a "never located" free site were about the allocation this same async
+// branch makes - so our follower measurably takes it, and the poll below is the retail-attested
+// fix, not a guess.
+//
+// MR_PAINT_SWAP_POLL_MAX_TICKS is a safety cap with no retail precedent (Shaymin's own state
+// machine polls unconditionally, since its cutscene owns the whole screen and can't be
+// interrupted) - a stuck load here must never strand the player mid-script. 60 ticks is a wide
+// margin over every load this project has ever measured (the whole swap, load included, has
+// never exceeded a couple of hundred *frames*, i.e. well under 60 *script ticks* at ~3 frames/tick).
+#define MR_PAINT_SWAP_POLL_MAX_TICKS 60
+
+extern u32 LONG_CALL ov01_021FA2D4(LocalMapObject *mapObject);
+extern void LONG_CALL SetupNativeScript(SCRIPTCONTEXT *ctx, ScrCmdFunc ptr);
+
+static u32 sMrPaintSwapPollTicks;
+
+static BOOL MrPaintSwapFollowerModelPollCallback(SCRIPTCONTEXT *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fsys;
+    LocalMapObject *mapObject = (fieldSystem != NULL) ? fieldSystem->followMon.mapObject : NULL;
+
+    if (mapObject == NULL || ov01_021FA2D4(mapObject) == 0) {
+        return FALSE; // load finished (or the follower vanished under us) - resume the script
+    }
+    if (++sMrPaintSwapPollTicks >= MR_PAINT_SWAP_POLL_MAX_TICKS) {
+        return FALSE; // safety cap - give up rather than risk a soft-lock
+    }
+    return TRUE; // still loading - stay on this native callback next tick
+}
+
+void MrPaintBeginFollowerModelSwapWait(SCRIPTCONTEXT *ctx)
+{
+    sMrPaintSwapPollTicks = 0;
+    SetupNativeScript(ctx, MrPaintSwapFollowerModelPollCallback);
 }
 
 // ---------------------------------------------------------------------------------------------

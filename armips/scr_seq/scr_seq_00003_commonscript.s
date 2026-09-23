@@ -944,7 +944,11 @@ scr_seq_0003_075_mr_paint_follower_swap:
 _mr_paint_swap_body:
     mr_paint_record_follower_tile
     send_follower_to_ball
-    wait 24, VAR_SPECIAL_RESULT
+    // 0.4.27 (James 0.4.25 item 1): shortened from 24. mr_paint_swap_follower_model now blocks
+    // the script itself, via a native poll on the async model load, until it is actually safe to
+    // emerge - see MrPaintBeginFollowerModelSwapWait in src/mr_paint_follower.c - so this margin
+    // only needs to cover the recall (absorb + ball) animation, not the load as well.
+    wait 8, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
     mr_paint_emerge_at_recorded_tile
     wait 24, VAR_SPECIAL_RESULT

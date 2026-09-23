@@ -371,6 +371,11 @@ MapObject_SetYRange = 0x0205F320 | 1;
 FieldSysGetAttrAddr = 0x020402F0 | 1;
 MapObject_GfxDraw = 0x0205f484 | 1;
 ChangeMapObjSprite = 0x021FA930 | 1;
+/* 0.4.27: ChangeMapObjSprite's own entry-point poll/test - MapObject_TestBits(obj, 1<<22),
+   returns 1 while set. Thumb (push {r3,lr} at 0x21fa2d4), disassembled from THIS ROM's
+   base/overlay/overlay_0001.bin (load 0x021E5900). Matches pret's ov01_021FA2D4, the exact
+   function src/field/event_cutscene_shaymin.c polls after its own ov01_021FA930 call. */
+ov01_021FA2D4 = 0x021FA2D4 | 1;
 
 /* 0x16C54 in overlay1 */
 PlayerAlternate_MapObject_GfxDraw = 0x021FC554 | 1;

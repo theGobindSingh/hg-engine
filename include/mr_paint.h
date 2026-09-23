@@ -179,7 +179,25 @@ BOOL Task_MrPaintToggle(TaskManager *taskman);
 // Mr. Paint come out, instead of Mr. Paint doing both. Its only caller is src/script_new_cmds.c's
 // SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, whose value must match
 // NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
-void MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
+//
+// 0.4.27 "load-complete poll" (James 0.4.25 item 1, docs/mr-paint-swap-polish2.md in james-game).
+// Retail's own ChangeMapObjSprite (ov01_021FA930, disassembled in this ROM) reads
+// MapObject_TestBits(obj, 1<<22) via ov01_021FA2D4 to decide between a synchronous path and an
+// async load-request path (the 0x58-byte node alloc first flagged in the 0.4.11 build notes) -
+// our follower takes the async branch, so the model load is still in flight when this returns.
+// Now returns TRUE exactly when a swap was actually started (tag changed), so the caller in
+// src/script_new_cmds.c knows whether to arm the poll below.
+BOOL MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
+
+// Companion to MrPaintRebindFollowerModel above, only ever called right after it returns TRUE.
+// Installs a native poll (SetupNativeScript - the same yield mechanism src/mr_paint.c's
+// ScrCmd_183 uses for the retail Cut/RockSmash/Strength/Flash actor cutscene) that blocks the
+// swap script until ov01_021FA2D4 reports the async ChangeMapObjSprite load has finished,
+// mirroring pret's own poll in src/field/event_cutscene_shaymin.c (`ov01_021FA2D4(...) == 0`) for
+// the Shaymin Sky Forme swap. Capped at MR_PAINT_SWAP_POLL_MAX_TICKS ticks so a stuck load can
+// never soft-lock the script - mr_paint_emerge_at_recorded_tile's un-hide runs only once this
+// resolves, one way or the other.
+void MrPaintBeginFollowerModelSwapWait(SCRIPTCONTEXT *ctx);
 
 // 0.4.13 "the follower comes back": clears the hidden state that opcode 606 LATCHES rather than
 // lifts. 606 calls sub_02069DEC(object, TRUE), setting a persistent "keep hidden" bit in the map
