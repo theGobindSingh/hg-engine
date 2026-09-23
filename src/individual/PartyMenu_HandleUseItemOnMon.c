@@ -98,7 +98,10 @@ int __attribute__((section(".init"))) PartyMenu_HandleUseItemOnMon_Internal(stru
             sys_FreeMemoryEz(itemData);
             return PARTY_MENU_STATE_BEGIN_EXIT;
         } else {
-            Bag_TakeItem(partyMenu->args->bag, partyMenu->args->itemId, 1, HEAP_ID_PARTY_MENU);
+            // james-game 0.4.20: Rare Candy is infinitely reusable (client debug request)
+            if (partyMenu->args->itemId != ITEM_RARE_CANDY) {
+                Bag_TakeItem(partyMenu->args->bag, partyMenu->args->itemId, 1, HEAP_ID_PARTY_MENU);
+            }
             PartyMenu_SetItemUseFuncFromBagSelection(partyMenu);
         }
     } else {
