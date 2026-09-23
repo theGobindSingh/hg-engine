@@ -90,18 +90,21 @@ u16 MrPaintLearnableFlagForMove(u16 move)
     return 0;
 }
 
-// Slice 0.3.8. The three obstacle moves whose ROM script 146 flow compares the actor slot
+// Slice 0.3.8. The four obstacle moves whose ROM script 146 flow compares the actor slot
 // against the follower's slot - Cut (Function 48), Rock Smash (Function 50), Strength
-// (Function 65) - and which therefore need the sentinel to force the non-follower branch.
+// (Function 65), Headbutt (Function 60) - and which therefore need the sentinel to force the
+// non-follower branch.
 //
-// Headbutt has the same shape at Function 60 but is unreachable: its flag 0x8AA is never set.
+// 0.4.21: Headbutt's Function 60 is now REACHED, via the opcode-141 special case above that maps
+// it straight to flag 0x8AA regardless of gMrPaintMoveEntries[] (which has no Headbutt row).
 // Surf, Waterfall, Whirlpool and Rock Climb have no follower branch and no CompareVars at all
 // (their flows are terminal: CheckMoveInParty / copy / TextPokeNickname / <Move>Animation /
 // Jump Function#11), so they keep slot 0 and behave byte-for-byte as they shipped in 0.3.7 -
 // which is what the client's note about those moves requires.
 static BOOL MrPaintMoveHasFollowerBranch(u16 move)
 {
-    return move == MOVE_CUT || move == MOVE_ROCK_SMASH || move == MOVE_STRENGTH;
+    return move == MOVE_CUT || move == MOVE_ROCK_SMASH || move == MOVE_STRENGTH
+        || move == MOVE_HEADBUTT;
 }
 
 // Slice 0.3.3 "Smeargle actor". Set-or-cleared on EVERY call of the 0.3.2
@@ -229,6 +232,13 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
         // and Dig have flags that are never set, so CheckScriptFlag already rejected them) but it
         // makes it structurally impossible for the three cut moves to reach this code.
         u16 flag = MrPaintLearnableFlagForMove(move);
+
+        if (move == MOVE_HEADBUTT) {
+            // 0.4.21: 2218, set only by the Ilex Forest tutor (0.4.8). Deliberately no
+            // gMrPaintMoveEntries[] row - Headbutt has no machine, so nothing must ever derive
+            // a message index for it (MrPaintMessageIndexForMove is untouched and stays 10-row).
+            flag = 0x8AA;
+        }
 
         if (flag != 0 && CheckScriptFlag(flag)) {
             BAG_DATA *bag = Sav2_Bag_get(fieldSystem->savedata);
