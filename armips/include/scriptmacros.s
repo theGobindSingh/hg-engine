@@ -6771,11 +6771,14 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (side feature 0.4.13) - see mr_paint_show_follower below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, which must match.
 .equ NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 3
-// Mr. Paint (side feature 0.4.23 "spawn tile fix") - see mr_paint_record_follower_tile and
-// mr_paint_emerge_at_recorded_tile below, and src/script_new_cmds.c's
-// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE / SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE,
-// which must match.
+// RETIRED 0.4.28 (docs/mr-paint-swap-bike.md, james-game): the mr_paint_record_follower_tile macro
+// that used to emit this id is deleted below; nothing emits id 4 any more. Left defined and
+// reserved, unreferenced, rather than reused, so no other id has to move.
 .equ NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 4
+// Mr. Paint (side feature 0.4.28 "release like the bike") - see mr_paint_arm_follower_release
+// below and src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE, which must
+// match. Opcode id unchanged since 0.4.23 (mr_paint_emerge_at_recorded_tile); only the name and
+// the native behaviour behind it changed.
 .equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
 // Mr. Paint (side feature 0.4.24 "Poke Center nurse recall") - see mr_paint_nurse_recall below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, which must match.
@@ -6812,22 +6815,20 @@ RunNewCommand NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 0
 RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
 .endmacro
 
-// Mr. Paint (side feature 0.4.23 "spawn tile fix"): records the outgoing follower's tile and
-// facing. Placed first, right after `lockall`, before `send_follower_to_ball` (600) hides the
-// object - see docs/mr-paint-swap-polish.md (james-game) design B and
-// src/mr_paint_follower.c's MrPaintRecordFollowerTile. Operand-less for the same reason as the
-// two macros above.
-.macro mr_paint_record_follower_tile
-RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
-.endmacro
+// RETIRED 0.4.28 (docs/mr-paint-swap-bike.md, james-game): used to record the outgoing follower's
+// tile and facing before `send_follower_to_ball` (600) hid it. Deleted - there is no tile to
+// record any more (see mr_paint_arm_follower_release below) - and no longer emitted by either
+// swap body in armips/scr_seq/scr_seq_00003_commonscript.s.
+// .macro mr_paint_record_follower_tile (removed)
 
-// Mr. Paint (side feature 0.4.23 "spawn tile fix"): places the incoming follower on the recorded
-// tile and plays the native emerge effect immediately, instead of letting opcode 606 park it on
-// the PLAYER's tile the way it always has. Replaces BOTH `reset_follower_with_ball` (606) and
-// mr_paint_show_follower at the tail of scr_seq_0003_075 - see
-// src/mr_paint_follower.c's MrPaintEmergeAtRecordedTile for the fallback that reproduces 606
-// exactly when there is no follower, no recorded tile, or the tile is already the player's own.
-.macro mr_paint_emerge_at_recorded_tile
+// Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
+// object to emerge exactly the way Task_MountOrDismountBicycle's own dismount does, then leaves
+// the actual emerge effect and un-hide to retail's own per-step handler on the player's NEXT STEP
+// - see src/mr_paint_follower.c's MrPaintArmFollowerRelease for the full RCA and the byte
+// evidence. Replaces 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile (same opcode id, new name
+// and behaviour) and, together with it, `reset_follower_with_ball` (606) and mr_paint_show_follower
+// at the tail of scr_seq_0003_075.
+.macro mr_paint_arm_follower_release
 RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
 .endmacro
 

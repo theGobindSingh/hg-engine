@@ -209,20 +209,21 @@ void MrPaintBeginFollowerModelSwapWait(SCRIPTCONTEXT *ctx);
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 void MrPaintShowFollower(FieldSystem *fieldSystem);
 
-// 0.4.23 "spawn tile fix" (James 0.4.17 item 3, docs/mr-paint-swap-polish.md design B). Together
-// these two replace BOTH `reset_follower_with_ball` (606) and mr_paint_show_follower above at the
-// tail of the swap script: instead of letting 606 park the incoming follower on the PLAYER's tile
-// (what it always does - copies the player's own position, see mr_paint_show_follower's comment
-// history), the outgoing follower's tile is recorded before the recall and the incoming one is
-// placed there directly, with the native emerge effect played immediately instead of deferred to
-// the player's next step. Falls back to exactly 606's own behaviour (design A) with no follower,
-// no recorded tile, or the recorded tile already equal to the player's - see the .c file.
-// Callers are src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4) and
-// SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5), whose values must match
-// NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE / NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
+// 0.4.28 "release like the bike" (James 0.4.27 item 1, docs/mr-paint-swap-bike.md), replacing
+// 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile. Reproduces Task_MountOrDismountBicycle's own
+// dismount arm exactly - ov01_02205790(fieldSystem, playerFacing), then
+// sub_02069E84(followerObject, TRUE), then sub_02069DC8(followerObject, TRUE) - and lets retail's
+// own per-step handler play the emerge effect and un-hide on the player's NEXT STEP, the same way
+// it does after a bike dismount. See the .c file for the full RCA and the byte evidence in
+// james-game's docs/mr-paint-swap-bike.md. This also retires mr_paint_record_follower_tile
+// (0.4.23) - there is no tile to record any more, so opcode 4
+// (NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE in armips/include/scriptmacros.s,
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE in src/script_new_cmds.c) is unreferenced from
+// 0.4.28 on; both keep the id reserved rather than renumber anything else.
+// Caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5, unchanged
+// since 0.4.23), whose value must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
 // armips/include/scriptmacros.s.
-void MrPaintRecordFollowerTile(FieldSystem *fieldSystem);
-void MrPaintEmergeAtRecordedTile(FieldSystem *fieldSystem);
+void MrPaintArmFollowerRelease(FieldSystem *fieldSystem);
 
 // 0.4.24 "Poke Center nurse recall" (James 0.4.17 item 4, docs/mr-paint-pokecenter.md) -
 // src/mr_paint_follower.c. Runs the SAME identity half the Bag/Y toggle runs (the tag record,

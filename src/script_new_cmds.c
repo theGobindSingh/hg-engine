@@ -29,16 +29,18 @@
 // switch and ignored here - because everything it needs is reachable from ctx->fsys. Must match
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER 3
-// Mr. Paint (side feature 0.4.23 "spawn tile fix"): records the outgoing follower's tile/facing
-// before opcode 600 hides it. Operand-less; the record lives in a file-static in
-// src/mr_paint_follower.c. Must match NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE in
-// armips/include/scriptmacros.s.
+// RETIRED 0.4.28 (docs/mr-paint-swap-bike.md): recorded the outgoing follower's tile/facing before
+// opcode 600 hid it, for the position-based emerge this id's neighbour used to do. There is no
+// tile to record any more - MrPaintArmFollowerRelease below lets retail's own step handler place
+// the follower, the way it already does after a bike dismount. Slot 4 is reserved and
+// unreferenced by any macro rather than reused, so no other id has to move.
 #define SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE 4
-// Mr. Paint (side feature 0.4.23 "spawn tile fix"): places the incoming follower on the recorded
-// tile and plays the native emerge effect, replacing opcode 606 and
-// SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER together. Falls back to 606's own behaviour with no usable
-// record. Operand-less. Must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
-// armips/include/scriptmacros.s.
+// Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
+// object exactly the way Task_MountOrDismountBicycle's own dismount does
+// (ov01_02205790/sub_02069E84/sub_02069DC8), then leaves the emerge and the un-hide to retail's
+// own per-step handler on the player's next step, replacing 0.4.23-0.4.27's immediate
+// position-and-emerge. Operand-less. Must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s (opcode id unchanged since 0.4.23; only the behaviour changed).
 #define SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE 5
 // Mr. Paint (side feature 0.4.24 "Poke Center nurse recall"): runs the IDENTITY half of the Bag/Y
 // toggle (FollowMon_ChangeMon plus its restore guard) from inside the nurse's own common script,
@@ -91,12 +93,12 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
         MrPaintShowFollower(ctx->fsys);
         break;
 
-    case SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE:
-        MrPaintRecordFollowerTile(ctx->fsys);
-        break;
+    // SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4) is retired as of 0.4.28 - no script emits
+    // it any more (see the #define above), so it is deliberately absent here and falls through to
+    // `default` as a no-op rather than being given a dead call.
 
     case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
-        MrPaintEmergeAtRecordedTile(ctx->fsys);
+        MrPaintArmFollowerRelease(ctx->fsys);
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:

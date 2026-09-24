@@ -673,46 +673,54 @@ void MrPaintShowFollower(FieldSystem *fieldSystem)
 }
 
 // ---------------------------------------------------------------------------------------------
-// 0.4.23: spawn tile fix (James 0.4.17 item 3, docs/mr-paint-swap-polish.md design B)
+// 0.4.28: release the new follower on the player's first step, like the bike does
+// (James 0.4.27 item 1, docs/mr-paint-swap-bike.md)
 // ---------------------------------------------------------------------------------------------
 //
-// The client's report: toggling Mr. Paint ON or OFF drops the incoming Pokemon on the PLAYER'S
-// tile instead of the outgoing follower's own tile. RCA in james-game's docs/mr-paint-swap-
-// polish.md, replayed on a frozen 0.4.17 control: both retail's own recall task and ScrCmd_606
-// call ov01_02205790(fieldSystem, dir), which copies the PLAYER's position vector onto the
-// follower object and sets its facing - that is how vanilla ALWAYS places a follower coming out
-// of its ball, so 0.4.13's un-hide was never the only culprit and neither is any future one.
+// The client's report on 0.4.27: the `Y` toggle plays the recall but never the release, and the
+// Bag path draws the incoming Pokemon on the PLAYER's own tile for one frame - in default, not
+// shiny, colours - before it settles onto the follower's own tile. He pointed at the bike:
+// dismounting recalls the follower and releases it only on the player's NEXT STEP, and asked to
+// copy that instead of 0.4.23-0.4.27's own record-tile-and-replay-immediately design.
 //
-// Design B records the outgoing follower's own tile immediately before the recall hides it, then
-// places the incoming one back there directly instead of asking retail to park it on the player.
-static struct {
-    u32 x;
-    u32 y;
-    u32 z;
-    u32 facing;
-    BOOL valid;
-} sMrPaintFollowerTile;
-
-// Overlay-1, proven against this ROM's bytes (docs/mr-paint-swap-polish.md):
-//   ov01_0220329C(mapObject, mode) - the native field-effect starter; mode 0 is the effect
-//     retail's own follower step handler (asm/unk_020658D4.s) plays right before un-hiding a
-//     freshly-recalled follower that was armed the way step 3 below arms this one.
-//   ov01_02205790(fieldSystem, dir) - the function described above that puts a follower on the
-//     PLAYER's tile. Used here ONLY in the fallback path, to reproduce ScrCmd_606 exactly when we
-//     deliberately choose not to reposition (see MrPaintEmergeAtRecordedTile).
-extern void LONG_CALL THUMB_FUNC ov01_0220329C(LocalMapObject *mapObject, int mode);
+// Task_MountOrDismountBicycle (0x02064C58, disassembled from this build's own arm9 - byte
+// evidence in james-game's docs/mr-paint-swap-bike.md) does exactly three things on dismount,
+// once it already knows a follower exists, in this order, and nothing else:
+//   1. ov01_02205790(fieldSystem, direction) - puts the follower object on the player's own tile,
+//      facing `direction`. The bike computes `direction` as
+//      MapObject_GetFacingDirection(playerAvatar->mapObject) - the PLAYER's own current facing,
+//      not the follower's.
+//   2. sub_02069E84(followerObject, TRUE) - arms the "about to emerge" bit.
+//   3. sub_02069DC8(followerObject, TRUE) - hides the object and sets the same "keep hidden"
+//      latch ScrCmd_606 sets (see MrPaintShowFollower's own comment above for that latch).
+// It does NOT call ov01_0220329C (the immediate emerge effect), and it does NOT un-hide the
+// object itself. Retail's own per-step handler (pret asm/unk_020658D4.s,
+// sub_02065A4C/sub_02065B70) is what later sees the latch plus the armed bit, on the player's
+// NEXT STEP, and only then plays ov01_0220329C(obj, 0) and un-hides - which is the effect
+// 0.4.13-0.4.27 played by hand, immediately, one frame after the model swap, and the client's own
+// screenshots show landing wrong. Letting retail's own step handler do it instead is the whole
+// fix: no manual emerge call, no manual un-hide, and no tile to record or restore - retail's own
+// placement-plus-follow logic ends the incoming Pokemon up trailing correctly, the same way it
+// does for a bike dismount.
+//
+// This retires BOTH mr_paint_record_follower_tile (0.4.23, opcode 4 - now unreferenced, kept
+// reserved in armips/include/scriptmacros.s and src/script_new_cmds.c so the id is never reused)
+// and the position-based branch of the old mr_paint_emerge_at_recorded_tile: there is no tile to
+// record any more, and no "already on the player's own tile" guard to get wrong, because retail's
+// own step handler now owns placement exactly as it already does for the bike.
 extern void LONG_CALL THUMB_FUNC ov01_02205790(FieldSystem *fieldSystem, int direction);
 
-// Script cmd 4 (mr_paint_record_follower_tile): the first line of scr_seq_0003_075, before
-// `send_follower_to_ball` (600) hides the outgoing follower. Records exactly what
-// MapObject_SetPositionFromXYZAndDirection needs to put the incoming one back on the same tile.
-// Leaves `valid` FALSE with no live follower - MrPaintEmergeAtRecordedTile's own fallback covers
-// that, so there is nothing more to guard here than not dereferencing NULL.
-void MrPaintRecordFollowerTile(FieldSystem *fieldSystem)
+// Script cmd 5, renamed from mr_paint_emerge_at_recorded_tile (0.4.23-0.4.27) to
+// mr_paint_arm_follower_release (0.4.28) - the opcode id (5) is unchanged, only the name and the
+// body. Runs immediately after mr_paint_swap_follower_model, while the follower is still hidden
+// by send_follower_to_ball (600), and reproduces Task_MountOrDismountBicycle's dismount arm
+// exactly, in the same order, with the same NULL/active follower guard this file has used since
+// 0.4.23 - a follower-less fire would otherwise dereference NULL through
+// sub_02069E84/sub_02069DC8, neither of which null-checks its own argument.
+void MrPaintArmFollowerRelease(FieldSystem *fieldSystem)
 {
     LocalMapObject *mapObject;
-
-    sMrPaintFollowerTile.valid = FALSE;
+    u32 direction;
 
     if (fieldSystem == NULL) {
         return;
@@ -723,82 +731,17 @@ void MrPaintRecordFollowerTile(FieldSystem *fieldSystem)
         return;
     }
 
-    sMrPaintFollowerTile.x = MapObject_GetCurrentX(mapObject);
-    sMrPaintFollowerTile.y = MapObject_GetYCoord(mapObject);
-    sMrPaintFollowerTile.z = MapObject_GetZCoord(mapObject);
-    sMrPaintFollowerTile.facing = MapObject_GetFacingDirection(mapObject);
-    sMrPaintFollowerTile.valid = TRUE;
-}
-
-// Script cmd 5 (mr_paint_emerge_at_recorded_tile): replaces BOTH `reset_follower_with_ball` (606)
-// and mr_paint_show_follower at the tail of scr_seq_0003_075, run once the model has already been
-// rebound while the object is hidden (mr_paint_swap_follower_model, just before this).
-//
-//   1. No live follower, no recorded tile, or the recorded tile equals the player's own current
-//      tile (the toggle happened somewhere the two coincide, or the record could not be trusted):
-//      fall back to EXACTLY what ScrCmd_606 does - arm the deferred pop-out and let retail's own
-//      step handler play it on the player's next step. Never worse than today's vanilla shape.
-//   2. Otherwise, MapObject_SetPositionFromXYZAndDirection puts the object back on the tile the
-//      outgoing follower stood on (current X/Y/Z, the render vector and facing; clears held
-//      movement - pret map_object.c:1989, confirmed against this ROM's bytes).
-//   3. Arm the same two bits ScrCmd_606 arms (sub_02069E84(obj,1), sub_02069DEC(obj,TRUE)), which
-//      is what retail's own step handler checks before it treats an object as "about to emerge".
-//   4. Play the emerge immediately instead of waiting for a step: ov01_0220329C(obj, 0) - the same
-//      effect retail's step handler plays - then clear the "about to emerge" bit
-//      (sub_02069E84(obj, FALSE)) and un-hide (sub_02069DC8(obj, FALSE), which also clears the
-//      keep-hidden latch step 3 set, so nothing is left armed for a step that will never come).
-//
-// The record is consumed exactly once, whichever path runs, so a toggle that queues no swap
-// script at all (no follower to begin with) can never leave a stale tile for the next one.
-void MrPaintEmergeAtRecordedTile(FieldSystem *fieldSystem)
-{
-    LocalMapObject *mapObject;
-    u32 x, y, z, facing;
-    BOOL haveTile;
-
-    haveTile = sMrPaintFollowerTile.valid;
-    x = sMrPaintFollowerTile.x;
-    y = sMrPaintFollowerTile.y;
-    z = sMrPaintFollowerTile.z;
-    facing = sMrPaintFollowerTile.facing;
-    sMrPaintFollowerTile.valid = FALSE;
-
-    if (fieldSystem == NULL) {
-        return;
+    // Matches the bike's own direction source (MapObject_GetFacingDirection(playerAvatar->
+    // mapObject)); DOWN (1) is only a defensive fallback for the two fields this file has always
+    // guarded (playerAvatar, its mapObject) somehow being unset in a live field script context.
+    direction = 1;
+    if (fieldSystem->playerAvatar != NULL && fieldSystem->playerAvatar->mapObject != NULL) {
+        direction = MapObject_GetFacingDirection(fieldSystem->playerAvatar->mapObject);
     }
 
-    mapObject = fieldSystem->followMon.mapObject;
-    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
-        return;
-    }
-
-    // BUGFIX (verified against this ROM's own arm9.bin): GetPlayerXCoord (0x0205c67c) forwards to
-    // 0x0205f914, the SAME address rom.ld names MapObject_GetCurrentX (+0x64) - X vs X is correct.
-    // But GetPlayerYCoord (0x0205c688) forwards to 0x0205f934, which rom.ld names
-    // MapObject_GetZCoord (+0x6c) - NOT MapObject_GetYCoord (+0x68, height), which is where the
-    // recorded `y` above comes from. Comparing GetPlayerYCoord() against `y` was comparing two
-    // unrelated fields, so this "recorded tile coincides with the player's own tile" guard almost
-    // never fired correctly. The right comparison is GetPlayerYCoord() against `z`.
-    if (haveTile && fieldSystem->playerAvatar != NULL) {
-        if ((u32)GetPlayerXCoord(fieldSystem->playerAvatar) == x
-            && (u32)GetPlayerYCoord(fieldSystem->playerAvatar) == z) {
-            haveTile = FALSE;
-        }
-    }
-
-    if (!haveTile) {
-        sub_02069E84(mapObject, TRUE);
-        sub_02069DEC(mapObject, TRUE);
-        ov01_02205790(fieldSystem, 1);
-        return;
-    }
-
-    MapObject_SetPositionFromXYZAndDirection(mapObject, x, y, z, facing);
+    ov01_02205790(fieldSystem, direction);
     sub_02069E84(mapObject, TRUE);
-    sub_02069DEC(mapObject, TRUE);
-    ov01_0220329C(mapObject, 0);
-    sub_02069E84(mapObject, FALSE);
-    sub_02069DC8(mapObject, FALSE);
+    sub_02069DC8(mapObject, TRUE);
 }
 
 // ---------------------------------------------------------------------------------------------
