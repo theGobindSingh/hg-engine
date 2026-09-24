@@ -124,26 +124,44 @@ static BOOL MrPaintMoveHasFollowerBranch(u16 move)
 // this function's only remaining job is to gate the sentinel-slot return (opcode 141, above),
 // which is what actually makes the native cut-in happen for Mr. Paint.
 //
-// The real mechanism: `CallFieldTask_Surf` 0x021F2068, `_Waterfall` 0x021F2590 and `_Whirlpool`
-// 0x021F2908 all call a shared initialiser, ov01_021F3040, which unconditionally sets a
-// stack-struct field (offset 0, call it showCutIn) to 1 before anything move-specific runs; that
-// struct - actor slot included, from ov01_021F3100 (MrPaintFieldMoveActorMon, hooked) - is then
-// copied verbatim into the task the move actually runs as (Waterfall visibly branches its own
-// task-type byte, 5 vs 6, on this same field at 0x021F2578-0x021F257C). Surf and Waterfall each
-// have ONE path that can override it back to 0: `cmp r6,r0` against
-// GetFirstAlivePokemonSlot(fieldSystem) at 0x021F20A4-0x021F20A8 / 0x021F25CC-0x021F25D0, gated
-// behind a party-size>2 check and ov01_02206268 (a position check against the fieldSystem+0xE4
-// follower object - i.e. "is the walking follower this same lead mon"), and it only ever fires
-// when the actor slot EQUALS the first-alive slot - suppressing the splash because the walking
-// follower already shows the move in place. Whirlpool's wrapper has no such override at all, so
-// its showCutIn is unconditionally 1 for every actor, lead included - more permissive than
-// Surf/Waterfall, never less. Our sentinel slot (7) can never equal a real party slot (0-5), so
-// this override never fires for Mr. Paint on any of the three moves: showCutIn stays 1 and the
-// native task draws the cut-in every time, reading the acting mon through the same hooked
-// ov01_021F3100 slot the compare itself used - i.e. Mr. Paint's shiny Smeargle. All three moves
-// are covered with zero script-146 changes. This also still clears risk (b) from the frozen
-// design: the compare is a plain integer test, never an array index, so the sentinel is never
-// dereferenced outside the party's real range (0-5) on this path either.
+// The real mechanism (re-checked against the 0.4.28 ov001.bin, one call site per move):
+// `CallFieldTask_Surf` 0x021F2068 and `_Waterfall` 0x021F2590 each call a shared initialiser,
+// ov01_021F3040, which unconditionally sets a stack-struct field (offset 0, call it showCutIn) to
+// 1 before anything move-specific runs; that struct - actor slot included, from ov01_021F3100
+// (MrPaintFieldMoveActorMon, hooked) - is then copied verbatim into the task the move actually
+// runs as (Waterfall visibly branches its own task-type byte, 5 vs 6, on this same field at
+// 0x021F2578-0x021F257C). Both have ONE path that can override it back to 0: a player-facing
+// check (0x0205C700) that forces showCutIn=1 unconditionally for two of the four facings, and for
+// the other two, `cmp r6,r0` against GetFirstAlivePokemonSlot(fieldSystem) at
+// 0x021F20A4-0x021F20A8 / 0x021F25CC-0x021F25D0, gated behind ov01_02206268 (a position check
+// against the fieldSystem+0xE4 follower object - i.e. "is the walking follower this same lead
+// mon") - it only ever overrides to 0 when the actor slot EQUALS the first-alive slot, suppressing
+// the splash because the walking follower already shows the move in place.
+//
+// Whirlpool is NOT at 0x021F2908 - that address's 3-argument, no-gate shape (it preserves all
+// three incoming registers and calls a different pair of helpers, 0x021F28B8/0x2050530) matches
+// Rock Climb instead (script 146's `RockClimbAnimation`, the fourth move this project already
+// excludes from MrPaintMoveNeedsWaterCutIn - it needs the extra argument for its Partner-riding
+// state, which Surf/Waterfall/Whirlpool have no use for). ov01_021F2DA4 has Surf/Waterfall's own
+// 2-argument shape but, read in full, also skips the inline gate - it is some other terminal task,
+// not Whirlpool either. The real Whirlpool gate was found the reliable way: `GetFirstAlivePokemonSlot`
+// (0x022062CC) has exactly three callers in the whole overlay, and Surf/Waterfall account for two of
+// them (above); the third, at 0x021FCF22 inside a multi-state task function starting 0x021FCE98, is
+// Whirlpool's. Read in context: the state at 0x021FCF22 calls GetFirstAlivePokemonSlot, compares it
+// (0x021FCF28) against a stored actor slot, and only when they're EQUAL *and* ov01_02069FB0 (follower
+// active) is true does it hand off to the in-place follower branch (0x021FCF3C); every other case
+// (including every non-match) falls through the task's states to a DIRECT, unconditional call to the
+// cut-in drawer itself, `bl 0x02249458` at 0x021FCF5A - the same function Cut's DIFFERENT branch and
+// Surf/Waterfall's cut-in path both use. So Whirlpool's route to the cut-in is if anything more
+// direct than Surf/Waterfall's, not absent.
+//
+// Our sentinel slot (out of the party's real range, 0-5) can never equal the first-alive slot on any
+// of the three moves, so none of these three overrides ever fires for Mr. Paint: showCutIn (or its
+// Whirlpool-task equivalent) stays at "cut-in", and the native code draws it every time, reading the
+// acting mon through the same hooked ov01_021F3100 slot each compare itself used - i.e. Mr. Paint's
+// shiny Smeargle. All three moves are covered with zero script-146 changes. This also still clears
+// risk (b) from the frozen design: every compare found here is a plain integer test, never an array
+// index, so the sentinel is never dereferenced outside the party's real range on this path either.
 static BOOL MrPaintMoveNeedsWaterCutIn(u16 move)
 {
     return move == MOVE_SURF || move == MOVE_WATERFALL || move == MOVE_WHIRLPOOL;
