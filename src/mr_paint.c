@@ -107,6 +107,30 @@ static BOOL MrPaintMoveHasFollowerBranch(u16 move)
         || move == MOVE_HEADBUTT;
 }
 
+// Side feature "water cut-in" (docs/mr-paint-water-attribution2.md, RCA B2). Surf/Waterfall/
+// Whirlpool have no follower branch (MrPaintMoveHasFollowerBranch above is deliberately false for
+// them - script 146 Functions 13/15/27 are terminal, no CompareVars at all), so the NOT-DEPLOYED
+// gap is different from Cut/RockSmash/Strength's: there was never any visual at all when nobody
+// in the party knew the move, only the correct "Mr. Paint used X!" text. This is what the client
+// reported as (A) in the RCA - the walking lead's own put-away-at-the-water's-edge animation was
+// the only thing on screen.
+//
+// Disassembled from the built 0.4.28 ov001.bin before writing this (0.4.29 build record): the
+// three field tasks reached from ScrCmd_179/181/182 (`CallFieldTask_Surf` 0x021F2068,
+// `_Waterfall` 0x021F2590, `_Whirlpool` 0x021F2908) each pass the actor slot to
+// ov01_021F3100 (MrPaintFieldMoveActorMon, hooked) exactly once, for mood/cry only, and Surf/
+// Waterfall additionally do ONE more thing with it - `cmp r6,r0` against
+// GetFirstAlivePokemonSlot(fieldSystem) at 0x021F20A4-0x021F20A8 / 0x021F25CC-0x021F25D0 - a plain
+// integer compare (never an array index) that only toggles a cosmetic "follower is the mover"
+// mood flag; Whirlpool's wrapper does not even do that. So a slot this hook never lets outside the
+// party's real range (0-5) - i.e. the same out-of-range sentinel already proven safe for
+// Cut/RockSmash/Strength via the actor-active latch - cannot be dereferenced by anything on this
+// path either. This clears risk (b) from the frozen design.
+static BOOL MrPaintMoveNeedsWaterCutIn(u16 move)
+{
+    return move == MOVE_SURF || move == MOVE_WATERFALL || move == MOVE_WHIRLPOOL;
+}
+
 // Slice 0.3.3 "Smeargle actor". Set-or-cleared on EVERY call of the 0.3.2
 // CheckMoveInParty hook, read (never cleared) by the three actor hooks, and
 // force-cleared whenever any script ends - see ScrCmd_End below. Overlay-129
@@ -347,8 +371,22 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
                 } else if (*destVar == MR_PAINT_SLOT_NOT_FOUND) {
                     // NOT deployed and nobody knows the move: exactly 0.4.6 behaviour - the static
                     // cut-in actor, reached through the 0.3.8 sentinel for the three moves whose
-                    // flow would otherwise mistake slot 0 for the follower's.
-                    *destVar = MrPaintMoveHasFollowerBranch(move) ? MR_PAINT_ACTOR_SENTINEL_SLOT : 0;
+                    // follower-branch flow would otherwise mistake slot 0 for the follower's.
+                    //
+                    // 0.4.29 "water cut-in" widens this to Surf/Waterfall/Whirlpool as well, for a
+                    // DIFFERENT reason: those three have no follower branch to mistake anything for
+                    // (MrPaintMoveHasFollowerBranch is false), but until now they had no cut-in
+                    // gate at all - script 146 Functions 13/15/27 ran straight to
+                    // Surf/Waterfall/WhirlpoolAnimation with no branch, so nobody-knows-it played no
+                    // Mr. Paint visual whatsoever. The same out-of-range sentinel is reused here
+                    // purely as the signal those three functions' new `CompareVarValue 0x8004 7`
+                    // line tests before calling the shared opcode-183 cut-in - it still relies on
+                    // MrPaintFieldMoveActorMon (ov01_021F3100) never dereferencing it as a party
+                    // index while sMrPaintActorActive is set, exactly like the follower-branch case.
+                    // Rock Climb is deliberately excluded (not in MrPaintMoveNeedsWaterCutIn) - the
+                    // frozen design scoped this to Surf/Waterfall/Whirlpool only.
+                    *destVar = (MrPaintMoveHasFollowerBranch(move) || MrPaintMoveNeedsWaterCutIn(move))
+                        ? MR_PAINT_ACTOR_SENTINEL_SLOT : 0;
                     sMrPaintActorActive = 1;
                 }
             }
