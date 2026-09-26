@@ -109,6 +109,16 @@ ov02_02249458          = 0x02249458 | 1;
 SetupNativeScript      = 0x0203FD58 | 1;
 StopScript             = 0x0203FD60 | 1;
 
+/* Mr. Paint side feature 0.4.17 "follower talk". FieldSystem_FollowMonInteract is retail's
+   ScrCmd_FollowMonInteract (opcode 711) body verbatim - a two-instruction tail into
+   TaskManager_Call(fsys->taskman, Task_FollowMonInteract, NULL), disassembled at ov2 0x0224EF80.
+   RetailPartyMonAliveTest is the single-argument "is this party slot alive and not an egg" test
+   GetFirstAliveMonInParty_CrashIfNone itself calls (ov2/arm9 0x020541B0) - reused rather than
+   reimplemented so the vanilla fallback in our hook can never drift from retail's own definition
+   of "alive". Both addresses confirmed by disassembling THIS ROM's arm9.bin / ov002.bin. */
+FieldSystem_FollowMonInteract = 0x0224EF80 | 1;
+RetailPartyMonAliveTest       = 0x020541B0 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
@@ -361,6 +371,31 @@ MapObject_SetYRange = 0x0205F320 | 1;
 FieldSysGetAttrAddr = 0x020402F0 | 1;
 MapObject_GfxDraw = 0x0205f484 | 1;
 ChangeMapObjSprite = 0x021FA930 | 1;
+/* 0.4.27: ChangeMapObjSprite's own entry-point poll/test - MapObject_TestBits(obj, 1<<22),
+   returns 1 while set. Thumb (push {r3,lr} at 0x21fa2d4), disassembled from THIS ROM's
+   base/overlay/overlay_0001.bin (load 0x021E5900). Matches pret's ov01_021FA2D4, the exact
+   function src/field/event_cutscene_shaymin.c polls after its own ov01_021FA930 call. */
+ov01_021FA2D4 = 0x021FA2D4 | 1;
+
+/* 0.4.31 EMPIRICAL A (docs/mr-paint-swap-flicker.md): the exact triplet ChangeMapObjSprite's own
+   sync branch (0x21fa948, overlay 1) runs when ov01_021FA2D4/0x21f72dc route it there instead of
+   the async allocator at 0x21fa97c. Disassembled from THIS ROM's base/arm9.bin and
+   base/overlay/overlay_0001.bin. sub_0205F35C (arm9, Thumb, `adds r0,#180; ldr r0,[r0,#0]`) reads
+   a field at mapObject+0xB4. sub_0205E420 (arm9) invalidates the currently-bound resource
+   (frees it via sub_0205F498 when bit14 is set, clears bit14, re-stamps GfxID to a sentinel
+   literal). ov01_021FA108 (overlay1, this ROM's shipped address, confirmed distinct from the
+   0x0205E420/0x0205E38C arm9 pair) is the render-substruct swap worker, called
+   (sub_0205F35C's result, MapObject_GetGfxID's result, mapObject) in that register order at the
+   0x21fa95e call site. sub_0205E38C (arm9) re-stamps GfxID from ITS OWN second argument via
+   MapObject_SetGfxID (0x205e390: `bl 0x205f258` with r1 still the tag argument, live and
+   unclobbered) and clears bit14 again. None of these four allocate; the 0x58-byte node lives only
+   in the async branch (0x21fa97c). Untested until this build - the risk this build is meant to
+   settle is whether calling them without the loader that actually populates the resource
+   produces garbage/a crash instead of the current 4-frame cosmetic fragment. */
+sub_0205F35C = 0x0205F35C | 1;
+sub_0205E420 = 0x0205E420 | 1;
+ov01_021FA108 = 0x021FA108 | 1;
+sub_0205E38C = 0x0205E38C | 1;
 
 /* 0x16C54 in overlay1 */
 PlayerAlternate_MapObject_GfxDraw = 0x021FC554 | 1;
@@ -370,6 +405,10 @@ FollowingPokemon_GetSpriteID = 0x02069D70 | 1;
 FollowPokeFsysParamSet = 0x02069F3C | 1;
 FollowPokeMapObjectSetParams = 0x02069EE8 | 1;
 FsysFollowMonClear = 0x0206A06C | 1;
+/* Mid-session "the follower is now a different Pokemon". Thumb, 0x1F0 bytes ending 0x02069D64,
+   args (mapObjectMan, mapId) - read from its sole retail call site 0x02053278. Mutates the
+   existing map object in place; never allocates, never enters overlay 1. */
+FollowMon_ChangeMon = 0x02069B74 | 1;
 
 CreateSpecialFieldObject = 0x0205E294 | 1;
 DeleteMapObject = 0x0205E400 | 1;
@@ -380,6 +419,20 @@ MapObject_SetCurrentY = 0x0205F938 | 1;
 MapObject_SetFlag29 = 0x0205F89C | 1;
 sub_02069DC8 = 0x02069DC8 | 1;
 ov01_021F9048 = 0x021F9048 | 1;
+
+/* 0.4.23 (docs/mr-paint-swap-polish.md, james-game): addresses disassembled against this ROM's
+   arm9.bin / overlay 1 to fix the follower-swap spawning on the player's tile. See the comments
+   at their C prototypes in map_events_internal.h and src/mr_paint_follower.c. */
+MapObject_GetYCoord = 0x0205F924 | 1;
+MapObject_GetZCoord = 0x0205F934 | 1; /* same address as MapObject_GetCurrentY above */
+MapObject_GetFacingDirection = 0x0205F2A8 | 1;
+MapObject_SetPositionFromXYZAndDirection = 0x0205FC2C | 1;
+sub_02069DEC = 0x02069DEC | 1;
+sub_02069E84 = 0x02069E84 | 1;
+/* overlay 1 (resident on the field, base 0x021E5900) */
+ov01_0220329C = 0x0220329C | 1; /* native field-effect starter; mode 0 is the follower emerge */
+ov01_02205790 = 0x02205790 | 1; /* copies the PLAYER's position onto a map object; used only in
+                                    the emerge fallback, to reproduce ScrCmd_606 exactly */
 
 MapObject_PauseMovement = 0x0205F6FC | 1;
 MapObject_UnpauseMovement = 0x0205F708 | 1;
@@ -831,6 +884,16 @@ SetupAndStartWildBattle = 0x02051020 | 1;
 BattleSetup_New_Tutorial = 0x02051AAC | 1;
 Encounter_New = 0x020506BC | 1;
 TaskManager_Call = 0x02050530 | 1;
+/* pret's StartScriptFromMenu (src/script_manager.c:90-95), the third of three consecutive script
+   starters, verified instruction-by-instruction against THIS ROM's arm9 bytes: it calls
+   TaskManager_GetFieldSystem -> ScriptEnvironment_New -> SetupScriptEngine(..., NULL) ->
+   TaskManager_Jump(taskman, Task_RunScripts, env). Its neighbours are EventSet_Script
+   (0x0203FE74) and QueueScript (0x0203FED4, tail-calls TaskManager_Call above). This is the ONLY
+   one of the three that is correct from inside a TaskFunc: the other two end in
+   FieldSystem_CreateTask, whose GF_ASSERT(taskman == NULL) is compiled into retail and which then
+   overwrites fieldSystem->taskman anyway. See docs/mr-paint-ball-animation.md section A6 in the
+   james-game repo. */
+StartScriptFromMenu = 0x0203FF0C | 1;
 Task_TutorialBattle = 0x0205128C | 1;
 
 GetItemAttrSub = 0x02077E48 | 1;

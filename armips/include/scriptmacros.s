@@ -6765,6 +6765,30 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (feature 3, slice 0.3.1) - see mr_paint_pending_inspiration above and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_PENDING_INSPIRATION, which must match.
 .equ NEW_COMMAND_MR_PAINT_PENDING_INSPIRATION, 1
+// Mr. Paint (side feature 0.4.12) - see mr_paint_swap_follower_model below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, which must match.
+.equ NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 2
+// Mr. Paint (side feature 0.4.13) - see mr_paint_show_follower below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, which must match.
+.equ NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 3
+// RESTORED 0.4.30 (docs/mr-paint-swap-flicker.md, james-game), Center-only: see
+// mr_paint_record_follower_tile below and src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE, which must match. Was RETIRED 0.4.28 when the
+// Bag/Y toggle stopped needing a recorded tile; the Poke Center's own pokecen_anim still does.
+.equ NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 4
+// Mr. Paint (side feature 0.4.28 "release like the bike") - see mr_paint_arm_follower_release
+// below and src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE, which must
+// match. Opcode id unchanged since 0.4.23 (mr_paint_emerge_at_recorded_tile); only the name and
+// the native behaviour behind it changed. Toggle body only, as of 0.4.30.
+.equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
+// Mr. Paint (side feature 0.4.24 "Poke Center nurse recall") - see mr_paint_nurse_recall below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, which must match.
+.equ NEW_COMMAND_MR_PAINT_NURSE_RECALL, 6
+// Mr. Paint (side feature 0.4.30 "Center immediate release") - see
+// mr_paint_release_at_recorded_tile below and src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE, which must match. Center-only; the Bag/Y
+// toggle keeps mr_paint_arm_follower_release (5) above.
+.equ NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 7
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6772,6 +6796,74 @@ DummyTextTrap slot, unk
 
 .macro QueueNewRepel
 RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
+.endmacro
+
+// Mr. Paint (side feature 0.4.12 "the ball animation"): re-binds the follower's 3D model to the
+// sprite id it already carries. Only ever used inside scr_seq_0003_075_mr_paint_follower_swap,
+// between opcode 600 (which hides the old follower in the ball) and 606 (which pops the new one
+// out), so the model change happens where nobody can see it. Takes no operand of its own - the
+// one slot RunNewCommand always emits is a 0 the C side ignores - because the state it needs is
+// the pre-swap sprite tag, which src/mr_paint_follower.c already holds in a file-static.
+.macro mr_paint_swap_follower_model
+RunNewCommand NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.13 "the follower comes back"): puts the follower back on screen
+// after the ball animation. Opcode 606 does NOT do this - it LATCHES the object hidden, by setting
+// bit 1 of its param 2 through sub_02069DEC(obj, TRUE), which is why 0.4.12's follower stayed
+// invisible until the player took a step. This reaches src/mr_paint_follower.c's
+// MrPaintShowFollower, which calls the exact inverse, sub_02069DC8(obj, FALSE) - it clears both
+// visibility flag bits AND that latch, so the restore survives the next map load too. Operand-less
+// for the same reason as mr_paint_swap_follower_model above. Used only at the tail of
+// scr_seq_0003_075_mr_paint_follower_swap, after BOTH waits, so it can never lift the latch while
+// the recall or hop-out is still drawing.
+.macro mr_paint_show_follower
+RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
+.endmacro
+
+// RESTORED 0.4.30 (docs/mr-paint-swap-flicker.md, james-game), Center-only: records the outgoing
+// follower's tile and facing before `send_follower_to_ball` (600) hides it, for
+// mr_paint_release_at_recorded_tile below. Was RETIRED 0.4.28 (docs/mr-paint-swap-bike.md) when
+// the Bag/Y toggle stopped needing a recorded tile; only _mr_paint_swap_body_center emits this now
+// (armips/scr_seq/scr_seq_00003_commonscript.s).
+.macro mr_paint_record_follower_tile
+RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
+// object to emerge exactly the way Task_MountOrDismountBicycle's own dismount does, then leaves
+// the actual emerge effect and un-hide to retail's own per-step handler on the player's NEXT STEP
+// - see src/mr_paint_follower.c's MrPaintArmFollowerRelease for the full RCA and the byte
+// evidence. Replaces 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile (same opcode id, new name
+// and behaviour) and, together with it, `reset_follower_with_ball` (606) and mr_paint_show_follower
+// at the tail of scr_seq_0003_075. As of 0.4.30 this is the TOGGLE body's own tail only - the
+// Center body uses mr_paint_release_at_recorded_tile below instead.
+.macro mr_paint_arm_follower_release
+RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.30 "Center immediate release", docs/mr-paint-swap-flicker.md,
+// james-game): restores 0.4.23-0.4.27's immediate, synchronous release at the recorded tile
+// (mr_paint_record_follower_tile above), scoped to _mr_paint_swap_body_center only. The Poke
+// Center's own pokecen_anim needs an already-released, active follower to walk to the counter with
+// no player step in between - the bike-style deferred arm (mr_paint_arm_follower_release above)
+// regressed that to "the real lead never appears" in 0.4.28. See
+// src/mr_paint_follower.c's MrPaintReleaseAtRecordedTile for the full body.
+.macro mr_paint_release_at_recorded_tile
+RunNewCommand NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.24 "Poke Center nurse recall", James 0.4.17 item 4): runs the same
+// IDENTITY swap the Bag/Y toggle runs (src/mr_paint_follower.c's MrPaintSwapFollowerIdentity, via
+// MrPaintNurseRecall) from inside the nurse's own common script, writing 0 (flag was already
+// clear), 1 (cleared, live follower - caller should `call` the shared swap-body subroutine) or 2
+// (cleared, no live follower - nothing to animate) into resultVar. Unlike the four macros above,
+// this ONE carries an operand - RunNewCommand's second argument is the same "unk" halfword
+// QueueNewRepel already uses to pass a var id (0x800C) through as arg0 - so resultVar rides in the
+// slot Script_RunNewCmd already reads before the switch; no new operand-reading code needed on
+// the C side beyond SetScriptVar(arg0, ...).
+.macro mr_paint_nurse_recall,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_NURSE_RECALL, resultVar
 .endmacro
 
 // Dummy

@@ -237,8 +237,30 @@ u32 LONG_CALL MapObject_GetCurrentX(LocalMapObject *object);
 u32 LONG_CALL MapObject_GetCurrentY(LocalMapObject *object);
 void LONG_CALL MapObject_SetCurrentY(LocalMapObject *object, u32 y);
 void LONG_CALL MapObject_SetCurrentX(LocalMapObject *object, u32 x);
-void LONG_CALL MapObject_SetFlag29(LocalMapObject *object, BOOL set);
+// 0.4.23 (docs/mr-paint-swap-polish.md, james-game): three offsets read off THIS ROM's bytes at
+// 0x0205F914/0x0205F924/0x0205F934, all `ldr r0,[r0,#N]; bx lr` four bytes apart (0x64/0x68/0x6c).
+// MapObject_GetCurrentX above is the same field as the first of these (0x64) under a name given
+// before this ordering was known; kept as-is since nothing yet built depends on renaming it.
+// MapObject_GetCurrentY above is in fact the THIRD field (0x6c) despite its name - also kept, for
+// the same reason - so MapObject_GetZCoord below is a second, correctly-named symbol at the exact
+// same address, not a new function. MapObject_GetYCoord (0x68) had no existing symbol at all.
+u32 LONG_CALL MapObject_GetYCoord(LocalMapObject *object);
+u32 LONG_CALL MapObject_GetZCoord(LocalMapObject *object);
+// 0x0205F2A8: `ldr r0,[r0,#0x28]; bx lr`. MapObject_SetPositionFromXYZAndDirection below writes the
+// same offset via a save/restore pair at 0x0205F288 when it applies its `direction` argument.
+u32 LONG_CALL MapObject_GetFacingDirection(LocalMapObject *object);
+// 0x0205FC2C: disassembled against this ROM's arm9. Sets current X/Y/Z (via the three getters'
+// setter twins at +4 offsets), the 16.16 render vector (0x0205F944/0x0205F954), facing (see
+// above), calls the undecompiled 0x02060F78, then clears movement-related bits. Matches pret
+// map_object.c:1989's description exactly - confirmed from bytes, not assumed from the name.
+void LONG_CALL MapObject_SetPositionFromXYZAndDirection(LocalMapObject *object, u32 x, u32 y, u32 z, u32 direction);
+// 0x02069DEC: sets/clears bit 1 of MapObject_GetParam(obj,2) - the "keep hidden" latch ScrCmd_606
+// sets with TRUE and sub_02069DC8(obj,FALSE) clears as half of its own work. 0x02069E84 is the
+// same shape one bit over (bit 2), matching RCA docs/mr-paint-swap-polish.md's "sub_02069EAC(obj)"
+// read-back description. Both disassembled against this ROM's bytes, not inferred from pret names.
 void LONG_CALL sub_02069DC8(LocalMapObject *mapObject, BOOL enable_bit);
+void LONG_CALL sub_02069DEC(LocalMapObject *mapObject, BOOL enable_bit);
+void LONG_CALL sub_02069E84(LocalMapObject *mapObject, BOOL enable_bit);
 void LONG_CALL ov01_021F9048(LocalMapObject *map_object);
 void LONG_CALL MapObjectMan_PauseAllMovement(MapObjectMan *manager);
 void LONG_CALL MapObjectMan_UnpauseAllMovement(MapObjectMan *manager);

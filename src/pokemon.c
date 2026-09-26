@@ -19,6 +19,7 @@
 #include "battle.h"
 #include "overlay.h"
 #include "rtc.h"
+#include "mr_paint.h"
 #include "save.h"
 #include "script.h"
 #include "sound.h"
@@ -1239,6 +1240,21 @@ u32 LONG_CALL GetBoxMonSex(struct BoxPokemon *bp)
 u16 LONG_CALL get_mon_ow_tag(u16 species, u32 form, u32 isFemale)
 {
     u32 ret = MON_OVERWORLD_TAG_START, formFemaleIndex = 0;
+
+    // Mr. Paint side feature 0.4.3 "companion deployment". This function IS retail's
+    // FollowingPokemon_GetSpriteID (0x02069D70, replaced by `hooks`:218), so it is the single
+    // point where the walking follower's drawn sprite is decided - which makes it the whole
+    // visible half of the feature, at the cost of three lines and no new hook.
+    //
+    // MrPaintFollowerSubstitutes() is deliberately narrow: it fires only for the species that is
+    // currently the player's follower, because this function is also reached from the HoF /
+    // Pokeathlon overworld path (grab_overworld_a081_index) and one non-follower arm9 caller.
+    // It returns FALSE for SPECIES_SMEARGLE, so the form-fallback recursion below cannot
+    // substitute twice. See src/mr_paint_follower.c for the full gate rationale.
+    if (MrPaintFollowerSubstitutes(species)) {
+        species = SPECIES_SMEARGLE;
+        form = 0;
+    }
 
     formFemaleIndex = OverworldModelLookupHasFemaleForm(species);
 

@@ -84,10 +84,188 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx);
 // src/repel.c's 2072/2022 and src/bag.c's 2073.
 #define MR_PAINT_INSPIRATION_SCRIPT 2074
 
+// Side feature 0.4.9 "instant follower swap". Same numbering rule: 2000 + the scrdef index of
+// scr_seq_0003_075_mr_paint_follower_swap. Its whole body is retail's own send_follower_to_ball
+// (opcode 600) / reset_follower_with_ball (opcode 606) pair - the follower returns to its Poke
+// Ball and hops straight back out, which is the animation the client asked for by name. Both
+// commands are attested in THIS ROM, not taken from an opcode table: the Poke Center nurse
+// script (archive 4, Function#49 and Function#59/#78 - the exact moment he described) and
+// script 146 Function#80, where retail itself brackets CutAnimation with the same two lines.
+#define MR_PAINT_FOLLOWER_SWAP_SCRIPT 2075
+
 // Queues the inspiration prompt as a script of its own when one is pending (var 0x4059 != 0),
 // so it plays AFTER the giver's whole conversation instead of cutting into it. Called once per
 // completed player step from PlayerStepEvent_RepelCounterDecrement; returns TRUE if it queued
 // a script, matching that callback's "an event was set for this step" contract.
 BOOL MrPaintTryQueueInspiration(FieldSystem *fieldSystem);
+
+// Side feature 0.4.3 "companion deployment" - src/mr_paint_follower.c.
+//
+// Using Mr. Paint from the Bag toggles this flag; while it is set, the walking follower RENDERS as
+// SMEARGLE instead of the party lead. Nothing is written to the party - the substitution lives
+// entirely at the overworld sprite layer, which is what makes the client's "do not mutate the
+// party struct" constraint hold by construction rather than by care.
+//
+// FLAG_UNK_8B0 in armips/include/flags.s. Verified unclaimed: zero hits across all 497 disassembled
+// ROM scripts (against a positive control - flag 2218, the 0.4.2 Headbutt tutor flag, DOES hit),
+// zero hits in armips/, src/ and include/, and FLAG_UNK_8A0..8B1 are all unnamed in
+// pret/pokeheartgold. It sits clear of Mr. Paint's own reserved block 0x8A0-0x8AB. Flags are a
+// fixed-size bit array of NUM_FLAGS = 2912 allocated at compile time, so using an id inside
+// 0-2911 flips an already-allocated bit and the save layout CANNOT change.
+#define FLAG_MR_PAINT_FOLLOWING 2224
+
+// TRUE when the follower should be drawn as Mr. Paint INSTEAD of `species`.
+//
+// Both conditions are required: the flag is set AND the player still holds the item. The held-item
+// half exists so a flag left set by a corrupt or hand-edited save can never strand a player with a
+// Smeargle they have no way to dismiss.
+//
+// `species` is matched against the CURRENT FOLLOWER's real species - the first alive, non-egg party
+// member, which is what retail's GetFirstAliveMonInParty_CrashIfNone resolves the follower to. That
+// match is what keeps the substitution narrow: get_mon_ow_tag (the sprite lookup we piggyback on)
+// is NOT follower-specific, so without it a Hall of Fame or Pokeathlon overworld would swap every
+// species at once. See src/mr_paint_follower.c for why the gate cannot instead use followMon.active.
+BOOL MrPaintFollowerSubstitutes(u16 species);
+
+// Full-function hook (see hg-engine `hooks`) replacing retail FollowPokeFsysParamSet at
+// 0x02069F3C - the writer of the cached follower identity in FieldSystem->followMon. Reproduces
+// the retail body (a leaf: four stores, no calls) with the one substitution.
+void MrPaintFollowPokeFsysParamSet(FieldSystem *fieldSystem, int species, u8 forme, BOOL shiny, u8 gender);
+
+// Side feature 0.4.10 "shiny Mr. Paint" - src/mr_paint_follower.c. Full-function hook (see
+// hg-engine `hooks`) replacing retail FollowMon_SetObjectShiny at 0x0206A080 - the ONLY code in
+// the ROM that writes the walking follower's shiny bit. Both of its callers reach it (0x02069EE8,
+// and the undocumented 5-argument sibling 0x02069F0C, which is called from overlay 1 and has no
+// arm9 caller), so hooking this funnel covers the map load, 0.4.9's instant swap and script
+// opcode 606 in one place. Forces the bit on while Mr. Paint is what is drawn, and otherwise
+// passes the caller's own value straight through, so a genuinely shiny party lead keeps its
+// sparkle and a normal one can never gain one.
+//
+// Only a pointer to LocalMapObject is needed here, so forward-declare the typedef rather than
+// pulling map_events_internal.h into every consumer of this header. Repeating an identical
+// typedef is fine - include/pokemon.h:568 already declares this exact line, and
+// src/field/hidden_items.c includes both headers today.
+typedef struct LocalMapObject LocalMapObject;
+void MrPaintFollowMonSetObjectShiny(LocalMapObject *mapObject, BOOL enable);
+
+// 0.4.7 "obstacle move from the follower" (client DoD 5) - src/mr_paint_follower.c. Returns the
+// deployed follower's own party slot when, and only when, the object currently drawn behind the
+// player really is Mr. Paint (flag set, item held, follower active, and - the load-bearing check
+// - followMon.species == SPECIES_SMEARGLE, since the toggle is not immediate and the follower
+// cache only updates on a map load). Returns -1 otherwise, which callers treat as "not deployed".
+// Consumed by ScrCmd_GetPartySlotWithMove (src/mr_paint.c) so Cut/Rock Smash/Strength take
+// script 146's overworld branch (no cut-in) instead of the 0.3.8 sentinel's cutscene branch.
+int MrPaintDeployedFollowerSlot(FieldSystem *fieldSystem);
+
+// The toggle, reached from TWO entry points that must never drift apart - both funnel through the
+// same static helper in src/mr_paint_follower.c:
+//   - `field` column of row 6: Mr. Paint registered to SELECT, SELECT pressed on the overworld.
+//   - `menu` column of row 6 (0.4.5): Bag -> USE, via the state-12 "close Bag, hand off to field"
+//     idiom proven from this ROM's own ItemMenuUseFunc_EscapeRope/_Honey bytes - see
+//     docs/mr-paint-follower.md Findings 21-22 in the james-game repo. Do NOT use sub_0203C8F0
+//     (state 5, WAIT_APP) - it keeps the Bag alive and was REJECTED with evidence.
+#include "task.h" // TaskManager, TaskFunc
+struct ItemFieldUseData;
+struct ItemMenuUseData;
+struct ItemCheckUseData;
+BOOL ItemFieldUseFunc_MrPaintToggle(struct ItemFieldUseData *data);
+void ItemMenuUseFunc_MrPaintToggle(struct ItemMenuUseData *data, const struct ItemCheckUseData *dat2);
+BOOL Task_MrPaintToggle(TaskManager *taskman);
+
+// 0.4.12 "the ball animation": the second half of the old instant refresh, split out so it can run
+// from INSIDE the swap script (MR_PAINT_FOLLOWER_SWAP_SCRIPT above) rather than before it - in the
+// window where opcode 600 has already hidden the follower and 606 has not yet popped it back out.
+// Re-binding the 3D model there is what makes the player see the LEAD go into the ball and
+// Mr. Paint come out, instead of Mr. Paint doing both. Its only caller is src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_SWAP_FOLLOWER_MODEL, whose value must match
+// NEW_COMMAND_MR_PAINT_SWAP_FOLLOWER_MODEL in armips/include/scriptmacros.s.
+//
+// 0.4.27 "load-complete poll" (James 0.4.25 item 1, docs/mr-paint-swap-polish2.md in james-game).
+// Retail's own ChangeMapObjSprite (ov01_021FA930, disassembled in this ROM) reads
+// MapObject_TestBits(obj, 1<<22) via ov01_021FA2D4 to decide between a synchronous path and an
+// async load-request path (the 0x58-byte node alloc first flagged in the 0.4.11 build notes) -
+// our follower takes the async branch, so the model load is still in flight when this returns.
+// Now returns TRUE exactly when a swap was actually started (tag changed), so the caller in
+// src/script_new_cmds.c knows whether to arm the poll below.
+BOOL MrPaintRebindFollowerModel(FieldSystem *fieldSystem);
+
+// Companion to MrPaintRebindFollowerModel above, only ever called right after it returns TRUE.
+// Installs a native poll (SetupNativeScript - the same yield mechanism src/mr_paint.c's
+// ScrCmd_183 uses for the retail Cut/RockSmash/Strength/Flash actor cutscene) that blocks the
+// swap script until ov01_021FA2D4 reports the async ChangeMapObjSprite load has finished,
+// mirroring pret's own poll in src/field/event_cutscene_shaymin.c (`ov01_021FA2D4(...) == 0`) for
+// the Shaymin Sky Forme swap. Capped at MR_PAINT_SWAP_POLL_MAX_TICKS ticks so a stuck load can
+// never soft-lock the script - mr_paint_emerge_at_recorded_tile's un-hide runs only once this
+// resolves, one way or the other.
+void MrPaintBeginFollowerModelSwapWait(SCRIPTCONTEXT *ctx);
+
+// 0.4.13 "the follower comes back": clears the hidden state that opcode 606 LATCHES rather than
+// lifts. 606 calls sub_02069DEC(object, TRUE), setting a persistent "keep hidden" bit in the map
+// object's param 2, so after 0.4.12's recall the follower stayed invisible until the player took a
+// step. sub_02069DC8(obj, FALSE) is the exact inverse - it clears both flag bits AND that latch,
+// so the restore survives the next map load. Called from the swap script AFTER both `wait 24`s,
+// because retail only ever un-hides from inside the task that owns the recall effect. Its only
+// caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER, whose value must match
+// NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
+void MrPaintShowFollower(FieldSystem *fieldSystem);
+
+// 0.4.28 "release like the bike" (James 0.4.27 item 1, docs/mr-paint-swap-bike.md), replacing
+// 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile. Reproduces Task_MountOrDismountBicycle's own
+// dismount arm exactly - ov01_02205790(fieldSystem, playerFacing), then
+// sub_02069E84(followerObject, TRUE), then sub_02069DC8(followerObject, TRUE) - and lets retail's
+// own per-step handler play the emerge effect and un-hide on the player's NEXT STEP, the same way
+// it does after a bike dismount. See the .c file for the full RCA and the byte evidence in
+// james-game's docs/mr-paint-swap-bike.md. This also retires mr_paint_record_follower_tile
+// (0.4.23) - there is no tile to record any more, so opcode 4
+// (NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE in armips/include/scriptmacros.s,
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE in src/script_new_cmds.c) is unreferenced from
+// 0.4.28 on; both keep the id reserved rather than renumber anything else.
+// Caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5, unchanged
+// since 0.4.23), whose value must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s.
+void MrPaintArmFollowerRelease(FieldSystem *fieldSystem);
+
+// 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, james-game), restoring
+// 0.4.23-0.4.27's MrPaintRecordFollowerTile/MrPaintEmergeAtRecordedTile verbatim (renamed
+// MrPaintReleaseAtRecordedTile), scoped to _mr_paint_swap_body_center ONLY - the Bag/Y toggle
+// keeps MrPaintArmFollowerRelease above unchanged. The Poke Center's own pokecen_anim needs an
+// already-released, active follower with no player step in between, which the bike-style deferred
+// arm cannot give it. Callers are src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4, opcode id reused from its 0.4.23 reservation)
+// and the new SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE (7), whose values must match
+// NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE / NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s.
+void MrPaintRecordFollowerTile(FieldSystem *fieldSystem);
+void MrPaintReleaseAtRecordedTile(FieldSystem *fieldSystem);
+
+// 0.4.24 "Poke Center nurse recall" (James 0.4.17 item 4, docs/mr-paint-pokecenter.md) -
+// src/mr_paint_follower.c. Runs the SAME identity half the Bag/Y toggle runs (the tag record,
+// FollowMon_ChangeMon, and the restore guard) from inside the nurse's own common script, before
+// her `get_player_state`/`set_avatar_bits`/step-to-the-counter. Vanilla by construction with the
+// flag clear (returns 0, does nothing). With the flag set, clears it and returns 1 if a live
+// follower exists afterward (the caller then `call`s the Bag/Y script's own animation body, so
+// slot 0 - not Mr. Paint - is what hops onto the counter) or 2 if none does (edge case: bike,
+// surfing, fainted lead, or a follower-forbidding map - flag is off, nothing to animate). Its only
+// caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, whose value must match
+// NEW_COMMAND_MR_PAINT_NURSE_RECALL in armips/include/scriptmacros.s.
+u16 MrPaintNurseRecall(FieldSystem *fieldSystem);
+
+// Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
+// `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not
+// deployed (MrPaintDeployedFollowerSlot < 0): byte-identical to vanilla
+// (FieldSystem_FollowMonInteract(fsys); return TRUE;). Deployed: runs vanilla's own
+// Task_FollowMonInteract (ov2 0x02250111) through TaskManager_Call exactly as retail does, with
+// the talk latch below set for the duration so GetFirstAliveMonInParty_CrashIfNone (also hooked)
+// substitutes the static Mr. Paint actor for every "the lead" read inside it. The real party is
+// never read for this nor written.
+BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx);
+
+// Full-function hook (see hg-engine `hooks`) replacing retail GetFirstAliveMonInParty_CrashIfNone
+// (arm9 0x02054388, 14+ callers project-wide). Reproduces the vanilla search exactly (same
+// PokeParty_GetPokeCount/Party_GetMonByIndex loop, same RetailPartyMonAliveTest call retail's own
+// body makes, same crash-if-none fallback) UNLESS the 0.4.17 talk latch is active for the SAME
+// FieldSystem's player party, in which case it returns the static shiny Smeargle actor
+// (MrPaintActorMon(), friendship forced to 255) instead of searching the real party at all.
+struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
 
 #endif // GUARD_MR_PAINT_H
