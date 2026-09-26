@@ -745,6 +745,125 @@ void MrPaintArmFollowerRelease(FieldSystem *fieldSystem)
 }
 
 // ---------------------------------------------------------------------------------------------
+// 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, James's 0.4.29 item 2)
+// ---------------------------------------------------------------------------------------------
+//
+// 0.4.28 replaced BOTH swap bodies' tails with the bike's deferred-to-the-player's-next-step
+// arm (MrPaintArmFollowerRelease above). That is correct for the Bag/Y toggle, which the player
+// then walks away from - but the Poke Center's own `pokecen_anim` (commonscript.s `_0216`) needs
+// an ALREADY-RELEASED, ACTIVE follower to walk to the counter with no player step in between, and
+// regressed to "the real lead never appears" when it inherited the deferred arm. This restores
+// the Center's own PRE-0.4.28 tail verbatim - MrPaintRecordFollowerTile plus
+// MrPaintReleaseAtRecordedTile (renamed from MrPaintEmergeAtRecordedTile, same bodies, same byte
+// evidence, git diff bfcf72918 1dbef3e6a) - scoped to `_mr_paint_swap_body_center` only; the
+// toggle body is untouched. mr_paint_swap_follower_model never moves the object (see
+// MrPaintRebindFollowerModel's own comment for why), so the position restore below is simply
+// putting the follower back on the tile it stood on before send_follower_to_ball hid it - not
+// undoing any sink.
+static struct {
+    u32 x;
+    u32 y;
+    u32 z;
+    u32 facing;
+    BOOL valid;
+} sMrPaintFollowerTile;
+
+// Overlay-1, proven against this ROM's bytes (docs/mr-paint-swap-polish.md, restored here from
+// git history rather than re-disassembled): ov01_0220329C(mapObject, mode) is the native
+// field-effect starter; mode 0 is the effect retail's own follower step handler
+// (asm/unk_020658D4.s) plays right before un-hiding a freshly-recalled follower armed the way
+// MrPaintReleaseAtRecordedTile arms this one below.
+extern void LONG_CALL THUMB_FUNC ov01_0220329C(LocalMapObject *mapObject, int mode);
+
+// Script cmd 4 (mr_paint_record_follower_tile), restored 0.4.30 for the Center body only: the
+// first line of _mr_paint_swap_body_center, before send_follower_to_ball (600) hides the outgoing
+// follower. Records exactly what MapObject_SetPositionFromXYZAndDirection needs to put the
+// incoming one back on the same tile. Leaves `valid` FALSE with no live follower -
+// MrPaintReleaseAtRecordedTile's own fallback covers that.
+void MrPaintRecordFollowerTile(FieldSystem *fieldSystem)
+{
+    LocalMapObject *mapObject;
+
+    sMrPaintFollowerTile.valid = FALSE;
+
+    if (fieldSystem == NULL) {
+        return;
+    }
+
+    mapObject = fieldSystem->followMon.mapObject;
+    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
+        return;
+    }
+
+    sMrPaintFollowerTile.x = MapObject_GetCurrentX(mapObject);
+    sMrPaintFollowerTile.y = MapObject_GetYCoord(mapObject);
+    sMrPaintFollowerTile.z = MapObject_GetZCoord(mapObject);
+    sMrPaintFollowerTile.facing = MapObject_GetFacingDirection(mapObject);
+    sMrPaintFollowerTile.valid = TRUE;
+}
+
+// Script cmd 7 (mr_paint_release_at_recorded_tile), restored 0.4.30, Center-only: replaces
+// mr_paint_arm_follower_release at the tail of _mr_paint_swap_body_center. Runs immediately after
+// mr_paint_swap_follower_model, while the follower is still hidden by send_follower_to_ball (600) -
+// the same timing 0.4.23-0.4.27 used, and the same timing MrPaintArmFollowerRelease uses on the
+// toggle body.
+//
+//   1. No live follower, no recorded tile, or the recorded tile equals the player's own current
+//      tile: fall back to exactly what ScrCmd_606 does - arm the deferred pop-out and let retail's
+//      own step handler play it on the player's next step. Never worse than vanilla.
+//   2. Otherwise, MapObject_SetPositionFromXYZAndDirection puts the object back on the tile the
+//      outgoing follower stood on before send_follower_to_ball hid it.
+//   3. Arm the same two bits ScrCmd_606 arms (sub_02069E84(obj,1), sub_02069DEC(obj,TRUE)).
+//   4. Play the emerge immediately instead of waiting for a step: ov01_0220329C(obj, 0), then clear
+//      the "about to emerge" bit and un-hide (sub_02069DC8(obj, FALSE), which also clears the
+//      keep-hidden latch step 3 set).
+void MrPaintReleaseAtRecordedTile(FieldSystem *fieldSystem)
+{
+    LocalMapObject *mapObject;
+    u32 x, y, z, facing;
+    BOOL haveTile;
+
+    haveTile = sMrPaintFollowerTile.valid;
+    x = sMrPaintFollowerTile.x;
+    y = sMrPaintFollowerTile.y;
+    z = sMrPaintFollowerTile.z;
+    facing = sMrPaintFollowerTile.facing;
+    sMrPaintFollowerTile.valid = FALSE;
+
+    if (fieldSystem == NULL) {
+        return;
+    }
+
+    mapObject = fieldSystem->followMon.mapObject;
+    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
+        return;
+    }
+
+    // Same GetPlayerYCoord-vs-z comparison bugfix carried over from the pre-0.4.28 history
+    // (GetPlayerYCoord forwards to the same address as MapObject_GetZCoord, not GetYCoord).
+    if (haveTile && fieldSystem->playerAvatar != NULL) {
+        if ((u32)GetPlayerXCoord(fieldSystem->playerAvatar) == x
+            && (u32)GetPlayerYCoord(fieldSystem->playerAvatar) == z) {
+            haveTile = FALSE;
+        }
+    }
+
+    if (!haveTile) {
+        sub_02069E84(mapObject, TRUE);
+        sub_02069DEC(mapObject, TRUE);
+        ov01_02205790(fieldSystem, 1);
+        return;
+    }
+
+    MapObject_SetPositionFromXYZAndDirection(mapObject, x, y, z, facing);
+    sub_02069E84(mapObject, TRUE);
+    sub_02069DEC(mapObject, TRUE);
+    ov01_0220329C(mapObject, 0);
+    sub_02069E84(mapObject, FALSE);
+    sub_02069DC8(mapObject, FALSE);
+}
+
+// ---------------------------------------------------------------------------------------------
 // 0.4.24: the Poke Center nurse recall (James 0.4.17 item 4, docs/mr-paint-pokecenter.md)
 // ---------------------------------------------------------------------------------------------
 //

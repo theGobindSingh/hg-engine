@@ -225,6 +225,19 @@ void MrPaintShowFollower(FieldSystem *fieldSystem);
 // armips/include/scriptmacros.s.
 void MrPaintArmFollowerRelease(FieldSystem *fieldSystem);
 
+// 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, james-game), restoring
+// 0.4.23-0.4.27's MrPaintRecordFollowerTile/MrPaintEmergeAtRecordedTile verbatim (renamed
+// MrPaintReleaseAtRecordedTile), scoped to _mr_paint_swap_body_center ONLY - the Bag/Y toggle
+// keeps MrPaintArmFollowerRelease above unchanged. The Poke Center's own pokecen_anim needs an
+// already-released, active follower with no player step in between, which the bike-style deferred
+// arm cannot give it. Callers are src/script_new_cmds.c's
+// SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4, opcode id reused from its 0.4.23 reservation)
+// and the new SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE (7), whose values must match
+// NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE / NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE in
+// armips/include/scriptmacros.s.
+void MrPaintRecordFollowerTile(FieldSystem *fieldSystem);
+void MrPaintReleaseAtRecordedTile(FieldSystem *fieldSystem);
+
 // 0.4.24 "Poke Center nurse recall" (James 0.4.17 item 4, docs/mr-paint-pokecenter.md) -
 // src/mr_paint_follower.c. Runs the SAME identity half the Bag/Y toggle runs (the tag record,
 // FollowMon_ChangeMon, and the restore guard) from inside the nurse's own common script, before

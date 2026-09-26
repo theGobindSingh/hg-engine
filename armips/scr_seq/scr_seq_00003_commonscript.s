@@ -977,11 +977,24 @@ _mr_paint_swap_body:
 // Bag/Y toggle keeps 0.4.27's shortened `wait 8`. 0.4.28 drops the TRAILING `wait 24` that used to
 // follow the emerge here too, for the same reason `_mr_paint_swap_body` above drops its own: the
 // arm no longer plays anything for a wait to cover.
+//
+// 0.4.30 (docs/mr-paint-swap-flicker.md, James's 0.4.29 item 2): 0.4.28's bike-style deferred arm
+// (mr_paint_arm_follower_release) regressed the Center to "the real lead never appears" - retail's
+// own `pokecen_anim` a few lines below (`_0216`) needs an already-released, ACTIVE follower to walk
+// to the counter, with no player step in between to trigger the deferred release. Restores
+// 0.4.23-0.4.27's own record-tile-then-immediate-release tail here VERBATIM, and ONLY here - the
+// toggle body above is untouched. mr_paint_release_at_recorded_tile is 0.4.23-0.4.27's own
+// mr_paint_emerge_at_recorded_tile under a new name (same body, same byte evidence); the trailing
+// `wait 24` after it is 0.4.27's own margin, unchanged. mr_paint_swap_follower_model itself never
+// moves the object (see MrPaintRebindFollowerModel's own comment for the full evidence), so there
+// is nothing here to undo before the release runs.
 _mr_paint_swap_body_center:
+    mr_paint_record_follower_tile
     send_follower_to_ball
     wait 24, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
-    mr_paint_arm_follower_release
+    mr_paint_release_at_recorded_tile
+    wait 24, VAR_SPECIAL_RESULT
     return
 
 // Mr. Paint (feature 3, slice 0.3.1, re-homed in 0.3.7): the message body itself. src/bag.c's

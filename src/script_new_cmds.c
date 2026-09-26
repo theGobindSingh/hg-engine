@@ -29,11 +29,12 @@
 // switch and ignored here - because everything it needs is reachable from ctx->fsys. Must match
 // NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_SHOW_FOLLOWER 3
-// RETIRED 0.4.28 (docs/mr-paint-swap-bike.md): recorded the outgoing follower's tile/facing before
-// opcode 600 hid it, for the position-based emerge this id's neighbour used to do. There is no
-// tile to record any more - MrPaintArmFollowerRelease below lets retail's own step handler place
-// the follower, the way it already does after a bike dismount. Slot 4 is reserved and
-// unreferenced by any macro rather than reused, so no other id has to move.
+// RESTORED 0.4.30 (docs/mr-paint-swap-flicker.md), Center-only: records the outgoing follower's
+// tile/facing before opcode 600 hides it, for MrPaintReleaseAtRecordedTile (opcode 7) below. Was
+// RETIRED 0.4.28 (docs/mr-paint-swap-bike.md) when the Bag/Y toggle switched to the bike's
+// deferred-to-the-next-step release, which needs no recorded tile - the Poke Center's own
+// pokecen_anim still does, since it needs an already-released follower with no player step in
+// between, so this id is back in use for _mr_paint_swap_body_center alone.
 #define SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE 4
 // Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
 // object exactly the way Task_MountOrDismountBicycle's own dismount does
@@ -48,6 +49,11 @@
 // MrPaintNurseRecall. Must match NEW_COMMAND_MR_PAINT_NURSE_RECALL in
 // armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL 6
+// Mr. Paint (side feature 0.4.30 "Center immediate release", Center-only): restores the recorded
+// tile from opcode 4 above, arms and plays the native emerge effect immediately (no player step),
+// and un-hides - MrPaintReleaseAtRecordedTile's restored pre-0.4.28 body. Must match
+// NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE 7
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -93,9 +99,9 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
         MrPaintShowFollower(ctx->fsys);
         break;
 
-    // SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE (4) is retired as of 0.4.28 - no script emits
-    // it any more (see the #define above), so it is deliberately absent here and falls through to
-    // `default` as a no-op rather than being given a dead call.
+    case SCRIPT_NEW_CMD_MR_PAINT_RECORD_FOLLOWER_TILE:
+        MrPaintRecordFollowerTile(ctx->fsys);
+        break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
         MrPaintArmFollowerRelease(ctx->fsys);
@@ -103,6 +109,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:
         SetScriptVar(arg0, MrPaintNurseRecall(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE:
+        MrPaintReleaseAtRecordedTile(ctx->fsys);
         break;
 
     default:
