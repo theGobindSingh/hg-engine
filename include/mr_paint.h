@@ -269,8 +269,10 @@ BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx);
 struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
 
 // Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
-// docs/mr-paint-trick-menu.md). Runs retail's own FieldMove_CheckTeleport (arm9 0x02068664,
-// rom.ld) against the CURRENT field, then - only when it reports OK - starts retail's own
+// docs/mr-paint-trick-menu.md). Runs retail's own FieldMove_CheckTeleport (arm9 0x02068554,
+// rom.ld - corrected 2026-09-26, RCA task rca0433e; the original build had mis-hooked
+// FieldMove_CheckDig at 0x02068664 instead) against the CURRENT field, then - only when it
+// reports OK - starts retail's own
 // Task_FieldTeleport (ov02 0x0224C558, rom.ld) via TaskManager_Call, exactly the
 // ScrCmd_OverworldWhiteOut/CallTask_Blackout precedent this project already follows for
 // ScrCmd_FollowMonInteract above. No reimplementation of any retail check: the return value IS

@@ -120,43 +120,51 @@ FieldSystem_FollowMonInteract = 0x0224EF80 | 1;
 RetailPartyMonAliveTest       = 0x020541B0 | 1;
 
 /* Mr. Paint side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md
-   section 3, docs/mr-paint-trick-menu.md). All three addresses confirmed by disassembling THIS
-   ROM's arm9.bin / ov002.bin (oracle-vnic, control build 0.4.32) - not taken from pret text.
+   section 3, docs/mr-paint-trick-menu.md).
 
-   FieldMove_CheckTeleport (arm9, thumb): the retail Teleport availability check, called with a
-   pointer to a 2-word struct {u32 mapId; FieldSystem *fieldSystem;} (see
-   MrPaintTeleportCheckData in src/mr_paint.c, offsets asserted). Disassembled body at
-   0x02068664-0x020686a2+: reads fieldSystem+0x70 (unmodeled FieldSystem field, matches "unk50"
-   in include/pokemon.h - inside its 0x5C byte gap) and compares it to 2/3, returning 1
-   (NOT_HERE) on a match; else calls MapHeader_IsTeleportAllowed(mapId) at arm9 0x0203B578
-   (bl at 0x02068678) and a second, unnamed MapHeader-cluster gate at arm9 0x0203B438 (bl at
-   0x02068682, same 0x0203Bxxx neighbourhood as the already-linked MapHeader_GetMapSec
-   0x0203B36C above) - either failing (!= 1) returns 1 (NOT_HERE); else reads
-   fieldSystem+0xC (= FieldSystem.savedata, matching include/pokemon.h's own offset exactly)
-   and calls SaveData_GetEventPtr (0x020503D0, already linked above) then a second bl to
-   0x02066644 (the have-follower test on that pointer) - a result of 1 returns 3
-   (HAVE_FOLLOWER). This return-value shape (1 = NOT_HERE, 3 = HAVE_FOLLOWER, else falls
-   through toward 0 = OK) is exactly the mr_paint_teleport resultVar contract, so the new
-   command below calls this function directly rather than reimplementing any of its checks.
-   FieldMove_UseTeleport (arm9 0x02068621, NOT linked - not needed since our own path never
-   calls it) independently confirms both the struct shape and 0x0224C500's signature: its own
-   call site (0x02068640, `movs r3,#4` immediately before) passes HEAP_ID_FIELD1=4 as the arg
-   our own call must also use.
+   ⭐ RCA (2026-09-26, RCA task rca0433e): the ORIGINAL 0.4.33 build hooked the wrong function.
+   0x02068664 is FieldMove_CheckDig, not FieldMove_CheckTeleport - proven three independent ways
+   against pret pokeheartgold's decompiled src/field_move.c (fetched and diffed, not inferred):
+   (1) FieldMove_CheckTeleport calls exactly ONE MapHeader gate, MapHeader_IsTeleportAllowed;
+   FieldMove_CheckDig calls TWO, MapHeader_IsCave() != TRUE || MapHeader_IsEscapeRopeAllowed()
+   != TRUE. The function disassembled at 0x02068664 calls TWO MapHeader-cluster functions
+   (0x0203B578, 0x0203B438) OR-combined before the HaveFollower test - the Dig shape, not
+   Teleport's. (2) FieldMove_CheckTeleport ends in Save_VarsFlags_CheckHaveFollower ->
+   Save_VarsFlags_CheckRocketCostumeFlag -> FieldMove_CheckSafariOrPalPark -> OK (0x02068554
+   has exactly this tail: HaveFollower(3)/RocketCostume(5)/SafariOrPalPark(1)/OK(0));
+   FieldMove_CheckDig's tail stops after RocketCostume, with NO SafariOrPalPark call - exactly
+   what 0x02068664 disassembles to. (3) Task_UseTeleportInField (arm9 0x02068620, immediately
+   after real FieldMove_CheckTeleport/FieldMove_UseTeleport in this ROM's layout) calls
+   0x0224C500 with `movs r3,#4` (HEAP_ID_FIELD1) then TaskManager_Jump to a literal pool value
+   of 0x0224c559 (thumb bit set) = Task_FieldTeleport 0x0224C558 - this is a byte-exact, direct
+   trace of retail's Task_UseTeleportInField body from pret, so 0x0224C500/0x0224C558 (already
+   linked below) ARE correctly Teleport's ov02 pair; only the arm9 CHECK address was wrong.
+
+   FieldMove_CheckTeleport (arm9, thumb) is actually at 0x02068554-0x020685cc+ (disassembled:
+   fieldSystem+0x70 vs 2/3 -> NOT_HERE; else `bl 0x0203B540` == MapHeader_IsTeleportAllowed,
+   a single boolean-style call, `cmp r0,#0` / `bne` - NOT the two-call Dig shape; else
+   HaveFollower(3)/RocketCostume(5)/SafariOrPalPark(1)/OK(0)), called with a pointer to a 2-word
+   struct {u32 mapId; FieldSystem *fieldSystem;} (see MrPaintTeleportCheckData in
+   src/mr_paint.c, offsets asserted - unchanged, still correct for this function too since both
+   Check functions share the same FieldMoveCheckData layout per pret's field_move.h). This
+   return-value shape (1 = NOT_HERE, 3 = HAVE_FOLLOWER, 5 = NOT_NOW/Rocket costume, else falls
+   through toward 0 = OK) is exactly the mr_paint_teleport resultVar contract (0/1/3 dispatched
+   by script 163 Function 7 per docs/mr-paint-trick-menu.md; 5 falls into its "else" ReleaseAll/
+   End, a safe close, not a crash), so the command calls this function directly rather than
+   reimplementing any of its checks. 0x0203B540 = MapHeader_IsTeleportAllowed (previously
+   misnamed onto 0x0203B578, which is actually MapHeader_IsCave - Dig's own first gate,
+   0x0203B438 being MapHeader_IsEscapeRopeAllowed); neither of the latter two is linked here,
+   only used for RCA disassembly.
 
    FieldMoveTask_CreateTeleportEnvironment (ov02, thumb) and Task_FieldTeleport (ov02, thumb):
    confirmed present at exactly the addresses design doc docs/mr-paint-route29-handover.md
    cites from pret asm/overlay_02_02248728.s (0x0224C500, 0x0224C558) - disassembled bytes
    match the expected shapes (a 4-arg allocator/setup function; a task with a state-dispatch
-   jump table). retail's own FieldMove_UseTeleport (arm9 0x02068640) calls
-   FieldMoveTask_CreateTeleportEnvironment(fieldSystem, mon, partySlot_u8, 4) then
-   TaskManager_Jump(taskman, Task_FieldTeleport(0x0224c559), env) at arm9 0x02068658 (bl
-   0x02050510) - our own path uses TaskManager_Call instead (already declared in
-   include/task.h), matching the ScrCmd_OverworldWhiteOut/CallTask_Blackout precedent and this
-   project's own MrPaintTalkTask usage above, so the calling SCRIPT (not UseTeleport's Bag-exit
-   task) can resume once the task finishes. Overlay 2 is confirmed field-resident with no
-   explicit load needed: FieldSystem_FollowMonInteract above already calls straight into ov02
-   0x0224EF80 from an ordinary script opcode and has shipped and verified in game since 0.4.17. */
-FieldMove_CheckTeleport                 = 0x02068664 | 1;
+   jump table), and directly traced from Task_UseTeleportInField's own disassembly above (not
+   merely address-matched). Overlay 2 is confirmed field-resident with no explicit load needed:
+   FieldSystem_FollowMonInteract above already calls straight into ov02 0x0224EF80 from an
+   ordinary script opcode and has shipped and verified in game since 0.4.17. */
+FieldMove_CheckTeleport                 = 0x02068554 | 1;
 FieldMoveTask_CreateTeleportEnvironment = 0x0224C500 | 1;
 Task_FieldTeleport                      = 0x0224C558 | 1;
 
