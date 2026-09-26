@@ -377,6 +377,26 @@ ChangeMapObjSprite = 0x021FA930 | 1;
    function src/field/event_cutscene_shaymin.c polls after its own ov01_021FA930 call. */
 ov01_021FA2D4 = 0x021FA2D4 | 1;
 
+/* 0.4.31 EMPIRICAL A (docs/mr-paint-swap-flicker.md): the exact triplet ChangeMapObjSprite's own
+   sync branch (0x21fa948, overlay 1) runs when ov01_021FA2D4/0x21f72dc route it there instead of
+   the async allocator at 0x21fa97c. Disassembled from THIS ROM's base/arm9.bin and
+   base/overlay/overlay_0001.bin. sub_0205F35C (arm9, Thumb, `adds r0,#180; ldr r0,[r0,#0]`) reads
+   a field at mapObject+0xB4. sub_0205E420 (arm9) invalidates the currently-bound resource
+   (frees it via sub_0205F498 when bit14 is set, clears bit14, re-stamps GfxID to a sentinel
+   literal). ov01_021FA108 (overlay1, this ROM's shipped address, confirmed distinct from the
+   0x0205E420/0x0205E38C arm9 pair) is the render-substruct swap worker, called
+   (sub_0205F35C's result, MapObject_GetGfxID's result, mapObject) in that register order at the
+   0x21fa95e call site. sub_0205E38C (arm9) re-stamps GfxID from ITS OWN second argument via
+   MapObject_SetGfxID (0x205e390: `bl 0x205f258` with r1 still the tag argument, live and
+   unclobbered) and clears bit14 again. None of these four allocate; the 0x58-byte node lives only
+   in the async branch (0x21fa97c). Untested until this build - the risk this build is meant to
+   settle is whether calling them without the loader that actually populates the resource
+   produces garbage/a crash instead of the current 4-frame cosmetic fragment. */
+sub_0205F35C = 0x0205F35C | 1;
+sub_0205E420 = 0x0205E420 | 1;
+ov01_021FA108 = 0x021FA108 | 1;
+sub_0205E38C = 0x0205E38C | 1;
+
 /* 0x16C54 in overlay1 */
 PlayerAlternate_MapObject_GfxDraw = 0x021FC554 | 1;
 

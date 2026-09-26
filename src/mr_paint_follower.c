@@ -536,10 +536,25 @@ static void MrPaintRefreshFollower(FieldSystem *fieldSystem, TaskManager *taskma
 // earlier: opcode 606 restores the follower only if FollowMon_IsActive passes, so this must never
 // be the thing that zeroes it. The restore guard in MrPaintRefreshFollower has already run by the
 // time we get here, so both fields are live if they can be.
+//
+// 0.4.31 EMPIRICAL A (docs/mr-paint-swap-flicker.md, james-game): ChangeMapObjSprite + the
+// 0.4.27 poll are replaced by calling the exact triplet its own sync branch (rom.ld:379-396,
+// overlay1 0x21fa948) runs, in the same order and the same argument registers, on the already
+// -hidden follower object - never entering the async allocator at 0x21fa97c at all, so there is
+// nothing to poll. Untested until this build; see the rom.ld comment for the disassembly this is
+// built from and for the risk this build exists to measure (whether skipping the loader that
+// actually populates the resource produces garbage/a crash on real species tags).
+extern u32 LONG_CALL sub_0205F35C(LocalMapObject *mapObject);
+extern void LONG_CALL sub_0205E420(LocalMapObject *mapObject);
+extern void LONG_CALL THUMB_FUNC ov01_021FA108(u32 a, u32 b, LocalMapObject *mapObject);
+extern void LONG_CALL sub_0205E38C(LocalMapObject *mapObject, u32 tag);
+
 BOOL MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
 {
     LocalMapObject *mapObject;
     u32 tag;
+    u32 currentGfxId;
+    u32 f35cVal;
 
     if (fieldSystem == NULL) {
         return FALSE;
@@ -552,7 +567,14 @@ BOOL MrPaintRebindFollowerModel(FieldSystem *fieldSystem)
 
     tag = MapObject_GetGfxID(mapObject);
     if (tag != sMrPaintTagBeforeSwap) {
-        ChangeMapObjSprite(mapObject, tag);
+        // EMPIRICAL A: reproduces ChangeMapObjSprite's sync branch verbatim instead of calling
+        // ChangeMapObjSprite(mapObject, tag) itself (which routes real species tags into the
+        // async allocator - see rom.ld:379-396).
+        currentGfxId = MapObject_GetGfxID(mapObject);   // r6 at 0x21fa94a
+        f35cVal = sub_0205F35C(mapObject);              // r7 at 0x21fa950
+        sub_0205E420(mapObject);                        // 0x21fa958
+        ov01_021FA108(f35cVal, currentGfxId, mapObject);// 0x21fa95e: r0=r7,r1=r6,r2=r5
+        sub_0205E38C(mapObject, tag);                   // 0x21fa968: r0=r5,r1=r4(new tag)
         MapObject_SetGfxID(mapObject, tag);
         return TRUE;
     }
