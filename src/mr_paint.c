@@ -239,6 +239,60 @@ static struct PartyPokemon *MrPaintActorMon(void)
     return &sMrPaintActor;
 }
 
+// Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
+// docs/mr-paint-trick-menu.md). Minimal mirror of the two words retail's own
+// FieldMove_CheckTeleport (rom.ld) actually reads out of its checkData argument - offset 0
+// (mapId) and offset 4 (FieldSystem*) - disassembled from THIS ROM (see rom.ld's comment above
+// the three new symbols this feature adds). Deliberately NOT the full retail struct: CheckTeleport
+// never dereferences past offset 4 on the Teleport row, so nothing else needs modelling, and the
+// offsets are asserted so a layout slip can never pass silently.
+typedef struct MrPaintTeleportCheckData {
+    u32 mapId;
+    FieldSystem *fieldSystem;
+} MrPaintTeleportCheckData;
+_Static_assert(offsetof(MrPaintTeleportCheckData, mapId) == 0,
+               "FieldMove_CheckTeleport reads mapId at checkData+0");
+_Static_assert(offsetof(MrPaintTeleportCheckData, fieldSystem) == 4,
+               "FieldMove_CheckTeleport reads fieldSystem at checkData+4");
+
+extern u32 LONG_CALL FieldMove_CheckTeleport(MrPaintTeleportCheckData *checkData);
+extern void *LONG_CALL FieldMoveTask_CreateTeleportEnvironment(FieldSystem *fieldSystem,
+                                                                struct PartyPokemon *mon,
+                                                                u32 partySlot, u32 heapId);
+extern BOOL LONG_CALL Task_FieldTeleport(TaskManager *taskman);
+
+// Retail's own FieldMove_UseTeleport passes 4 here (arm9 0x0206863E, `movs r3,#4`, immediately
+// before its own call into FieldMoveTask_CreateTeleportEnvironment) - no named HEAP_ID_FIELD1
+// constant exists yet anywhere in this tree, so the raw value is kept traceable with this comment
+// instead of inventing one.
+#define MR_PAINT_TELEPORT_HEAP_ID 4
+
+// See include/mr_paint.h for the full contract. Calls retail's own FieldMove_CheckTeleport
+// directly and forwards its return value unchanged (1 = NOT_HERE, 3 = HAVE_FOLLOWER, 0 = OK and
+// the warp has started) rather than reimplementing any of its checks - the same "call real retail
+// code" approach this file already uses for FieldMoveTask_CreateTeleportEnvironment/
+// Task_FieldTeleport below and MrPaintNurseRecall's swap in src/mr_paint_follower.c.
+u16 MrPaintTeleport(FieldSystem *fieldSystem)
+{
+    MrPaintTeleportCheckData checkData;
+    u32 checkResult;
+    void *env;
+
+    checkData.mapId = (u32)fieldSystem->location->mapId;
+    checkData.fieldSystem = fieldSystem;
+
+    checkResult = FieldMove_CheckTeleport(&checkData);
+    if (checkResult != 0) {
+        return (u16)checkResult;
+    }
+
+    env = FieldMoveTask_CreateTeleportEnvironment(fieldSystem, MrPaintActorMon(),
+                                                   MR_PAINT_ACTOR_SENTINEL_SLOT,
+                                                   MR_PAINT_TELEPORT_HEAP_ID);
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_FieldTeleport, env);
+    return 0;
+}
+
 // Side feature "Surf gate" (james-0417-feedback.md sections 4/4b). Full-function hook (hg-engine
 // `hooks`: "arm9 GetIdxOfFirstPartyMonWithMove 020542E8 2") replacing retail
 // GetIdxOfFirstPartyMonWithMove at 0x020542E8. Disassembled from THIS ROM's control build

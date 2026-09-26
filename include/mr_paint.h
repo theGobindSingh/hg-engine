@@ -268,4 +268,20 @@ BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx);
 // (MrPaintActorMon(), friendship forced to 255) instead of searching the real party at all.
 struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
 
+// Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
+// docs/mr-paint-trick-menu.md). Runs retail's own FieldMove_CheckTeleport (arm9 0x02068664,
+// rom.ld) against the CURRENT field, then - only when it reports OK - starts retail's own
+// Task_FieldTeleport (ov02 0x0224C558, rom.ld) via TaskManager_Call, exactly the
+// ScrCmd_OverworldWhiteOut/CallTask_Blackout precedent this project already follows for
+// ScrCmd_FollowMonInteract above. No reimplementation of any retail check: the return value IS
+// FieldMove_CheckTeleport's own (1 = NOT_HERE "can't be used here", 3 = HAVE_FOLLOWER "a story
+// companion is following", 0 = OK and the warp has been started). The party is never read or
+// written; the mon used for the teleport cry/emote is the same static Mr. Paint actor
+// (MrPaintActorMon() in src/mr_paint.c) the 0.4.7/0.4.17 cut-in and follower-talk features
+// already use, at the same sentinel party slot (MR_PAINT_ACTOR_SENTINEL_SLOT) 0.3.8 established
+// so it can never collide with the deployed follower's real slot. Its only caller is
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, whose value must match
+// NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
+u16 MrPaintTeleport(FieldSystem *fieldSystem);
+
 #endif // GUARD_MR_PAINT_H

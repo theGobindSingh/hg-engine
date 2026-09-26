@@ -6789,6 +6789,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE, which must match. Center-only; the Bag/Y
 // toggle keeps mr_paint_arm_follower_release (5) above.
 .equ NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 7
+// Mr. Paint (side feature 0.4.33 "Teleport trick") - see mr_paint_teleport below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, which must match.
+.equ NEW_COMMAND_MR_PAINT_TELEPORT, 8
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6864,6 +6867,17 @@ RunNewCommand NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 0
 // the C side beyond SetScriptVar(arg0, ...).
 .macro mr_paint_nurse_recall,resultVar
 RunNewCommand NEW_COMMAND_MR_PAINT_NURSE_RECALL, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.33 "Teleport trick", james-game docs/mr-paint-route29-handover.md
+// section 3, docs/mr-paint-trick-menu.md): runs retail's own FieldMove_CheckTeleport, then - only
+// if it reports OK - retail's own Task_FieldTeleport, via src/mr_paint.c's MrPaintTeleport.
+// resultVar (this command's one operand, riding in RunNewCommand's "unk" slot exactly like
+// mr_paint_nurse_recall above) receives 1 (can't be used here), 3 (a story companion is
+// following) or 0 (OK - the warp has started and this SCRIPT is suspended until it finishes, so
+// the very next line only ever runs post-warp).
+.macro mr_paint_teleport,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_TELEPORT, resultVar
 .endmacro
 
 // Dummy

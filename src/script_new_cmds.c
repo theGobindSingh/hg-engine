@@ -54,6 +54,15 @@
 // and un-hides - MrPaintReleaseAtRecordedTile's restored pre-0.4.28 body. Must match
 // NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE 7
+// Mr. Paint (side feature 0.4.33 "Teleport trick"): runs retail's own FieldMove_CheckTeleport
+// against the current field and, only when it reports OK, starts retail's own Task_FieldTeleport
+// via TaskManager_Call - see src/mr_paint.c's MrPaintTeleport for the full contract. Writes
+// MrPaintTeleport's own return value into resultVar (arg0): 1 = can't be used here (NOT_HERE),
+// 3 = a story companion is following (HAVE_FOLLOWER), 0 = OK, and this case additionally yields
+// the SCRIPT (returns TRUE) so Task_FieldTeleport owns control until the warp finishes - the same
+// contract ScrCmd_FollowMonInteract's TaskManager_Call above already uses. Must match
+// NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_TELEPORT 8
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -113,6 +122,16 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE:
         MrPaintReleaseAtRecordedTile(ctx->fsys);
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_TELEPORT:;
+        u16 mrPaintTeleportResult = MrPaintTeleport(ctx->fsys);
+        SetScriptVar(arg0, mrPaintTeleportResult);
+        if (mrPaintTeleportResult == 0) {
+            // OK: Task_FieldTeleport now owns the field until the warp finishes. Yield the
+            // calling script exactly the way ScrCmd_FollowMonInteract's TaskManager_Call does.
+            return TRUE;
+        }
         break;
 
     default:

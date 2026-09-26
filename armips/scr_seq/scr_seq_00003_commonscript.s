@@ -90,6 +90,7 @@ scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_mr_paint_inspiration
 scrdef scr_seq_0003_075_mr_paint_follower_swap
+scrdef scr_seq_0003_076_mr_paint_teleport
 scrdef_end
 
 scr_seq_0003_002:
@@ -1073,6 +1074,74 @@ _MrPaintInspirationShown:
     wait_button_or_walk_away
 _MrPaintInspirationDone:
     return
+
+// Mr. Paint (side feature 0.4.33 "Teleport trick", james-game
+// docs/mr-paint-route29-handover.md section 3, docs/mr-paint-trick-menu.md). Reached only from
+// 0163.script's Function#7 (`CommonScript 2076 / End`, itself only reachable with flag 2224 set
+// and TELEPORT chosen from the trick menu). mr_paint_teleport (src/mr_paint.c's MrPaintTeleport,
+// NEW_COMMAND_MR_PAINT_TELEPORT = 8) runs retail's own FieldMove_CheckTeleport and, only when it
+// reports OK, starts retail's own Task_FieldTeleport via TaskManager_Call and yields the WHOLE
+// script until the warp finishes - so by the time control reaches the `end` on the OK path, the
+// map has already changed and there is nothing left to release (CallStd/CommonScript "creates a
+// new script context to run the indicated script and wait" per scrcmd-database id 20 - 0163's own
+// Function#7 `End` immediately after the call is a harmless bookend, never reached with anything
+// left to tear down).
+//
+// No lockall here: this entry is only ever reached from inside 0163.script's own top-level
+// LockAll (held since Script 1, never released before Function#7), the same reasoning
+// _mr_paint_swap_body above uses to skip its own lockall. Every non-OK exit below calls
+// releaseall to balance that lock, per 0163.script's own Function#2/#3/#9/#10 convention.
+//
+// result 3 (HAVE_FOLLOWER, "a story companion is following"): prints the client's DRAFT
+// placeholder at archive 30 index 14 (data/text/030.txt), reached through get_std_msg_naix 2 -
+// the SAME n=2 -> archive 30 redirect 0163.script's own Function#1 already uses for indices 12/13,
+// proven reachable from this exact script since 0.4.16/0.4.17.
+//
+// result 1 (NOT_HERE, "can't be used here"): NO retail line reachable from get_std_msg_naix's own
+// n=0..3 array {752, 211, 30, 435} exists for this (archive 211, the field-move archive, has
+// Surf's/Rock Climb's own "can't be used if you have someone with you" at 211:16/211:23, but no
+// Teleport row and no generic NOT_HERE line at all). Archive 10:106 "Can't use the
+// {STRVAR_1, 8, 0, 0}." was an earlier candidate but is the BAG's own item-use denial line - it
+// would give Mr. Paint an indefinite article ("Can't use the Mr. Paint."), which the client's
+// receipt/pocket lines have specifically avoided since 0.3.9/0.3.12. The right line is retail's
+// own PARTY-MENU field-move NOT_HERE text, archive 300 index 101, "You can't use that here.\r"
+// (verified with dspre-mcp get_text; it carries no item-name placeholder at all, so it needs no
+// buffer_item_name). Archive 300 is not reachable via get_std_msg_naix either, so this prints it
+// the OTHER attested way this same commonscript file already uses for its own content: plain
+// npc_msg, which resolves against this file's own hg-engine-owned archive 40 (data/text/040.txt) -
+// the exact mechanism npc_msg 121-133 above already use. Archive 300:101 was therefore copied
+// VERBATIM (including its own trailing \r, matching how 040.txt's other npc_msg lines are
+// written) to 040.txt's new index 134.
+scr_seq_0003_076_mr_paint_teleport:
+    mr_paint_teleport VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintTeleportDone
+    compare VAR_SPECIAL_x8000, 1
+    goto_if_eq _MrPaintTeleportNotHere
+    compare VAR_SPECIAL_x8000, 3
+    goto_if_eq _MrPaintTeleportCompanion
+    // anything else (e.g. 2, NOT_NOW) falls through here - no retail line is attested for it
+    // either, and it is not one of the three codes MrPaintTeleport documents returning.
+    releaseall
+    end
+
+_MrPaintTeleportNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    end
+
+_MrPaintTeleportCompanion:
+    get_std_msg_naix 2, VAR_SPECIAL_RESULT
+    msgbox_extern VAR_SPECIAL_RESULT, 14
+    wait_button
+    closemsg
+    releaseall
+    end
+
+_MrPaintTeleportDone:
+    end
 
 scr_seq_0003_009:
     call _09F5

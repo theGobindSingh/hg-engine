@@ -119,6 +119,47 @@ StopScript             = 0x0203FD60 | 1;
 FieldSystem_FollowMonInteract = 0x0224EF80 | 1;
 RetailPartyMonAliveTest       = 0x020541B0 | 1;
 
+/* Mr. Paint side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md
+   section 3, docs/mr-paint-trick-menu.md). All three addresses confirmed by disassembling THIS
+   ROM's arm9.bin / ov002.bin (oracle-vnic, control build 0.4.32) - not taken from pret text.
+
+   FieldMove_CheckTeleport (arm9, thumb): the retail Teleport availability check, called with a
+   pointer to a 2-word struct {u32 mapId; FieldSystem *fieldSystem;} (see
+   MrPaintTeleportCheckData in src/mr_paint.c, offsets asserted). Disassembled body at
+   0x02068664-0x020686a2+: reads fieldSystem+0x70 (unmodeled FieldSystem field, matches "unk50"
+   in include/pokemon.h - inside its 0x5C byte gap) and compares it to 2/3, returning 1
+   (NOT_HERE) on a match; else calls MapHeader_IsTeleportAllowed(mapId) at arm9 0x0203B578
+   (bl at 0x02068678) and a second, unnamed MapHeader-cluster gate at arm9 0x0203B438 (bl at
+   0x02068682, same 0x0203Bxxx neighbourhood as the already-linked MapHeader_GetMapSec
+   0x0203B36C above) - either failing (!= 1) returns 1 (NOT_HERE); else reads
+   fieldSystem+0xC (= FieldSystem.savedata, matching include/pokemon.h's own offset exactly)
+   and calls SaveData_GetEventPtr (0x020503D0, already linked above) then a second bl to
+   0x02066644 (the have-follower test on that pointer) - a result of 1 returns 3
+   (HAVE_FOLLOWER). This return-value shape (1 = NOT_HERE, 3 = HAVE_FOLLOWER, else falls
+   through toward 0 = OK) is exactly the mr_paint_teleport resultVar contract, so the new
+   command below calls this function directly rather than reimplementing any of its checks.
+   FieldMove_UseTeleport (arm9 0x02068621, NOT linked - not needed since our own path never
+   calls it) independently confirms both the struct shape and 0x0224C500's signature: its own
+   call site (0x02068640, `movs r3,#4` immediately before) passes HEAP_ID_FIELD1=4 as the arg
+   our own call must also use.
+
+   FieldMoveTask_CreateTeleportEnvironment (ov02, thumb) and Task_FieldTeleport (ov02, thumb):
+   confirmed present at exactly the addresses design doc docs/mr-paint-route29-handover.md
+   cites from pret asm/overlay_02_02248728.s (0x0224C500, 0x0224C558) - disassembled bytes
+   match the expected shapes (a 4-arg allocator/setup function; a task with a state-dispatch
+   jump table). retail's own FieldMove_UseTeleport (arm9 0x02068640) calls
+   FieldMoveTask_CreateTeleportEnvironment(fieldSystem, mon, partySlot_u8, 4) then
+   TaskManager_Jump(taskman, Task_FieldTeleport(0x0224c559), env) at arm9 0x02068658 (bl
+   0x02050510) - our own path uses TaskManager_Call instead (already declared in
+   include/task.h), matching the ScrCmd_OverworldWhiteOut/CallTask_Blackout precedent and this
+   project's own MrPaintTalkTask usage above, so the calling SCRIPT (not UseTeleport's Bag-exit
+   task) can resume once the task finishes. Overlay 2 is confirmed field-resident with no
+   explicit load needed: FieldSystem_FollowMonInteract above already calls straight into ov02
+   0x0224EF80 from an ordinary script opcode and has shipped and verified in game since 0.4.17. */
+FieldMove_CheckTeleport                 = 0x02068664 | 1;
+FieldMoveTask_CreateTeleportEnvironment = 0x0224C500 | 1;
+Task_FieldTeleport                      = 0x0224C558 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
