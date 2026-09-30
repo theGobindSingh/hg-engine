@@ -130,7 +130,7 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
-        MrPaintArmFollowerRelease(ctx->fsys);
+        // RETIRED 0.4.40: opcode 5 (bike-style deferred arm) is no longer emitted; id kept reserved.
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:

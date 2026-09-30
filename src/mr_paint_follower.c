@@ -732,40 +732,6 @@ void MrPaintShowFollower(FieldSystem *fieldSystem)
 // own step handler now owns placement exactly as it already does for the bike.
 extern void LONG_CALL THUMB_FUNC ov01_02205790(FieldSystem *fieldSystem, int direction);
 
-// Script cmd 5, renamed from mr_paint_emerge_at_recorded_tile (0.4.23-0.4.27) to
-// mr_paint_arm_follower_release (0.4.28) - the opcode id (5) is unchanged, only the name and the
-// body. Runs immediately after mr_paint_swap_follower_model, while the follower is still hidden
-// by send_follower_to_ball (600), and reproduces Task_MountOrDismountBicycle's dismount arm
-// exactly, in the same order, with the same NULL/active follower guard this file has used since
-// 0.4.23 - a follower-less fire would otherwise dereference NULL through
-// sub_02069E84/sub_02069DC8, neither of which null-checks its own argument.
-void MrPaintArmFollowerRelease(FieldSystem *fieldSystem)
-{
-    LocalMapObject *mapObject;
-    u32 direction;
-
-    if (fieldSystem == NULL) {
-        return;
-    }
-
-    mapObject = fieldSystem->followMon.mapObject;
-    if (mapObject == NULL || fieldSystem->followMon.active == 0) {
-        return;
-    }
-
-    // Matches the bike's own direction source (MapObject_GetFacingDirection(playerAvatar->
-    // mapObject)); DOWN (1) is only a defensive fallback for the two fields this file has always
-    // guarded (playerAvatar, its mapObject) somehow being unset in a live field script context.
-    direction = 1;
-    if (fieldSystem->playerAvatar != NULL && fieldSystem->playerAvatar->mapObject != NULL) {
-        direction = MapObject_GetFacingDirection(fieldSystem->playerAvatar->mapObject);
-    }
-
-    ov01_02205790(fieldSystem, direction);
-    sub_02069E84(mapObject, TRUE);
-    sub_02069DC8(mapObject, TRUE);
-}
-
 // ---------------------------------------------------------------------------------------------
 // 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, James's 0.4.29 item 2)
 // ---------------------------------------------------------------------------------------------

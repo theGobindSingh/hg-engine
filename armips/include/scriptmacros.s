@@ -6780,6 +6780,7 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // below and src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE, which must
 // match. Opcode id unchanged since 0.4.23 (mr_paint_emerge_at_recorded_tile); only the name and
 // the native behaviour behind it changed. Toggle body only, as of 0.4.30.
+// RETIRED 0.4.40: id 5 is reserved and is a no-op in src/script_new_cmds.c (mr_paint_arm_follower_release removed).
 .equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
 // Mr. Paint (side feature 0.4.24 "Poke Center nurse recall") - see mr_paint_nurse_recall below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, which must match.
@@ -6845,17 +6846,6 @@ RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
 RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
 .endmacro
 
-// Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
-// object to emerge exactly the way Task_MountOrDismountBicycle's own dismount does, then leaves
-// the actual emerge effect and un-hide to retail's own per-step handler on the player's NEXT STEP
-// - see src/mr_paint_follower.c's MrPaintArmFollowerRelease for the full RCA and the byte
-// evidence. Replaces 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile (same opcode id, new name
-// and behaviour) and, together with it, `reset_follower_with_ball` (606) and mr_paint_show_follower
-// at the tail of scr_seq_0003_075. As of 0.4.30 this is the TOGGLE body's own tail only - the
-// Center body uses mr_paint_release_at_recorded_tile below instead.
-.macro mr_paint_arm_follower_release
-RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
-.endmacro
 
 // Mr. Paint (side feature 0.4.30 "Center immediate release", docs/mr-paint-swap-flicker.md,
 // james-game): restores 0.4.23-0.4.27's immediate, synchronous release at the recorded tile

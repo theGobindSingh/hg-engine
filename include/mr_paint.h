@@ -224,7 +224,6 @@ void MrPaintShowFollower(FieldSystem *fieldSystem);
 // Caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5, unchanged
 // since 0.4.23), whose value must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
 // armips/include/scriptmacros.s.
-void MrPaintArmFollowerRelease(FieldSystem *fieldSystem);
 
 // 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, james-game), restoring
 // 0.4.23-0.4.27's MrPaintRecordFollowerTile/MrPaintEmergeAtRecordedTile verbatim (renamed

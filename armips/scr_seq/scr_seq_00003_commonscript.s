@@ -938,24 +938,30 @@ scr_seq_0003_075_mr_paint_follower_swap:
     end
 
 // The shared animation body: recall the current follower into its ball, rebind its model while
-// hidden, then arm it to emerge on the player's next step - exactly the bike's own dismount
-// sequence (0.4.28, James 0.4.27 item 1, docs/mr-paint-swap-bike.md). Callable as a subroutine
+// hidden, then release it at its recorded tile (0.4.40 shape, see below). 0.4.28 had made this a
+// bike-style deferred arm (James 0.4.27 item 1, docs/mr-paint-swap-bike.md); that design was
+// SUPERSEDED by 0.4.40, which removed mr_paint_arm_follower_release (opcode id 5 stays reserved).
+// Callable as a subroutine
 // (ends in `return`, not `end`) so the Bag/Y toggle's own script entry above can run it under
 // whichever lockall it already holds, without a second copy to drift out of step. Not a scrdef
 // entry itself - `call`/`return` address it directly, the same way _MrPaintShowInspiration above
 // is a plain label `call`ed from scr_seq_0003_074_mr_paint_inspiration, never a scrdef.
-//
-// No trailing wait after the arm: the bike itself does not wait for the emerge either - it runs on
-// the player's own next step, whenever that comes, so there is nothing here for a `wait` to cover.
+// 0.4.40 (swap hop): the toggle body now has the Center body's own shape - record the outgoing
+// follower's tile, recall, wait, synchronous rebind, IMMEDIATE native release at the recorded tile
+// - instead of 0.4.28's bike-style deferred arm. MR_PAINT_SWAP_WAIT_PRE / _POST are the tuning literals (script ticks, ~2 frames each):
+// PRE follows the recall - send_follower_to_ball already yields until its own task ends, ~21 frames
+// after the ball is gone, so PRE needs no length of its own; POST follows the release and must
+// outlast the native hop-out (~22 frames from release to the last sparkle) so releaseall does not
+// free the player mid-hop (measured: wait N ~ 2N+15 frames, so 8 gives ~31).
+.equ MR_PAINT_SWAP_WAIT_PRE, 1
+.equ MR_PAINT_SWAP_WAIT_POST, 8
 _mr_paint_swap_body:
+    mr_paint_record_follower_tile
     send_follower_to_ball
-    // 0.4.27 (James 0.4.25 item 1): shortened from 24. mr_paint_swap_follower_model now blocks
-    // the script itself, via a native poll on the async model load, until it is actually safe to
-    // emerge - see MrPaintBeginFollowerModelSwapWait in src/mr_paint_follower.c - so this margin
-    // only needs to cover the recall (absorb + ball) animation, not the load as well.
-    wait 8, VAR_SPECIAL_RESULT
+    wait MR_PAINT_SWAP_WAIT_PRE, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
-    mr_paint_arm_follower_release
+    mr_paint_release_at_recorded_tile
+    wait MR_PAINT_SWAP_WAIT_POST, VAR_SPECIAL_RESULT
     return
 
 // 0.4.27 SPLIT THE BODY (James 0.4.25 item 1 follow-up, docs/mr-paint-swap-polish2.md /
