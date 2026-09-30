@@ -851,7 +851,8 @@ _09E9:
 scr_seq_0003_074_mr_paint_inspiration:
     lockall
     call _MrPaintShowInspiration
-    closemsg
+    // 0.4.41: no closemsg here any more - _MrPaintShowInspiration closes its own window exactly once on
+    // every path that opened one (a second closemsg after the branch-A one locked the game).
     releaseall
     end
 
@@ -1079,6 +1080,7 @@ _MrPaintInspireB:
     compare VAR_SPECIAL_x8002, 1
     call_if_eq _MrPaintJoyHops
     wait_button
+    closemsg
     goto _MrPaintInspirationDone
 
 // Branch A only: let the release hop-out from _mr_paint_swap_body finish before the follower is given
