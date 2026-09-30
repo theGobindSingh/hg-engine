@@ -508,6 +508,8 @@ arm9 ScrCmd_183 02043724 1
 arm9 ScrCmd_BufferPartyMonNick 020486F0 1
 arm9 ScrCmd_End 02040898 1
 0001 MrPaintFieldMoveActorMon 021F3100 2
+# 0.4.38: ov2 0x0224F6AC dominant-contest-condition (ctx[22]) - register-free form, all of r0-r3 live
+0002 MrPaintTalkCondition 0224F6AC
 
 # Mr. Paint (0.4.17 "follower talk") - opcode 711 (ROM script command FollowMonInteract/
 # TalkFollowingPoke) and the retail "the lead" resolver its task calls internally. Both are

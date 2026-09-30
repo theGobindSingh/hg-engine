@@ -1055,3 +1055,9 @@ BattleSystem_GetPokepicManager = 0x0223A8D4 | 1;
 ov12_0223B750 = 0x0223B750 | 1;
 sub_0207294C = 0x0207294C | 1;
 sub_02017068 = 0x02017068 | 1;
+
+/* 0.4.38 follower-talk mood/condition isolation (verified by disassembly of this ROM's arm9) */
+/* Party "copy 8 bytes of per-member condition data by slot" helper, called at ov2 0x0224F6C6. */
+MrPaintPartyCopyMonConditionArray = 0x02074670 | 1;
+/* Contest-condition thunk (out, mon, array, 11) -> 0x02073248, called at ov2 0x0224F6DA. */
+MrPaintMonCalcConditionSet = 0x020732E4 | 1;

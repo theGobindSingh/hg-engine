@@ -178,6 +178,31 @@ static u8 sMrPaintActorActive;
 static u8 sMrPaintTalkActive;
 static FieldSystem *sMrPaintTalkFieldSystem;
 
+// 0.4.38 "talk mood". The native talk task reads/writes the follower's MOOD through
+// FieldSystem_UnkSub108_GetMonMood/SetMonMood (arm9 0x0206A268/0x0206A240), which do
+// GetMonData/SetMonData(unk108->mon, MON_DATA_MOOD) with unk108 = *(void **)((u8 *)fsys + 0x108)
+// and `mon` at unk108+8 (`ldr r0,[r0,#8]` at 0x0206A26A and 0x0206A244; the fsys+0x108 load is at
+// ov2 0x0224F69E-0x0224F6A0). unk108->mon is the REAL lead, so while Mr. Paint talks we point it
+// at the static Mr. Paint mon and restore it afterwards (idempotent: only if a save is pending).
+#define MR_PAINT_FSYS_UNK108_OFFSET 0x108
+#define MR_PAINT_UNK108_MON_OFFSET 0x8
+#define MR_PAINT_TALK_MOOD 127
+_Static_assert(MON_DATA_MOOD == 187, "retail reads the follower mood as MON_DATA_MOOD (187 = 0xBB)");
+static void **sMrPaintTalkUnk108MonSlot;
+static void *sMrPaintTalkSavedMon;
+static struct PartyPokemon *MrPaintTalkMon(void);
+extern void LONG_CALL MrPaintPartyCopyMonConditionArray(struct Party *party, u8 *out, u32 slot);
+extern void LONG_CALL MrPaintMonCalcConditionSet(u16 *out, struct PartyPokemon *mon, u8 *array, u32 arg);
+
+static void MrPaintTalkRestoreUnk108(void)
+{
+    if (sMrPaintTalkUnk108MonSlot != NULL) {
+        *sMrPaintTalkUnk108MonSlot = sMrPaintTalkSavedMon;
+        sMrPaintTalkUnk108MonSlot = NULL;
+        sMrPaintTalkSavedMon = NULL;
+    }
+}
+
 // Slice 0.4.14 "attribution". The 0.4.13 gate only ran when the party search FAILED, so the one
 // case the client reported - Mr. Paint deployed AND a party Pokemon also knows the move - fell
 // straight through to vanilla and named that Pokemon. The gate below is now entered regardless of
@@ -733,6 +758,7 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
     // GetFirstAliveMonInParty_CrashIfNone call for the same FieldSystem.
     sMrPaintTalkActive = 0;
     sMrPaintTalkFieldSystem = NULL;
+    MrPaintTalkRestoreUnk108();
     StopScript(ctx);
     return FALSE;
 }
@@ -819,6 +845,7 @@ static BOOL MrPaintTalkTask(TaskManager *taskman)
     if (done) {
         sMrPaintTalkActive = 0;
         sMrPaintTalkFieldSystem = NULL;
+        MrPaintTalkRestoreUnk108();
     }
 
     return done;
@@ -838,6 +865,16 @@ BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx)
 
     sMrPaintTalkActive = 1;
     sMrPaintTalkFieldSystem = fieldSystem;
+    {
+        void *unk108 = *(void **)((u8 *)fieldSystem + MR_PAINT_FSYS_UNK108_OFFSET);
+
+        if (unk108 != NULL) {
+            MrPaintTalkRestoreUnk108();
+            sMrPaintTalkUnk108MonSlot = (void **)((u8 *)unk108 + MR_PAINT_UNK108_MON_OFFSET);
+            sMrPaintTalkSavedMon = *sMrPaintTalkUnk108MonSlot;
+            *sMrPaintTalkUnk108MonSlot = MrPaintTalkMon();
+        }
+    }
     TaskManager_Call((TaskManager *)fieldSystem->taskman, MrPaintTalkTask, NULL);
     return TRUE;
 }
@@ -849,8 +886,52 @@ static struct PartyPokemon *MrPaintTalkMon(void)
 {
     struct PartyPokemon *mon = MrPaintActorMon();
     u8 friendship = 255;
+    u8 mood = MR_PAINT_TALK_MOOD;
     SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    SetMonData(mon, MON_DATA_MOOD, &mood);
     return mon;
+}
+
+// Hook at ov2 0x0224F6AC (register-free form, 4 live args): retail's "dominant contest condition"
+// computation into ctx[22]. Retail: savedata = fsys[3]; party = SaveData_GetPlayerPartyPtr;
+// slot = GetIdxOfFirstAliveMonInParty_CrashIfNone(party); PartyCopyCondArray(party, arr, slot);
+// mon = Party_GetMonByIndex(party, slot); CalcConditionSet(out, mon, arr, 11); then the dominant
+// of the five 3-bit fields (bits 0,3,6,9,12 of out[0]), scanned in retail's order. Under the talk
+// latch the real party is bypassed: the static Mr. Paint mon with a zeroed modifier array goes
+// through the same pipeline, so the value is exactly what retail yields for that mon (derived,
+// not hard-coded). Unlatched: retail reproduced.
+void MrPaintTalkCondition(FieldSystem *fieldSystem, u32 unused1, u32 unused2, u8 *ctx)
+{
+    struct Party *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
+    u16 out[4];
+    u8 arr[8];
+    struct PartyPokemon *mon;
+    u32 v, f0, f1, f2, f3, f4, best, pick;
+
+    memset(arr, 0, sizeof(arr));
+    if (sMrPaintTalkActive && fieldSystem == sMrPaintTalkFieldSystem) {
+        mon = MrPaintTalkMon();
+    } else {
+        u32 slot = GetIdxOfFirstAliveMonInParty_CrashIfNone(party);
+
+        MrPaintPartyCopyMonConditionArray(party, arr, slot);
+        mon = Party_GetMonByIndex(party, slot);
+    }
+    MrPaintMonCalcConditionSet(out, mon, arr, 11);
+
+    v = out[0];
+    f0 = v & 7;
+    f1 = (v >> 3) & 7;
+    f2 = (v >> 6) & 7;
+    f3 = (v >> 9) & 7;
+    f4 = (v >> 12) & 7;
+    best = f0;
+    pick = 1;
+    if (best < f4) { best = f4; pick = 2; }
+    if (best < f3) { best = f3; pick = 4; }
+    if (best < f1) { best = f1; pick = 3; }
+    if (best < f2) { pick = 5; }
+    ctx[22] = (u8)pick;
 }
 
 // Replaces retail GetFirstAliveMonInParty_CrashIfNone (arm9 0x02054388). While the 0.4.17 talk
