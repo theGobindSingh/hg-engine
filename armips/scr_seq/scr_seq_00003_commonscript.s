@@ -1081,15 +1081,14 @@ _MrPaintInspirationDone:
 // and TELEPORT chosen from the trick menu). mr_paint_teleport (src/mr_paint.c's MrPaintTeleport,
 // NEW_COMMAND_MR_PAINT_TELEPORT = 8) runs retail's own FieldMove_CheckTeleport and, only when it
 // reports OK, starts retail's own Task_FieldTeleport via TaskManager_Call and yields the WHOLE
-// script until the warp finishes - so by the time control reaches the `end` on the OK path, the
-// map has already changed and there is nothing left to release (CallStd/CommonScript "creates a
-// new script context to run the indicated script and wait" per scrcmd-database id 20 - 0163's own
-// Function#7 `End` immediately after the call is a harmless bookend, never reached with anything
-// left to tear down).
+// script until the warp finishes. CommonScript (opcode 20, ScrCmd_CallStd) parks the calling
+// context until the callee runs endstd, so EVERY exit here must end releaseall / endstd / end
+// (retail std-script shape), including the OK path: the LockAll from 0163.script is still held
+// when the script resumes on the new map.
 //
 // No lockall here: this entry is only ever reached from inside 0163.script's own top-level
 // LockAll (held since Script 1, never released before Function#7), the same reasoning
-// _mr_paint_swap_body above uses to skip its own lockall. Every non-OK exit below calls
+// _mr_paint_swap_body above uses to skip its own lockall. Every exit below calls
 // releaseall to balance that lock, per 0163.script's own Function#2/#3/#9/#10 convention.
 //
 // result 3 (HAVE_FOLLOWER, "a story companion is following"): prints the client's DRAFT
@@ -1123,6 +1122,7 @@ scr_seq_0003_076_mr_paint_teleport:
     // anything else (e.g. 2, NOT_NOW) falls through here - no retail line is attested for it
     // either, and it is not one of the three codes MrPaintTeleport documents returning.
     releaseall
+    endstd
     end
 
 _MrPaintTeleportNotHere:
@@ -1130,6 +1130,7 @@ _MrPaintTeleportNotHere:
     wait_button
     closemsg
     releaseall
+    endstd
     end
 
 _MrPaintTeleportCompanion:
@@ -1138,9 +1139,12 @@ _MrPaintTeleportCompanion:
     wait_button
     closemsg
     releaseall
+    endstd
     end
 
 _MrPaintTeleportDone:
+    releaseall
+    endstd
     end
 
 scr_seq_0003_009:
