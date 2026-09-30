@@ -135,15 +135,15 @@ What’s that?\rMr. Paint was inspired by {STRVAR_1 8, 0, 0}!\rMr. Paint learned
 You can’t use that here.\r
 Mr. Paint used Sweet Scent!\r
 This can’t be used until a new\nBadge is obtained.\r
-What’s that?\r
-Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!\r
-Mr. Paint learned Cut!!!\r
-Mr. Paint learned Fly!!!\r
-Mr. Paint learned Surf!!!\r
-Mr. Paint learned Strength!!!\r
-Mr. Paint learned Flash!!!\r
-Mr. Paint learned Whirlpool!!!\r
-Mr. Paint learned Waterfall!!!\r
-Mr. Paint learned Rock Smash!!!\r
-Mr. Paint learned Rock Climb!!!\r
-Mr. Paint learned Dig!!!\r
+What’s that?
+Mr. Paint was inspired by {STRVAR_1 8, 0, 0}!
+Mr. Paint learned Cut!!!
+Mr. Paint learned Fly!!!
+Mr. Paint learned Surf!!!
+Mr. Paint learned Strength!!!
+Mr. Paint learned Flash!!!
+Mr. Paint learned Whirlpool!!!
+Mr. Paint learned Waterfall!!!
+Mr. Paint learned Rock Smash!!!
+Mr. Paint learned Rock Climb!!!
+Mr. Paint learned Dig!!!
