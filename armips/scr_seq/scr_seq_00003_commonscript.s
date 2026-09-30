@@ -955,7 +955,7 @@ scr_seq_0003_075_mr_paint_follower_swap:
 // free the player mid-hop (measured: wait N ~ 2N+15 frames, so 8 gives ~31).
 .equ MR_PAINT_SWAP_WAIT_PRE, 1
 .equ MR_PAINT_SWAP_WAIT_POST, 8
-.equ MR_PAINT_INSPIRE_SETTLE, 30
+.equ MR_PAINT_INSPIRE_SETTLE, 8
 _mr_paint_swap_body:
     mr_paint_record_follower_tile
     send_follower_to_ball
