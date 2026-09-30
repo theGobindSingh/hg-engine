@@ -6805,6 +6805,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 .equ NEW_COMMAND_MR_PAINT_FLY_CHECK, 12
 .equ NEW_COMMAND_MR_PAINT_FLY_MAP, 13
 .equ NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 14
+// Mr. Paint (0.4.41 inspiration choreography) - see mr_paint_follower_live / mr_paint_inspire_deploy below.
+.equ NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, 15
+.equ NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, 16
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6914,6 +6917,17 @@ RunNewCommand NEW_COMMAND_MR_PAINT_FLY_MAP, resultVar
 // the script yields until the task ends (after the warp).
 .macro mr_paint_fly_takeoff
 RunNewCommand NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 0
+.endmacro
+
+// 0.4.41: resultVar <- 1 if a live follower exists (same predicate as the Bag/Y toggle), else 0.
+.macro mr_paint_follower_live,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, resultVar
+.endmacro
+
+// 0.4.41: resultVar <- 0 flag 2224 already set (nothing done); else sets it, swaps identity,
+// 1 live follower / 2 not live.
+.macro mr_paint_inspire_deploy,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, resultVar
 .endmacro
 
 // Dummy

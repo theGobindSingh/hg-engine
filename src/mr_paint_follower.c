@@ -893,6 +893,27 @@ u16 MrPaintNurseRecall(FieldSystem *fieldSystem)
     return MrPaintSwapFollowerIdentity(fieldSystem) ? 1 : 2;
 }
 
+// 0.4.41 (inspiration choreography): 1 when a live follower exists that the Bag/Y toggle could act
+// on - the same predicate MrPaintSwapFollowerIdentity returns (non-NULL mapObject AND active != 0).
+// The script side additionally gates on get_player_state == PLAYER_STATE_WALKING.
+u16 MrPaintFollowerLive(FieldSystem *fieldSystem)
+{
+    return (fieldSystem != NULL && fieldSystem->followMon.mapObject != NULL && fieldSystem->followMon.active != 0) ? 1 : 0;
+}
+
+// 0.4.41: toggle Mr. Paint ON for the inspiration event. 0 = flag already set (no change),
+// 1 = flag set now and a live follower exists after the identity swap, 2 = set but not live.
+u16 MrPaintInspireDeploy(FieldSystem *fieldSystem)
+{
+    if (CheckScriptFlag(FLAG_MR_PAINT_FOLLOWING)) {
+        return 0;
+    }
+
+    SetScriptFlag(FLAG_MR_PAINT_FOLLOWING);
+
+    return MrPaintSwapFollowerIdentity(fieldSystem) ? 1 : 2;
+}
+
 // The one place the flag actually flips. BOTH entry points below - the SELECT/field path and the
 // 0.4.5 Bag/USE path - call this and nothing else, so they cannot drift apart the way two copies
 // of the same three lines eventually would. 0.4.9 puts the refresh here for the same reason: the

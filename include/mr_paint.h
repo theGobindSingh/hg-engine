@@ -249,6 +249,8 @@ void MrPaintReleaseAtRecordedTile(FieldSystem *fieldSystem);
 // caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, whose value must match
 // NEW_COMMAND_MR_PAINT_NURSE_RECALL in armips/include/scriptmacros.s.
 u16 MrPaintNurseRecall(FieldSystem *fieldSystem);
+u16 MrPaintFollowerLive(FieldSystem *fieldSystem);
+u16 MrPaintInspireDeploy(FieldSystem *fieldSystem);
 
 // Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
 // `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not

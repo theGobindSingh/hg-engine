@@ -80,6 +80,11 @@
 #define SCRIPT_NEW_CMD_MR_PAINT_FLY_CHECK 12
 #define SCRIPT_NEW_CMD_MR_PAINT_FLY_MAP 13
 #define SCRIPT_NEW_CMD_MR_PAINT_FLY_TAKEOFF 14
+// Mr. Paint (0.4.41 "inspiration choreography"): 15 = resultVar <- MrPaintFollowerLive (1 live follower, else 0);
+// 16 = resultVar <- MrPaintInspireDeploy (0 flag already set, 1 set + live, 2 set, not live).
+// Must match NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE / _INSPIRE_DEPLOY in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FOLLOWER_LIVE 15
+#define SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY 16
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -135,6 +140,14 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:
         SetScriptVar(arg0, MrPaintNurseRecall(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FOLLOWER_LIVE:
+        SetScriptVar(arg0, MrPaintFollowerLive(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY:
+        SetScriptVar(arg0, MrPaintInspireDeploy(ctx->fsys));
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE:

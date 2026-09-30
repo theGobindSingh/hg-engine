@@ -1014,16 +1014,101 @@ _mr_paint_swap_body_center:
 // scr_seq_0003_033_give_item_verbose, which ran it BEFORE the giver's own closing dialogue -
 // bug 2a. Its only caller now is scr_seq_0003_074_mr_paint_inspiration above. It locks nothing
 // and releases nothing itself, so every path through it must reach its `return`.
+// 0.4.41 (inspire2, james-game docs/mr-paint-inspire2.md): the event is now choreographed. The
+// old one-box "What's that? / inspired by / learned" message (archive 40 indices 121-130, now
+// unreferenced but left in place) is split into archive 40 index 137 ("What's that?"), 138
+// ("Mr. Paint was inspired by <item>!") and 139-148 ("Mr. Paint learned <move>!!!", same order as
+// 121-130), so the script owns every A-press and can interleave the follower's own movements.
+// x8002 is the "deployed/live follower" marker (1 = a live walking follower we may animate), x8003
+// the nurse_recall result; x8000 (move index) and x8001 (item) are never written after the
+// pending_inspiration call. INVARIANT: flag 2224 (FLAG_UNK_8B0) ends CLEAR on every branch-A path
+// (flag was clear on entry) and is left SET on every branch-B path (flag was set on entry).
 _MrPaintShowInspiration:
     mr_paint_pending_inspiration VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
     compare VAR_SPECIAL_x8000, 0
     goto_if_eq _MrPaintInspirationDone
     buffer_item_name 0, VAR_SPECIAL_x8001
-    // 0.4.0: "!" over the player first, waited out before any box opens. Placed after the
-    // nothing-pending guard so an empty fire emotes nothing, and before the switch so the
-    // bubble always precedes the dialogue. lockall is already in force from the 074 entry.
+    // 0.4.0: "!" over the player first, waited out before any box opens.
     apply_movement obj_player, _MrPaintEmoteExclaim
     wait_movement
+    npc_msg 137
+    wait_button
+    goto_if_set FLAG_UNK_8B0, _MrPaintInspireB
+
+// Branch A: Mr. Paint was NOT deployed. If a live follower exists, deploy him for the event
+// (recalling the real lead at "inspired by"), then toggle him back off once the event is over.
+    call _MrPaintFollowerLiveCheck
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintInspireA_Go
+    mr_paint_inspire_deploy VAR_SPECIAL_x8002
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_eq _MrPaintInspireA_Go
+    // Not live after all (result 2; 0 cannot happen, the flag was clear): undo the flag so the
+    // invariant holds, and run the rest of branch A with no animation.
+    clearflag FLAG_UNK_8B0
+    setvar VAR_SPECIAL_x8002, 0
+_MrPaintInspireA_Go:
+    npc_msg 138
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _mr_paint_swap_body
+    wait_button
+    call _MrPaintLearnedMsg
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintJoyHops
+    wait_button
+    closemsg
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintInspirationDone
+    mr_paint_nurse_recall VAR_SPECIAL_x8003
+    compare VAR_SPECIAL_x8003, 1
+    call_if_eq _mr_paint_swap_body
+    goto _MrPaintInspirationDone
+
+// Branch B: Mr. Paint already deployed (flag 2224 set, left untouched). The follower, if live,
+// is Mr. Paint himself and reacts in place.
+_MrPaintInspireB:
+    call _MrPaintFollowerLiveCheck
+    npc_msg 138
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintFollowerExclaim
+    wait_button
+    call _MrPaintLearnedMsg
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintJoyHops
+    wait_button
+    goto _MrPaintInspirationDone
+
+_MrPaintFollowerExclaim:
+    apply_movement obj_partner_poke, _MrPaintEmoteExclaim
+    wait_movement
+    return
+
+_MrPaintJoyHops:
+    apply_movement obj_partner_poke, _MrPaintJoyHopsMove
+    wait_movement
+    return
+
+// Three in-place hops, facing down. Retail's JumpOnSpotSouth8 is action id 49 (0x31), which
+// scriptmacros.s names JumpDownSite (verified against 0161.script's `JumpOnSpotSouth8 0x2`).
+_MrPaintJoyHopsMove:
+    step JumpDownSite, 3
+    step_end
+
+// x8002 <- 1 iff a live follower exists AND the player is on foot (PLAYER_STATE_WALKING).
+_MrPaintFollowerLiveCheck:
+    mr_paint_follower_live VAR_SPECIAL_x8002
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintFollowerLiveCheck_Done
+    get_player_state VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, PLAYER_STATE_WALKING
+    goto_if_eq _MrPaintFollowerLiveCheck_Done
+    setvar VAR_SPECIAL_x8002, 0
+_MrPaintFollowerLiveCheck_Done:
+    return
+
+// Prints "Mr. Paint learned <move>!!!" for the 1-based index in x8000 (archive 40 139-148).
+// Subroutine: the switch jumps to a label whose `return` returns to our caller.
+_MrPaintLearnedMsg:
     switch VAR_SPECIAL_x8000
     case 1, _MrPaintMsgCut
     case 2, _MrPaintMsgFly
@@ -1035,52 +1120,48 @@ _MrPaintShowInspiration:
     case 8, _MrPaintMsgRockSmash
     case 9, _MrPaintMsgRockClimb
     case 10, _MrPaintMsgDig
-    // Unreachable: the native handler returns 0 or 1-10 and 0 is filtered above. A bare
-    // `end` here would leave the 074 entry's lockall without its releaseall, so route the
-    // switch's default through the same return every other path uses.
-    goto _MrPaintInspirationDone
+    return
 
 _MrPaintMsgCut:
-    npc_msg 121
-    goto _MrPaintInspirationShown
+    npc_msg 139
+    return
 
 _MrPaintMsgFly:
-    npc_msg 122
-    goto _MrPaintInspirationShown
+    npc_msg 140
+    return
 
 _MrPaintMsgSurf:
-    npc_msg 123
-    goto _MrPaintInspirationShown
+    npc_msg 141
+    return
 
 _MrPaintMsgStrength:
-    npc_msg 124
-    goto _MrPaintInspirationShown
+    npc_msg 142
+    return
 
 _MrPaintMsgFlash:
-    npc_msg 125
-    goto _MrPaintInspirationShown
+    npc_msg 143
+    return
 
 _MrPaintMsgWhirlpool:
-    npc_msg 126
-    goto _MrPaintInspirationShown
+    npc_msg 144
+    return
 
 _MrPaintMsgWaterfall:
-    npc_msg 127
-    goto _MrPaintInspirationShown
+    npc_msg 145
+    return
 
 _MrPaintMsgRockSmash:
-    npc_msg 128
-    goto _MrPaintInspirationShown
+    npc_msg 146
+    return
 
 _MrPaintMsgRockClimb:
-    npc_msg 129
-    goto _MrPaintInspirationShown
+    npc_msg 147
+    return
 
 _MrPaintMsgDig:
-    npc_msg 130
+    npc_msg 148
+    return
 
-_MrPaintInspirationShown:
-    wait_button_or_walk_away
 _MrPaintInspirationDone:
     return
 
