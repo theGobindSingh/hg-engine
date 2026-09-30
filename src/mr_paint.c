@@ -293,6 +293,40 @@ u16 MrPaintFlashCheck(FieldSystem *fieldSystem)
     return (u16)FieldMove_CheckFlash(&checkData);
 }
 
+// Side feature 0.4.36 "Sweet Scent trick". Retail FieldMove_CheckSweetScent reads only checkData+4
+// (FieldSystem*) then fieldSystem+0x70 and a map check; the Teleport-shaped 8-byte struct suffices.
+// Returns 0 = OK, 1 = not here.
+extern u32 LONG_CALL FieldMove_CheckSweetScent(MrPaintTeleportCheckData *checkData);
+extern BOOL LONG_CALL Task_UseSweetScentInField(TaskManager *taskman);
+
+// Retail Task_UseSweetScentInField env: [0] PartyPokemon *mon, [4] u32 *moveData (state 0 reads
+// *moveData as the party slot, frees the block, allocs its own 12-byte one). Both are heap blocks.
+typedef struct MrPaintSweetScentEnv {
+    struct PartyPokemon *mon;
+    u32 *moveData;
+} MrPaintSweetScentEnv;
+_Static_assert(sizeof(MrPaintSweetScentEnv) == 8, "retail Sweet Scent env is 8 bytes");
+#define MR_PAINT_SWEET_SCENT_HEAP_ID 11 // heap id retail itself allocates its blocks with (ov1 0x021FCEE0)
+
+u16 MrPaintSweetScentCheck(FieldSystem *fieldSystem)
+{
+    MrPaintTeleportCheckData checkData;
+
+    checkData.mapId = (u32)fieldSystem->location->mapId;
+    checkData.fieldSystem = fieldSystem;
+    return (u16)FieldMove_CheckSweetScent(&checkData);
+}
+
+void MrPaintSweetScentStart(FieldSystem *fieldSystem)
+{
+    MrPaintSweetScentEnv *env = sys_AllocMemoryLo(MR_PAINT_SWEET_SCENT_HEAP_ID, sizeof(MrPaintSweetScentEnv));
+
+    env->moveData = sys_AllocMemoryLo(MR_PAINT_SWEET_SCENT_HEAP_ID, sizeof(u32));
+    *env->moveData = MR_PAINT_ACTOR_SENTINEL_SLOT;
+    env->mon = MrPaintActorMon();
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_UseSweetScentInField, env);
+}
+
 // Retail's own FieldMove_UseTeleport passes 4 here (arm9 0x0206863E, `movs r3,#4`, immediately
 // before its own call into FieldMoveTask_CreateTeleportEnvironment) - no named HEAP_ID_FIELD1
 // constant exists yet anywhere in this tree, so the raw value is kept traceable with this comment

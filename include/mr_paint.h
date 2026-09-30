@@ -286,5 +286,9 @@ struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
 // NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
 u16 MrPaintTeleport(FieldSystem *fieldSystem);
 u16 MrPaintFlashCheck(FieldSystem *fieldSystem);
+// 0.4.36 Sweet Scent trick: check = retail FieldMove_CheckSweetScent (0 OK, 1 not here); start =
+// retail Task_UseSweetScentInField via TaskManager_Call, with the Mr. Paint actor mon and sentinel slot.
+u16 MrPaintSweetScentCheck(FieldSystem *fieldSystem);
+void MrPaintSweetScentStart(FieldSystem *fieldSystem);
 
 #endif // GUARD_MR_PAINT_H

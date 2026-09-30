@@ -6795,6 +6795,10 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (side feature 0.4.35 "Flash trick") - see mr_paint_flash_check below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK, which must match.
 .equ NEW_COMMAND_MR_PAINT_FLASH_CHECK, 9
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick") - see mr_paint_sweet_scent_check/_start below and
+// src/script_new_cmds.c, which must match.
+.equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, 10
+.equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 11
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6887,6 +6891,16 @@ RunNewCommand NEW_COMMAND_MR_PAINT_TELEPORT, resultVar
 // result to resultVar - 0 = Flash may be used here, nonzero = not here. Never yields.
 .macro mr_paint_flash_check,resultVar
 RunNewCommand NEW_COMMAND_MR_PAINT_FLASH_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.36): retail FieldMove_CheckSweetScent -> resultVar (0 OK, 1 not here). Never yields.
+.macro mr_paint_sweet_scent_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.36): starts retail Task_UseSweetScentInField; the script yields until the task ends.
+.macro mr_paint_sweet_scent_start
+RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 0
 .endmacro
 
 // Dummy

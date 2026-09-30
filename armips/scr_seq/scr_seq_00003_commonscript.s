@@ -92,6 +92,7 @@ scrdef scr_seq_0003_074_mr_paint_inspiration
 scrdef scr_seq_0003_075_mr_paint_follower_swap
 scrdef scr_seq_0003_076_mr_paint_teleport
 scrdef scr_seq_0003_077_mr_paint_flash
+scrdef scr_seq_0003_078_mr_paint_sweet_scent
 scrdef_end
 
 scr_seq_0003_002:
@@ -1174,6 +1175,31 @@ scr_seq_0003_077_mr_paint_flash:
     end
 
 _MrPaintFlashNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick"). Reached only from 0163.script Function#11
+// (`CommonScript 2078 / End`, SWEET SCENT chosen from the trick menu, flag 2219 set). Check nonzero ->
+// archive 40 index 134 refusal (same as Teleport/Flash); OK -> archive 40 index 135 (DRAFT wording,
+// "Mr. Paint used Sweet Scent!", follows the 121-133 template) then retail Task_UseSweetScentInField
+// via mr_paint_sweet_scent_start, which yields the script until the task finishes.
+scr_seq_0003_078_mr_paint_sweet_scent:
+    mr_paint_sweet_scent_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_ne _MrPaintSweetScentNotHere
+    npc_msg 135
+    wait_button
+    closemsg
+    mr_paint_sweet_scent_start
+    releaseall
+    endstd
+    end
+
+_MrPaintSweetScentNotHere:
     npc_msg 134
     wait_button
     closemsg

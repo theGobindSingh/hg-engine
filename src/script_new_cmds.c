@@ -68,6 +68,11 @@
 // nonzero = not here. A pure query - never yields. Must match NEW_COMMAND_MR_PAINT_FLASH_CHECK in
 // armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK 9
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick"): 10 = check (writes MrPaintSweetScentCheck into
+// resultVar, 0 = OK), 11 = start retail Task_UseSweetScentInField and yield the script (return TRUE).
+// Must match NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK / _START in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_CHECK 10
+#define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START 11
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -142,6 +147,14 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
     case SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK:
         SetScriptVar(arg0, MrPaintFlashCheck(ctx->fsys));
         break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_CHECK:
+        SetScriptVar(arg0, MrPaintSweetScentCheck(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START:
+        MrPaintSweetScentStart(ctx->fsys);
+        return TRUE;
 
     default:
         break;

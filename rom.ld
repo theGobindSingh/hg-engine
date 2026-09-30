@@ -175,6 +175,13 @@ Task_FieldTeleport                      = 0x0224C558 | 1;
 FieldMove_CheckFlash                    = 0x020684A0 | 1;
 FieldMove_InitCheckData                 = 0x02067E10 | 1;
 
+/* Mr. Paint 0.4.36 "Sweet Scent trick": retail FieldMove_CheckSweetScent (arm9; reads checkData+4 then
+   fieldSystem+0x70, NOT_HERE in Union/Colosseum, then a map check) and Task_UseSweetScentInField (ov1;
+   env {PartyPokemon *mon; u32 *moveData}, state 0 frees moveData and allocs its own 12-byte block, the
+   final state frees both). Both first-instruction-verified against the 0.4.35 build. */
+FieldMove_CheckSweetScent               = 0x02068750 | 1;
+Task_UseSweetScentInField               = 0x021FCE98 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
