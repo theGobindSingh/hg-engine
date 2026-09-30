@@ -272,6 +272,10 @@ BOOL Bag_AddItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
         }
     }
 
+    if (itemId == ITEM_MR_PAINT) {
+        MrPaintRegisterDexEntry();
+    }
+
     return TRUE;
 }
 

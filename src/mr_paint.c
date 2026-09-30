@@ -264,6 +264,17 @@ static struct PartyPokemon *MrPaintActorMon(void)
     return &sMrPaintActor;
 }
 
+// Pokedex: receiving ITEM_MR_PAINT (called from Bag_AddItem, the single acquisition coupling
+// point every script give reaches) silently marks Smeargle Seen + Caught. Touches only the dex
+// save block - never party or PC memory.
+void MrPaintRegisterDexEntry(void)
+{
+    void *dex = SaveData_GetDexPtr(SaveBlock2_get());
+    struct PartyPokemon *mon = MrPaintActorMon();
+    SetPokemonSee(dex, mon);
+    SetPokemonGet(dex, mon);
+}
+
 // Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
 // docs/mr-paint-trick-menu.md). Minimal mirror of the two words retail's own
 // FieldMove_CheckTeleport (rom.ld) actually reads out of its checkData argument - offset 0

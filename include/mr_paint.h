@@ -50,6 +50,7 @@ u16 MrPaintMessageIndexForMove(u16 move);
 // the obstacle path (ScrCmd_GetPartySlotWithMove) keeps using MrPaintFlagForMove, since a
 // flag can be set on an already-learned move without this build ever setting it itself.
 u16 MrPaintLearnableFlagForMove(u16 move);
+void MrPaintRegisterDexEntry(void);
 
 // Slice 0.3.2 "obstacles" - full-function hook (see hg-engine `hooks`) replacing retail
 // ScrCmd_GetPartySlotWithMove (ROM script command 141, CheckMoveInParty) at 0x0204D3CC.
