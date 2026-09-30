@@ -73,6 +73,13 @@
 // Must match NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK / _START in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_CHECK 10
 #define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START 11
+// Mr. Paint (side feature 0.4.37 "Fly trick"): 12 = check (writes MrPaintFlyCheck into resultVar, 0 OK),
+// 13 = launch retail's fly map and yield until it closes (resultVar: 1 destination chosen, 0 B),
+// 14 = start retail's take-off task for the chosen destination and yield (return TRUE).
+// Must match NEW_COMMAND_MR_PAINT_FLY_CHECK / _MAP / _TAKEOFF in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_CHECK 12
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_MAP 13
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_TAKEOFF 14
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -154,6 +161,18 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START:
         MrPaintSweetScentStart(ctx->fsys);
+        return TRUE;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_CHECK:
+        SetScriptVar(arg0, MrPaintFlyCheck(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_MAP:
+        MrPaintFlyMap(ctx, arg0);
+        return TRUE;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_TAKEOFF:
+        MrPaintFlyTakeoff(ctx->fsys);
         return TRUE;
 
     default:

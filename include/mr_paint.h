@@ -290,5 +290,12 @@ u16 MrPaintFlashCheck(FieldSystem *fieldSystem);
 // retail Task_UseSweetScentInField via TaskManager_Call, with the Mr. Paint actor mon and sentinel slot.
 u16 MrPaintSweetScentCheck(FieldSystem *fieldSystem);
 void MrPaintSweetScentStart(FieldSystem *fieldSystem);
+// 0.4.37 Fly trick: check = retail FieldMove_CheckFly (0 OK, 1 not here, 2 need Storm badge, 3 story
+// companion, 5 Rocket costume); map = launch retail's fly map (kind 0) and yield until it closes, writing
+// 1 (destination chosen) or 0 (B) to resultVar; takeoff = build retail's take-off env from the chosen
+// destination and start retail's take-off task (Mr. Paint actor mon), which frees the env itself.
+u16 MrPaintFlyCheck(FieldSystem *fieldSystem);
+void MrPaintFlyMap(SCRIPTCONTEXT *ctx, u16 resultVar);
+void MrPaintFlyTakeoff(FieldSystem *fieldSystem);
 
 #endif // GUARD_MR_PAINT_H

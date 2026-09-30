@@ -93,6 +93,7 @@ scrdef scr_seq_0003_075_mr_paint_follower_swap
 scrdef scr_seq_0003_076_mr_paint_teleport
 scrdef scr_seq_0003_077_mr_paint_flash
 scrdef scr_seq_0003_078_mr_paint_sweet_scent
+scrdef scr_seq_0003_079_mr_paint_fly
 scrdef_end
 
 scr_seq_0003_002:
@@ -1203,6 +1204,76 @@ _MrPaintSweetScentNotHere:
     npc_msg 134
     wait_button
     closemsg
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.37 "Fly trick"). Reached only from 0163.script Function#10
+// (`CommonScript 2079 / End`, FLY chosen from the trick menu, flag 2209 - Fly learned - set).
+// mr_paint_fly_check (NEW_COMMAND_MR_PAINT_FLY_CHECK = 12) runs retail's own FieldMove_CheckFly:
+// 0 OK; 1 not here / 5 Rocket costume -> 40:134 "You can't use that here."; 2 Storm badge missing ->
+// 40:136, retail's own party-menu line (archive 300 index 77) copied VERBATIM, not a draft; 3 story
+// companion -> 30:14, the same line Teleport uses. OK: the fade / town_map / restore_overworld /
+// fade bracketing of retail scr_seq_0001_008 around mr_paint_fly_map (retail's fly map, kind 0);
+// B (result 0) -> back to the overworld; a destination (result 1) -> mr_paint_fly_takeoff, retail's
+// take-off task, which yields until the warp is done. Retail prints no "used Fly!" line, so neither
+// does this. Every exit ends releaseall / endstd / end (the 0.4.34 lesson).
+scr_seq_0003_079_mr_paint_fly:
+    mr_paint_fly_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintFlyOk
+    compare VAR_SPECIAL_x8000, 1
+    goto_if_eq _MrPaintFlyNotHere
+    compare VAR_SPECIAL_x8000, 5
+    goto_if_eq _MrPaintFlyNotHere
+    compare VAR_SPECIAL_x8000, 2
+    goto_if_eq _MrPaintFlyNeedBadge
+    compare VAR_SPECIAL_x8000, 3
+    goto_if_eq _MrPaintFlyCompanion
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyNeedBadge:
+    npc_msg 136
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyCompanion:
+    get_std_msg_naix 2, VAR_SPECIAL_RESULT
+    msgbox_extern VAR_SPECIAL_RESULT, 14
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyOk:
+    fade_screen 6, 1, 0, RGB_BLACK
+    wait_fade
+    mr_paint_fly_map VAR_SPECIAL_x8000
+    scrcmd_150
+    fade_screen 6, 1, 1, RGB_BLACK
+    wait_fade
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintFlyCancelled
+    mr_paint_fly_takeoff
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyCancelled:
     releaseall
     endstd
     end

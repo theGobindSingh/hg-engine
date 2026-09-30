@@ -182,6 +182,19 @@ FieldMove_InitCheckData                 = 0x02067E10 | 1;
 FieldMove_CheckSweetScent               = 0x02068750 | 1;
 Task_UseSweetScentInField               = 0x021FCE98 | 1;
 
+/* Mr. Paint 0.4.37 "Fly trick". All disassembled from this ROM's vanilla arm9 and matched to pret:
+   FieldMove_CheckFly (0 OK, 1 NOT_HERE, 2 NEED_BADGE (Storm, bit 4), 3 HAVE_FOLLOWER, 5 NOT_NOW; reads
+   checkData+4 fieldSystem, +0 mapId; sFieldMoveFuncTable 0x020FE7BC entry 0 check = 0x0206800D);
+   PokegearTownMap_LaunchApp(fieldSystem, kind) (allocs 0x2C from heap 11, kind stored at +0; 0 = fly map);
+   sub_02067BF8 (heap, fs, mon, slot, dest, cx*32+16, cy*32+16 -> 0x1C take-off env) and sub_02067C30
+   (the take-off task; state 6 frees env); GetIdxOfFirstAliveMonInParty_CrashIfNone (u8, sits right after
+   GetFirstAliveMonInParty_CrashIfNone 0x02054388, same loop returning the index). */
+FieldMove_CheckFly                              = 0x0206800C | 1;
+PokegearTownMap_LaunchApp                       = 0x0203EAB0 | 1;
+FlyTakeoff_CreateEnvironment                    = 0x02067BF8 | 1;
+Task_FlyTakeoff                                 = 0x02067C30 | 1;
+GetIdxOfFirstAliveMonInParty_CrashIfNone        = 0x020543BC | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;

@@ -46,7 +46,7 @@ extern int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
 // data/text/040.txt indices 121-130. Headbutt/Sweet Scent have no machine and are omitted.
 const MrPaintMoveEntry gMrPaintMoveEntries[MR_PAINT_NUM_MACHINE_MOVES] = {
     { MOVE_CUT, 0x8A0, 1 },
-    { MOVE_FLY, 0x8A1, 0 },
+    { MOVE_FLY, 0x8A1, 1 },
     { MOVE_SURF, 0x8A2, 1 },
     { MOVE_STRENGTH, 0x8A3, 1 },
     { MOVE_FLASH, 0x8A4, 1 },
@@ -327,6 +327,96 @@ void MrPaintSweetScentStart(FieldSystem *fieldSystem)
     TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_UseSweetScentInField, env);
 }
 
+
+// Side feature 0.4.37 "Fly trick". Retail's field Fly is start-menu-only (FieldMove_UseFly writes
+// StartMenuTaskData), so the pieces are driven from script instead - the same three retail calls
+// Task_UseFlyInField chains, minus the start-menu plumbing:
+//   1. FieldMove_CheckFly (pure) -> mr_paint_fly_check;
+//   2. PokegearTownMap_LaunchApp(fs, 0) (kind 0 = fly map), waited on natively like ScrCmd_TownMap ->
+//      mr_paint_fly_map (result 1 = a destination was chosen, 0 = B);
+//   3. FlyTakeoff_CreateEnvironment (sub_02067BF8) + Task_FlyTakeoff (sub_02067C30), started with
+//      TaskManager_Call exactly like Teleport -> mr_paint_fly_takeoff. The task frees its own env.
+// Retail prints no "X used Fly!" line in the field, so none is printed here either.
+extern u32 LONG_CALL FieldMove_CheckFly(MrPaintFlashCheckData *checkData);
+extern void *LONG_CALL PokegearTownMap_LaunchApp(FieldSystem *fieldSystem, int kind);
+extern void *LONG_CALL FlyTakeoff_CreateEnvironment(u32 heapId, FieldSystem *fieldSystem, struct PartyPokemon *mon,
+                                                    u32 partySlot, u32 dest, s32 pixelX, s32 pixelY);
+extern BOOL LONG_CALL Task_FlyTakeoff(TaskManager *taskman);
+extern u8 LONG_CALL GetIdxOfFirstAliveMonInParty_CrashIfNone(struct Party *party);
+extern BOOL LONG_CALL FieldSystem_ApplicationIsRunning(FieldSystem *fieldSystem);
+extern void LONG_CALL SetupNativeScript(SCRIPTCONTEXT *ctx, ScrCmdFunc ptr);
+
+// Retail PokegearArgs (pret include/unk_02092BE8.h, size 0x2C - the allocation at arm9 0x0203EAB8
+// is exactly 44 bytes). Only the fields the take-off reads are named; offsets asserted.
+typedef struct MrPaintPokegearArgs {
+    u8 head[0x14];
+    u32 setFlyDestination;
+    s32 mapCursorX;
+    s32 mapCursorY;
+    u16 selectedFlyDest;
+    u8 tail[0x2C - 0x22];
+} MrPaintPokegearArgs;
+_Static_assert(offsetof(MrPaintPokegearArgs, setFlyDestination) == 0x14, "PokegearArgs.setFlyDestination at 0x14");
+_Static_assert(offsetof(MrPaintPokegearArgs, mapCursorX) == 0x18, "PokegearArgs.mapCursorX at 0x18");
+_Static_assert(offsetof(MrPaintPokegearArgs, mapCursorY) == 0x1C, "PokegearArgs.mapCursorY at 0x1C");
+_Static_assert(offsetof(MrPaintPokegearArgs, selectedFlyDest) == 0x20, "PokegearArgs.selectedFlyDest at 0x20");
+_Static_assert(sizeof(MrPaintPokegearArgs) == 0x2C, "PokegearArgs is 0x2C bytes");
+
+#define MR_PAINT_FLY_HEAP_ID 11 // heap retail uses for the Pokegear args and the take-off env (0x0203EAB6, Task_UseFlyInField)
+
+static MrPaintPokegearArgs *sMrPaintFlyArgs;
+static u16 sMrPaintFlyResultVar;
+static u16 sMrPaintFlyDest;
+static s32 sMrPaintFlyPixelX;
+static s32 sMrPaintFlyPixelY;
+
+u16 MrPaintFlyCheck(FieldSystem *fieldSystem)
+{
+    MrPaintFlashCheckData checkData;
+
+    memset(&checkData, 0, sizeof(checkData));
+    FieldMove_InitCheckData(fieldSystem, &checkData);
+    return (u16)FieldMove_CheckFly(&checkData);
+}
+
+// Native wait for the fly map (same shape as retail ScrNative_WaitApplication_DestroyTaskData, but
+// the args are read before they are freed, exactly once).
+static BOOL MrPaintFlyMapWait(SCRIPTCONTEXT *ctx)
+{
+    MrPaintPokegearArgs *args = sMrPaintFlyArgs;
+
+    if (FieldSystem_ApplicationIsRunning(ctx->fsys)) {
+        return FALSE;
+    }
+    if (args->setFlyDestination != 0) {
+        sMrPaintFlyDest = args->selectedFlyDest;
+        sMrPaintFlyPixelX = args->mapCursorX * 32 + 16;
+        sMrPaintFlyPixelY = args->mapCursorY * 32 + 16;
+        SetScriptVar(sMrPaintFlyResultVar, 1);
+    } else {
+        SetScriptVar(sMrPaintFlyResultVar, 0);
+    }
+    sys_FreeMemoryEz(args);
+    sMrPaintFlyArgs = NULL;
+    return TRUE;
+}
+
+// Yields the script until the fly map closes.
+void MrPaintFlyMap(SCRIPTCONTEXT *ctx, u16 resultVar)
+{
+    sMrPaintFlyResultVar = resultVar;
+    sMrPaintFlyArgs = PokegearTownMap_LaunchApp(ctx->fsys, 0);
+    SetupNativeScript(ctx, MrPaintFlyMapWait);
+}
+
+void MrPaintFlyTakeoff(FieldSystem *fieldSystem)
+{
+    struct Party *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
+    void *env = FlyTakeoff_CreateEnvironment(MR_PAINT_FLY_HEAP_ID, fieldSystem, MrPaintActorMon(),
+                                             GetIdxOfFirstAliveMonInParty_CrashIfNone(party),
+                                             sMrPaintFlyDest, sMrPaintFlyPixelX, sMrPaintFlyPixelY);
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_FlyTakeoff, env);
+}
 // Retail's own FieldMove_UseTeleport passes 4 here (arm9 0x0206863E, `movs r3,#4`, immediately
 // before its own call into FieldMoveTask_CreateTeleportEnvironment) - no named HEAP_ID_FIELD1
 // constant exists yet anywhere in this tree, so the raw value is kept traceable with this comment

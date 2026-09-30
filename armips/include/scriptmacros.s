@@ -6799,6 +6799,11 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // src/script_new_cmds.c, which must match.
 .equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, 10
 .equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 11
+// Mr. Paint (side feature 0.4.37 "Fly trick") - see mr_paint_fly_check/_map/_takeoff below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_FLY_*, which must match.
+.equ NEW_COMMAND_MR_PAINT_FLY_CHECK, 12
+.equ NEW_COMMAND_MR_PAINT_FLY_MAP, 13
+.equ NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 14
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6901,6 +6906,24 @@ RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, resultVar
 // Mr. Paint (side feature 0.4.36): starts retail Task_UseSweetScentInField; the script yields until the task ends.
 .macro mr_paint_sweet_scent_start
 RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): retail FieldMove_CheckFly -> resultVar (0 OK, 1 not here, 2 need Storm
+// badge, 3 story companion, 5 Rocket costume). Never yields.
+.macro mr_paint_fly_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): launches retail's fly map and yields until it closes; resultVar = 1 if a
+// destination was chosen, 0 if B. Needs the fade-out / restore_overworld bracketing of scr_seq_0001_008.
+.macro mr_paint_fly_map,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_MAP, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): starts retail's take-off task for the destination mr_paint_fly_map chose;
+// the script yields until the task ends (after the warp).
+.macro mr_paint_fly_takeoff
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 0
 .endmacro
 
 // Dummy
