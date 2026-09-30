@@ -285,5 +285,6 @@ struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, whose value must match
 // NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
 u16 MrPaintTeleport(FieldSystem *fieldSystem);
+u16 MrPaintFlashCheck(FieldSystem *fieldSystem);
 
 #endif // GUARD_MR_PAINT_H

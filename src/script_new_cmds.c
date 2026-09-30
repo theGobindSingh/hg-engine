@@ -63,6 +63,11 @@
 // contract ScrCmd_FollowMonInteract's TaskManager_Call above already uses. Must match
 // NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_TELEPORT 8
+// Mr. Paint (side feature 0.4.35 "Flash trick"): runs retail FieldMove_CheckFlash (via
+// MrPaintFlashCheck) and writes its result into resultVar (arg0): 0 = Flash may be used here,
+// nonzero = not here. A pure query - never yields. Must match NEW_COMMAND_MR_PAINT_FLASH_CHECK in
+// armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK 9
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -132,6 +137,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
             // calling script exactly the way ScrCmd_FollowMonInteract's TaskManager_Call does.
             return TRUE;
         }
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK:
+        SetScriptVar(arg0, MrPaintFlashCheck(ctx->fsys));
         break;
 
     default:

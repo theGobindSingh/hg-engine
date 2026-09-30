@@ -49,7 +49,7 @@ const MrPaintMoveEntry gMrPaintMoveEntries[MR_PAINT_NUM_MACHINE_MOVES] = {
     { MOVE_FLY, 0x8A1, 0 },
     { MOVE_SURF, 0x8A2, 1 },
     { MOVE_STRENGTH, 0x8A3, 1 },
-    { MOVE_FLASH, 0x8A4, 0 },
+    { MOVE_FLASH, 0x8A4, 1 },
     { MOVE_WHIRLPOOL, 0x8A5, 1 },
     { MOVE_WATERFALL, 0x8A6, 1 },
     { MOVE_ROCK_SMASH, 0x8A7, 1 },
@@ -192,7 +192,7 @@ static FieldSystem *sMrPaintTalkFieldSystem;
 // It MUST stay a per-invocation latch and never become a live CheckScriptFlag read inside
 // BufferPartyMonNick: opcode 199 is used by 17 different script files, most with nothing to do
 // with Mr. Paint (the Day Care among them), so a live check would print "Mr. Paint" in unrelated
-// dialogue for as long as flag 2224 is set. Opcode 141 runs only on the seven obstacle flows,
+// dialogue for as long as flag 2224 is set. Opcode 141 runs only on the obstacle flows (seven, plus Flash as of 0.4.35 - harmless there: Flash has no follower branch and no CompareVars, and the trick menu reaches it through commonscript 2077, not opcode 141),
 // which is what scopes the override.
 
 // The stand-in actor. Rebuilt deterministically on every use, so nothing
@@ -260,6 +260,38 @@ extern void *LONG_CALL FieldMoveTask_CreateTeleportEnvironment(FieldSystem *fiel
                                                                 struct PartyPokemon *mon,
                                                                 u32 partySlot, u32 heapId);
 extern BOOL LONG_CALL Task_FieldTeleport(TaskManager *taskman);
+
+// Side feature 0.4.35 "Flash trick". Full-size mirror of the FieldMoveCheckData words retail's
+// own FieldMove_InitCheckData (rom.ld) writes - mapId at +0, FieldSystem* at +4, a word at +8,
+// the u16 flag word at +12 - disassembled from THIS ROM (arm9 0x02067E10-0x02067F26: it stores
+// only those four fields; CheckFlash 0x020684A0 reads fieldSystem+0x70 via +4 and the flag word at
+// +12). Padded to 32 bytes so an unmodelled retail write can never run off the stack slot.
+typedef struct MrPaintFlashCheckData {
+    u32 mapId;
+    FieldSystem *fieldSystem;
+    u32 unk8;
+    u16 flag;
+    u16 pad;
+    u32 reserved[4];
+} MrPaintFlashCheckData;
+_Static_assert(offsetof(MrPaintFlashCheckData, mapId) == 0, "InitCheckData writes mapId at +0");
+_Static_assert(offsetof(MrPaintFlashCheckData, fieldSystem) == 4, "InitCheckData writes fieldSystem at +4");
+_Static_assert(offsetof(MrPaintFlashCheckData, flag) == 12, "CheckFlash reads the flag word at +12");
+
+extern void LONG_CALL FieldMove_InitCheckData(FieldSystem *fieldSystem, MrPaintFlashCheckData *checkData);
+extern u32 LONG_CALL FieldMove_CheckFlash(MrPaintFlashCheckData *checkData);
+
+// Runs retail's own Flash availability check against the current field. 0 = Flash may be used
+// here (dark-cave map flag, or the Ruins of Alph chamber); nonzero (1) = not here, including
+// Union Room / Colosseum. Pure query: starts no task.
+u16 MrPaintFlashCheck(FieldSystem *fieldSystem)
+{
+    MrPaintFlashCheckData checkData;
+
+    memset(&checkData, 0, sizeof(checkData));
+    FieldMove_InitCheckData(fieldSystem, &checkData);
+    return (u16)FieldMove_CheckFlash(&checkData);
+}
 
 // Retail's own FieldMove_UseTeleport passes 4 here (arm9 0x0206863E, `movs r3,#4`, immediately
 // before its own call into FieldMoveTask_CreateTeleportEnvironment) - no named HEAP_ID_FIELD1

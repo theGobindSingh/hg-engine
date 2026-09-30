@@ -91,6 +91,7 @@ scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_mr_paint_inspiration
 scrdef scr_seq_0003_075_mr_paint_follower_swap
 scrdef scr_seq_0003_076_mr_paint_teleport
+scrdef scr_seq_0003_077_mr_paint_flash
 scrdef_end
 
 scr_seq_0003_002:
@@ -1143,6 +1144,39 @@ _MrPaintTeleportCompanion:
     end
 
 _MrPaintTeleportDone:
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.35 "Flash trick"). Reached only from 0163.script's Function#8-shaped
+// Function#9 (`CommonScript 2077 / End`, only reachable with flag 2224 set and flag 2212 - Flash
+// learned - set, FLASH chosen from the trick menu). mr_paint_flash_check (src/mr_paint.c's
+// MrPaintFlashCheck, NEW_COMMAND_MR_PAINT_FLASH_CHECK = 9) runs retail's own FieldMove_CheckFlash:
+// 0 = OK (dark-cave map or the Alph chamber), nonzero = not here. Refusal prints archive 40 index
+// 134 (the same "You can't use that here." line Teleport uses). The OK body is the exact command
+// sequence 0163.script Function#9 carried inline (a copy of retail script 146 Function 69).
+// The trick menu is already closed by 0163.script Function#7 (CloseMessage), so nothing is open
+// here; every exit ends releaseall / endstd / end (the 0.4.34 lesson) and balances the caller's
+// LockAll.
+scr_seq_0003_077_mr_paint_flash:
+    mr_paint_flash_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_ne _MrPaintFlashNotHere
+    play_cry 235, 0 // SPECIES_SMEARGLE (include/constants/species.h:242)
+    wait_cry
+    scrcmd_728 16, 2
+    scrcmd_728 16, 2
+    flash_action 1, 0
+    flash_effect
+    wait 42, VAR_SPECIAL_RESULT
+    releaseall
+    endstd
+    end
+
+_MrPaintFlashNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
     releaseall
     endstd
     end

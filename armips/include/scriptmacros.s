@@ -6792,6 +6792,9 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (side feature 0.4.33 "Teleport trick") - see mr_paint_teleport below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, which must match.
 .equ NEW_COMMAND_MR_PAINT_TELEPORT, 8
+// Mr. Paint (side feature 0.4.35 "Flash trick") - see mr_paint_flash_check below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK, which must match.
+.equ NEW_COMMAND_MR_PAINT_FLASH_CHECK, 9
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6878,6 +6881,12 @@ RunNewCommand NEW_COMMAND_MR_PAINT_NURSE_RECALL, resultVar
 // the very next line only ever runs post-warp).
 .macro mr_paint_teleport,resultVar
 RunNewCommand NEW_COMMAND_MR_PAINT_TELEPORT, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.35 "Flash trick"): runs retail FieldMove_CheckFlash and writes the
+// result to resultVar - 0 = Flash may be used here, nonzero = not here. Never yields.
+.macro mr_paint_flash_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLASH_CHECK, resultVar
 .endmacro
 
 // Dummy

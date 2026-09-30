@@ -168,6 +168,13 @@ FieldMove_CheckTeleport                 = 0x02068554 | 1;
 FieldMoveTask_CreateTeleportEnvironment = 0x0224C500 | 1;
 Task_FieldTeleport                      = 0x0224C558 | 1;
 
+/* Mr. Paint 0.4.35 "Flash trick": retail FieldMove_CheckFlash / FieldMove_InitCheckData, both
+   disassembled from this ROM's vanilla arm9. CheckFlash(checkData) returns 1 for Union/Colosseum
+   (fieldSystem+0x70 in {2,3}), 0 (OK) for the Alph chamber case, 0 (OK) if checkData+12 flag bit
+   0x80 is set (InitCheckData sets it when the map header field == 11), else 1. */
+FieldMove_CheckFlash                    = 0x020684A0 | 1;
+FieldMove_InitCheckData                 = 0x02067E10 | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
