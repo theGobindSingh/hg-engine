@@ -147,3 +147,18 @@ Mr. Paint learned Waterfall!!!
 Mr. Paint learned Rock Smash!!!
 Mr. Paint learned Rock Climb!!!
 Mr. Paint learned Dig!!!
+Which Game Mode would you like\nto play?\n\nPlease touch a Game Mode you’d\nlike to learn more about on the\nlower screen.
+Customize your play experience!\n\nSelect the game options you\nwould like to use.\n\nTouch any game option to learn\nmore about it.
+This mode isn’t ready yet!\nCheck back again later!
+Whoops! Looks like there’s\nnothing here!
+Are you sure? These settings are\npermanent and can’t be changed!
+Sorry, this game mode isn’t\nready yet!
+Over Easy
+Softboiled
+Hardboiled
+Scrambled
+LEVEL CAPS
+ON
+OFF
+Confirm
+Cancel

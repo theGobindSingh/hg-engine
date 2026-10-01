@@ -1061,3 +1061,28 @@ sub_02017068 = 0x02017068 | 1;
 MrPaintPartyCopyMonConditionArray = 0x02074670 | 1;
 /* Contest-condition thunk (out, mon, array, 11) -> 0x02073248, called at ov2 0x0224F6DA. */
 MrPaintMonCalcConditionSet = 0x020732E4 | 1;
+
+/* game-mode-select spike: overlay 53 (Oak speech) OakSpeech_DoMainTask, bl target at ov53 0x021E5A5C (verified in ov53.dis) */
+ov53_OakSpeech_DoMainTask = 0x021E6F9C | 1;
+
+/* ---- game-mode-select: overlay 53 (Oak speech, base 0x021E5900; never resident with overlay 1) ----
+   Every address below is a Thumb function start in ~/pokehg/tmp/gms/x0441/ov53.dis (0.4.41 ROM) and a bl target
+   from the OakSpeech_DoMainTask switch; arg order checked at the cited call sites. */
+/* bl 0x21e611c at ov53 0x21E72F4 (state 46 time-of-day line): (data, msgNum, waitMode) */
+ov53_OakSpeech_PrintDialogMsg = 0x021E611C | 1;
+/* bl 0x21e64b4 at ov53 0x21E7158 (state 2, r1=7 msg, r2=2 kind): (data, msgNum, kind) */
+ov53_OakSpeech_PrintAndFadeCenteredFullScreenText = 0x021E64B4 | 1;
+/* bl 0x21e7e08 at ov53 0x21E7242 and 0x21E757E (state 44): (data, action 0 hide/1 show) */
+ov53_OakSpeech_TouchToAdvanceButtonAction = 0x021E7E08 | 1;
+/* bl 0x21e67c4 at ov53 0x21E70F6 (state 7, SUB_3 backdrop): (data, idx) */
+ov53_021E67C4 = 0x021E67C4 | 1;
+/* bl 0x21e6824 at ov53 0x21E70E6 (state 7, SUB_2 button art + palettes 7-9): (data, idx) */
+ov53_021E6824 = 0x021E6824 | 1;
+/* bl at ov53 0x21E73C6 (state 23, r1=7), 0x21E73D6 (r1=219,r2=61,r3=62), 0x21E73E8 (returns 1 YES / 2 NO / 0 wait) */
+ov53_OakSpeechYesNo_SetBackgroundPalette = 0x021E816C | 1;
+ov53_OakSpeechYesNo_Start = 0x021E81F4 | 1;
+ov53_OakSpeechYesNo_Main = 0x021E8248 | 1;
+/* arm9 ToggleBgLayer(layer, on): bl 0x0201BC28 at ov53 0x21E70FE/0x21E7106 with (3,1) and (r5,1) */
+ToggleBgLayer = 0x0201BC28 | 1;
+/* bl 0x21e66a8 at ov53 0x21E70EE (state 7, r1=1) and 0x21E7232 (state 44, r1=1): (data, layout) */
+ov53_OakSpeech_SetButtonTutorialScreenLayout = 0x021E66A8 | 1;

@@ -20,6 +20,7 @@
 #include "overlay.h"
 #include "rtc.h"
 #include "mr_paint.h"
+#include "game_rules.h"
 #include "save.h"
 #include "script.h"
 #include "sound.h"
@@ -1829,6 +1830,9 @@ u32 LONG_CALL GetLevelCap(void)
     return 0;
 #else
 #ifdef IMPLEMENT_LEVEL_CAP
+    if (!GameRule_IsEnabled(RULE_LEVEL_CAPS)) {
+        return 100; // Game Mode Select: level caps disabled by the chosen mode
+    }
     u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
     if (levelCap > 100 || levelCap == 0) {
         levelCap = 100;
