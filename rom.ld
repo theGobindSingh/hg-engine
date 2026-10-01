@@ -119,6 +119,82 @@ StopScript             = 0x0203FD60 | 1;
 FieldSystem_FollowMonInteract = 0x0224EF80 | 1;
 RetailPartyMonAliveTest       = 0x020541B0 | 1;
 
+/* Mr. Paint side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md
+   section 3, docs/mr-paint-trick-menu.md).
+
+   ⭐ RCA (2026-09-26, RCA task rca0433e): the ORIGINAL 0.4.33 build hooked the wrong function.
+   0x02068664 is FieldMove_CheckDig, not FieldMove_CheckTeleport - proven three independent ways
+   against pret pokeheartgold's decompiled src/field_move.c (fetched and diffed, not inferred):
+   (1) FieldMove_CheckTeleport calls exactly ONE MapHeader gate, MapHeader_IsTeleportAllowed;
+   FieldMove_CheckDig calls TWO, MapHeader_IsCave() != TRUE || MapHeader_IsEscapeRopeAllowed()
+   != TRUE. The function disassembled at 0x02068664 calls TWO MapHeader-cluster functions
+   (0x0203B578, 0x0203B438) OR-combined before the HaveFollower test - the Dig shape, not
+   Teleport's. (2) FieldMove_CheckTeleport ends in Save_VarsFlags_CheckHaveFollower ->
+   Save_VarsFlags_CheckRocketCostumeFlag -> FieldMove_CheckSafariOrPalPark -> OK (0x02068554
+   has exactly this tail: HaveFollower(3)/RocketCostume(5)/SafariOrPalPark(1)/OK(0));
+   FieldMove_CheckDig's tail stops after RocketCostume, with NO SafariOrPalPark call - exactly
+   what 0x02068664 disassembles to. (3) Task_UseTeleportInField (arm9 0x02068620, immediately
+   after real FieldMove_CheckTeleport/FieldMove_UseTeleport in this ROM's layout) calls
+   0x0224C500 with `movs r3,#4` (HEAP_ID_FIELD1) then TaskManager_Jump to a literal pool value
+   of 0x0224c559 (thumb bit set) = Task_FieldTeleport 0x0224C558 - this is a byte-exact, direct
+   trace of retail's Task_UseTeleportInField body from pret, so 0x0224C500/0x0224C558 (already
+   linked below) ARE correctly Teleport's ov02 pair; only the arm9 CHECK address was wrong.
+
+   FieldMove_CheckTeleport (arm9, thumb) is actually at 0x02068554-0x020685cc+ (disassembled:
+   fieldSystem+0x70 vs 2/3 -> NOT_HERE; else `bl 0x0203B540` == MapHeader_IsTeleportAllowed,
+   a single boolean-style call, `cmp r0,#0` / `bne` - NOT the two-call Dig shape; else
+   HaveFollower(3)/RocketCostume(5)/SafariOrPalPark(1)/OK(0)), called with a pointer to a 2-word
+   struct {u32 mapId; FieldSystem *fieldSystem;} (see MrPaintTeleportCheckData in
+   src/mr_paint.c, offsets asserted - unchanged, still correct for this function too since both
+   Check functions share the same FieldMoveCheckData layout per pret's field_move.h). This
+   return-value shape (1 = NOT_HERE, 3 = HAVE_FOLLOWER, 5 = NOT_NOW/Rocket costume, else falls
+   through toward 0 = OK) is exactly the mr_paint_teleport resultVar contract (0/1/3 dispatched
+   by script 163 Function 7 per docs/mr-paint-trick-menu.md; 5 falls into its "else" ReleaseAll/
+   End, a safe close, not a crash), so the command calls this function directly rather than
+   reimplementing any of its checks. 0x0203B540 = MapHeader_IsTeleportAllowed (previously
+   misnamed onto 0x0203B578, which is actually MapHeader_IsCave - Dig's own first gate,
+   0x0203B438 being MapHeader_IsEscapeRopeAllowed); neither of the latter two is linked here,
+   only used for RCA disassembly.
+
+   FieldMoveTask_CreateTeleportEnvironment (ov02, thumb) and Task_FieldTeleport (ov02, thumb):
+   confirmed present at exactly the addresses design doc docs/mr-paint-route29-handover.md
+   cites from pret asm/overlay_02_02248728.s (0x0224C500, 0x0224C558) - disassembled bytes
+   match the expected shapes (a 4-arg allocator/setup function; a task with a state-dispatch
+   jump table), and directly traced from Task_UseTeleportInField's own disassembly above (not
+   merely address-matched). Overlay 2 is confirmed field-resident with no explicit load needed:
+   FieldSystem_FollowMonInteract above already calls straight into ov02 0x0224EF80 from an
+   ordinary script opcode and has shipped and verified in game since 0.4.17. */
+FieldMove_CheckTeleport                 = 0x02068554 | 1;
+FieldMoveTask_CreateTeleportEnvironment = 0x0224C500 | 1;
+Task_FieldTeleport                      = 0x0224C558 | 1;
+
+/* Mr. Paint 0.4.35 "Flash trick": retail FieldMove_CheckFlash / FieldMove_InitCheckData, both
+   disassembled from this ROM's vanilla arm9. CheckFlash(checkData) returns 1 for Union/Colosseum
+   (fieldSystem+0x70 in {2,3}), 0 (OK) for the Alph chamber case, 0 (OK) if checkData+12 flag bit
+   0x80 is set (InitCheckData sets it when the map header field == 11), else 1. */
+FieldMove_CheckFlash                    = 0x020684A0 | 1;
+FieldMove_InitCheckData                 = 0x02067E10 | 1;
+
+/* Mr. Paint 0.4.36 "Sweet Scent trick": retail FieldMove_CheckSweetScent (arm9; reads checkData+4 then
+   fieldSystem+0x70, NOT_HERE in Union/Colosseum, then a map check) and Task_UseSweetScentInField (ov1;
+   env {PartyPokemon *mon; u32 *moveData}, state 0 frees moveData and allocs its own 12-byte block, the
+   final state frees both). Both first-instruction-verified against the 0.4.35 build. */
+FieldMove_CheckSweetScent               = 0x02068750 | 1;
+Task_UseSweetScentInField               = 0x021FCE98 | 1;
+
+/* Mr. Paint 0.4.37 "Fly trick". All disassembled from this ROM's vanilla arm9 and matched to pret:
+   FieldMove_CheckFly (0 OK, 1 NOT_HERE, 2 NEED_BADGE (Storm, bit 4), 3 HAVE_FOLLOWER, 5 NOT_NOW; reads
+   checkData+4 fieldSystem, +0 mapId; sFieldMoveFuncTable 0x020FE7BC entry 0 check = 0x0206800D);
+   PokegearTownMap_LaunchApp(fieldSystem, kind) (allocs 0x2C from heap 11, kind stored at +0; 0 = fly map);
+   sub_02067BF8 (heap, fs, mon, slot, dest, cx*32+16, cy*32+16 -> 0x1C take-off env) and sub_02067C30
+   (the take-off task; state 6 frees env); GetIdxOfFirstAliveMonInParty_CrashIfNone (u8, sits right after
+   GetFirstAliveMonInParty_CrashIfNone 0x02054388, same loop returning the index). */
+FieldMove_CheckFly                              = 0x0206800C | 1;
+PokegearTownMap_LaunchApp                       = 0x0203EAB0 | 1;
+FlyTakeoff_CreateEnvironment                    = 0x02067BF8 | 1;
+Task_FlyTakeoff                                 = 0x02067C30 | 1;
+GetIdxOfFirstAliveMonInParty_CrashIfNone        = 0x020543BC | 1;
+
 Save_HOF_RecordParty = 0x0202E0F8 | 1;
 LoadHallOfFame = 0x02027104 | 1;
 AddHallOfFameEntry = 0x02052A50 | 1;
@@ -979,3 +1055,9 @@ BattleSystem_GetPokepicManager = 0x0223A8D4 | 1;
 ov12_0223B750 = 0x0223B750 | 1;
 sub_0207294C = 0x0207294C | 1;
 sub_02017068 = 0x02017068 | 1;
+
+/* 0.4.38 follower-talk mood/condition isolation (verified by disassembly of this ROM's arm9) */
+/* Party "copy 8 bytes of per-member condition data by slot" helper, called at ov2 0x0224F6C6. */
+MrPaintPartyCopyMonConditionArray = 0x02074670 | 1;
+/* Contest-condition thunk (out, mon, array, 11) -> 0x02073248, called at ov2 0x0224F6DA. */
+MrPaintMonCalcConditionSet = 0x020732E4 | 1;

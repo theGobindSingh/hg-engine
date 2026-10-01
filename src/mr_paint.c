@@ -46,10 +46,10 @@ extern int LONG_CALL PokeParty_GetPokeCount(struct Party *party);
 // data/text/040.txt indices 121-130. Headbutt/Sweet Scent have no machine and are omitted.
 const MrPaintMoveEntry gMrPaintMoveEntries[MR_PAINT_NUM_MACHINE_MOVES] = {
     { MOVE_CUT, 0x8A0, 1 },
-    { MOVE_FLY, 0x8A1, 0 },
+    { MOVE_FLY, 0x8A1, 1 },
     { MOVE_SURF, 0x8A2, 1 },
     { MOVE_STRENGTH, 0x8A3, 1 },
-    { MOVE_FLASH, 0x8A4, 0 },
+    { MOVE_FLASH, 0x8A4, 1 },
     { MOVE_WHIRLPOOL, 0x8A5, 1 },
     { MOVE_WATERFALL, 0x8A6, 1 },
     { MOVE_ROCK_SMASH, 0x8A7, 1 },
@@ -178,6 +178,31 @@ static u8 sMrPaintActorActive;
 static u8 sMrPaintTalkActive;
 static FieldSystem *sMrPaintTalkFieldSystem;
 
+// 0.4.38 "talk mood". The native talk task reads/writes the follower's MOOD through
+// FieldSystem_UnkSub108_GetMonMood/SetMonMood (arm9 0x0206A268/0x0206A240), which do
+// GetMonData/SetMonData(unk108->mon, MON_DATA_MOOD) with unk108 = *(void **)((u8 *)fsys + 0x108)
+// and `mon` at unk108+8 (`ldr r0,[r0,#8]` at 0x0206A26A and 0x0206A244; the fsys+0x108 load is at
+// ov2 0x0224F69E-0x0224F6A0). unk108->mon is the REAL lead, so while Mr. Paint talks we point it
+// at the static Mr. Paint mon and restore it afterwards (idempotent: only if a save is pending).
+#define MR_PAINT_FSYS_UNK108_OFFSET 0x108
+#define MR_PAINT_UNK108_MON_OFFSET 0x8
+#define MR_PAINT_TALK_MOOD 127
+_Static_assert(MON_DATA_MOOD == 187, "retail reads the follower mood as MON_DATA_MOOD (187 = 0xBB)");
+static void **sMrPaintTalkUnk108MonSlot;
+static void *sMrPaintTalkSavedMon;
+static struct PartyPokemon *MrPaintTalkMon(void);
+extern void LONG_CALL MrPaintPartyCopyMonConditionArray(struct Party *party, u8 *out, u32 slot);
+extern void LONG_CALL MrPaintMonCalcConditionSet(u16 *out, struct PartyPokemon *mon, u8 *array, u32 arg);
+
+static void MrPaintTalkRestoreUnk108(void)
+{
+    if (sMrPaintTalkUnk108MonSlot != NULL) {
+        *sMrPaintTalkUnk108MonSlot = sMrPaintTalkSavedMon;
+        sMrPaintTalkUnk108MonSlot = NULL;
+        sMrPaintTalkSavedMon = NULL;
+    }
+}
+
 // Slice 0.4.14 "attribution". The 0.4.13 gate only ran when the party search FAILED, so the one
 // case the client reported - Mr. Paint deployed AND a party Pokemon also knows the move - fell
 // straight through to vanilla and named that Pokemon. The gate below is now entered regardless of
@@ -192,7 +217,7 @@ static FieldSystem *sMrPaintTalkFieldSystem;
 // It MUST stay a per-invocation latch and never become a live CheckScriptFlag read inside
 // BufferPartyMonNick: opcode 199 is used by 17 different script files, most with nothing to do
 // with Mr. Paint (the Day Care among them), so a live check would print "Mr. Paint" in unrelated
-// dialogue for as long as flag 2224 is set. Opcode 141 runs only on the seven obstacle flows,
+// dialogue for as long as flag 2224 is set. Opcode 141 runs only on the obstacle flows (seven, plus Flash as of 0.4.35 - harmless there: Flash has no follower branch and no CompareVars, and the trick menu reaches it through commonscript 2077, not opcode 141),
 // which is what scopes the override.
 
 // The stand-in actor. Rebuilt deterministically on every use, so nothing
@@ -237,6 +262,227 @@ static struct PartyPokemon *MrPaintActorMon(void)
     PokeParaSet(&sMrPaintActor, SPECIES_SMEARGLE, 5, 31, TRUE, MR_PAINT_ACTOR_PID, TRUE, 0);
     SetMonData(&sMrPaintActor, MON_DATA_NICKNAME, (void *)sMrPaintActorNickname);
     return &sMrPaintActor;
+}
+
+// Pokedex: receiving ITEM_MR_PAINT (called from Bag_AddItem, the single acquisition coupling
+// point every script give reaches) silently marks Smeargle Seen + Caught. Touches only the dex
+// save block - never party or PC memory.
+void MrPaintRegisterDexEntry(void)
+{
+    void *dex = SaveData_GetDexPtr(SaveBlock2_get());
+    struct PartyPokemon *mon = MrPaintActorMon();
+    SetPokemonSee(dex, mon);
+    SetPokemonGet(dex, mon);
+}
+
+// Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
+// docs/mr-paint-trick-menu.md). Minimal mirror of the two words retail's own
+// FieldMove_CheckTeleport (rom.ld) actually reads out of its checkData argument - offset 0
+// (mapId) and offset 4 (FieldSystem*) - disassembled from THIS ROM (see rom.ld's comment above
+// the three new symbols this feature adds). Deliberately NOT the full retail struct: CheckTeleport
+// never dereferences past offset 4 on the Teleport row, so nothing else needs modelling, and the
+// offsets are asserted so a layout slip can never pass silently.
+typedef struct MrPaintTeleportCheckData {
+    u32 mapId;
+    FieldSystem *fieldSystem;
+} MrPaintTeleportCheckData;
+_Static_assert(offsetof(MrPaintTeleportCheckData, mapId) == 0,
+               "FieldMove_CheckTeleport reads mapId at checkData+0");
+_Static_assert(offsetof(MrPaintTeleportCheckData, fieldSystem) == 4,
+               "FieldMove_CheckTeleport reads fieldSystem at checkData+4");
+
+extern u32 LONG_CALL FieldMove_CheckTeleport(MrPaintTeleportCheckData *checkData);
+extern void *LONG_CALL FieldMoveTask_CreateTeleportEnvironment(FieldSystem *fieldSystem,
+                                                                struct PartyPokemon *mon,
+                                                                u32 partySlot, u32 heapId);
+extern BOOL LONG_CALL Task_FieldTeleport(TaskManager *taskman);
+
+// Side feature 0.4.35 "Flash trick". Full-size mirror of the FieldMoveCheckData words retail's
+// own FieldMove_InitCheckData (rom.ld) writes - mapId at +0, FieldSystem* at +4, a word at +8,
+// the u16 flag word at +12 - disassembled from THIS ROM (arm9 0x02067E10-0x02067F26: it stores
+// only those four fields; CheckFlash 0x020684A0 reads fieldSystem+0x70 via +4 and the flag word at
+// +12). Padded to 32 bytes so an unmodelled retail write can never run off the stack slot.
+typedef struct MrPaintFlashCheckData {
+    u32 mapId;
+    FieldSystem *fieldSystem;
+    u32 unk8;
+    u16 flag;
+    u16 pad;
+    u32 reserved[4];
+} MrPaintFlashCheckData;
+_Static_assert(offsetof(MrPaintFlashCheckData, mapId) == 0, "InitCheckData writes mapId at +0");
+_Static_assert(offsetof(MrPaintFlashCheckData, fieldSystem) == 4, "InitCheckData writes fieldSystem at +4");
+_Static_assert(offsetof(MrPaintFlashCheckData, flag) == 12, "CheckFlash reads the flag word at +12");
+
+extern void LONG_CALL FieldMove_InitCheckData(FieldSystem *fieldSystem, MrPaintFlashCheckData *checkData);
+extern u32 LONG_CALL FieldMove_CheckFlash(MrPaintFlashCheckData *checkData);
+
+// Runs retail's own Flash availability check against the current field. 0 = Flash may be used
+// here (dark-cave map flag, or the Ruins of Alph chamber); nonzero (1) = not here, including
+// Union Room / Colosseum. Pure query: starts no task.
+u16 MrPaintFlashCheck(FieldSystem *fieldSystem)
+{
+    MrPaintFlashCheckData checkData;
+
+    memset(&checkData, 0, sizeof(checkData));
+    FieldMove_InitCheckData(fieldSystem, &checkData);
+    return (u16)FieldMove_CheckFlash(&checkData);
+}
+
+// Side feature 0.4.36 "Sweet Scent trick". Retail FieldMove_CheckSweetScent reads only checkData+4
+// (FieldSystem*) then fieldSystem+0x70 and a map check; the Teleport-shaped 8-byte struct suffices.
+// Returns 0 = OK, 1 = not here.
+extern u32 LONG_CALL FieldMove_CheckSweetScent(MrPaintTeleportCheckData *checkData);
+extern BOOL LONG_CALL Task_UseSweetScentInField(TaskManager *taskman);
+
+// Retail Task_UseSweetScentInField env: [0] PartyPokemon *mon, [4] u32 *moveData (state 0 reads
+// *moveData as the party slot, frees the block, allocs its own 12-byte one). Both are heap blocks.
+typedef struct MrPaintSweetScentEnv {
+    struct PartyPokemon *mon;
+    u32 *moveData;
+} MrPaintSweetScentEnv;
+_Static_assert(sizeof(MrPaintSweetScentEnv) == 8, "retail Sweet Scent env is 8 bytes");
+#define MR_PAINT_SWEET_SCENT_HEAP_ID 11 // heap id retail itself allocates its blocks with (ov1 0x021FCEE0)
+
+u16 MrPaintSweetScentCheck(FieldSystem *fieldSystem)
+{
+    MrPaintTeleportCheckData checkData;
+
+    checkData.mapId = (u32)fieldSystem->location->mapId;
+    checkData.fieldSystem = fieldSystem;
+    return (u16)FieldMove_CheckSweetScent(&checkData);
+}
+
+void MrPaintSweetScentStart(FieldSystem *fieldSystem)
+{
+    MrPaintSweetScentEnv *env = sys_AllocMemoryLo(MR_PAINT_SWEET_SCENT_HEAP_ID, sizeof(MrPaintSweetScentEnv));
+
+    env->moveData = sys_AllocMemoryLo(MR_PAINT_SWEET_SCENT_HEAP_ID, sizeof(u32));
+    *env->moveData = MR_PAINT_ACTOR_SENTINEL_SLOT;
+    env->mon = MrPaintActorMon();
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_UseSweetScentInField, env);
+}
+
+
+// Side feature 0.4.37 "Fly trick". Retail's field Fly is start-menu-only (FieldMove_UseFly writes
+// StartMenuTaskData), so the pieces are driven from script instead - the same three retail calls
+// Task_UseFlyInField chains, minus the start-menu plumbing:
+//   1. FieldMove_CheckFly (pure) -> mr_paint_fly_check;
+//   2. PokegearTownMap_LaunchApp(fs, 0) (kind 0 = fly map), waited on natively like ScrCmd_TownMap ->
+//      mr_paint_fly_map (result 1 = a destination was chosen, 0 = B);
+//   3. FlyTakeoff_CreateEnvironment (sub_02067BF8) + Task_FlyTakeoff (sub_02067C30), started with
+//      TaskManager_Call exactly like Teleport -> mr_paint_fly_takeoff. The task frees its own env.
+// Retail prints no "X used Fly!" line in the field, so none is printed here either.
+extern u32 LONG_CALL FieldMove_CheckFly(MrPaintFlashCheckData *checkData);
+extern void *LONG_CALL PokegearTownMap_LaunchApp(FieldSystem *fieldSystem, int kind);
+extern void *LONG_CALL FlyTakeoff_CreateEnvironment(u32 heapId, FieldSystem *fieldSystem, struct PartyPokemon *mon,
+                                                    u32 partySlot, u32 dest, s32 pixelX, s32 pixelY);
+extern BOOL LONG_CALL Task_FlyTakeoff(TaskManager *taskman);
+extern u8 LONG_CALL GetIdxOfFirstAliveMonInParty_CrashIfNone(struct Party *party);
+extern BOOL LONG_CALL FieldSystem_ApplicationIsRunning(FieldSystem *fieldSystem);
+extern void LONG_CALL SetupNativeScript(SCRIPTCONTEXT *ctx, ScrCmdFunc ptr);
+
+// Retail PokegearArgs (pret include/unk_02092BE8.h, size 0x2C - the allocation at arm9 0x0203EAB8
+// is exactly 44 bytes). Only the fields the take-off reads are named; offsets asserted.
+typedef struct MrPaintPokegearArgs {
+    u8 head[0x14];
+    u32 setFlyDestination;
+    s32 mapCursorX;
+    s32 mapCursorY;
+    u16 selectedFlyDest;
+    u8 tail[0x2C - 0x22];
+} MrPaintPokegearArgs;
+_Static_assert(offsetof(MrPaintPokegearArgs, setFlyDestination) == 0x14, "PokegearArgs.setFlyDestination at 0x14");
+_Static_assert(offsetof(MrPaintPokegearArgs, mapCursorX) == 0x18, "PokegearArgs.mapCursorX at 0x18");
+_Static_assert(offsetof(MrPaintPokegearArgs, mapCursorY) == 0x1C, "PokegearArgs.mapCursorY at 0x1C");
+_Static_assert(offsetof(MrPaintPokegearArgs, selectedFlyDest) == 0x20, "PokegearArgs.selectedFlyDest at 0x20");
+_Static_assert(sizeof(MrPaintPokegearArgs) == 0x2C, "PokegearArgs is 0x2C bytes");
+
+#define MR_PAINT_FLY_HEAP_ID 11 // heap retail uses for the Pokegear args and the take-off env (0x0203EAB6, Task_UseFlyInField)
+
+static MrPaintPokegearArgs *sMrPaintFlyArgs;
+static u16 sMrPaintFlyResultVar;
+static u16 sMrPaintFlyDest;
+static s32 sMrPaintFlyPixelX;
+static s32 sMrPaintFlyPixelY;
+
+u16 MrPaintFlyCheck(FieldSystem *fieldSystem)
+{
+    MrPaintFlashCheckData checkData;
+
+    memset(&checkData, 0, sizeof(checkData));
+    FieldMove_InitCheckData(fieldSystem, &checkData);
+    return (u16)FieldMove_CheckFly(&checkData);
+}
+
+// Native wait for the fly map (same shape as retail ScrNative_WaitApplication_DestroyTaskData, but
+// the args are read before they are freed, exactly once).
+static BOOL MrPaintFlyMapWait(SCRIPTCONTEXT *ctx)
+{
+    MrPaintPokegearArgs *args = sMrPaintFlyArgs;
+
+    if (FieldSystem_ApplicationIsRunning(ctx->fsys)) {
+        return FALSE;
+    }
+    if (args->setFlyDestination != 0) {
+        sMrPaintFlyDest = args->selectedFlyDest;
+        sMrPaintFlyPixelX = args->mapCursorX * 32 + 16;
+        sMrPaintFlyPixelY = args->mapCursorY * 32 + 16;
+        SetScriptVar(sMrPaintFlyResultVar, 1);
+    } else {
+        SetScriptVar(sMrPaintFlyResultVar, 0);
+    }
+    sys_FreeMemoryEz(args);
+    sMrPaintFlyArgs = NULL;
+    return TRUE;
+}
+
+// Yields the script until the fly map closes.
+void MrPaintFlyMap(SCRIPTCONTEXT *ctx, u16 resultVar)
+{
+    sMrPaintFlyResultVar = resultVar;
+    sMrPaintFlyArgs = PokegearTownMap_LaunchApp(ctx->fsys, 0);
+    SetupNativeScript(ctx, MrPaintFlyMapWait);
+}
+
+void MrPaintFlyTakeoff(FieldSystem *fieldSystem)
+{
+    struct Party *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
+    void *env = FlyTakeoff_CreateEnvironment(MR_PAINT_FLY_HEAP_ID, fieldSystem, MrPaintActorMon(),
+                                             GetIdxOfFirstAliveMonInParty_CrashIfNone(party),
+                                             sMrPaintFlyDest, sMrPaintFlyPixelX, sMrPaintFlyPixelY);
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_FlyTakeoff, env);
+}
+// Retail's own FieldMove_UseTeleport passes 4 here (arm9 0x0206863E, `movs r3,#4`, immediately
+// before its own call into FieldMoveTask_CreateTeleportEnvironment) - no named HEAP_ID_FIELD1
+// constant exists yet anywhere in this tree, so the raw value is kept traceable with this comment
+// instead of inventing one.
+#define MR_PAINT_TELEPORT_HEAP_ID 4
+
+// See include/mr_paint.h for the full contract. Calls retail's own FieldMove_CheckTeleport
+// directly and forwards its return value unchanged (1 = NOT_HERE, 3 = HAVE_FOLLOWER, 0 = OK and
+// the warp has started) rather than reimplementing any of its checks - the same "call real retail
+// code" approach this file already uses for FieldMoveTask_CreateTeleportEnvironment/
+// Task_FieldTeleport below and MrPaintNurseRecall's swap in src/mr_paint_follower.c.
+u16 MrPaintTeleport(FieldSystem *fieldSystem)
+{
+    MrPaintTeleportCheckData checkData;
+    u32 checkResult;
+    void *env;
+
+    checkData.mapId = (u32)fieldSystem->location->mapId;
+    checkData.fieldSystem = fieldSystem;
+
+    checkResult = FieldMove_CheckTeleport(&checkData);
+    if (checkResult != 0) {
+        return (u16)checkResult;
+    }
+
+    env = FieldMoveTask_CreateTeleportEnvironment(fieldSystem, MrPaintActorMon(),
+                                                   MR_PAINT_ACTOR_SENTINEL_SLOT,
+                                                   MR_PAINT_TELEPORT_HEAP_ID);
+    TaskManager_Call((TaskManager *)fieldSystem->taskman, Task_FieldTeleport, env);
+    return 0;
 }
 
 // Side feature "Surf gate" (james-0417-feedback.md sections 4/4b). Full-function hook (hg-engine
@@ -523,6 +769,7 @@ BOOL ScrCmd_End(SCRIPTCONTEXT *ctx)
     // GetFirstAliveMonInParty_CrashIfNone call for the same FieldSystem.
     sMrPaintTalkActive = 0;
     sMrPaintTalkFieldSystem = NULL;
+    MrPaintTalkRestoreUnk108();
     StopScript(ctx);
     return FALSE;
 }
@@ -609,6 +856,7 @@ static BOOL MrPaintTalkTask(TaskManager *taskman)
     if (done) {
         sMrPaintTalkActive = 0;
         sMrPaintTalkFieldSystem = NULL;
+        MrPaintTalkRestoreUnk108();
     }
 
     return done;
@@ -628,6 +876,16 @@ BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx)
 
     sMrPaintTalkActive = 1;
     sMrPaintTalkFieldSystem = fieldSystem;
+    {
+        void *unk108 = *(void **)((u8 *)fieldSystem + MR_PAINT_FSYS_UNK108_OFFSET);
+
+        if (unk108 != NULL) {
+            MrPaintTalkRestoreUnk108();
+            sMrPaintTalkUnk108MonSlot = (void **)((u8 *)unk108 + MR_PAINT_UNK108_MON_OFFSET);
+            sMrPaintTalkSavedMon = *sMrPaintTalkUnk108MonSlot;
+            *sMrPaintTalkUnk108MonSlot = MrPaintTalkMon();
+        }
+    }
     TaskManager_Call((TaskManager *)fieldSystem->taskman, MrPaintTalkTask, NULL);
     return TRUE;
 }
@@ -639,8 +897,52 @@ static struct PartyPokemon *MrPaintTalkMon(void)
 {
     struct PartyPokemon *mon = MrPaintActorMon();
     u8 friendship = 255;
+    u8 mood = MR_PAINT_TALK_MOOD;
     SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    SetMonData(mon, MON_DATA_MOOD, &mood);
     return mon;
+}
+
+// Hook at ov2 0x0224F6AC (register-free form, 4 live args): retail's "dominant contest condition"
+// computation into ctx[22]. Retail: savedata = fsys[3]; party = SaveData_GetPlayerPartyPtr;
+// slot = GetIdxOfFirstAliveMonInParty_CrashIfNone(party); PartyCopyCondArray(party, arr, slot);
+// mon = Party_GetMonByIndex(party, slot); CalcConditionSet(out, mon, arr, 11); then the dominant
+// of the five 3-bit fields (bits 0,3,6,9,12 of out[0]), scanned in retail's order. Under the talk
+// latch the real party is bypassed: the static Mr. Paint mon with a zeroed modifier array goes
+// through the same pipeline, so the value is exactly what retail yields for that mon (derived,
+// not hard-coded). Unlatched: retail reproduced.
+void MrPaintTalkCondition(FieldSystem *fieldSystem, u32 unused1, u32 unused2, u8 *ctx)
+{
+    struct Party *party = SaveData_GetPlayerPartyPtr(fieldSystem->savedata);
+    u16 out[4];
+    u8 arr[8];
+    struct PartyPokemon *mon;
+    u32 v, f0, f1, f2, f3, f4, best, pick;
+
+    memset(arr, 0, sizeof(arr));
+    if (sMrPaintTalkActive && fieldSystem == sMrPaintTalkFieldSystem) {
+        mon = MrPaintTalkMon();
+    } else {
+        u32 slot = GetIdxOfFirstAliveMonInParty_CrashIfNone(party);
+
+        MrPaintPartyCopyMonConditionArray(party, arr, slot);
+        mon = Party_GetMonByIndex(party, slot);
+    }
+    MrPaintMonCalcConditionSet(out, mon, arr, 11);
+
+    v = out[0];
+    f0 = v & 7;
+    f1 = (v >> 3) & 7;
+    f2 = (v >> 6) & 7;
+    f3 = (v >> 9) & 7;
+    f4 = (v >> 12) & 7;
+    best = f0;
+    pick = 1;
+    if (best < f4) { best = f4; pick = 2; }
+    if (best < f3) { best = f3; pick = 4; }
+    if (best < f1) { best = f1; pick = 3; }
+    if (best < f2) { pick = 5; }
+    ctx[22] = (u8)pick;
 }
 
 // Replaces retail GetFirstAliveMonInParty_CrashIfNone (arm9 0x02054388). While the 0.4.17 talk

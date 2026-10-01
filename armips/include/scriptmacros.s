@@ -6780,6 +6780,7 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // below and src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE, which must
 // match. Opcode id unchanged since 0.4.23 (mr_paint_emerge_at_recorded_tile); only the name and
 // the native behaviour behind it changed. Toggle body only, as of 0.4.30.
+// RETIRED 0.4.40: id 5 is reserved and is a no-op in src/script_new_cmds.c (mr_paint_arm_follower_release removed).
 .equ NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 5
 // Mr. Paint (side feature 0.4.24 "Poke Center nurse recall") - see mr_paint_nurse_recall below and
 // src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, which must match.
@@ -6789,6 +6790,24 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE, which must match. Center-only; the Bag/Y
 // toggle keeps mr_paint_arm_follower_release (5) above.
 .equ NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 7
+// Mr. Paint (side feature 0.4.33 "Teleport trick") - see mr_paint_teleport below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, which must match.
+.equ NEW_COMMAND_MR_PAINT_TELEPORT, 8
+// Mr. Paint (side feature 0.4.35 "Flash trick") - see mr_paint_flash_check below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK, which must match.
+.equ NEW_COMMAND_MR_PAINT_FLASH_CHECK, 9
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick") - see mr_paint_sweet_scent_check/_start below and
+// src/script_new_cmds.c, which must match.
+.equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, 10
+.equ NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 11
+// Mr. Paint (side feature 0.4.37 "Fly trick") - see mr_paint_fly_check/_map/_takeoff below and
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_FLY_*, which must match.
+.equ NEW_COMMAND_MR_PAINT_FLY_CHECK, 12
+.equ NEW_COMMAND_MR_PAINT_FLY_MAP, 13
+.equ NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 14
+// Mr. Paint (0.4.41 inspiration choreography) - see mr_paint_follower_live / mr_paint_inspire_deploy below.
+.equ NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, 15
+.equ NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, 16
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6830,17 +6849,6 @@ RunNewCommand NEW_COMMAND_MR_PAINT_SHOW_FOLLOWER, 0
 RunNewCommand NEW_COMMAND_MR_PAINT_RECORD_FOLLOWER_TILE, 0
 .endmacro
 
-// Mr. Paint (side feature 0.4.28 "release like the bike", James 0.4.27 item 1): arms the follower
-// object to emerge exactly the way Task_MountOrDismountBicycle's own dismount does, then leaves
-// the actual emerge effect and un-hide to retail's own per-step handler on the player's NEXT STEP
-// - see src/mr_paint_follower.c's MrPaintArmFollowerRelease for the full RCA and the byte
-// evidence. Replaces 0.4.23-0.4.27's mr_paint_emerge_at_recorded_tile (same opcode id, new name
-// and behaviour) and, together with it, `reset_follower_with_ball` (606) and mr_paint_show_follower
-// at the tail of scr_seq_0003_075. As of 0.4.30 this is the TOGGLE body's own tail only - the
-// Center body uses mr_paint_release_at_recorded_tile below instead.
-.macro mr_paint_arm_follower_release
-RunNewCommand NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE, 0
-.endmacro
 
 // Mr. Paint (side feature 0.4.30 "Center immediate release", docs/mr-paint-swap-flicker.md,
 // james-game): restores 0.4.23-0.4.27's immediate, synchronous release at the recorded tile
@@ -6864,6 +6872,62 @@ RunNewCommand NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE, 0
 // the C side beyond SetScriptVar(arg0, ...).
 .macro mr_paint_nurse_recall,resultVar
 RunNewCommand NEW_COMMAND_MR_PAINT_NURSE_RECALL, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.33 "Teleport trick", james-game docs/mr-paint-route29-handover.md
+// section 3, docs/mr-paint-trick-menu.md): runs retail's own FieldMove_CheckTeleport, then - only
+// if it reports OK - retail's own Task_FieldTeleport, via src/mr_paint.c's MrPaintTeleport.
+// resultVar (this command's one operand, riding in RunNewCommand's "unk" slot exactly like
+// mr_paint_nurse_recall above) receives 1 (can't be used here), 3 (a story companion is
+// following) or 0 (OK - the warp has started and this SCRIPT is suspended until it finishes, so
+// the very next line only ever runs post-warp).
+.macro mr_paint_teleport,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_TELEPORT, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.35 "Flash trick"): runs retail FieldMove_CheckFlash and writes the
+// result to resultVar - 0 = Flash may be used here, nonzero = not here. Never yields.
+.macro mr_paint_flash_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLASH_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.36): retail FieldMove_CheckSweetScent -> resultVar (0 OK, 1 not here). Never yields.
+.macro mr_paint_sweet_scent_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.36): starts retail Task_UseSweetScentInField; the script yields until the task ends.
+.macro mr_paint_sweet_scent_start
+RunNewCommand NEW_COMMAND_MR_PAINT_SWEET_SCENT_START, 0
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): retail FieldMove_CheckFly -> resultVar (0 OK, 1 not here, 2 need Storm
+// badge, 3 story companion, 5 Rocket costume). Never yields.
+.macro mr_paint_fly_check,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_CHECK, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): launches retail's fly map and yields until it closes; resultVar = 1 if a
+// destination was chosen, 0 if B. Needs the fade-out / restore_overworld bracketing of scr_seq_0001_008.
+.macro mr_paint_fly_map,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_MAP, resultVar
+.endmacro
+
+// Mr. Paint (side feature 0.4.37): starts retail's take-off task for the destination mr_paint_fly_map chose;
+// the script yields until the task ends (after the warp).
+.macro mr_paint_fly_takeoff
+RunNewCommand NEW_COMMAND_MR_PAINT_FLY_TAKEOFF, 0
+.endmacro
+
+// 0.4.41: resultVar <- 1 if a live follower exists (same predicate as the Bag/Y toggle), else 0.
+.macro mr_paint_follower_live,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, resultVar
+.endmacro
+
+// 0.4.41: resultVar <- 0 flag 2224 already set (nothing done); else sets it, swaps identity,
+// 1 live follower / 2 not live.
+.macro mr_paint_inspire_deploy,resultVar
+RunNewCommand NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, resultVar
 .endmacro
 
 // Dummy

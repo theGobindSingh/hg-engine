@@ -54,6 +54,37 @@
 // and un-hides - MrPaintReleaseAtRecordedTile's restored pre-0.4.28 body. Must match
 // NEW_COMMAND_MR_PAINT_RELEASE_AT_RECORDED_TILE in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE 7
+// Mr. Paint (side feature 0.4.33 "Teleport trick"): runs retail's own FieldMove_CheckTeleport
+// against the current field and, only when it reports OK, starts retail's own Task_FieldTeleport
+// via TaskManager_Call - see src/mr_paint.c's MrPaintTeleport for the full contract. Writes
+// MrPaintTeleport's own return value into resultVar (arg0): 1 = can't be used here (NOT_HERE),
+// 3 = a story companion is following (HAVE_FOLLOWER), 0 = OK, and this case additionally yields
+// the SCRIPT (returns TRUE) so Task_FieldTeleport owns control until the warp finishes - the same
+// contract ScrCmd_FollowMonInteract's TaskManager_Call above already uses. Must match
+// NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_TELEPORT 8
+// Mr. Paint (side feature 0.4.35 "Flash trick"): runs retail FieldMove_CheckFlash (via
+// MrPaintFlashCheck) and writes its result into resultVar (arg0): 0 = Flash may be used here,
+// nonzero = not here. A pure query - never yields. Must match NEW_COMMAND_MR_PAINT_FLASH_CHECK in
+// armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK 9
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick"): 10 = check (writes MrPaintSweetScentCheck into
+// resultVar, 0 = OK), 11 = start retail Task_UseSweetScentInField and yield the script (return TRUE).
+// Must match NEW_COMMAND_MR_PAINT_SWEET_SCENT_CHECK / _START in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_CHECK 10
+#define SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START 11
+// Mr. Paint (side feature 0.4.37 "Fly trick"): 12 = check (writes MrPaintFlyCheck into resultVar, 0 OK),
+// 13 = launch retail's fly map and yield until it closes (resultVar: 1 destination chosen, 0 B),
+// 14 = start retail's take-off task for the chosen destination and yield (return TRUE).
+// Must match NEW_COMMAND_MR_PAINT_FLY_CHECK / _MAP / _TAKEOFF in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_CHECK 12
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_MAP 13
+#define SCRIPT_NEW_CMD_MR_PAINT_FLY_TAKEOFF 14
+// Mr. Paint (0.4.41 "inspiration choreography"): 15 = resultVar <- MrPaintFollowerLive (1 live follower, else 0);
+// 16 = resultVar <- MrPaintInspireDeploy (0 flag already set, 1 set + live, 2 set, not live).
+// Must match NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE / _INSPIRE_DEPLOY in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_MR_PAINT_FOLLOWER_LIVE 15
+#define SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY 16
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -104,16 +135,58 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE:
-        MrPaintArmFollowerRelease(ctx->fsys);
+        // RETIRED 0.4.40: opcode 5 (bike-style deferred arm) is no longer emitted; id kept reserved.
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL:
         SetScriptVar(arg0, MrPaintNurseRecall(ctx->fsys));
         break;
 
+    case SCRIPT_NEW_CMD_MR_PAINT_FOLLOWER_LIVE:
+        SetScriptVar(arg0, MrPaintFollowerLive(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY:
+        SetScriptVar(arg0, MrPaintInspireDeploy(ctx->fsys));
+        break;
+
     case SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE:
         MrPaintReleaseAtRecordedTile(ctx->fsys);
         break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_TELEPORT:;
+        u16 mrPaintTeleportResult = MrPaintTeleport(ctx->fsys);
+        SetScriptVar(arg0, mrPaintTeleportResult);
+        if (mrPaintTeleportResult == 0) {
+            // OK: Task_FieldTeleport now owns the field until the warp finishes. Yield the
+            // calling script exactly the way ScrCmd_FollowMonInteract's TaskManager_Call does.
+            return TRUE;
+        }
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLASH_CHECK:
+        SetScriptVar(arg0, MrPaintFlashCheck(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_CHECK:
+        SetScriptVar(arg0, MrPaintSweetScentCheck(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_SWEET_SCENT_START:
+        MrPaintSweetScentStart(ctx->fsys);
+        return TRUE;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_CHECK:
+        SetScriptVar(arg0, MrPaintFlyCheck(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_MAP:
+        MrPaintFlyMap(ctx, arg0);
+        return TRUE;
+
+    case SCRIPT_NEW_CMD_MR_PAINT_FLY_TAKEOFF:
+        MrPaintFlyTakeoff(ctx->fsys);
+        return TRUE;
 
     default:
         break;

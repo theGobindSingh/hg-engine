@@ -50,6 +50,7 @@ u16 MrPaintMessageIndexForMove(u16 move);
 // the obstacle path (ScrCmd_GetPartySlotWithMove) keeps using MrPaintFlagForMove, since a
 // flag can be set on an already-learned move without this build ever setting it itself.
 u16 MrPaintLearnableFlagForMove(u16 move);
+void MrPaintRegisterDexEntry(void);
 
 // Slice 0.3.2 "obstacles" - full-function hook (see hg-engine `hooks`) replacing retail
 // ScrCmd_GetPartySlotWithMove (ROM script command 141, CheckMoveInParty) at 0x0204D3CC.
@@ -223,7 +224,6 @@ void MrPaintShowFollower(FieldSystem *fieldSystem);
 // Caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_EMERGE_AT_RECORDED_TILE (5, unchanged
 // since 0.4.23), whose value must match NEW_COMMAND_MR_PAINT_EMERGE_AT_RECORDED_TILE in
 // armips/include/scriptmacros.s.
-void MrPaintArmFollowerRelease(FieldSystem *fieldSystem);
 
 // 0.4.30 "Center immediate release" (docs/mr-paint-swap-flicker.md, james-game), restoring
 // 0.4.23-0.4.27's MrPaintRecordFollowerTile/MrPaintEmergeAtRecordedTile verbatim (renamed
@@ -249,6 +249,8 @@ void MrPaintReleaseAtRecordedTile(FieldSystem *fieldSystem);
 // caller is src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_NURSE_RECALL, whose value must match
 // NEW_COMMAND_MR_PAINT_NURSE_RECALL in armips/include/scriptmacros.s.
 u16 MrPaintNurseRecall(FieldSystem *fieldSystem);
+u16 MrPaintFollowerLive(FieldSystem *fieldSystem);
+u16 MrPaintInspireDeploy(FieldSystem *fieldSystem);
 
 // Side feature 0.4.17 "follower talk" - src/mr_paint.c. Full-function hook (see hg-engine
 // `hooks`) replacing retail ScrCmd_FollowMonInteract (script opcode 711, arm9 0x02047414). Not
@@ -267,5 +269,35 @@ BOOL ScrCmd_FollowMonInteract(SCRIPTCONTEXT *ctx);
 // FieldSystem's player party, in which case it returns the static shiny Smeargle actor
 // (MrPaintActorMon(), friendship forced to 255) instead of searching the real party at all.
 struct PartyPokemon *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
+
+// Side feature 0.4.33 "Teleport trick" (james-game docs/mr-paint-route29-handover.md section 3,
+// docs/mr-paint-trick-menu.md). Runs retail's own FieldMove_CheckTeleport (arm9 0x02068554,
+// rom.ld - corrected 2026-09-26, RCA task rca0433e; the original build had mis-hooked
+// FieldMove_CheckDig at 0x02068664 instead) against the CURRENT field, then - only when it
+// reports OK - starts retail's own
+// Task_FieldTeleport (ov02 0x0224C558, rom.ld) via TaskManager_Call, exactly the
+// ScrCmd_OverworldWhiteOut/CallTask_Blackout precedent this project already follows for
+// ScrCmd_FollowMonInteract above. No reimplementation of any retail check: the return value IS
+// FieldMove_CheckTeleport's own (1 = NOT_HERE "can't be used here", 3 = HAVE_FOLLOWER "a story
+// companion is following", 0 = OK and the warp has been started). The party is never read or
+// written; the mon used for the teleport cry/emote is the same static Mr. Paint actor
+// (MrPaintActorMon() in src/mr_paint.c) the 0.4.7/0.4.17 cut-in and follower-talk features
+// already use, at the same sentinel party slot (MR_PAINT_ACTOR_SENTINEL_SLOT) 0.3.8 established
+// so it can never collide with the deployed follower's real slot. Its only caller is
+// src/script_new_cmds.c's SCRIPT_NEW_CMD_MR_PAINT_TELEPORT, whose value must match
+// NEW_COMMAND_MR_PAINT_TELEPORT in armips/include/scriptmacros.s.
+u16 MrPaintTeleport(FieldSystem *fieldSystem);
+u16 MrPaintFlashCheck(FieldSystem *fieldSystem);
+// 0.4.36 Sweet Scent trick: check = retail FieldMove_CheckSweetScent (0 OK, 1 not here); start =
+// retail Task_UseSweetScentInField via TaskManager_Call, with the Mr. Paint actor mon and sentinel slot.
+u16 MrPaintSweetScentCheck(FieldSystem *fieldSystem);
+void MrPaintSweetScentStart(FieldSystem *fieldSystem);
+// 0.4.37 Fly trick: check = retail FieldMove_CheckFly (0 OK, 1 not here, 2 need Storm badge, 3 story
+// companion, 5 Rocket costume); map = launch retail's fly map (kind 0) and yield until it closes, writing
+// 1 (destination chosen) or 0 (B) to resultVar; takeoff = build retail's take-off env from the chosen
+// destination and start retail's take-off task (Mr. Paint actor mon), which frees the env itself.
+u16 MrPaintFlyCheck(FieldSystem *fieldSystem);
+void MrPaintFlyMap(SCRIPTCONTEXT *ctx, u16 resultVar);
+void MrPaintFlyTakeoff(FieldSystem *fieldSystem);
 
 #endif // GUARD_MR_PAINT_H

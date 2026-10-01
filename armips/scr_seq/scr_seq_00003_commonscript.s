@@ -90,6 +90,10 @@ scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073_autobattle_testing
 scrdef scr_seq_0003_074_mr_paint_inspiration
 scrdef scr_seq_0003_075_mr_paint_follower_swap
+scrdef scr_seq_0003_076_mr_paint_teleport
+scrdef scr_seq_0003_077_mr_paint_flash
+scrdef scr_seq_0003_078_mr_paint_sweet_scent
+scrdef scr_seq_0003_079_mr_paint_fly
 scrdef_end
 
 scr_seq_0003_002:
@@ -847,7 +851,8 @@ _09E9:
 scr_seq_0003_074_mr_paint_inspiration:
     lockall
     call _MrPaintShowInspiration
-    closemsg
+    // 0.4.41: no closemsg here any more - _MrPaintShowInspiration closes its own window exactly once on
+    // every path that opened one (a second closemsg after the branch-A one locked the game).
     releaseall
     end
 
@@ -934,24 +939,31 @@ scr_seq_0003_075_mr_paint_follower_swap:
     end
 
 // The shared animation body: recall the current follower into its ball, rebind its model while
-// hidden, then arm it to emerge on the player's next step - exactly the bike's own dismount
-// sequence (0.4.28, James 0.4.27 item 1, docs/mr-paint-swap-bike.md). Callable as a subroutine
+// hidden, then release it at its recorded tile (0.4.40 shape, see below). 0.4.28 had made this a
+// bike-style deferred arm (James 0.4.27 item 1, docs/mr-paint-swap-bike.md); that design was
+// SUPERSEDED by 0.4.40, which removed mr_paint_arm_follower_release (opcode id 5 stays reserved).
+// Callable as a subroutine
 // (ends in `return`, not `end`) so the Bag/Y toggle's own script entry above can run it under
 // whichever lockall it already holds, without a second copy to drift out of step. Not a scrdef
 // entry itself - `call`/`return` address it directly, the same way _MrPaintShowInspiration above
 // is a plain label `call`ed from scr_seq_0003_074_mr_paint_inspiration, never a scrdef.
-//
-// No trailing wait after the arm: the bike itself does not wait for the emerge either - it runs on
-// the player's own next step, whenever that comes, so there is nothing here for a `wait` to cover.
+// 0.4.40 (swap hop): the toggle body now has the Center body's own shape - record the outgoing
+// follower's tile, recall, wait, synchronous rebind, IMMEDIATE native release at the recorded tile
+// - instead of 0.4.28's bike-style deferred arm. MR_PAINT_SWAP_WAIT_PRE / _POST are the tuning literals (script ticks, ~2 frames each):
+// PRE follows the recall - send_follower_to_ball already yields until its own task ends, ~21 frames
+// after the ball is gone, so PRE needs no length of its own; POST follows the release and must
+// outlast the native hop-out (~22 frames from release to the last sparkle) so releaseall does not
+// free the player mid-hop (measured: wait N ~ 2N+15 frames, so 8 gives ~31).
+.equ MR_PAINT_SWAP_WAIT_PRE, 1
+.equ MR_PAINT_SWAP_WAIT_POST, 8
+.equ MR_PAINT_INSPIRE_SETTLE, 8
 _mr_paint_swap_body:
+    mr_paint_record_follower_tile
     send_follower_to_ball
-    // 0.4.27 (James 0.4.25 item 1): shortened from 24. mr_paint_swap_follower_model now blocks
-    // the script itself, via a native poll on the async model load, until it is actually safe to
-    // emerge - see MrPaintBeginFollowerModelSwapWait in src/mr_paint_follower.c - so this margin
-    // only needs to cover the recall (absorb + ball) animation, not the load as well.
-    wait 8, VAR_SPECIAL_RESULT
+    wait MR_PAINT_SWAP_WAIT_PRE, VAR_SPECIAL_RESULT
     mr_paint_swap_follower_model
-    mr_paint_arm_follower_release
+    mr_paint_release_at_recorded_tile
+    wait MR_PAINT_SWAP_WAIT_POST, VAR_SPECIAL_RESULT
     return
 
 // 0.4.27 SPLIT THE BODY (James 0.4.25 item 1 follow-up, docs/mr-paint-swap-polish2.md /
@@ -1004,16 +1016,110 @@ _mr_paint_swap_body_center:
 // scr_seq_0003_033_give_item_verbose, which ran it BEFORE the giver's own closing dialogue -
 // bug 2a. Its only caller now is scr_seq_0003_074_mr_paint_inspiration above. It locks nothing
 // and releases nothing itself, so every path through it must reach its `return`.
+// 0.4.41 (inspire2, james-game docs/mr-paint-inspire2.md): the event is now choreographed. The
+// old one-box "What's that? / inspired by / learned" message (archive 40 indices 121-130, now
+// unreferenced but left in place) is split into archive 40 index 137 ("What's that?"), 138
+// ("Mr. Paint was inspired by <item>!") and 139-148 ("Mr. Paint learned <move>!!!", same order as
+// 121-130), so the script owns every A-press and can interleave the follower's own movements.
+// x8002 is the "deployed/live follower" marker (1 = a live walking follower we may animate), x8003
+// the nurse_recall result; x8000 (move index) and x8001 (item) are never written after the
+// pending_inspiration call. INVARIANT: flag 2224 (FLAG_UNK_8B0) ends CLEAR on every branch-A path
+// (flag was clear on entry) and is left SET on every branch-B path (flag was set on entry).
 _MrPaintShowInspiration:
     mr_paint_pending_inspiration VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
     compare VAR_SPECIAL_x8000, 0
     goto_if_eq _MrPaintInspirationDone
     buffer_item_name 0, VAR_SPECIAL_x8001
-    // 0.4.0: "!" over the player first, waited out before any box opens. Placed after the
-    // nothing-pending guard so an empty fire emotes nothing, and before the switch so the
-    // bubble always precedes the dialogue. lockall is already in force from the 074 entry.
+    // 0.4.0: "!" over the player first, waited out before any box opens.
     apply_movement obj_player, _MrPaintEmoteExclaim
     wait_movement
+    npc_msg 137
+    wait_button
+    goto_if_set FLAG_UNK_8B0, _MrPaintInspireB
+
+// Branch A: Mr. Paint was NOT deployed. If a live follower exists, deploy him for the event
+// (recalling the real lead at "inspired by"), then toggle him back off once the event is over.
+    call _MrPaintFollowerLiveCheck
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintInspireA_Go
+    mr_paint_inspire_deploy VAR_SPECIAL_x8002
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_eq _MrPaintInspireA_Go
+    // Not live after all (result 2; 0 cannot happen, the flag was clear): undo the flag so the
+    // invariant holds, and run the rest of branch A with no animation.
+    clearflag FLAG_UNK_8B0
+    setvar VAR_SPECIAL_x8002, 0
+_MrPaintInspireA_Go:
+    npc_msg 138
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _mr_paint_swap_body
+    wait_button
+    call _MrPaintLearnedMsg
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintSettleFollower
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintJoyHops
+    wait_button
+    closemsg
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintInspirationDone
+    mr_paint_nurse_recall VAR_SPECIAL_x8003
+    compare VAR_SPECIAL_x8003, 1
+    call_if_eq _mr_paint_swap_body
+    goto _MrPaintInspirationDone
+
+// Branch B: Mr. Paint already deployed (flag 2224 set, left untouched). The follower, if live,
+// is Mr. Paint himself and reacts in place.
+_MrPaintInspireB:
+    call _MrPaintFollowerLiveCheck
+    npc_msg 138
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintFollowerExclaim
+    wait_button
+    call _MrPaintLearnedMsg
+    compare VAR_SPECIAL_x8002, 1
+    call_if_eq _MrPaintJoyHops
+    wait_button
+    closemsg
+    goto _MrPaintInspirationDone
+
+// Branch A only: let the release hop-out from _mr_paint_swap_body finish before the follower is given
+// another movement.
+_MrPaintSettleFollower:
+    wait MR_PAINT_INSPIRE_SETTLE, VAR_SPECIAL_RESULT
+    return
+
+_MrPaintFollowerExclaim:
+    apply_movement obj_partner_poke, _MrPaintEmoteExclaim
+    wait_movement
+    return
+
+_MrPaintJoyHops:
+    apply_movement obj_partner_poke, _MrPaintJoyHopsMove
+    wait_movement
+    return
+
+// Three in-place hops, facing down. Retail's JumpOnSpotSouth8 is action id 49 (0x31), which
+// scriptmacros.s names JumpDownSite (verified against 0161.script's `JumpOnSpotSouth8 0x2`).
+_MrPaintJoyHopsMove:
+    step JumpDownSite, 3
+    step_end
+
+// x8002 <- 1 iff a live follower exists AND the player is on foot (PLAYER_STATE_WALKING).
+_MrPaintFollowerLiveCheck:
+    mr_paint_follower_live VAR_SPECIAL_x8002
+    compare VAR_SPECIAL_x8002, 1
+    goto_if_ne _MrPaintFollowerLiveCheck_Done
+    get_player_state VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, PLAYER_STATE_WALKING
+    goto_if_eq _MrPaintFollowerLiveCheck_Done
+    setvar VAR_SPECIAL_x8002, 0
+_MrPaintFollowerLiveCheck_Done:
+    return
+
+// Prints "Mr. Paint learned <move>!!!" for the 1-based index in x8000 (archive 40 139-148).
+// Subroutine: the switch jumps to a label whose `return` returns to our caller.
+_MrPaintLearnedMsg:
     switch VAR_SPECIAL_x8000
     case 1, _MrPaintMsgCut
     case 2, _MrPaintMsgFly
@@ -1025,54 +1131,250 @@ _MrPaintShowInspiration:
     case 8, _MrPaintMsgRockSmash
     case 9, _MrPaintMsgRockClimb
     case 10, _MrPaintMsgDig
-    // Unreachable: the native handler returns 0 or 1-10 and 0 is filtered above. A bare
-    // `end` here would leave the 074 entry's lockall without its releaseall, so route the
-    // switch's default through the same return every other path uses.
-    goto _MrPaintInspirationDone
+    return
 
 _MrPaintMsgCut:
-    npc_msg 121
-    goto _MrPaintInspirationShown
+    npc_msg 139
+    return
 
 _MrPaintMsgFly:
-    npc_msg 122
-    goto _MrPaintInspirationShown
+    npc_msg 140
+    return
 
 _MrPaintMsgSurf:
-    npc_msg 123
-    goto _MrPaintInspirationShown
+    npc_msg 141
+    return
 
 _MrPaintMsgStrength:
-    npc_msg 124
-    goto _MrPaintInspirationShown
+    npc_msg 142
+    return
 
 _MrPaintMsgFlash:
-    npc_msg 125
-    goto _MrPaintInspirationShown
+    npc_msg 143
+    return
 
 _MrPaintMsgWhirlpool:
-    npc_msg 126
-    goto _MrPaintInspirationShown
+    npc_msg 144
+    return
 
 _MrPaintMsgWaterfall:
-    npc_msg 127
-    goto _MrPaintInspirationShown
+    npc_msg 145
+    return
 
 _MrPaintMsgRockSmash:
-    npc_msg 128
-    goto _MrPaintInspirationShown
+    npc_msg 146
+    return
 
 _MrPaintMsgRockClimb:
-    npc_msg 129
-    goto _MrPaintInspirationShown
+    npc_msg 147
+    return
 
 _MrPaintMsgDig:
-    npc_msg 130
+    npc_msg 148
+    return
 
-_MrPaintInspirationShown:
-    wait_button_or_walk_away
 _MrPaintInspirationDone:
     return
+
+// Mr. Paint (side feature 0.4.33 "Teleport trick", james-game
+// docs/mr-paint-route29-handover.md section 3, docs/mr-paint-trick-menu.md). Reached only from
+// 0163.script's Function#7 (`CommonScript 2076 / End`, itself only reachable with flag 2224 set
+// and TELEPORT chosen from the trick menu). mr_paint_teleport (src/mr_paint.c's MrPaintTeleport,
+// NEW_COMMAND_MR_PAINT_TELEPORT = 8) runs retail's own FieldMove_CheckTeleport and, only when it
+// reports OK, starts retail's own Task_FieldTeleport via TaskManager_Call and yields the WHOLE
+// script until the warp finishes. CommonScript (opcode 20, ScrCmd_CallStd) parks the calling
+// context until the callee runs endstd, so EVERY exit here must end releaseall / endstd / end
+// (retail std-script shape), including the OK path: the LockAll from 0163.script is still held
+// when the script resumes on the new map.
+//
+// No lockall here: this entry is only ever reached from inside 0163.script's own top-level
+// LockAll (held since Script 1, never released before Function#7), the same reasoning
+// _mr_paint_swap_body above uses to skip its own lockall. Every exit below calls
+// releaseall to balance that lock, per 0163.script's own Function#2/#3/#9/#10 convention.
+//
+// result 3 (HAVE_FOLLOWER, "a story companion is following"): prints the client's DRAFT
+// placeholder at archive 30 index 14 (data/text/030.txt), reached through get_std_msg_naix 2 -
+// the SAME n=2 -> archive 30 redirect 0163.script's own Function#1 already uses for indices 12/13,
+// proven reachable from this exact script since 0.4.16/0.4.17.
+//
+// result 1 (NOT_HERE, "can't be used here"): NO retail line reachable from get_std_msg_naix's own
+// n=0..3 array {752, 211, 30, 435} exists for this (archive 211, the field-move archive, has
+// Surf's/Rock Climb's own "can't be used if you have someone with you" at 211:16/211:23, but no
+// Teleport row and no generic NOT_HERE line at all). Archive 10:106 "Can't use the
+// {STRVAR_1, 8, 0, 0}." was an earlier candidate but is the BAG's own item-use denial line - it
+// would give Mr. Paint an indefinite article ("Can't use the Mr. Paint."), which the client's
+// receipt/pocket lines have specifically avoided since 0.3.9/0.3.12. The right line is retail's
+// own PARTY-MENU field-move NOT_HERE text, archive 300 index 101, "You can't use that here.\r"
+// (verified with dspre-mcp get_text; it carries no item-name placeholder at all, so it needs no
+// buffer_item_name). Archive 300 is not reachable via get_std_msg_naix either, so this prints it
+// the OTHER attested way this same commonscript file already uses for its own content: plain
+// npc_msg, which resolves against this file's own hg-engine-owned archive 40 (data/text/040.txt) -
+// the exact mechanism npc_msg 121-133 above already use. Archive 300:101 was therefore copied
+// VERBATIM (including its own trailing \r, matching how 040.txt's other npc_msg lines are
+// written) to 040.txt's new index 134.
+scr_seq_0003_076_mr_paint_teleport:
+    mr_paint_teleport VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintTeleportDone
+    compare VAR_SPECIAL_x8000, 1
+    goto_if_eq _MrPaintTeleportNotHere
+    compare VAR_SPECIAL_x8000, 3
+    goto_if_eq _MrPaintTeleportCompanion
+    // anything else (e.g. 2, NOT_NOW) falls through here - no retail line is attested for it
+    // either, and it is not one of the three codes MrPaintTeleport documents returning.
+    releaseall
+    endstd
+    end
+
+_MrPaintTeleportNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintTeleportCompanion:
+    get_std_msg_naix 2, VAR_SPECIAL_RESULT
+    msgbox_extern VAR_SPECIAL_RESULT, 14
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintTeleportDone:
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.35 "Flash trick"). Reached only from 0163.script's Function#8-shaped
+// Function#9 (`CommonScript 2077 / End`, only reachable with flag 2224 set and flag 2212 - Flash
+// learned - set, FLASH chosen from the trick menu). mr_paint_flash_check (src/mr_paint.c's
+// MrPaintFlashCheck, NEW_COMMAND_MR_PAINT_FLASH_CHECK = 9) runs retail's own FieldMove_CheckFlash:
+// 0 = OK (dark-cave map or the Alph chamber), nonzero = not here. Refusal prints archive 40 index
+// 134 (the same "You can't use that here." line Teleport uses). The OK body is the exact command
+// sequence 0163.script Function#9 carried inline (a copy of retail script 146 Function 69).
+// The trick menu is already closed by 0163.script Function#7 (CloseMessage), so nothing is open
+// here; every exit ends releaseall / endstd / end (the 0.4.34 lesson) and balances the caller's
+// LockAll.
+scr_seq_0003_077_mr_paint_flash:
+    mr_paint_flash_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_ne _MrPaintFlashNotHere
+    play_cry 235, 0 // SPECIES_SMEARGLE (include/constants/species.h:242)
+    wait_cry
+    scrcmd_728 16, 2
+    scrcmd_728 16, 2
+    flash_action 1, 0
+    flash_effect
+    wait 42, VAR_SPECIAL_RESULT
+    releaseall
+    endstd
+    end
+
+_MrPaintFlashNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.36 "Sweet Scent trick"). Reached only from 0163.script Function#11
+// (`CommonScript 2078 / End`, SWEET SCENT chosen from the trick menu, flag 2219 set). Check nonzero ->
+// archive 40 index 134 refusal (same as Teleport/Flash); OK -> archive 40 index 135 (DRAFT wording,
+// "Mr. Paint used Sweet Scent!", follows the 121-133 template) then retail Task_UseSweetScentInField
+// via mr_paint_sweet_scent_start, which yields the script until the task finishes.
+scr_seq_0003_078_mr_paint_sweet_scent:
+    mr_paint_sweet_scent_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_ne _MrPaintSweetScentNotHere
+    npc_msg 135
+    wait_button
+    closemsg
+    mr_paint_sweet_scent_start
+    releaseall
+    endstd
+    end
+
+_MrPaintSweetScentNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+// Mr. Paint (side feature 0.4.37 "Fly trick"). Reached only from 0163.script Function#10
+// (`CommonScript 2079 / End`, FLY chosen from the trick menu, flag 2209 - Fly learned - set).
+// mr_paint_fly_check (NEW_COMMAND_MR_PAINT_FLY_CHECK = 12) runs retail's own FieldMove_CheckFly:
+// 0 OK; 1 not here / 5 Rocket costume -> 40:134 "You can't use that here."; 2 Storm badge missing ->
+// 40:136, retail's own party-menu line (archive 300 index 77) copied VERBATIM, not a draft; 3 story
+// companion -> 30:14, the same line Teleport uses. OK: the fade / town_map / restore_overworld /
+// fade bracketing of retail scr_seq_0001_008 around mr_paint_fly_map (retail's fly map, kind 0);
+// B (result 0) -> back to the overworld; a destination (result 1) -> mr_paint_fly_takeoff, retail's
+// take-off task, which yields until the warp is done. Retail prints no "used Fly!" line, so neither
+// does this. Every exit ends releaseall / endstd / end (the 0.4.34 lesson).
+scr_seq_0003_079_mr_paint_fly:
+    mr_paint_fly_check VAR_SPECIAL_x8000
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintFlyOk
+    compare VAR_SPECIAL_x8000, 1
+    goto_if_eq _MrPaintFlyNotHere
+    compare VAR_SPECIAL_x8000, 5
+    goto_if_eq _MrPaintFlyNotHere
+    compare VAR_SPECIAL_x8000, 2
+    goto_if_eq _MrPaintFlyNeedBadge
+    compare VAR_SPECIAL_x8000, 3
+    goto_if_eq _MrPaintFlyCompanion
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyNotHere:
+    npc_msg 134
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyNeedBadge:
+    npc_msg 136
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyCompanion:
+    get_std_msg_naix 2, VAR_SPECIAL_RESULT
+    msgbox_extern VAR_SPECIAL_RESULT, 14
+    wait_button
+    closemsg
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyOk:
+    fade_screen 6, 1, 0, RGB_BLACK
+    wait_fade
+    mr_paint_fly_map VAR_SPECIAL_x8000
+    scrcmd_150
+    fade_screen 6, 1, 1, RGB_BLACK
+    wait_fade
+    compare VAR_SPECIAL_x8000, 0
+    goto_if_eq _MrPaintFlyCancelled
+    mr_paint_fly_takeoff
+    releaseall
+    endstd
+    end
+
+_MrPaintFlyCancelled:
+    releaseall
+    endstd
+    end
 
 scr_seq_0003_009:
     call _09F5
