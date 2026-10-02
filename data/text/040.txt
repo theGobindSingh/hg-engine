@@ -167,3 +167,4 @@ GAME RULES
 DEBUG RULES
 SUPER RARE CANDY
 Grants Super Rare Candy\nfor rapid leveling.
+SUPER ITEMS

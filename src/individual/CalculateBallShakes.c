@@ -1,3 +1,4 @@
+#include "game_rules.h"
 #include "config.h"
 #include "debug.h"
 #include "types.h"
@@ -78,6 +79,12 @@ u32 __attribute__((section(".init"))) CalculateBallShakesInternal(void *bw, stru
     ballCaptureRatio = 0x1000;
 
     switch (sp->item_work) {
+    case ITEM_PREMIER_BALL:
+        // james-game 0.5.4: SUPER ITEMS makes the Premier Ball a Master Ball; rule OFF = the vanilla 0x1000 path
+        if (!SuperItems_Active(ITEM_PREMIER_BALL)) {
+            break;
+        }
+        // fallthrough
     case ITEM_MASTER_BALL:
         if (Battle_CheckIfHasCaughtMon(bw, sp->battlemon[sp->defence_client].species)) {
             return 1 | CRITICAL_CAPTURE_MASK;

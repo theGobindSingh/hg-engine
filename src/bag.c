@@ -4,6 +4,7 @@
 #include "../include/constants/file.h"
 #include "../include/constants/item.h"
 #include "../include/debug.h"
+#include "../include/game_rules.h"
 #include "../include/item.h"
 #include "../include/map_events_internal.h"
 #include "../include/message.h"
@@ -279,6 +280,22 @@ BOOL Bag_AddItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
     return TRUE;
 }
 
+/* james-game 0.5.4: the `hooks` trampoline for Bag_TakeItem (arm9 0x02078434) / Pocket_TakeItem (0x02078480) is
+ * `push {r5,r6}; ldr r5,[pc,#16]; mov r6,lr; str r6,[r5]; pop {r5,r6}; bl <function>; ldr r1,[pc,#4]; ldr r1,[r1]; mov pc,r1`
+ * (disassembled from the 0.5.4 build), i.e. it calls the function with LR = the trampoline, so __builtin_return_address is
+ * useless here. The caller's real LR is parked in a slot whose address is the literal word at trampoline+0x14:
+ * 0x02078448 -> slot 0x0207844C, 0x02078494 -> slot 0x02078498. Read it first thing, before anything else can run. */
+#define BAG_TAKE_ITEM_TRAMPOLINE_LITERAL    0x02078448
+#define POCKET_TAKE_ITEM_TRAMPOLINE_LITERAL 0x02078494
+static inline u32 HookedCallerLr(u32 literalAddr)
+{
+    const u32 *slot = *(const u32 *const *)literalAddr;
+    if ((u32)slot < 0x02000000 || (u32)slot >= 0x02400000) {
+        return 0;
+    }
+    return *slot & ~1u;
+}
+
 ITEM_SLOT *Pocket_GetItemSlotForRemove(ITEM_SLOT *slots, u32 count, u16 itemId, u16 quantity)
 {
     u32 i;
@@ -306,9 +323,14 @@ ITEM_SLOT *Bag_GetItemSlotForRemove(BAG_DATA *bag, u16 itemId, u16 quantity, int
 
 BOOL Bag_TakeItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
 {
+    // james-game 0.5.4: SUPER ITEMS - listed call sites consume nothing (but still fail if the item is absent)
+    u32 callerRet = HookedCallerLr(BAG_TAKE_ITEM_TRAMPOLINE_LITERAL);
     ITEM_SLOT *slot = Bag_GetItemSlotForRemove(bag, itemId, quantity, heap_id);
     if (slot == NULL) {
         return FALSE;
+    }
+    if (SuperItems_SkipTake(itemId, callerRet)) {
+        return TRUE;
     }
     slot->quantity -= quantity;
     if (slot->quantity == 0) {
@@ -326,9 +348,13 @@ BOOL Bag_TakeItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
 
 BOOL Pocket_TakeItem(ITEM_SLOT *slots, u32 count, u16 itemId, u16 quantity)
 {
+    u32 callerRet = HookedCallerLr(POCKET_TAKE_ITEM_TRAMPOLINE_LITERAL);
     ITEM_SLOT *slot = Pocket_GetItemSlotForRemove(slots, count, itemId, quantity);
     if (slot == NULL) {
         return FALSE;
+    }
+    if (SuperItems_SkipTake(itemId, callerRet)) {
+        return TRUE;
     }
     slot->quantity -= quantity;
     if (slot->quantity == 0) {

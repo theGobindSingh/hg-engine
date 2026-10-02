@@ -7,16 +7,17 @@
 #include "../include/game_rules.h"
 
 /* james-game 0.5.2: with the Super Rare Candy rule ON the Rare Candy shows the appended "Super Rare Candy" lines
- * (archive 222 / 831 / 832 / 833, index 2686 / 537). Rule OFF = byte-identical to before. */
-#define SUPER_RARE_CANDY_NAME_MSG    2686
-#define SUPER_RARE_CANDY_VARIANT_MSG 537
+ * (archive 222 / 831 / 832 / 833, index 2686 / 537); 0.5.4 generalises it to the SUPER ITEMS table (src/game_rules.c). Rule OFF = byte-identical to before. */
 
 void BufferOffsetItemLineFromFile(MessageFormat *msgFmt, u32 fieldno, u32 itemId, u32 fileId)
 {
     MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, fileId, msgFmt->heapId);
     u32 offset = ITEM_MSG_OFFSET(itemId);
-    if (itemId == ITEM_RARE_CANDY && GameRule_IsEnabled(RULE_SUPER_RARE_CANDY)) {
-        offset = SUPER_RARE_CANDY_VARIANT_MSG;
+    const struct SuperItemDef *super = SuperItems_Active((u16)itemId);
+    if (super != NULL) {
+        offset = (fileId == MSG_DATA_ITEM_NAME_PLURAL_GEN4) ? super->msg832
+               : (fileId == MSG_DATA_ITEM_GIVE_ITEM_GEN4)   ? super->msg833
+                                                            : super->msg831;
     }
     if (msgData != NULL) {
         ReadMsgDataIntoString(msgData, offset, msgFmt->buffer);
@@ -55,7 +56,7 @@ void LONG_CALL BufferItemNameGiveItem(MessageFormat *msgFmt, u32 fieldno, u32 it
 /* james-game 0.5.2: every reader of the item-name archive (222) funnels through retail ReadMsgDataIntoString /
  * NewString_ReadMsgData (arm9 0x0200BB6C / 0x0200BBA0) - the Bag (overlay 15), shops, party menu... load their own
  * MsgData for archive 222 and never touch BufferItemName. Both are re-implemented from retail (disassembled, pret
- * src/msgdata.c) with one addition: archive 222, index ITEM_RARE_CANDY reads index 2686 while the rule is ON.
+ * src/msgdata.c) with one addition: archive 222, a SUPER ITEMS row reads its replacement index while the rule is ON.
  * Retail layout: struct MsgData { u16 type; u16 heapId; u16 narcId; u16 fileId; union { void *direct; void *lazy; }; }. */
 struct MsgDataLayout {
     u16 type;
@@ -71,9 +72,11 @@ _Static_assert(__builtin_offsetof(struct MsgDataLayout, data) == 8, "MsgData.dat
 
 static u32 MsgData_ApplyItemNameRule(const struct MsgDataLayout *msgData, u32 msgNo)
 {
-    if (msgData->fileId == ITEM_NAME_FILE && msgData->narcId == ARC_MSG_DATA && msgNo == ITEM_RARE_CANDY
-        && GameRule_IsEnabled(RULE_SUPER_RARE_CANDY)) {
-        return SUPER_RARE_CANDY_NAME_MSG;
+    if (msgData->fileId == ITEM_NAME_FILE && msgData->narcId == ARC_MSG_DATA) {
+        const struct SuperItemDef *super = SuperItems_Active((u16)msgNo);
+        if (super != NULL) {
+            return super->msg222;
+        }
     }
     return msgNo;
 }

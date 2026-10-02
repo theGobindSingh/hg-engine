@@ -536,3 +536,6 @@ a {COLOR 255}Red Orb{COLOR 0}
 a {COLOR 255}Blue Orb{COLOR 0}
 an {COLOR 255}Enigma Stone{COLOR 0}
 a {COLOR 255}Super Rare Candy{COLOR 0}
+a {COLOR 255}Super Premier Ball{COLOR 0}
+a {COLOR 255}Super Max Repel{COLOR 0}
+a {COLOR 255}Super Escape Rope{COLOR 0}

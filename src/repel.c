@@ -1,3 +1,4 @@
+#include "../include/game_rules.h"
 #include "../include/repel.h"
 
 #include "../include/bag.h"
@@ -65,6 +66,12 @@ BOOL Repel_Use(u16 item_id, u32 heap_id)
     BAG_DATA *bag = Sav2_Bag_get(saveData);
 
     item_id = Repel_GetMostRecent();
+
+    if (SuperItems_Active(item_id) != NULL && Bag_HasItem(bag, item_id, 1, heap_id)) {
+        // james-game 0.5.4: SUPER ITEMS Max Repel is not consumed on expiry re-use
+        *repel_addr = Repel_GetSteps(item_id, heap_id);
+        return TRUE;
+    }
 
     if (Bag_TakeItem(bag, item_id, 1, heap_id)) {
         *repel_addr = Repel_GetSteps(item_id, heap_id);

@@ -21,14 +21,15 @@
 #define GMS_MSG_DESC_LEVEL_CAPS 164
 #define GMS_MSG_GAME_RULES      165
 #define GMS_MSG_DEBUG_RULES     166
-#define GMS_MSG_SUPER_RARE_CANDY 167
-#define GMS_MSG_DESC_SUPER_RARE_CANDY 168
+/* 167/168 (old SUPER RARE CANDY label/description) are now dead text, kept so no archive-40 index moves. */
+#define GMS_MSG_SUPER_ITEMS 169
+#define GMS_MSG_DESC_SUPER_ITEMS 152 /* existing placeholder: "Whoops! Looks like thereâs nothing here!" */
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
 #define FLAG_GMS_MODE_BIT0      2301 /* 0x8FD: mode id bit 0 */
 #define FLAG_GMS_MODE_BIT1      2302 /* 0x8FE: mode id bit 1 */
 #define FLAG_GMS_MODE_BIT2      2303 /* 0x8FF: mode id bit 2 */
-#define FLAG_GMS_SUPER_RARE_CANDY 2304 /* 0x900 (retail FLAG_UNK_900, unused): set = Super Rare Candy rule ON */
+#define FLAG_GMS_SUPER_ITEMS 2304 /* 0x900 (retail FLAG_UNK_900, unused): set = Super Items rule ON */
 
 #endif // GAME_MODE_SELECT_H

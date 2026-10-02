@@ -536,3 +536,6 @@ None
 {COLOR 255}Blue Orbs{COLOR 0}
 {COLOR 255}Enigma Stones{COLOR 0}
 {COLOR 255}Super Rare Candies{COLOR 0}
+{COLOR 255}Super Premier Balls{COLOR 0}
+{COLOR 255}Super Max Repels{COLOR 0}
+{COLOR 255}Super Escape Ropes{COLOR 0}

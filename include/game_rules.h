@@ -9,7 +9,7 @@
 
 enum GameRuleId {
     RULE_LEVEL_CAPS = 0,
-    RULE_SUPER_RARE_CANDY,
+    RULE_SUPER_ITEMS,
     RULE_COUNT
 };
 
@@ -53,7 +53,7 @@ struct GamePresetDef {
 extern const struct GameRuleDef gGameRules[RULE_COUNT];
 extern const struct GamePresetDef gGamePresets[GMS_MODE_COUNT]; /* index 0 unused */
 
-/* Runtime API for any engine file (lives in overlay 129, src/game_rules.c): GameRule_IsEnabled(RULE_SUPER_RARE_CANDY),
+/* Runtime API for any engine file (lives in overlay 129, src/game_rules.c): GameRule_IsEnabled(RULE_SUPER_ITEMS),
  * GameRule_IsEnabled(RULE_LEVEL_CAPS). Reads the flag through SaveBlock2_get(): safe in battle, on the field and during the Oak intro. */
 BOOL LONG_CALL GameRule_IsEnabled(u32 rule);
 /* Writes every rule flag plus the three mode-bit flags. ruleValues: bit i = rule i ON. */
@@ -61,5 +61,20 @@ void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues);
 u32 LONG_CALL GameRules_GetMode(void);
 /* Bitmask of every rule's scrambledDefault. */
 u32 LONG_CALL GameRules_ScrambledDefaults(void);
+
+
+/* SUPER ITEMS debug rule: while ON, four items are infinite and show a "Super" name. Row lookups for everything that is
+ * item-specific (names, consumption) go through this one table. */
+struct SuperItemDef {
+    u16 item;
+    u16 msg222; /* archive 222 (item name) index */
+    u16 msg831; /* archive 831 (name with article) index */
+    u16 msg832; /* archive 832 (plural) index */
+    u16 msg833; /* archive 833 (give-item form) index */
+};
+/* NULL when the rule is OFF or the item is not listed. */
+const struct SuperItemDef *LONG_CALL SuperItems_Active(u16 item);
+/* TRUE when Bag_TakeItem / Pocket_TakeItem called from callerRet (thumb bit cleared) should consume nothing. */
+BOOL LONG_CALL SuperItems_SkipTake(u16 item, u32 callerRet);
 
 #endif // GAME_RULES_H

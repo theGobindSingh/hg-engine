@@ -99,8 +99,8 @@ int __attribute__((section(".init"))) PartyMenu_HandleUseItemOnMon_Internal(stru
             sys_FreeMemoryEz(itemData);
             return PARTY_MENU_STATE_BEGIN_EXIT;
         } else {
-            // james-game 0.5.2: Rare Candy is infinitely reusable only while the Super Rare Candy rule is ON
-            if (partyMenu->args->itemId != ITEM_RARE_CANDY || !GameRule_IsEnabled(RULE_SUPER_RARE_CANDY)) {
+            // james-game 0.5.4: a SUPER ITEMS row (Rare Candy) is infinitely reusable only while the rule is ON
+            if (SuperItems_Active(partyMenu->args->itemId) == NULL) {
                 Bag_TakeItem(partyMenu->args->bag, partyMenu->args->itemId, 1, HEAP_ID_PARTY_MENU);
             }
             PartyMenu_SetItemUseFuncFromBagSelection(partyMenu);
