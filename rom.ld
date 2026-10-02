@@ -1100,3 +1100,9 @@ ov53_OakSpeech_FillBgLayerWithPalette = 0x021E60E8 | 1;
 /* ov53 0x021E628C: OakSpeech_PrintAndFadeFullScreenText(data, msgNum, kind, y, height); the Centered wrapper at 0x021E64B4
    calls it with y = height = 0xFFFF */
 ov53_OakSpeech_PrintAndFadeFullScreenText = 0x021E628C | 1;
+/* james-game 0.5.2: the four retail MsgData readers called by ReadMsgDataIntoString (0x0200BB6C) and
+   NewString_ReadMsgData (0x0200BBA0); targets read from this ROM's own bl instructions (pret src/msgdata.c). */
+ReadMsgData_ExistingTable_ExistingString = 0x0200B760 | 1;
+ReadMsgData_ExistingNarc_ExistingString = 0x0200B8FC | 1;
+ReadMsgData_ExistingTable_NewString = 0x0200B810 | 1;
+ReadMsgData_ExistingNarc_NewString = 0x0200B9F8 | 1;

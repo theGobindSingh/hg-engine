@@ -535,3 +535,4 @@ None
 {COLOR 255}Red Orbs{COLOR 0}
 {COLOR 255}Blue Orbs{COLOR 0}
 {COLOR 255}Enigma Stones{COLOR 0}
+{COLOR 255}Super Rare Candies{COLOR 0}

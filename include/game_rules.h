@@ -9,7 +9,15 @@
 
 enum GameRuleId {
     RULE_LEVEL_CAPS = 0,
+    RULE_SUPER_RARE_CANDY,
     RULE_COUNT
+};
+
+/* The toggle screen groups rules under one header strip per category, in this order whatever the table order. */
+enum GameRuleCategory {
+    GAMERULE_CAT_GAME = 0,
+    GAMERULE_CAT_DEBUG,
+    GAMERULE_CAT_COUNT
 };
 
 enum GameModeId {
@@ -27,6 +35,7 @@ struct GameRuleDef {
     u16 storageFlag;       /* script flag holding the rule */
     u8 flagMeansOff;       /* 1: flag set = rule OFF (keeps old zeroed saves ON) */
     u8 scrambledDefault;   /* initial toggle value in Scrambled (0 = OFF) */
+    u8 category;           /* enum GameRuleCategory: which header strip the row sits under */
 };
 
 struct GamePresetDef {
@@ -40,7 +49,8 @@ struct GamePresetDef {
 extern const struct GameRuleDef gGameRules[RULE_COUNT];
 extern const struct GamePresetDef gGamePresets[GMS_MODE_COUNT]; /* index 0 unused */
 
-/* Reads the flag through SaveBlock2_get(): safe in battle, on the field and during the Oak intro. */
+/* Runtime API for any engine file (lives in overlay 129, src/game_rules.c): GameRule_IsEnabled(RULE_SUPER_RARE_CANDY),
+ * GameRule_IsEnabled(RULE_LEVEL_CAPS). Reads the flag through SaveBlock2_get(): safe in battle, on the field and during the Oak intro. */
 BOOL LONG_CALL GameRule_IsEnabled(u32 rule);
 /* Writes every rule flag plus the three mode-bit flags. ruleValues: bit i = rule i ON. */
 void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues);

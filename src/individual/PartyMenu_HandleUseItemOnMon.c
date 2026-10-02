@@ -14,6 +14,7 @@
 #include "constants/weather_numbers.h"
 
 #include "bag.h"
+#include "game_rules.h"
 #include "battle.h"
 #include "overlay.h"
 #include "party_menu.h"
@@ -98,8 +99,8 @@ int __attribute__((section(".init"))) PartyMenu_HandleUseItemOnMon_Internal(stru
             sys_FreeMemoryEz(itemData);
             return PARTY_MENU_STATE_BEGIN_EXIT;
         } else {
-            // james-game 0.4.20: Rare Candy is infinitely reusable (client debug request)
-            if (partyMenu->args->itemId != ITEM_RARE_CANDY) {
+            // james-game 0.5.2: Rare Candy is infinitely reusable only while the Super Rare Candy rule is ON
+            if (partyMenu->args->itemId != ITEM_RARE_CANDY || !GameRule_IsEnabled(RULE_SUPER_RARE_CANDY)) {
                 Bag_TakeItem(partyMenu->args->bag, partyMenu->args->itemId, 1, HEAP_ID_PARTY_MENU);
             }
             PartyMenu_SetItemUseFuncFromBagSelection(partyMenu);

@@ -535,3 +535,4 @@ a {COLOR 255}Lock Capsule{COLOR 0}
 a {COLOR 255}Red Orb{COLOR 0}
 a {COLOR 255}Blue Orb{COLOR 0}
 an {COLOR 255}Enigma Stone{COLOR 0}
+a {COLOR 255}Super Rare Candy{COLOR 0}
