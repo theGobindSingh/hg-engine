@@ -9,11 +9,15 @@ const struct GameRuleDef gGameRules[RULE_COUNT] = {
     [RULE_SUPER_RARE_CANDY] = { GMS_MSG_SUPER_RARE_CANDY, GMS_MSG_DESC_SUPER_RARE_CANDY, FLAG_GMS_SUPER_RARE_CANDY, 0, 0, GAMERULE_CAT_DEBUG },
 };
 
+/* Preset rule values, one explicit term per rule (0 = OFF). Every DEBUG rule is OFF in every preset, and presets only
+ * show the GAME category (GAMERULE_CATS_GAME), so no debug flag can be set by starting a preset. */
+#define RV(rule, on) ((u32)(on) << (rule))
+
 const struct GamePresetDef gGamePresets[GMS_MODE_COUNT] = {
-    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, 0, 0, 0 },
-    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, 1u << RULE_LEVEL_CAPS, 0, 0 },
-    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, 1u << RULE_LEVEL_CAPS, 0, 0 },
-    [GMS_MODE_SCRAMBLED]  = { GMS_MSG_SCRAMBLED,  GMS_MSG_TOP_SCRAMBLED, 0, 1, 1 },
+    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_RARE_CANDY, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_RARE_CANDY, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_RARE_CANDY, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_SCRAMBLED]  = { GMS_MSG_SCRAMBLED,  GMS_MSG_TOP_SCRAMBLED, 0, 1, 1, GAMERULE_CATS_ALL },
 };
 
 static SCRIPT_STATE *GameRules_Flags(void)
@@ -41,8 +45,12 @@ static void GameRules_WriteFlag(u16 flag, BOOL set)
 
 void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues)
 {
+    u32 shown = (mode < GMS_MODE_COUNT && mode != GMS_MODE_NONE) ? gGamePresets[mode].categories : GAMERULE_CATS_ALL;
     for (u32 i = 0; i < RULE_COUNT; i++) {
         BOOL on = (ruleValues >> i) & 1;
+        if (!((shown >> gGameRules[i].category) & 1)) {
+            on = FALSE; /* a category the chosen mode hides is never switched on */
+        }
         GameRules_WriteFlag(gGameRules[i].storageFlag, gGameRules[i].flagMeansOff ? !on : on);
     }
     for (u32 i = 0; i < 3; i++) {

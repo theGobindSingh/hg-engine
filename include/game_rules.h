@@ -44,7 +44,11 @@ struct GamePresetDef {
     u32 ruleValues;        /* bit i = value of rule i (1 = ON) shown/locked */
     u8 editable;           /* Scrambled only */
     u8 selectable;         /* 0 = Confirm shows the "not ready" dialog and never progresses */
+    u8 categories;         /* bit c = the toggle screen shows category c (header + its rules). A hidden category is never ON. */
 };
+
+#define GAMERULE_CATS_ALL  ((1u << GAMERULE_CAT_COUNT) - 1)
+#define GAMERULE_CATS_GAME (1u << GAMERULE_CAT_GAME)
 
 extern const struct GameRuleDef gGameRules[RULE_COUNT];
 extern const struct GamePresetDef gGamePresets[GMS_MODE_COUNT]; /* index 0 unused */

@@ -154,8 +154,8 @@ Whoops! Looks like there’s\nnothing here!
 Are you sure? These settings are\npermanent and can’t be changed!
 Sorry, this game mode isn’t\nready yet!
 OVER EASY
-SOFTBOILED
-HARDBOILED
+SOFT-BOILED
+HARD-BOILED
 SCRAMBLED
 LEVEL CAPS
 ON

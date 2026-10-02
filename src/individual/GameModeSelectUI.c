@@ -115,13 +115,9 @@ extern void LONG_CALL ClearFrameAndWindow2(void *window, BOOL copyToVram);
 #define SUB_PAL_OPT_BG   5  /* palettes 5 and 6 */
 #define SUB_PAL_OPT_BOX  10
 #define SUB_PAL_OPT_FOOT 11
-#define SUB_PAL_OPT_HDR  12 /* section header strips: palette 5's colours with red and blue swapped (retail Oak uses 0-4, 7-9, 14 only) */
 #define SUB_PAL_FONT     14 /* retail font palette 0 */
 
 /* File layout of the raw members, read with AllocAndReadWholeNarcMemberByIdPair. */
-#define NCLR_MAGIC          0x504C5454u /* 'TTLP' section tag at +0x10, colours at +0x28 */
-#define NCLR_COLORS_OFFSET  0x28
-#define HW_DB_BG_PLTT       0x05000400u /* sub-screen BG palette RAM (pret nitro/hw/ARM9/mmap.h) */
 #define NSCR_MAGIC          0x5343524Eu /* 'NRCS' section tag at +0x10, entries at +0x24 */
 #define NCGR_MAGIC          0x43484152u /* 'RAHC' section tag at +0x10, tiles at +0x30 */
 #define SECTION_TAG_OFFSET  0x10
@@ -190,7 +186,7 @@ static const struct GmsOam sFootOam[4][4] = {
 #define OPT_ROW_TOP(i)       (OPT_HEADER_ROWS + OPT_ROW_TILES * (i)) /* i = slot: a header strip or a rule row */
 #define OPT_ROW_Y(i)         (8 * OPT_ROW_TOP(i)) /* retail sprite y is 24 + 24 i */
 #define OPT_FRAME_Y(i)       (-8 - 24 * (i))      /* retail sMenuEntryBorderYCoords */
-#define GMS_MAX_SLOTS        5 /* strips (headers + rules) that fit above the footer: rows 3-17, edge row 18, footer row 21 */
+#define GMS_VISIBLE          5 /* strips (headers + rules) shown at once: rows 3-17, edge row 18, footer row 21; longer lists scroll */
 #define OPT_BOX_ON_X         112                  /* sprite x of the first (ON) box position */
 #define OPT_BOX_OFF_X        160
 #define OPT_BOX_W            40
@@ -242,15 +238,17 @@ static const struct GmsOam sFootOam[4][4] = {
 #define PANE_FRAME_PAL  4
 #define PROMPT_LAST_ROW 17 /* the prompt must end above the pane's frame row (18) */
 
-#define GMS_MAX_WIN    (3 + GMS_MAX_SLOTS + RULE_COUNT)
-#define GMS_MAX_CANVAS (RULE_COUNT + 2)
+#define GMS_MAX_SLOTS  (RULE_COUNT + GAMERULE_CAT_COUNT) /* strips of the full list: every rule plus one header per category */
+#define GMS_MAX_WIN    (3 + 2 * GMS_VISIBLE)              /* SUB_0: tab, a label and a value window per visible strip, two footer labels */
+#define GMS_MAX_CANVAS (GMS_VISIBLE + 2)                  /* SUB_2: a box canvas per visible strip, two footer buttons */
 
-_Static_assert(RULE_COUNT >= 1 && RULE_COUNT + GAMERULE_CAT_COUNT <= GMS_MAX_SLOTS, "rules plus section headers must fit the screen without scrolling");
+_Static_assert(RULE_COUNT >= 1 && RULE_COUNT <= 32, "ruleValues is a u32 bitmask, one bit per rule");
+_Static_assert(RULE_COUNT < 0x80 && GMS_MAX_SLOTS < 0xFF, "slotArg / order / posSlot entries are bytes; bit 7 of a slotArg marks a header");
 _Static_assert(GMS_MAX_WIN >= GMS_NUM_MODES, "screen A needs one window per mode");
 _Static_assert(GMS_MSG_CANCEL == GMS_MSG_CONFIRM + 1, "footer labels are indexed by position");
 _Static_assert(GMS_MSG_OFF == GMS_MSG_ON + 1, "ON/OFF labels are consecutive");
 _Static_assert(FLAG_GMS_MODE_BIT1 == FLAG_GMS_MODE_BIT0 + 1 && FLAG_GMS_MODE_BIT2 == FLAG_GMS_MODE_BIT0 + 2, "mode bit flags are consecutive");
-_Static_assert(OPT_ROW_TOP(GMS_MAX_SLOTS) + 1 < OPT_FOOT_ROW, "the rule list must end above the footer buttons");
+_Static_assert(OPT_ROW_TOP(GMS_VISIBLE) + 1 < OPT_FOOT_ROW, "the rule list must end above the footer buttons");
 
 /* Section header strips: archive 40 message per GameRuleCategory. */
 static const u16 sCategoryMsg[GAMERULE_CAT_COUNT] = { GMS_MSG_GAME_RULES, GMS_MSG_DEBUG_RULES };
@@ -261,6 +259,35 @@ static const u16 sCategoryMsg[GAMERULE_CAT_COUNT] = { GMS_MSG_GAME_RULES, GMS_MS
 #define TXT_WHITE  GMS_TEXT_COLOR(15, 2, 0) /* Options names and unchosen values */
 #define TXT_DARK   GMS_TEXT_COLOR(1, 2, 0)  /* Options chosen value */
 #define TXT_BUTTON GMS_TEXT_COLOR(15, 1, 0) /* info menu buttons */
+
+/* Section header strip style: ONE table and ONE constant, so a different look is a one-line edit of GMS_HEADER_STYLE.
+ * A strip is three tile rows of retail's Options backdrop NSCR 17 (palette 5, no recolouring). srcRow = first of three
+ * source rows, stretched across the screen (the plate column replaces everything between the two edge columns); or HDR_FLAT =
+ * flatTile in every cell. NSCR 17: rows 0-2 are the dark mode-name tab (row 0 its top edge, tile 0x32, rows 1-2 tile 0x09),
+ * rows 3-5 the light blue rule row, rows 6-8 the darker blue rule row, tile 0x35 the pale area right of the tab, tile 0x08
+ * the grey panel fill below the list. */
+#define HDR_FLAT 0xFF
+struct GmsHeaderStyle {
+    u8 srcRow;
+    u8 flatTile;
+    u32 text;
+};
+enum {
+    HDR_DARK_TAB = 0, /* dark grey plate like the mode-name tab, white text */
+    HDR_PALE,         /* the pale (white-grey) pane area, dark text */
+    HDR_BLUE_DARK,    /* the darker blue rule-row group, white text */
+    HDR_OPTIONS_ROW,  /* the untouched light blue Options row plate, white text */
+    HDR_PANEL_GREY    /* the grey panel fill, white text */
+};
+static const struct GmsHeaderStyle sHeaderStyles[] = {
+    [HDR_DARK_TAB]    = { 0, 0, TXT_WHITE },
+    [HDR_PALE]        = { HDR_FLAT, 0x35, TXT_DARK },
+    [HDR_BLUE_DARK]   = { OPT_SRC_DARK_ROW, 0, TXT_WHITE },
+    [HDR_OPTIONS_ROW] = { OPT_SRC_LIGHT_ROW, 0, TXT_WHITE },
+    [HDR_PANEL_GREY]  = { HDR_FLAT, 0x08, TXT_WHITE },
+};
+
+#define GMS_HEADER_STYLE HDR_DARK_TAB
 
 /* Sprite palette 0 colours: 1 = white box fill; a locked (preset) box is drawn with the grey 3. */
 #define BOX_FILL_IDX   1
@@ -296,13 +323,14 @@ struct GmsCtx {
     MsgData *retailMsg; /* Oak's own archive 219 MsgData, restored on every return */
     u8 *boxTiles;       /* raw NCGR 4 (screen B only) */
     u8 *footTiles;      /* raw NCGR 6 (screen B only) */
+    u8 *bgScr;          /* raw NSCR 17, the Options backdrop (screen B only) */
     u32 nWin;
     u32 nCanvas;
     u32 phase;
     u32 afterOut;      /* phase to enter once the prompt has faded out */
     u32 screen;
     u32 mode;          /* GmsModeId shown on SCR_RULES */
-    u32 cursor;        /* SCR_MODES: 0-3; SCR_RULES: display position, RULE_COUNT = CONFIRM, RULE_COUNT + 1 = CANCEL */
+    u32 cursor;        /* SCR_MODES: 0-3; SCR_RULES: display position (rules only), nPos = CONFIRM, nPos + 1 = CANCEL */
     u32 footerSel;     /* last footer button the cursor was on (0 = Confirm, 1 = Cancel) */
     u32 padMode;       /* SCR_MODES: highlight frame visible */
     u32 promptShown;   /* top prompt currently faded in (so the next call fades it out) */
@@ -318,10 +346,14 @@ struct GmsCtx {
     u32 promptY;
     u32 promptH;
     u32 ruleValues; /* bit i = rule i ON */
-    u32 nSlots;     /* strips on SCR_RULES: one header per non-empty category, then its rules */
+    u32 nSlots;     /* the full list on SCR_RULES: one header per shown non-empty category, then its rules */
+    u32 nPos;       /* rules in that list (cursor positions) */
+    u32 nVis;       /* strips on screen: min(nSlots, GMS_VISIBLE) */
+    u32 scroll;     /* first list slot on screen */
     u8 slotArg[GMS_MAX_SLOTS]; /* SLOT_HEADER | category, or a rule id */
+    u8 slotPos[GMS_MAX_SLOTS]; /* slot -> display position, NO_POS for a header */
     u8 order[RULE_COUNT];      /* display position -> rule id (the cursor walks positions) */
-    u8 posSlot[RULE_COUNT];    /* display position -> strip */
+    u8 posSlot[RULE_COUNT];    /* display position -> slot */
     struct Window pane;
     struct Window win[GMS_MAX_WIN];       /* SUB_0 text */
     struct Window canvas[GMS_MAX_CANVAS]; /* SUB_2 pixel canvases */
@@ -337,6 +369,8 @@ struct GmsIn {
 
 static struct GmsCtx sGmsCtx;
 static struct GmsCtx *sGms; /* NULL when idle */
+
+static void GmsBuildSlots(struct GmsCtx *c);
 
 /* ---------------------------------------------------------------------------------------------------------
  * Small helpers
@@ -405,8 +439,10 @@ static void GmsFreeTiles(struct GmsCtx *c, struct OakSpeechDataView *d)
 {
     GmsFreeMember(d, c->boxTiles);
     GmsFreeMember(d, c->footTiles);
+    GmsFreeMember(d, c->bgScr);
     c->boxTiles = NULL;
     c->footTiles = NULL;
+    c->bgScr = NULL;
 }
 
 static struct Window *GmsAddWindowAt(struct OakSpeechDataView *d, u32 bg, struct Window *w, u32 x, u32 y, u32 ww, u32 hh,
@@ -677,6 +713,7 @@ static void GmsInputModes(struct GmsCtx *c, struct OakSpeechDataView *d, const s
         return;
     }
     c->mode = GMS_MODE_OVER_EASY + picked;
+    GmsBuildSlots(c); /* the list depends on the mode: presets show only the GAME category */
     c->ruleValues = c->presets[c->mode].editable ? GameRules_ScrambledDefaults() : c->presets[c->mode].ruleValues;
     c->screen = SCR_RULES;
     c->cursor = 0;
@@ -735,29 +772,39 @@ static void GmsBlitCell(struct Window *w, const u8 *raw, const struct GmsOam *oa
     }
 }
 
-/* Window slots on SCR_RULES, in creation order: tab, one label per strip, one value window per rule position. */
-#define WIN_HEADER     0
-#define WIN_LABEL(s)   (1 + (s))
-#define WIN_VALUE(c, p) (1 + (c)->nSlots + (p))
-#define CANVAS_FOOT(k) (RULE_COUNT + (k))
+/* Window slots on SCR_RULES, in creation order: the tab, one label window per visible strip, one value window per
+ * visible strip, then the two footer labels. SUB_2 canvases: one per visible strip, then the two footer buttons.
+ * A strip is a screen position v (0 .. nVis - 1); it shows list slot scroll + v. */
+#define WIN_TAB            0
+#define WIN_LABEL(v)       (1 + (v))
+#define WIN_VALUE(c, v)    (1 + (c)->nVis + (v))
+#define CANVAS_FOOT(c, k)  ((c)->nVis + (k))
+#define NO_POS             0xFF /* slotPos entry of a header strip */
 
-/* Lays out the strips: for each category in enum order, a header (only if it has rules) then its rules in table order.
- * A category with no rules shows no header. The DEBUG section always comes after every GAME rule, whatever the table order. */
+/* Lays out the full list: for each category the mode shows, in enum order, a header (only if it has rules) then its
+ * rules in table order. The DEBUG section always comes after every GAME rule, whatever the table order. */
 static void GmsBuildSlots(struct GmsCtx *c)
 {
+    u32 shown = c->presets[c->mode].categories;
     u32 n = 0;
     u32 p = 0;
     for (u32 cat = 0; cat < GAMERULE_CAT_COUNT; cat++) {
+        if (!((shown >> cat) & 1)) {
+            continue;
+        }
         BOOL first = TRUE;
         for (u32 r = 0; r < RULE_COUNT; r++) {
             if (c->rules[r].category != cat) {
                 continue;
             }
             if (first) {
-                c->slotArg[n++] = SLOT_HEADER | cat;
+                c->slotArg[n] = SLOT_HEADER | cat;
+                c->slotPos[n] = NO_POS;
+                n++;
                 first = FALSE;
             }
             c->slotArg[n] = r;
+            c->slotPos[n] = p;
             c->order[p] = r;
             c->posSlot[p] = n;
             n++;
@@ -765,6 +812,9 @@ static void GmsBuildSlots(struct GmsCtx *c)
         }
     }
     c->nSlots = n;
+    c->nPos = p;
+    c->nVis = n < GMS_VISIBLE ? n : GMS_VISIBLE;
+    c->scroll = 0;
 }
 
 static BOOL GmsRuleIsOn(const struct GmsCtx *c, u32 rule)
@@ -772,29 +822,54 @@ static BOOL GmsRuleIsOn(const struct GmsCtx *c, u32 rule)
     return (c->ruleValues >> rule) & 1;
 }
 
-/* p = display position */
+/* Box canvas and value labels of display position p, which must be on screen. */
 static void GmsDrawRuleRow(struct GmsCtx *c, struct OakSpeechDataView *d, u32 p)
 {
+    u32 v = c->posSlot[p] - c->scroll;
     BOOL on = GmsRuleIsOn(c, c->order[p]);
     BOOL locked = !GmsRulesEditable(c);
 
     /* the chosen box and arrow: first position = ON, second = OFF */
-    struct Window *cv = &c->canvas[p];
+    struct Window *cv = &c->canvas[v];
     FillWindowPixelBuffer(cv, 0);
     GmsBlitCell(cv, c->boxTiles, sBoxOam, 3, (on ? OPT_BOX_ON_X : OPT_BOX_OFF_X) - OPT_CANVAS_COL * 8, 0, locked);
     CopyWindowToVram(cv);
 
     /* the two value labels */
-    struct Window *w = &c->win[WIN_VALUE(c, p)];
+    struct Window *w = &c->win[WIN_VALUE(c, v)];
     FillWindowPixelBuffer(w, 0);
     GmsPrint(c, d, w, GMS_MSG_ON, 0, OPT_BOX_ON_X - OPT_VALUE_COL * 8, OPT_BOX_W, 5, on ? TXT_DARK : TXT_WHITE);
     GmsPrint(c, d, w, GMS_MSG_OFF, 0, OPT_BOX_OFF_X - OPT_VALUE_COL * 8, OPT_BOX_W, 5, on ? TXT_WHITE : TXT_DARK);
     CopyWindowToVram(w);
 }
 
+/* Everything on strip v (a header's label, or a rule's label, box and values), for the slot it currently shows. */
+static void GmsDrawStrip(struct GmsCtx *c, struct OakSpeechDataView *d, u32 v)
+{
+    u32 s = c->scroll + v;
+    u32 arg = c->slotArg[s];
+    BOOL header = (arg & SLOT_HEADER) != 0;
+
+    struct Window *w = &c->win[WIN_LABEL(v)];
+    FillWindowPixelBuffer(w, 0);
+    GmsPrint(c, d, w, header ? sCategoryMsg[arg & ~SLOT_HEADER] : c->rules[arg].labelMsg, 0, 4, 0, 5,
+        header ? sHeaderStyles[GMS_HEADER_STYLE].text : TXT_WHITE);
+    CopyWindowToVram(w);
+    if (header) {
+        w = &c->win[WIN_VALUE(c, v)];
+        FillWindowPixelBuffer(w, 0);
+        CopyWindowToVram(w);
+        w = &c->canvas[v];
+        FillWindowPixelBuffer(w, 0);
+        CopyWindowToVram(w);
+    } else {
+        GmsDrawRuleRow(c, d, c->slotPos[s]);
+    }
+}
+
 static void GmsDrawFooter(struct GmsCtx *c, u32 k, u32 cell)
 {
-    struct Window *cv = &c->canvas[CANVAS_FOOT(k)];
+    struct Window *cv = &c->canvas[CANVAS_FOOT(c, k)];
     FillWindowPixelBuffer(cv, 0);
     GmsBlitCell(cv, c->footTiles, sFootOam[cell], 4, OPT_FOOT_SPRITE_X, OPT_FOOT_SPRITE_Y, FALSE);
     CopyWindowToVram(cv);
@@ -803,71 +878,46 @@ static void GmsDrawFooter(struct GmsCtx *c, u32 k, u32 cell)
 /* Red row frame and footer buttons for the current cursor. */
 static void GmsShowCursor(struct GmsCtx *c, struct OakSpeechDataView *d)
 {
-    BOOL onFooter = c->cursor >= RULE_COUNT;
+    BOOL onFooter = c->cursor >= c->nPos;
     for (u32 k = 0; k < 2; k++) {
-        GmsDrawFooter(c, k, (onFooter && c->cursor == RULE_COUNT + k) ? FOOT_SELECTED : FOOT_NORMAL);
+        GmsDrawFooter(c, k, (onFooter && c->cursor == c->nPos + k) ? FOOT_SELECTED : FOOT_NORMAL);
     }
     if (!onFooter) {
-        ScheduleSetBgPosText(d->bgConfig, BG_SUB_1, BG_POS_SET_Y, OPT_FRAME_Y(c->posSlot[c->cursor]));
+        ScheduleSetBgPosText(d->bgConfig, BG_SUB_1, BG_POS_SET_Y, OPT_FRAME_Y(c->posSlot[c->cursor] - c->scroll));
         c->descRule = c->order[c->cursor]; /* on a footer button the pane keeps the last rule's description */
     }
     GmsLayer(BG_SUB_1, onFooter ? 0 : 1);
 }
 
-static void GmsUpdateCursor(struct GmsCtx *c, struct OakSpeechDataView *d)
-{
-    GmsShowCursor(c, d);
-    GmsPaneText(c, d, GmsRuleDesc(c, c->descRule));
-}
-
-/* Header strips are tinted: the Options palette 0 with red and blue swapped, written straight to sub BG palette RAM. */
-static void GmsLoadHeaderPalette(struct GmsCtx *c, struct OakSpeechDataView *d)
-{
-    (void)c;
-    u8 *raw = GmsReadMember(d, NARC_OPTIONS, OPT_NCLR_BG, NCLR_MAGIC);
-    if (raw == NULL) {
-        return;
-    }
-    const u16 *src = (const u16 *)(raw + NCLR_COLORS_OFFSET);
-    volatile u16 *dst = (volatile u16 *)(HW_DB_BG_PLTT + SUB_PAL_OPT_HDR * 0x20);
-    for (u32 i = 0; i < 16; i++) {
-        u32 v = src[i];
-        dst[i] = (u16)(((v & 31) << 10) | (v & (31 << 5)) | ((v >> 10) & 31));
-    }
-    GmsFreeMember(d, raw);
-}
-
-/* Options backdrop: retail's NSCR 17 rows copied into the layout of this strip list. A rule row is a light or dark group
+/* Options backdrop: retail's NSCR 17 rows copied into the layout of the visible strips. A rule row is a light or dark group
  * (they alternate within a section, as in retail; the light row has its third box erased so every row is an ON/OFF row).
- * A header strip is the light group's plate stretched across the screen (box area replaced by plate), in the tinted palette. */
+ * A header strip is built from sHeaderStyles[GMS_HEADER_STYLE]. */
 static void GmsBuildBackdrop(struct GmsCtx *c, struct OakSpeechDataView *d)
 {
-    u8 *raw = GmsReadMember(d, NARC_OPTIONS, OPT_NSCR_BG, NSCR_MAGIC);
-    if (raw == NULL) {
+    if (c->bgScr == NULL) {
         return;
     }
-    GmsLoadHeaderPalette(c, d);
-    const u16 *src = (const u16 *)(raw + NSCR_ENTRIES_OFFSET);
+    const struct GmsHeaderStyle *hs = &sHeaderStyles[GMS_HEADER_STYLE];
+    const u16 *src = (const u16 *)(c->bgScr + NSCR_ENTRIES_OFFSET);
     u16 *map = c->map;
     for (u32 y = 0; y < SCREEN_H; y++) {
         for (u32 x = 0; x < SCREEN_W; x++) {
             u32 sy;
             u32 sx = x;
-            u32 pal = SUB_PAL_OPT_BG;
+            u16 v;
             if (y < OPT_HEADER_ROWS) {
                 sy = y;
-            } else if (y < OPT_ROW_TOP(c->nSlots)) {
-                u32 slot = (y - OPT_HEADER_ROWS) / OPT_ROW_TILES;
+            } else if (y < OPT_ROW_TOP(c->nVis)) {
+                u32 slot = c->scroll + (y - OPT_HEADER_ROWS) / OPT_ROW_TILES;
                 u32 r = (y - OPT_HEADER_ROWS) % OPT_ROW_TILES;
                 u32 dark = 0;
                 for (u32 k = 0; k < slot; k++) { /* position within the section, for the light/dark alternation */
                     dark = (c->slotArg[k] & SLOT_HEADER) ? 0 : dark ^ 1;
                 }
                 if (c->slotArg[slot] & SLOT_HEADER) {
-                    sy = OPT_SRC_LIGHT_ROW + r;
-                    pal = SUB_PAL_OPT_HDR;
-                    if (x != 0 && x != SCREEN_W - 1) {
-                        sx = OPT_SRC_PLATE_COL;
+                    sy = hs->srcRow + r;
+                    if (hs->srcRow < OPT_HEADER_ROWS || (x != 0 && x != SCREEN_W - 1)) {
+                        sx = OPT_SRC_PLATE_COL; /* the tab rows have no frame columns: plate all the way across */
                     }
                 } else if (dark == 0) {
                     sy = OPT_SRC_LIGHT_ROW + r;
@@ -877,18 +927,58 @@ static void GmsBuildBackdrop(struct GmsCtx *c, struct OakSpeechDataView *d)
                 } else {
                     sy = OPT_SRC_DARK_ROW + r;
                 }
-            } else if (y == OPT_ROW_TOP(c->nSlots)) {
+                if ((c->slotArg[slot] & SLOT_HEADER) && hs->srcRow == HDR_FLAT) {
+                    map[y * SCREEN_W + x] = hs->flatTile | (SUB_PAL_OPT_BG << 12);
+                    continue;
+                }
+            } else if (y == OPT_ROW_TOP(c->nVis)) {
                 sy = OPT_SRC_EDGE_ROW;
             } else {
                 sy = OPT_SRC_FILL_ROW;
             }
-            u16 v = src[sy * SCREEN_W + sx];
-            map[y * SCREEN_W + x] = (v & 0x0FFF) | ((((v >> 12) & 0xF) + pal) << 12);
+            v = src[sy * SCREEN_W + sx];
+            map[y * SCREEN_W + x] = (v & 0x0FFF) | ((((v >> 12) & 0xF) + SUB_PAL_OPT_BG) << 12);
         }
     }
-    GmsFreeMember(d, raw);
     LoadRectToBgTilemapRect(d->bgConfig, BG_SUB_3, map, 0, 0, SCREEN_W, SCREEN_H);
     BgCommitTilemapBufferToVram(d->bgConfig, BG_SUB_3);
+}
+
+/* The visible window changed: redraw the backdrop and every strip. */
+static void GmsRedrawStrips(struct GmsCtx *c, struct OakSpeechDataView *d)
+{
+    GmsBuildBackdrop(c, d);
+    for (u32 v = 0; v < c->nVis; v++) {
+        GmsDrawStrip(c, d, v);
+    }
+}
+
+/* Scrolls just far enough to show the cursor's rule; a section's first rule brings its header along. Returns TRUE if it moved. */
+static BOOL GmsEnsureVisible(struct GmsCtx *c)
+{
+    if (c->cursor >= c->nPos) {
+        return FALSE;
+    }
+    u32 slot = c->posSlot[c->cursor];
+    u32 old = c->scroll;
+    if (slot < c->scroll) {
+        c->scroll = slot;
+        if (slot > 0 && (c->slotArg[slot - 1] & SLOT_HEADER)) {
+            c->scroll = slot - 1;
+        }
+    } else if (slot >= c->scroll + c->nVis) {
+        c->scroll = slot + 1 - c->nVis;
+    }
+    return c->scroll != old;
+}
+
+static void GmsUpdateCursor(struct GmsCtx *c, struct OakSpeechDataView *d)
+{
+    if (GmsEnsureVisible(c)) {
+        GmsRedrawStrips(c, d);
+    }
+    GmsShowCursor(c, d);
+    GmsPaneText(c, d, GmsRuleDesc(c, c->descRule));
 }
 
 static void GmsBuildRules(struct GmsCtx *c, struct OakSpeechDataView *d)
@@ -897,6 +987,7 @@ static void GmsBuildRules(struct GmsCtx *c, struct OakSpeechDataView *d)
     GmsFreeTiles(c, d);
     c->boxTiles = GmsReadMember(d, NARC_OPTIONS, OPT_NCGR_BOX, NCGR_MAGIC);
     c->footTiles = GmsReadMember(d, NARC_OPTIONS, OPT_NCGR_FOOT, NCGR_MAGIC);
+    c->bgScr = GmsReadMember(d, NARC_OPTIONS, OPT_NSCR_BG, NSCR_MAGIC);
     GmsClear(d, BG_SUB_0);
     GmsClear(d, BG_SUB_2);
 
@@ -913,33 +1004,30 @@ static void GmsBuildRules(struct GmsCtx *c, struct OakSpeechDataView *d)
     GfGfxLoader_LoadScrnData(NARC_OPTIONS, OPT_NSCR_FRAME, d->bgConfig, BG_SUB_1, 0, 0, FALSE, d->heapID);
     ov53_OakSpeech_FillBgLayerWithPalette(d, BG_SUB_1, SUB_PAL_OPT_BG + 1);
 
-    /* pixel canvases on SUB_2: one per rule row, then the two footer buttons */
-    for (u32 p = 0; p < RULE_COUNT; p++) {
-        GmsAddCanvas(c, d, OPT_CANVAS_COL, OPT_ROW_TOP(c->posSlot[p]), OPT_CANVAS_W, OPT_ROW_TILES, SUB_PAL_OPT_BOX);
+    /* pixel canvases on SUB_2: one per visible strip, then the two footer buttons */
+    for (u32 v = 0; v < c->nVis; v++) {
+        GmsAddCanvas(c, d, OPT_CANVAS_COL, OPT_ROW_TOP(v), OPT_CANVAS_W, OPT_ROW_TILES, SUB_PAL_OPT_BOX);
     }
     GmsAddCanvas(c, d, OPT_FOOT_CONFIRM_COL, OPT_FOOT_ROW, OPT_FOOT_W, OPT_FOOT_H, SUB_PAL_OPT_FOOT);
     GmsAddCanvas(c, d, OPT_FOOT_CANCEL_COL, OPT_FOOT_ROW, OPT_FOOT_W, OPT_FOOT_H, SUB_PAL_OPT_FOOT);
 
-    /* text windows on SUB_0: header tab, rule names and values, footer labels */
+    /* text windows on SUB_0: header tab, a label and a value window per visible strip, footer labels */
     struct Window *w = GmsAddText(c, d, OPT_LABEL_COL, 0, OPT_HDR_W, OPT_ROW_TILES);
     GmsPrint(c, d, w, c->presets[c->mode].nameMsg, 0, 2, 0, 5, TXT_WHITE);
     CopyWindowToVram(w);
-    for (u32 s = 0; s < c->nSlots; s++) {
-        u32 arg = c->slotArg[s];
-        w = GmsAddText(c, d, OPT_LABEL_COL, OPT_ROW_TOP(s), OPT_LABEL_W, OPT_ROW_TILES);
-        GmsPrint(c, d, w, (arg & SLOT_HEADER) ? sCategoryMsg[arg & ~SLOT_HEADER] : c->rules[arg].labelMsg, 0, 4, 0, 5, TXT_WHITE);
-        CopyWindowToVram(w);
+    for (u32 v = 0; v < c->nVis; v++) {
+        GmsAddText(c, d, OPT_LABEL_COL, OPT_ROW_TOP(v), OPT_LABEL_W, OPT_ROW_TILES);
     }
-    for (u32 p = 0; p < RULE_COUNT; p++) {
-        GmsAddText(c, d, OPT_VALUE_COL, OPT_ROW_TOP(c->posSlot[p]), OPT_VALUE_W, OPT_ROW_TILES);
+    for (u32 v = 0; v < c->nVis; v++) {
+        GmsAddText(c, d, OPT_VALUE_COL, OPT_ROW_TOP(v), OPT_VALUE_W, OPT_ROW_TILES);
     }
     for (u32 k = 0; k < 2; k++) {
         w = GmsAddText(c, d, k == 0 ? OPT_FOOT_CONFIRM_COL : OPT_FOOT_CANCEL_COL, OPT_FOOT_ROW, OPT_FOOT_W, OPT_ROW_TILES);
         GmsPrint(c, d, w, GMS_MSG_CONFIRM + k, 0, 0, OPT_FOOT_W * 8, 6, TXT_WHITE);
         CopyWindowToVram(w);
     }
-    for (u32 p = 0; p < RULE_COUNT; p++) {
-        GmsDrawRuleRow(c, d, p);
+    for (u32 v = 0; v < c->nVis; v++) {
+        GmsDrawStrip(c, d, v);
     }
     GmsShowCursor(c, d);
 
@@ -977,7 +1065,7 @@ static void GmsToModes(struct GmsCtx *c)
 static void GmsFootPress(struct GmsCtx *c, struct OakSpeechDataView *d, u32 k)
 {
     PlaySE(k == 0 ? SEQ_SE_DP_SAVE : SEQ_SE_GS_GEARCANCEL); /* the Options app's own CONFIRM / QUIT sounds */
-    c->cursor = RULE_COUNT + k;
+    c->cursor = c->nPos + k;
     c->footerSel = k;
     c->footAction = k;
     c->footPress = 0;
@@ -1017,14 +1105,14 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
             GmsFootPress(c, d, 1);
             return;
         }
-        /* only rule strips are tested: a touch on a section header falls through and does nothing */
-        for (u32 p = 0; p < RULE_COUNT; p++) {
-            u32 slot = c->posSlot[p];
-            if (!GmsHit(in, 0, 255, OPT_ROW_Y(slot), OPT_ROW_Y(slot) + 8 * OPT_ROW_TILES - 1)) {
+        /* strips are tested at their on-screen position and map to the slot they show; a touch on a header does nothing */
+        for (u32 v = 0; v < c->nVis; v++) {
+            u32 p = c->slotPos[c->scroll + v];
+            if (p == NO_POS || !GmsHit(in, 0, 255, OPT_ROW_Y(v), OPT_ROW_Y(v) + 8 * OPT_ROW_TILES - 1)) {
                 continue;
             }
-            BOOL onBox = GmsHit(in, OPT_HIT_ON_X0, OPT_HIT_ON_X1, OPT_HIT_BOX_Y0(slot), OPT_HIT_BOX_Y1(slot));
-            BOOL onOff = GmsHit(in, OPT_HIT_OFF_X0, OPT_HIT_OFF_X1, OPT_HIT_BOX_Y0(slot), OPT_HIT_BOX_Y1(slot));
+            BOOL onBox = GmsHit(in, OPT_HIT_ON_X0, OPT_HIT_ON_X1, OPT_HIT_BOX_Y0(v), OPT_HIT_BOX_Y1(v));
+            BOOL onOff = GmsHit(in, OPT_HIT_OFF_X0, OPT_HIT_OFF_X1, OPT_HIT_BOX_Y0(v), OPT_HIT_BOX_Y1(v));
             if (editable && (onBox || onOff) && GmsRuleIsOn(c, c->order[p]) != onBox) {
                 GmsFlipRule(c, d, p);
             }
@@ -1040,28 +1128,28 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
     }
     if (in->keys & PAD_KEY_UP) {
         if (c->cursor == 0) {
-            c->cursor = RULE_COUNT + c->footerSel;
-        } else if (c->cursor >= RULE_COUNT) {
-            c->cursor = RULE_COUNT - 1;
+            c->cursor = c->nPos + c->footerSel;
+        } else if (c->cursor >= c->nPos) {
+            c->cursor = c->nPos - 1;
         } else {
             c->cursor--;
         }
         GmsSE();
         GmsUpdateCursor(c, d);
     } else if (in->keys & PAD_KEY_DOWN) {
-        if (c->cursor >= RULE_COUNT) {
+        if (c->cursor >= c->nPos) {
             c->cursor = 0;
-        } else if (c->cursor == RULE_COUNT - 1) {
-            c->cursor = RULE_COUNT + c->footerSel;
+        } else if (c->cursor == c->nPos - 1) {
+            c->cursor = c->nPos + c->footerSel;
         } else {
             c->cursor++;
         }
         GmsSE();
         GmsUpdateCursor(c, d);
     } else if (in->keys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-        if (c->cursor >= RULE_COUNT) {
+        if (c->cursor >= c->nPos) {
             c->footerSel ^= 1;
-            c->cursor = RULE_COUNT + c->footerSel;
+            c->cursor = c->nPos + c->footerSel;
             GmsSE();
             GmsUpdateCursor(c, d);
         } else if (editable) {
@@ -1072,8 +1160,8 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
             }
         }
     } else if (in->keys & PAD_BUTTON_A) {
-        if (c->cursor >= RULE_COUNT) {
-            GmsFootPress(c, d, c->cursor - RULE_COUNT);
+        if (c->cursor >= c->nPos) {
+            GmsFootPress(c, d, c->cursor - c->nPos);
         }
     }
 }
@@ -1190,7 +1278,7 @@ static BOOL GmsStep(struct GmsCtx *c, struct OakSpeechDataView *d)
             GmsLeavePrompt(c, PH_LEAVE_FADE);
         } else if (r == YESNO_RESPONSE_NO) {
             /* back to the toggle list with the same values, cursor on Confirm */
-            c->cursor = RULE_COUNT;
+            c->cursor = c->nPos;
             c->footerSel = 0;
             GmsBuildRules(c, d);
             GmsUpdateCursor(c, d);
@@ -1235,7 +1323,6 @@ static struct GmsCtx *GmsCreate(struct OakSpeechDataView *d, const struct GmsSer
     c->msg40 = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, 27, 40, d->heapID);
     c->screen = SCR_MODES;
     c->phase = PH_ENTER;
-    GmsBuildSlots(c);
     return c;
 }
 
