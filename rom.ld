@@ -1086,3 +1086,17 @@ ov53_OakSpeechYesNo_Main = 0x021E8248 | 1;
 ToggleBgLayer = 0x0201BC28 | 1;
 /* bl 0x21e66a8 at ov53 0x21E70EE (state 7, r1=1) and 0x21E7232 (state 44, r1=1): (data, layout) */
 ov53_OakSpeech_SetButtonTutorialScreenLayout = 0x021E66A8 | 1;
+
+/* ---- game-mode-select restyle (0.5.1): every address below checked in this ROM's arm9 / ov53 disassembly ---- */
+/* arm9 0x02007914 = GfGfxLoader_LoadScrnData(narcId, member, bgConfig, layer, tileStart, size, compressed, heap):
+   bl at ov53 0x21E67F8; body = LoadFromNarc(atEnd) + the screen-data copy, as in pret gf_gfx_loader.c */
+GfGfxLoader_LoadScrnData = 0x02007914 | 1;
+/* arm9 0x0201F238: ScheduleSetBgPosText(bgConfig, layer, op, value), bl at ov53 0x21E68A4 with (layer 5, op 3 = SET_Y, 0) */
+ScheduleSetBgPosText = 0x0201F238 | 1;
+/* arm9 0x0201BF7C: BgCommitTilemapBufferToVram(bgConfig, layer), bl at ov53 0x21E6112 */
+BgCommitTilemapBufferToVram = 0x0201BF7C | 1;
+/* ov53 0x021E60E8: OakSpeech_FillBgLayerWithPalette(data, layer, palette): palette of the whole 32x24 layer + commit */
+ov53_OakSpeech_FillBgLayerWithPalette = 0x021E60E8 | 1;
+/* ov53 0x021E628C: OakSpeech_PrintAndFadeFullScreenText(data, msgNum, kind, y, height); the Centered wrapper at 0x021E64B4
+   calls it with y = height = 0xFFFF */
+ov53_OakSpeech_PrintAndFadeFullScreenText = 0x021E628C | 1;
