@@ -5,7 +5,7 @@
 #include "../include/types.h"
 
 const struct GameRuleDef gGameRules[RULE_COUNT] = {
-    [RULE_LEVEL_CAPS] = { GMS_MSG_LEVEL_CAPS, GMS_MSG_WHOOPS, FLAG_GMS_LEVEL_CAPS_OFF, 1, 0 },
+    [RULE_LEVEL_CAPS] = { GMS_MSG_LEVEL_CAPS, GMS_MSG_DESC_LEVEL_CAPS, FLAG_GMS_LEVEL_CAPS_OFF, 1, 0 },
 };
 
 const struct GamePresetDef gGamePresets[GMS_MODE_COUNT] = {

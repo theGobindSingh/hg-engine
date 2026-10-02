@@ -18,6 +18,7 @@
 #define GMS_MSG_OFF           161
 #define GMS_MSG_CONFIRM       162
 #define GMS_MSG_CANCEL        163
+#define GMS_MSG_DESC_LEVEL_CAPS 164
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */

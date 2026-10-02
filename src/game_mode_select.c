@@ -263,8 +263,12 @@ static void GmsDrawRules(struct GmsCtx *c, struct OakSpeechDataView *d)
         BOOL on = (c->ruleValues >> i) & 1;
         u32 nameFill = FILL_GREYED;
         u32 swFill = FILL_GREYED;
+        if (c->padMode && c->cursor == i) {
+            nameFill = FILL_HIGHLIGHT;
+        } else if (editable) {
+            nameFill = FILL_NORMAL;
+        }
         if (editable) {
-            nameFill = (c->padMode && c->cursor == i) ? FILL_HIGHLIGHT : FILL_NORMAL;
             swFill = on ? FILL_ON : FILL_NORMAL;
         }
         GmsPlate(c, d, WIN_RULE_NAME(i), gGameRules[i].labelMsg, COL_DARK, sh, nameFill);
@@ -398,7 +402,7 @@ static void GmsInputModes(struct GmsCtx *c, struct OakSpeechDataView *d, const s
     c->mode = GMS_MODE_OVER_EASY + picked;
     c->ruleValues = gGamePresets[c->mode].editable ? GameRules_ScrambledDefaults() : gGamePresets[c->mode].ruleValues;
     c->screen = SCR_RULES;
-    c->cursor = gGamePresets[c->mode].editable ? 0 : RULE_COUNT;
+    c->cursor = 0;
     c->footerSel = 0;
     GmsLeavePrompt(c, PH_BUILD);
 }
@@ -417,6 +421,12 @@ static void GmsConfirm(struct GmsCtx *c)
     GmsSE();
     BOOL selectable = gGamePresets[c->mode].selectable;
     GmsStartDialog(c, selectable ? GMS_MSG_SURE : GMS_MSG_SORRY, selectable);
+}
+
+/* A rule without its own description shows the placeholder. */
+static u32 GmsRuleDesc(u32 i)
+{
+    return gGameRules[i].descMsg ? gGameRules[i].descMsg : GMS_MSG_WHOOPS;
 }
 
 /* Screens B and C */
@@ -439,9 +449,9 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
                 return;
             }
         }
-        if (editable) {
+        {
             for (u32 i = 0; i < RULE_COUNT; i++) {
-                if (GmsHitWin(in, &c->win[WIN_RULE_SWITCH(i)])) {
+                if (editable && GmsHitWin(in, &c->win[WIN_RULE_SWITCH(i)])) {
                     GmsSE();
                     c->ruleValues ^= 1u << i;
                     c->cursor = i;
@@ -453,7 +463,7 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
                     GmsSE();
                     c->cursor = i;
                     c->padMode = 0;
-                    GmsStartDialog(c, gGameRules[i].descMsg, FALSE);
+                    GmsStartDialog(c, GmsRuleDesc(i), FALSE);
                     return;
                 }
             }
@@ -475,20 +485,6 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
         return;
     }
 
-    if (!editable) {
-        /* Screen C: the cursor lives on the footer only. */
-        if (in->keys & PAD_ANY_DIR) {
-            c->footerSel ^= 1;
-            GmsDrawRules(c, d);
-            GmsSE();
-        } else if (c->footerSel == 0) {
-            GmsConfirm(c);
-        } else {
-            GmsToModes(c);
-        }
-        return;
-    }
-
     if (in->keys & PAD_KEY_UP) {
         c->cursor = c->cursor == 0 ? RULE_COUNT : c->cursor - 1;
         GmsDrawRules(c, d);
@@ -500,8 +496,10 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
     } else if (in->keys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         if (c->cursor == RULE_COUNT) {
             c->footerSel ^= 1;
-        } else {
+        } else if (editable) {
             c->ruleValues ^= 1u << c->cursor;
+        } else {
+            return; /* preset: values are locked */
         }
         GmsDrawRules(c, d);
         GmsSE();
@@ -514,7 +512,7 @@ static void GmsInputRules(struct GmsCtx *c, struct OakSpeechDataView *d, const s
             }
         } else {
             GmsSE();
-            GmsStartDialog(c, gGameRules[c->cursor].descMsg, FALSE);
+            GmsStartDialog(c, GmsRuleDesc(c->cursor), FALSE);
         }
     }
 }

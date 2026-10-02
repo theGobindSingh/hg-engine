@@ -153,12 +153,13 @@ This mode isn’t ready yet!\nCheck back again later!
 Whoops! Looks like there’s\nnothing here!
 Are you sure? These settings are\npermanent and can’t be changed!
 Sorry, this game mode isn’t\nready yet!
-Over Easy
-Softboiled
-Hardboiled
-Scrambled
+OVER EASY
+SOFTBOILED
+HARDBOILED
+SCRAMBLED
 LEVEL CAPS
 ON
 OFF
-Confirm
-Cancel
+CONFIRM
+CANCEL
+Your Pokémon cannot be leveled\nabove the cap set by your gym\nbadges.
