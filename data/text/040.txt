@@ -162,4 +162,4 @@ ON
 OFF
 CONFIRM
 CANCEL
-Your Pokémon cannot be leveled\nabove the cap set by your gym\nbadges.
+Your Pokémon cannot be leveled\nabove the cap set by your gym\rbadges.
