@@ -618,6 +618,7 @@ arm9 PartyMenu_ItemUseFunc_ReuseItem_hook 0208138C 3
 
 arm9 ReadMsgDataIntoString_hook 0200BB6C 3
 arm9 NewString_ReadMsgData_hook 0200BBA0 3
+arm9 BufferItemName 0200C0CC
 arm9 BufferItemNameWithIndefArticle 0200C100 3
 arm9 BufferItemNamePlural 0200C134 3
 arm9 GetItemDescIntoString 02077D64 3

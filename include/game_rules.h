@@ -67,7 +67,8 @@ u32 LONG_CALL GameRules_ScrambledDefaults(void);
  * item-specific (names, consumption) go through this one table. */
 struct SuperItemDef {
     u16 item;
-    u16 msg222; /* archive 222 (item name) index */
+    u16 msg222Full;  /* archive 222 full "Super ..." name: BufferItemName* readers */
+    u16 msg222Short; /* archive 222 short "Spr. ..." name: lists, labels, direct readers */
     u16 msg831; /* archive 831 (name with article) index */
     u16 msg832; /* archive 832 (plural) index */
     u16 msg833; /* archive 833 (give-item form) index */
@@ -76,5 +77,6 @@ struct SuperItemDef {
 const struct SuperItemDef *LONG_CALL SuperItems_Active(u16 item);
 /* TRUE when Bag_TakeItem / Pocket_TakeItem called from callerRet (thumb bit cleared) should consume nothing. */
 BOOL LONG_CALL SuperItems_SkipTake(u16 item, u32 callerRet);
+BOOL LONG_CALL SuperItems_IsShortNameSite(u32 callerRet);
 
 #endif // GAME_RULES_H

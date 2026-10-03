@@ -23,7 +23,7 @@
 #define GMS_MSG_DEBUG_RULES     166
 /* 167/168 (old SUPER RARE CANDY label/description) are now dead text, kept so no archive-40 index moves. */
 #define GMS_MSG_SUPER_ITEMS 169
-#define GMS_MSG_DESC_SUPER_ITEMS 152 /* existing placeholder: "Whoops! Looks like thereâs nothing here!" */
+#define GMS_MSG_DESC_SUPER_ITEMS 170 /* "A handful of helpful items\nfor rapid testing" (client verbatim, break ours) */
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */

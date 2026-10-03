@@ -2688,3 +2688,7 @@ Super Rare Candy
 Super Premier Ball
 Super Max Repel
 Super Escape Rope
+Spr. Rare Candy
+Spr. Premier Ball
+Spr. Max Repel
+Spr. Escape Rope

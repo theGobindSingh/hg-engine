@@ -75,7 +75,7 @@ static u32 MsgData_ApplyItemNameRule(const struct MsgDataLayout *msgData, u32 ms
     if (msgData->fileId == ITEM_NAME_FILE && msgData->narcId == ARC_MSG_DATA) {
         const struct SuperItemDef *super = SuperItems_Active((u16)msgNo);
         if (super != NULL) {
-            return super->msg222;
+            return super->msg222Short;
         }
     }
     return msgNo;
@@ -102,4 +102,38 @@ String *LONG_CALL NewString_ReadMsgData_hook(MsgData *msgData, s32 msgNo)
         return ReadMsgData_ExistingNarc_NewString(m->data, m->fileId, no, m->heapId);
     }
     return NULL;
+}
+
+/* james-game 0.5.5: retail BufferItemName (arm9 0x0200C0CC; pret src/message_format.c). Everything buffered through it is
+ * normally a sentence, so it reads the FULL "Super ..." index; direct archive-222 readers (lists, labels) get the short one
+ * via the hooks above. A few callers buffer it into a FIXED-WIDTH slot (party-menu item line, Summary item line); those
+ * return addresses are listed in game_rules.c (sSuperShortNameSites) and get the short index. Reads through
+ * ReadMsgData_ExistingNarc_ExistingString so the short substitution of ReadMsgDataIntoString is bypassed.
+ * The hooks line has no argument count, so hg builds the LR-saving trampoline (same as Bag_TakeItem): the caller's LR is
+ * parked in the slot pointed to by the literal at hook+0x14 = 0x0200C0E0 (verified in the built arm9 bytes). */
+#define BUFFER_ITEM_NAME_TRAMPOLINE_LITERAL 0x0200C0E0
+static inline u32 BufferItemNameCallerLr(void)
+{
+    const u32 *slot = *(const u32 *const *)BUFFER_ITEM_NAME_TRAMPOLINE_LITERAL;
+    if ((u32)slot < 0x02000000 || (u32)slot >= 0x02400000) {
+        return 0;
+    }
+    return *slot & ~1u;
+}
+
+void LONG_CALL BufferItemName(MessageFormat *msgFmt, u32 fieldno, u32 itemId)
+{
+    u32 callerRet = BufferItemNameCallerLr(); /* first thing: nothing may run before the slot is read */
+    MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, ITEM_NAME_FILE, msgFmt->heapId);
+    if (msgData != NULL) {
+        struct MsgDataLayout *m = (struct MsgDataLayout *)msgData;
+        u32 no = itemId;
+        const struct SuperItemDef *super = SuperItems_Active((u16)itemId);
+        if (super != NULL) {
+            no = SuperItems_IsShortNameSite(callerRet) ? super->msg222Short : super->msg222Full;
+        }
+        ReadMsgData_ExistingNarc_ExistingString(m->data, m->fileId, no, m->heapId, msgFmt->buffer);
+        SetStringAsPlaceholder(msgFmt, fieldno, msgFmt->buffer, NULL);
+        DestroyMsgData(msgData);
+    }
 }
