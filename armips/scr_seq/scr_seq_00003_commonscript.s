@@ -94,6 +94,7 @@ scrdef scr_seq_0003_076_mr_paint_teleport
 scrdef scr_seq_0003_077_mr_paint_flash
 scrdef scr_seq_0003_078_mr_paint_sweet_scent
 scrdef scr_seq_0003_079_mr_paint_fly
+scrdef scr_seq_0003_080_all_key_items
 scrdef_end
 
 scr_seq_0003_002:
@@ -2376,5 +2377,79 @@ scr_seq_0003_073_autobattle_testing:
     end
 
 
+
+// ALL KEY ITEMS debug rule (Game Mode Select 0.5.6, flag 2307 = FLAG_GMS_ALL_KEY_ITEMS).
+// CommonScript 2080 (= 2000 + entry 080) is called by ROM script 843 (Elm's aide) Function#74
+// (as numbered before dspre-mcp re-sorted; now Function#46) for RULE_ALL_KEY_ITEMS: it grants 20
+// key items silently (no per-item message, no bag-space check), then plays one key-item fanfare
+// and one receipt line, 040.txt index 177 (GMS_MSG_ALL_KEY_ITEMS_RECEIPT). Same fanfare/receipt
+// ordering as _08C9. Exits like scr_seq_0003_008: endstd / end (the 0.4.34 lesson).
+scr_seq_0003_080_all_key_items:
+    setvar VAR_SPECIAL_x8004, 434 // ITEM_SEAL_CASE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 435 // ITEM_FASHION_CASE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 437 // ITEM_PAL_PAD
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 444 // ITEM_COIN_CASE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 445 // ITEM_OLD_ROD
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 446 // ITEM_GOOD_ROD
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 447 // ITEM_SUPER_ROD
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 450 // ITEM_BIKE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 465 // ITEM_VS_RECORDER
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 468 // ITEM_APRICORN_BOX
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 469 // ITEM_UNOWN_REPORT
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 470 // ITEM_BERRY_POTS
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 471 // ITEM_DOWSING_MACHINE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 474 // ITEM_CLEAR_BELL
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 477 // ITEM_SQUIRT_BOTTLE
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 482 // ITEM_SILVER_FEATHER
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 483 // ITEM_RAINBOW_FEATHER
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 502 // ITEM_GB_SOUNDS
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 503 // ITEM_TIDAL_BELL
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 532 // ITEM_JADE_ORB
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    play_fanfare SEQ_ME_KEYITEM
+    npc_msg 177
+    wait_fanfare
+    wait_button_or_walk_away
+    endstd
+    end
 
 .close

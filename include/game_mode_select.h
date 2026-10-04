@@ -30,6 +30,7 @@
 #define GMS_MSG_DESC_MAX_FLY 174
 #define GMS_MSG_ALL_KEY_ITEMS 175
 #define GMS_MSG_DESC_ALL_KEY_ITEMS 176
+#define GMS_MSG_ALL_KEY_ITEMS_RECEIPT 177 /* commonscript 2080 (scr_seq_00003_commonscript.s) uses the literal 177 */
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */

@@ -175,3 +175,4 @@ MAX FLY
 Grants immediate access to\nall Fly locations.
 ALL KEY ITEMS
 Grants early access to\nall KEY ITEMS
+Obtained all the KEY ITEMS!
