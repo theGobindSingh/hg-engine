@@ -2380,7 +2380,7 @@ scr_seq_0003_073_autobattle_testing:
 
 // ALL KEY ITEMS debug rule (Game Mode Select 0.5.6, flag 2307 = FLAG_GMS_ALL_KEY_ITEMS).
 // CommonScript 2080 (= 2000 + entry 080) is called by ROM script 843 (Elm's aide) Function#74
-// (as numbered before dspre-mcp re-sorted; now Function#46) for RULE_ALL_KEY_ITEMS: it grants 20
+// (as numbered before dspre-mcp re-sorted; now Function#46) for RULE_ALL_KEY_ITEMS: it grants 21
 // key items silently (no per-item message, no bag-space check), then plays one key-item fanfare
 // and one receipt line, 040.txt index 177 (GMS_MSG_ALL_KEY_ITEMS_RECEIPT). Same fanfare/receipt
 // ordering as _08C9. Exits like scr_seq_0003_008: endstd / end (the 0.4.34 lesson).
@@ -2434,6 +2434,9 @@ scr_seq_0003_080_all_key_items:
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 483 // ITEM_RAINBOW_FEATHER
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 484 // ITEM_MYSTERY_EGG
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 502 // ITEM_GB_SOUNDS
