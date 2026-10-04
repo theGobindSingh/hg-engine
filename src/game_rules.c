@@ -8,6 +8,9 @@
 const struct GameRuleDef gGameRules[RULE_COUNT] = {
     [RULE_LEVEL_CAPS]       = { GMS_MSG_LEVEL_CAPS, GMS_MSG_DESC_LEVEL_CAPS, FLAG_GMS_LEVEL_CAPS_OFF, 1, 0, GAMERULE_CAT_GAME },
     [RULE_SUPER_ITEMS]      = { GMS_MSG_SUPER_ITEMS, GMS_MSG_DESC_SUPER_ITEMS, FLAG_GMS_SUPER_ITEMS, 0, 0, GAMERULE_CAT_DEBUG },
+    [RULE_MAX_MR_PAINT]     = { GMS_MSG_MAX_MR_PAINT, GMS_MSG_DESC_MAX_MR_PAINT, FLAG_GMS_MAX_MR_PAINT, 0, 0, GAMERULE_CAT_DEBUG },
+    [RULE_MAX_FLY]          = { GMS_MSG_MAX_FLY, GMS_MSG_DESC_MAX_FLY, FLAG_GMS_MAX_FLY, 0, 0, GAMERULE_CAT_DEBUG },
+    [RULE_ALL_KEY_ITEMS]    = { GMS_MSG_ALL_KEY_ITEMS, GMS_MSG_DESC_ALL_KEY_ITEMS, FLAG_GMS_ALL_KEY_ITEMS, 0, 0, GAMERULE_CAT_DEBUG },
 };
 
 /* Preset rule values, one explicit term per rule (0 = OFF). Every DEBUG rule is OFF in every preset, and presets only
@@ -15,9 +18,9 @@ const struct GameRuleDef gGameRules[RULE_COUNT] = {
 #define RV(rule, on) ((u32)(on) << (rule))
 
 const struct GamePresetDef gGamePresets[GMS_MODE_COUNT] = {
-    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
-    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
-    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 1) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
     [GMS_MODE_SCRAMBLED]  = { GMS_MSG_SCRAMBLED,  GMS_MSG_TOP_SCRAMBLED, 0, 1, 1, GAMERULE_CATS_ALL },
 };
 
@@ -81,6 +84,10 @@ static void GameRules_WriteFlag(u16 flag, BOOL set)
     }
 }
 
+/* MAX FLY: offsets from flag 2480 of the Fly destinations unlocked on commit (27 of the 38 slots; 23-26, 28, 29, 31, 32, 34, 36, 37 stay locked). */
+static const u8 sMaxFlyFlags[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 27, 30, 33, 35 };
+#define MAX_FLY_FLAG_BASE 2480
+
 void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues)
 {
     u32 shown = (mode < GMS_MODE_COUNT && mode != GMS_MODE_NONE) ? gGamePresets[mode].categories : GAMERULE_CATS_ALL;
@@ -90,6 +97,12 @@ void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues)
             on = FALSE; /* a category the chosen mode hides is never switched on */
         }
         GameRules_WriteFlag(gGameRules[i].storageFlag, gGameRules[i].flagMeansOff ? !on : on);
+    }
+    if (CheckScriptFlagPassSave(GameRules_Flags(), FLAG_GMS_MAX_FLY)) { /* set above only when the rule is ON and its category shown */
+        for (u32 i = 0; i < sizeof(sMaxFlyFlags); i++) {
+            GameRules_WriteFlag(MAX_FLY_FLAG_BASE + sMaxFlyFlags[i], TRUE);
+        }
+        Pokegear_SetMapUnlockLevel(SaveData_Pokegear_Get(SaveBlock2_get()), 2);
     }
     for (u32 i = 0; i < 3; i++) {
         GameRules_WriteFlag(FLAG_GMS_MODE_BIT0 + i, (mode >> i) & 1);

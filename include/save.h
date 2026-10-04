@@ -341,6 +341,9 @@ int LONG_CALL Save_WritePCFooter(SaveData *saveData, struct SaveSlotSpec *spec, 
 u32 LONG_CALL PCModifiedFlags_GetIndexOfNthModifiedBox(u32 flags, u8 last);
 
 void *LONG_CALL SaveBlock2_get(void);
+/* arm9, vanilla addresses in rom.ld (james-game 0.5.6): Pokegear save block and its map unlock level (2-bit field, bits 27-28 of the u32 at +4) */
+void *LONG_CALL SaveData_Pokegear_Get(void *saveData);
+void LONG_CALL Pokegear_SetMapUnlockLevel(void *pokegear, u8 level);
 struct SAVE_MISC_DATA *LONG_CALL Sav2_Misc_get(void *saveData);
 struct ScriptState *LONG_CALL SavArray_Flags_get(void *saveData);
 struct PlayerProfile *LONG_CALL Sav2_PlayerData_GetProfileAddr(void *saveData);

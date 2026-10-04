@@ -24,6 +24,12 @@
 /* 167/168 (old SUPER RARE CANDY label/description) are now dead text, kept so no archive-40 index moves. */
 #define GMS_MSG_SUPER_ITEMS 169
 #define GMS_MSG_DESC_SUPER_ITEMS 170 /* "A handful of helpful items\nfor rapid testing" (client verbatim, break ours) */
+#define GMS_MSG_MAX_MR_PAINT 171
+#define GMS_MSG_DESC_MAX_MR_PAINT 172
+#define GMS_MSG_MAX_FLY 173
+#define GMS_MSG_DESC_MAX_FLY 174
+#define GMS_MSG_ALL_KEY_ITEMS 175
+#define GMS_MSG_DESC_ALL_KEY_ITEMS 176
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
@@ -31,5 +37,8 @@
 #define FLAG_GMS_MODE_BIT1      2302 /* 0x8FE: mode id bit 1 */
 #define FLAG_GMS_MODE_BIT2      2303 /* 0x8FF: mode id bit 2 */
 #define FLAG_GMS_SUPER_ITEMS 2304 /* 0x900 (retail FLAG_UNK_900, unused): set = Super Items rule ON */
+#define FLAG_GMS_MAX_MR_PAINT 2305 /* 0x901 (retail FLAG_UNK_901): set = MAX MR. PAINT ON */
+#define FLAG_GMS_MAX_FLY      2306 /* 0x902 (retail FLAG_UNK_902): set = MAX FLY ON */
+#define FLAG_GMS_ALL_KEY_ITEMS 2307 /* 0x903 (retail FLAG_UNK_903): set = ALL KEY ITEMS ON */
 
 #endif // GAME_MODE_SELECT_H

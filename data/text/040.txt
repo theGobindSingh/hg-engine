@@ -169,3 +169,9 @@ SUPER RARE CANDY
 Grants Super Rare Candy\nfor rapid leveling.
 SUPER ITEMS
 A handful of helpful items\nfor rapid testing
+MAX MR. PAINT
+Grants Mr. Paint immediate\naccess to all field moves.
+MAX FLY
+Grants immediate access to\nall Fly locations.
+ALL KEY ITEMS
+Grants early access to\nall KEY ITEMS

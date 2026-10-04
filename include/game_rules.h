@@ -10,6 +10,9 @@
 enum GameRuleId {
     RULE_LEVEL_CAPS = 0,
     RULE_SUPER_ITEMS,
+    RULE_MAX_MR_PAINT,
+    RULE_MAX_FLY,
+    RULE_ALL_KEY_ITEMS,
     RULE_COUNT
 };
 
