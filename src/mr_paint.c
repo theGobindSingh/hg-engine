@@ -11,6 +11,7 @@
 #include "../include/pokemon.h"
 #include "../include/save.h"
 #include "../include/script.h"
+#include "../include/game_rules.h"
 
 // PokeParty_GetPokeCount (rom.ld:282, 0x02074640) is linked but not declared in any header -
 // follow the LONG_CALL convention of its neighbour Party_GetMonByIndex (include/pokemon.h:930).
@@ -412,7 +413,16 @@ u16 MrPaintFlyCheck(FieldSystem *fieldSystem)
 
     memset(&checkData, 0, sizeof(checkData));
     FieldMove_InitCheckData(fieldSystem, &checkData);
-    return (u16)FieldMove_CheckFly(&checkData);
+    if (!GameRule_IsEnabled(RULE_MAX_MR_PAINT)) {
+        return (u16)FieldMove_CheckFly(&checkData);
+    }
+    // MAX MR. PAINT: retail tests the Storm badge (bit 4) before the environment, so lend the bit for the call only.
+    struct PlayerProfile *profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
+    u8 saved = profile->johtoBadges;
+    profile->johtoBadges = saved | (1 << 4);
+    u16 result = (u16)FieldMove_CheckFly(&checkData);
+    profile->johtoBadges = saved;
+    return result;
 }
 
 // Native wait for the fly map (same shape as retail ScrNative_WaitApplication_DestroyTaskData, but

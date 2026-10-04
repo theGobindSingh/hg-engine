@@ -258,7 +258,7 @@ BOOL Bag_AddItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
 
     // Mr. Paint: if this item is an HM/TM/TR, its move maps to one of the eight learnable
     // obstacle-move flags (Cut/Surf/Rock Smash/Strength/Waterfall/Whirlpool/Rock Climb/Flash -
-    // 2026-09-16 user decision, Flash added 0.4.35; Fly/Dig are excluded and behave exactly like vanilla),
+    // 2026-09-16 user decision, Flash added 0.4.35 - plus Fly, 0.4.37; only Dig is excluded and behaves exactly like vanilla),
     // that flag isn't already set, and the player is holding Mr. Paint, "teach" it and stash
     // the item id for the inspiration message. Every other item, and every other case of
     // this one, is untouched.

@@ -177,6 +177,14 @@ def Hook(rom: _io.BufferedReader, space: int, hookAt: int, register=0, memAddres
     rom.write(bytes(data))
 
 
+def HookBL(rom: _io.BufferedReader, space: int, hookAt: int, memAddress: int):
+    # Overwrite one 4-byte Thumb `bl` at memAddress with a `bl` to the symbol (even address, +-4 MiB).
+    rom.seek(hookAt)
+    target = space & ~1
+    imm = ((target - (memAddress + 4)) >> 1) & 0x3FFFFF
+    rom.write(bytes([(imm >> 11) & 0xFF, 0xF0 | ((imm >> 19) & 0x7), imm & 0xFF, 0xF8 | ((imm >> 8) & 0x7)]))
+
+
 def HookARM(rom: _io.BufferedReader, space: int, hookAt: int, register=0):
     # Align 4
     if hookAt & 3:
@@ -365,6 +373,10 @@ def hook():
                     with open("base/overarm9.bin", 'rb+') as y9Table:
                         y9Table.seek((int(files)*0x20)+0x4) # read the overlay memory address for offset calculation
                         offset = int(address, 16) - struct.unpack_from("<I", y9Table.read(4))[0] if int(address, 16) & 0x02000000 else int(address, 16) - 0x08000000
+                if register == "bl":
+                    HookBL(rom2, code, offset, int(address, 16))
+                    rom2.close()
+                    continue
                 Hook(rom2, code, offset, int(register), int(address, 16))
                 rom2.close()
 

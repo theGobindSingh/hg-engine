@@ -104,6 +104,13 @@ void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues)
         }
         Pokegear_SetMapUnlockLevel(SaveData_Pokegear_Get(SaveBlock2_get()), 2);
     }
+    if (CheckScriptFlagPassSave(GameRules_Flags(), FLAG_GMS_MAX_MR_PAINT)) { /* MAX MR. PAINT: every move Mr. Paint can learn is known (2208-2219 except 2217 Dig) */
+        for (u16 f = 2208; f <= 2219; f++) {
+            if (f != 2217) {
+                GameRules_WriteFlag(f, TRUE);
+            }
+        }
+    }
     for (u32 i = 0; i < 3; i++) {
         GameRules_WriteFlag(FLAG_GMS_MODE_BIT0 + i, (mode >> i) & 1);
     }
@@ -168,4 +175,14 @@ u32 LONG_CALL GameRules_ScrambledDefaults(void)
         }
     }
     return values;
+}
+
+/* MAX MR. PAINT Surf badge bypass: the single `bl PlayerProfile_TestBadgeFlag` at ov1 0x021E7534 (Surf prompt, Fog badge)
+ * is redirected here by the `bl` line in `hooks`. Never hook the retail function itself: gyms and shops share it. */
+BOOL LONG_CALL MaxMrPaint_TestBadgeFlag(struct PlayerProfile *profile, s32 badge)
+{
+    if (CheckScriptFlagPassSave(GameRules_Flags(), FLAG_GMS_MAX_MR_PAINT)) {
+        return TRUE;
+    }
+    return PlayerProfile_TestBadgeFlag(profile, badge);
 }
