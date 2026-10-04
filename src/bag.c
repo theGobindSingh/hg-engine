@@ -237,6 +237,12 @@ BOOL Bag_HasSpaceForItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
 
 BOOL Bag_AddItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id)
 {
+    // Mr. Paint is a one-of-a-kind companion: if he is already held (e.g. the ALL KEY ITEMS rule
+    // handed him out in the lab), a later grant (Route 29 / Route 30 scripts) is a silent success -
+    // no second copy, and none of the receipt side effects below run again.
+    if (itemId == ITEM_MR_PAINT && Bag_HasItem(bag, ITEM_MR_PAINT, 1, heap_id)) {
+        return TRUE;
+    }
     ITEM_SLOT *slot = Bag_GetItemSlotForAdd(bag, itemId, quantity, heap_id);
     if (slot == NULL) {
         return FALSE;

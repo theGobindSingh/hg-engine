@@ -2380,7 +2380,7 @@ scr_seq_0003_073_autobattle_testing:
 
 // ALL KEY ITEMS debug rule (Game Mode Select 0.5.6, flag 2307 = FLAG_GMS_ALL_KEY_ITEMS).
 // CommonScript 2080 (= 2000 + entry 080) is called by ROM script 843 (Elm's aide) Function#74
-// (as numbered before dspre-mcp re-sorted; now Function#46) for RULE_ALL_KEY_ITEMS: it grants 21
+// (as numbered before dspre-mcp re-sorted; now Function#46) for RULE_ALL_KEY_ITEMS: it grants 25
 // key items silently (no per-item message, no bag-space check), then plays one key-item fanfare
 // and one receipt line, 040.txt index 177 (GMS_MSG_ALL_KEY_ITEMS_RECEIPT). Same fanfare/receipt
 // ordering as _08C9. Exits like scr_seq_0003_008: endstd / end (the 0.4.34 lesson).
@@ -2409,6 +2409,9 @@ scr_seq_0003_080_all_key_items:
     setvar VAR_SPECIAL_x8004, 450 // ITEM_BIKE
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 456 // ITEM_SS_TICKET
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 465 // ITEM_VS_RECORDER
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
@@ -2425,6 +2428,12 @@ scr_seq_0003_080_all_key_items:
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 474 // ITEM_CLEAR_BELL
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 475 // ITEM_CARD_KEY_JOHTO
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 476 // ITEM_BASEMENT_KEY
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 477 // ITEM_SQUIRT_BOTTLE
@@ -2446,6 +2455,9 @@ scr_seq_0003_080_all_key_items:
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     setvar VAR_SPECIAL_x8004, 532 // ITEM_JADE_ORB
+    setvar VAR_SPECIAL_x8005, 1
+    giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
+    setvar VAR_SPECIAL_x8004, 2685 // ITEM_MR_PAINT
     setvar VAR_SPECIAL_x8005, 1
     giveitem VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
     play_fanfare SEQ_ME_KEYITEM
