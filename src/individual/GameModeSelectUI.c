@@ -239,7 +239,7 @@ static const struct GmsOam sFootOam[4][4] = {
 #define PROMPT_LAST_ROW 17 /* the prompt must end above the pane's frame row (18) */
 
 #define GMS_MAX_SLOTS  (RULE_COUNT + GAMERULE_CAT_COUNT) /* strips of the full list: every rule plus one header per category */
-#define GMS_MAX_WIN    (3 + 2 * GMS_VISIBLE)              /* SUB_0: tab, a label and a value window per visible strip, two footer labels */
+#define GMS_MAX_WIN    (5 + 2 * GMS_VISIBLE)            /* SUB_0: tab, a label and a value window per visible strip, two footer labels, two scroll arrows */
 #define GMS_MAX_CANVAS (GMS_VISIBLE + 2)                  /* SUB_2: a box canvas per visible strip, two footer buttons */
 
 _Static_assert(RULE_COUNT >= 1 && RULE_COUNT <= 32, "ruleValues is a u32 bitmask, one bit per rule");
@@ -779,6 +779,7 @@ static void GmsBlitCell(struct Window *w, const u8 *raw, const struct GmsOam *oa
 #define WIN_LABEL(v)       (1 + (v))
 #define WIN_VALUE(c, v)    (1 + (c)->nVis + (v))
 #define CANVAS_FOOT(c, k)  ((c)->nVis + (k))
+#define WIN_ARROW(c, k)    (2 * (c)->nVis + 3 + (k)) /* k = 0 up, 1 down; created after the footer labels */
 #define NO_POS             0xFF /* slotPos entry of a header strip */
 
 /* Lays out the full list: for each category the mode shows, in enum order, a header (only if it has rules) then its
@@ -944,6 +945,41 @@ static void GmsBuildBackdrop(struct GmsCtx *c, struct OakSpeechDataView *d)
     BgCommitTilemapBufferToVram(d->bgConfig, BG_SUB_3);
 }
 
+/* Scroll arrows: the font's up and down arrow glyphs in a SUB_0 window at the right edge of the list, the up one in the tab
+* rows, the down one under the panel. */
+#define GMS_GLYPH_UP      0x011C /* font arrows ↑ and ↓ */
+#define GMS_GLYPH_DOWN    0x011D
+#define GMS_ARROW_COL     29
+#define GMS_ARROW_W       2
+#define GMS_ARROW_UP_ROW  0
+#define GMS_ARROW_UP_H    OPT_HEADER_ROWS
+#define GMS_ARROW_DN_ROW  (OPT_ROW_TOP(GMS_VISIBLE) + 1) /* the plain row under a full panel's edge row */
+#define GMS_ARROW_DN_H    2
+#define GMS_ARROW_UP_Y    6
+#define GMS_ARROW_DN_Y    2
+
+static void GmsDrawArrow(struct GmsCtx *c, struct OakSpeechDataView *d, u32 k, BOOL show)
+{
+    struct Window *w = &c->win[WIN_ARROW(c, k)];
+    FillWindowPixelBuffer(w, 0);
+    if (show) {
+        u16 chars[2] = { k == 0 ? GMS_GLYPH_UP : GMS_GLYPH_DOWN, 0xFFFF };
+        String *s = String_New(8, d->heapID);
+        CopyU16ArrayToString(s, chars);
+        AddTextPrinterParameterizedWithColor(w, 0, s, 4, k == 0 ? GMS_ARROW_UP_Y : GMS_ARROW_DN_Y, GMS_TEXT_SPEED_INSTANT,
+            TXT_DARK, NULL);
+        String_Delete(s);
+    }
+    CopyWindowToVram(w);
+}
+
+/* Up shows while rules are hidden above the window, down while they are hidden below it. */
+static void GmsDrawScrollArrows(struct GmsCtx *c, struct OakSpeechDataView *d)
+{
+    GmsDrawArrow(c, d, 0, c->scroll > 0);
+    GmsDrawArrow(c, d, 1, c->scroll + c->nVis < c->nSlots);
+}
+
 /* The visible window changed: redraw the backdrop and every strip. */
 static void GmsRedrawStrips(struct GmsCtx *c, struct OakSpeechDataView *d)
 {
@@ -951,6 +987,7 @@ static void GmsRedrawStrips(struct GmsCtx *c, struct OakSpeechDataView *d)
     for (u32 v = 0; v < c->nVis; v++) {
         GmsDrawStrip(c, d, v);
     }
+    GmsDrawScrollArrows(c, d);
 }
 
 /* Scrolls just far enough to show the cursor's rule; a section's first rule brings its header along. Returns TRUE if it moved. */
@@ -1026,9 +1063,14 @@ static void GmsBuildRules(struct GmsCtx *c, struct OakSpeechDataView *d)
         GmsPrint(c, d, w, GMS_MSG_CONFIRM + k, 0, 0, OPT_FOOT_W * 8, 6, TXT_WHITE);
         CopyWindowToVram(w);
     }
+    for (u32 k = 0; k < 2; k++) {
+        GmsAddText(c, d, GMS_ARROW_COL, k == 0 ? GMS_ARROW_UP_ROW : GMS_ARROW_DN_ROW, GMS_ARROW_W,
+            k == 0 ? GMS_ARROW_UP_H : GMS_ARROW_DN_H);
+    }
     for (u32 v = 0; v < c->nVis; v++) {
         GmsDrawStrip(c, d, v);
     }
+    GmsDrawScrollArrows(c, d);
     GmsShowCursor(c, d);
 
     GmsLayer(BG_SUB_3, 1);
