@@ -1371,6 +1371,11 @@ u32 LONG_CALL SanitizeClientForTeamAccess(void *bw, u32 client)
  */
 BOOL LONG_CALL DoesSideHave2Battlers(void *bw, u32 client)
 {
+    // james-game 0.5.9: an out-of-range client (e.g. defence_client left at 0xFF after a locked move fails with no target)
+    // would index opponentData out of bounds in BattleWork_GetTrainerIndex; treat it as a one-battler side.
+    if (client >= CLIENT_MAX) {
+        return FALSE;
+    }
     if ((BattleTypeGet(bw) & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_MULTI)) && (BattleWork_GetTrainerIndex(bw, client) != BattleWork_GetTrainerIndex(bw, BATTLER_ALLY(client)))) {
         return TRUE;
     }
