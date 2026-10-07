@@ -11,6 +11,8 @@ const struct GameRuleDef gGameRules[RULE_COUNT] = {
     [RULE_MAX_MR_PAINT]     = { GMS_MSG_MAX_MR_PAINT, GMS_MSG_DESC_MAX_MR_PAINT, FLAG_GMS_MAX_MR_PAINT, 0, 0, GAMERULE_CAT_DEBUG },
     [RULE_MAX_FLY]          = { GMS_MSG_MAX_FLY, GMS_MSG_DESC_MAX_FLY, FLAG_GMS_MAX_FLY, 0, 0, GAMERULE_CAT_DEBUG },
     [RULE_ALL_KEY_ITEMS]    = { GMS_MSG_ALL_KEY_ITEMS, GMS_MSG_DESC_ALL_KEY_ITEMS, FLAG_GMS_ALL_KEY_ITEMS, 0, 0, GAMERULE_CAT_DEBUG },
+    [RULE_MAX_CASH]         = { GMS_MSG_MAX_CASH, GMS_MSG_DESC_MAX_CASH, FLAG_GMS_MAX_CASH, 0, 0, GAMERULE_CAT_DEBUG },
+    [RULE_MAX_SALE]         = { GMS_MSG_MAX_SALE, GMS_MSG_DESC_MAX_SALE, FLAG_GMS_MAX_SALE, 0, 0, GAMERULE_CAT_DEBUG },
 };
 
 /* Preset rule values, one explicit term per rule (0 = OFF). Every preset value is OFF until the client curates them,
@@ -18,9 +20,9 @@ const struct GameRuleDef gGameRules[RULE_COUNT] = {
 #define RV(rule, on) ((u32)(on) << (rule))
 
 const struct GamePresetDef gGamePresets[GMS_MODE_COUNT] = {
-    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
-    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
-    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_OVER_EASY]  = { GMS_MSG_OVER_EASY,  GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0) | RV(RULE_MAX_CASH, 0) | RV(RULE_MAX_SALE, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_SOFTBOILED] = { GMS_MSG_SOFTBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0) | RV(RULE_MAX_CASH, 0) | RV(RULE_MAX_SALE, 0), 0, 0, GAMERULE_CATS_GAME },
+    [GMS_MODE_HARDBOILED] = { GMS_MSG_HARDBOILED, GMS_MSG_TOP_NOT_READY, RV(RULE_LEVEL_CAPS, 0) | RV(RULE_SUPER_ITEMS, 0) | RV(RULE_MAX_MR_PAINT, 0) | RV(RULE_MAX_FLY, 0) | RV(RULE_ALL_KEY_ITEMS, 0) | RV(RULE_MAX_CASH, 0) | RV(RULE_MAX_SALE, 0), 0, 0, GAMERULE_CATS_GAME },
     [GMS_MODE_SCRAMBLED]  = { GMS_MSG_SCRAMBLED,  GMS_MSG_TOP_SCRAMBLED, 0, 1, 1, GAMERULE_CATS_ALL },
 };
 
@@ -111,6 +113,9 @@ void LONG_CALL GameRules_Commit(u32 mode, u32 ruleValues)
             }
         }
     }
+    if (CheckScriptFlagPassSave(GameRules_Flags(), FLAG_GMS_MAX_CASH)) { /* MAX CASH: the starting wallet is the 999,999 cap, through the real SetMoney */
+        PlayerProfile_SetMoney(Sav2_PlayerData_GetProfileAddr(SaveBlock2_get()), MAX_MONEY);
+    }
     for (u32 i = 0; i < 3; i++) {
         GameRules_WriteFlag(FLAG_GMS_MODE_BIT0 + i, (mode >> i) & 1);
     }
@@ -185,4 +190,16 @@ BOOL LONG_CALL MaxMrPaint_TestBadgeFlag(struct PlayerProfile *profile, s32 badge
         return TRUE;
     }
     return PlayerProfile_TestBadgeFlag(profile, badge);
+}
+
+/* MAX SALE: the Poke Mart sale credit is the only AddMoney call in the Bag overlay (ov15, `bl 0x02029044` at 0x021FD27C);
+ * the `bl` line in `hooks` retargets it here. Same signature as AddMoney (r0 = profile, r1 = amount). With the rule ON
+ * the wallet is refilled to the cap after the real credit. Returns the new money. */
+u32 LONG_CALL MaxSale_AddMoney(struct PlayerProfile *profile, u32 amount)
+{
+    PlayerProfile_AddMoney(profile, amount);
+    if (GameRule_IsEnabled(RULE_MAX_SALE)) {
+        PlayerProfile_SetMoney(profile, MAX_MONEY);
+    }
+    return PlayerProfile_GetMoney(profile);
 }

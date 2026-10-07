@@ -724,3 +724,7 @@ arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 # MAX MR. PAINT debug rule (0.5.6): the one `bl PlayerProfile_TestBadgeFlag` (Fog badge) on the ov1 Surf prompt path
 # (0x021E7534, after `movs r1,#3`) is retargeted to a wrapper. 4th column `bl` = overwrite that single Thumb bl.
 0001 MaxMrPaint_TestBadgeFlag 021E7534 bl
+
+# MAX SALE debug rule (0.5.10): the one `bl AddMoney` (0x02029044) in the Bag overlay (ov15), the Poke Mart sale credit,
+# is retargeted to a wrapper. 4th column `bl` = overwrite that single Thumb bl.
+0015 MaxSale_AddMoney 021FD27C bl

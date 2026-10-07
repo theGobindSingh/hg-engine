@@ -31,6 +31,10 @@
 #define GMS_MSG_ALL_KEY_ITEMS 175
 #define GMS_MSG_DESC_ALL_KEY_ITEMS 176
 #define GMS_MSG_ALL_KEY_ITEMS_RECEIPT 177 /* commonscript 2080 (scr_seq_00003_commonscript.s) uses the literal 177 */
+#define GMS_MSG_MAX_CASH 178
+#define GMS_MSG_DESC_MAX_CASH 179
+#define GMS_MSG_MAX_SALE 180
+#define GMS_MSG_DESC_MAX_SALE 181
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
@@ -41,5 +45,7 @@
 #define FLAG_GMS_MAX_MR_PAINT 2305 /* 0x901 (retail FLAG_UNK_901): set = MAX MR. PAINT ON */
 #define FLAG_GMS_MAX_FLY      2306 /* 0x902 (retail FLAG_UNK_902): set = MAX FLY ON */
 #define FLAG_GMS_ALL_KEY_ITEMS 2307 /* 0x903 (retail FLAG_UNK_903): set = ALL KEY ITEMS ON */
+#define FLAG_GMS_MAX_CASH     2308 /* 0x904: set = MAX CASH ON */
+#define FLAG_GMS_MAX_SALE     2309 /* 0x905: set = MAX SALE ON */
 
 #endif // GAME_MODE_SELECT_H

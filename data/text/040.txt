@@ -176,3 +176,7 @@ Grants immediate access to\nall Fly locations.
 ALL KEY ITEMS
 Grants early access to\nall KEY ITEMS.
 Obtained all the KEY ITEMS!
+MAX CASH
+Grants max starting cash.
+MAX SALE
+Selling any item refills\nyour wallet.

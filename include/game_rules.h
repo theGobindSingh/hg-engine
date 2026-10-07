@@ -13,6 +13,8 @@ enum GameRuleId {
     RULE_MAX_MR_PAINT,
     RULE_MAX_FLY,
     RULE_ALL_KEY_ITEMS,
+    RULE_MAX_CASH,
+    RULE_MAX_SALE,
     RULE_COUNT
 };
 
@@ -81,5 +83,14 @@ const struct SuperItemDef *LONG_CALL SuperItems_Active(u16 item);
 /* TRUE when Bag_TakeItem / Pocket_TakeItem called from callerRet (thumb bit cleared) should consume nothing. */
 BOOL LONG_CALL SuperItems_SkipTake(u16 item, u32 callerRet);
 BOOL LONG_CALL SuperItems_IsShortNameSite(u32 callerRet);
+
+/* Money cap enforced by the retail SetMoney / AddMoney (0xF423F). */
+#define MAX_MONEY 999999
+struct PlayerProfile;
+
+/* Retail PlayerProfile money accessors (arm9, rom.ld). profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get()). */
+u32 LONG_CALL PlayerProfile_GetMoney(struct PlayerProfile *profile);
+void LONG_CALL PlayerProfile_SetMoney(struct PlayerProfile *profile, u32 money);
+void LONG_CALL PlayerProfile_AddMoney(struct PlayerProfile *profile, u32 amount);
 
 #endif // GAME_RULES_H
