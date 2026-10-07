@@ -104,6 +104,7 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
         }
     }
 
+    AutoBattle_SelectPlayerActions(bsys, ctx);
     sPlayerBattleCommands[ctx->server_seq_no](bsys, ctx);
 #ifdef DEBUG_BATTLE_SCENARIOS
     TestBattle_autoSelectPlayerMoves(bsys, ctx);

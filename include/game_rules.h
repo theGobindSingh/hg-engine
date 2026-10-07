@@ -16,6 +16,7 @@ enum GameRuleId {
     RULE_MAX_CASH,
     RULE_MAX_SALE,
     RULE_PORYGIFT,
+    RULE_AUTO_BATTLE,
     RULE_COUNT
 };
 

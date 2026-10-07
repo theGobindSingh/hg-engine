@@ -3292,6 +3292,12 @@ BOOL LONG_CALL BattleContext_CheckMoveHealBlocked(struct BattleSystem *bsys, str
 // Buffer messages related to being unable to select moves?
 BOOL LONG_CALL ov12_02251A28(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int movePos, BattleMessage *msg);
 
+/* AUTO BATTLE (src/battle/auto_battle.c, rom.ld): trainer AI entry points in overlay 10 and the retail "can this battler open the command menu" test. */
+int LONG_CALL TrainerAI_PickMove(struct BattleSystem *bsys, int battlerId);
+int LONG_CALL TrainerAI_PickCommand(struct BattleSystem *bsys, int battlerId);
+BOOL LONG_CALL BattleSystem_CanSelectCommand(struct BattleStruct *ctx, int battlerId);
+void LONG_CALL AutoBattle_SelectPlayerActions(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
 int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond, u32 field_cond, u16 pow, u8 type, u8 attacker, u8 defender, u8 critical);
 
 int AdjustDamageForRoll(void *bw, struct BattleStruct *sp, int damage);

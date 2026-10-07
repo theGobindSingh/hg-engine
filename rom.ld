@@ -737,6 +737,9 @@ CopyU16ArrayToString = 0x020269A0 | 1;
 CopyStringToU16Array = 0x02026A68 | 1;
 CheckMoveCallsOtherMove = 0x02252698 | 1;
 //StruggleCheck = 0x022517EC | 1;
+TrainerAI_PickMove = 0x0221BEF4 | 1; /* ov10 (bsys, client) -> slot 0-3, 4/5 escape/safari, 0xFF none; AUTO BATTLE */
+TrainerAI_PickCommand = 0x022205BC | 1; /* ov10 (bsys, client) -> 1 fight, 2 item, 3 switch; AUTO BATTLE */
+BattleSystem_CanSelectCommand = 0x022567A0 | 1; /* ov12 (ctx, client) -> 0 when status2 locks the move (recharge, rampage, Bide...); AUTO BATTLE */
 
 GfGfxLoader_LoadCharData = 0x020078F0 | 1;
 PaletteData_LoadNarc = 0x02003200 | 1;
