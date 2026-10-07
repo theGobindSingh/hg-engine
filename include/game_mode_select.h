@@ -35,6 +35,9 @@
 #define GMS_MSG_DESC_MAX_CASH 179
 #define GMS_MSG_MAX_SALE 180
 #define GMS_MSG_DESC_MAX_SALE 181
+#define GMS_MSG_PORYGIFT 182
+#define GMS_MSG_DESC_PORYGIFT 183
+#define GMS_MSG_PORYGIFT_RECEIPT 184 /* commonscript 2081 (scr_seq_00003_commonscript.s) uses the literal 184 */
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
@@ -47,5 +50,6 @@
 #define FLAG_GMS_ALL_KEY_ITEMS 2307 /* 0x903 (retail FLAG_UNK_903): set = ALL KEY ITEMS ON */
 #define FLAG_GMS_MAX_CASH     2308 /* 0x904: set = MAX CASH ON */
 #define FLAG_GMS_MAX_SALE     2309 /* 0x905: set = MAX SALE ON */
+#define FLAG_GMS_PORYGIFT     2310 /* 0x906: set = PORYGIFT ON (commonscript 2081 reads it via the ROM script, no Commit side effect) */
 
 #endif // GAME_MODE_SELECT_H

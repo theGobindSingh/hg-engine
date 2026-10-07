@@ -95,6 +95,7 @@ scrdef scr_seq_0003_077_mr_paint_flash
 scrdef scr_seq_0003_078_mr_paint_sweet_scent
 scrdef scr_seq_0003_079_mr_paint_fly
 scrdef scr_seq_0003_080_all_key_items
+scrdef scr_seq_0003_081_porygift
 scrdef_end
 
 scr_seq_0003_002:
@@ -2464,6 +2465,19 @@ scr_seq_0003_080_all_key_items:
     npc_msg 177
     wait_fanfare
     wait_button_or_walk_away
+    endstd
+    end
+
+scr_seq_0003_081_porygift:
+    porygift VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 0
+    goto_if_eq scr_seq_0003_081_done
+    buffer_players_name 0
+    play_fanfare SEQ_ME_POKEGET
+    npc_msg 184
+    wait_fanfare
+    wait_button_or_walk_away
+scr_seq_0003_081_done:
     endstd
     end
 

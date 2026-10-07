@@ -15,6 +15,7 @@ enum GameRuleId {
     RULE_ALL_KEY_ITEMS,
     RULE_MAX_CASH,
     RULE_MAX_SALE,
+    RULE_PORYGIFT,
     RULE_COUNT
 };
 
@@ -92,5 +93,10 @@ struct PlayerProfile;
 u32 LONG_CALL PlayerProfile_GetMoney(struct PlayerProfile *profile);
 void LONG_CALL PlayerProfile_SetMoney(struct PlayerProfile *profile, u32 money);
 void LONG_CALL PlayerProfile_AddMoney(struct PlayerProfile *profile, u32 amount);
+
+/* PORYGIFT (src/porygift.c, ov129): builds and adds a Lv. 100 Porygon to the party; FALSE when the party is full. */
+struct FieldSystem;
+typedef struct FieldSystem FieldSystem;
+BOOL LONG_CALL Porygift_Give(FieldSystem *fsys, void *saveData, int heapId);
 
 #endif // GAME_RULES_H

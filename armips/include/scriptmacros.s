@@ -6808,6 +6808,8 @@ FORM_ROCKET_DISGUISE                    equ 1024
 // Mr. Paint (0.4.41 inspiration choreography) - see mr_paint_follower_live / mr_paint_inspire_deploy below.
 .equ NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, 15
 .equ NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, 16
+// PORYGIFT debug rule: resultVar <- 1 Porygon added, 0 party full (Porygift_Give, src/porygift.c).
+.equ NEW_COMMAND_PORYGIFT, 17
 
 .macro RunNewCommand,slot,unk
 DummyTextTrap slot, unk
@@ -6928,6 +6930,11 @@ RunNewCommand NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE, resultVar
 // 1 live follower / 2 not live.
 .macro mr_paint_inspire_deploy,resultVar
 RunNewCommand NEW_COMMAND_MR_PAINT_INSPIRE_DEPLOY, resultVar
+.endmacro
+
+// PORYGIFT: resultVar <- 1 if a Lv. 100 Porygon was added to the party, 0 if the party is full.
+.macro porygift,resultVar
+RunNewCommand NEW_COMMAND_PORYGIFT, resultVar
 .endmacro
 
 // Dummy

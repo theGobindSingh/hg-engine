@@ -180,3 +180,6 @@ MAX CASH
 Grants max starting cash.
 MAX SALE
 Selling any item refills\nyour wallet.
+PORYGIFT
+Elm’s aide gives you a\nLv. 100 Porygon.
+{STRVAR_1 3, 0, 0} received a Porygon!

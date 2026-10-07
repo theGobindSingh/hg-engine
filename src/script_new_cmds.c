@@ -1,9 +1,11 @@
 #include "../include/config.h"
 #include "../include/constants/file.h"
+#include "../include/game_rules.h"
 #include "../include/item.h"
 #include "../include/mr_paint.h"
 #include "../include/repel.h"
 #include "../include/roamer.h"
+#include "../include/save.h"
 #include "../include/script.h"
 #include "../include/types.h"
 
@@ -85,6 +87,9 @@
 // Must match NEW_COMMAND_MR_PAINT_FOLLOWER_LIVE / _INSPIRE_DEPLOY in armips/include/scriptmacros.s.
 #define SCRIPT_NEW_CMD_MR_PAINT_FOLLOWER_LIVE 15
 #define SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY 16
+// PORYGIFT debug rule: resultVar <- Porygift_Give (src/porygift.c, ov129): 1 Porygon added, 0 party full.
+// Must match NEW_COMMAND_PORYGIFT in armips/include/scriptmacros.s.
+#define SCRIPT_NEW_CMD_PORYGIFT 17
 
 #define SCRIPT_NEW_CMD_MAX 256
 
@@ -148,6 +153,10 @@ BOOL Script_RunNewCmd(SCRIPTCONTEXT *ctx)
 
     case SCRIPT_NEW_CMD_MR_PAINT_INSPIRE_DEPLOY:
         SetScriptVar(arg0, MrPaintInspireDeploy(ctx->fsys));
+        break;
+
+    case SCRIPT_NEW_CMD_PORYGIFT:
+        SetScriptVar(arg0, Porygift_Give(ctx->fsys, SaveBlock2_get(), HEAPID_MAIN_HEAP));
         break;
 
     case SCRIPT_NEW_CMD_MR_PAINT_RELEASE_AT_RECORDED_TILE:
