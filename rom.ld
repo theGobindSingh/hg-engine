@@ -552,6 +552,7 @@ sub_0206D038 = 0x0206D038 | 1;
 GetSpeciesNameIntoArray = 0x0200BC28 | 1;
 PlayCry = 0x02006218 | 1;
 PlaySE = 0x0200604C | 1;
+TextPrinter_ContinueInputNew = 0x02002220 | 1;
 
 weatherSysObjFadeInit = 0x021EC504 | 1;
 weatherSysFogFadeInInitPack = 0x021EC5FC | 1;

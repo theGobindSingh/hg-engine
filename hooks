@@ -728,3 +728,11 @@ arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 # MAX SALE debug rule (0.5.10): the one `bl AddMoney` (0x02029044) in the Bag overlay (ov15), the Poke Mart sale credit,
 # is retargeted to a wrapper. 4th column `bl` = overwrite that single Thumb bl.
 0015 MaxSale_AddMoney 021FD27C bl
+
+# AUTO-DIALOGUE (james-game 0.5.13). Script waits: handlers of opcodes 49/50/51/348, register 1 (single pointer arg, r1 free).
+arm9 ScrCmd_WaitABPress 02040FF0 1
+arm9 ScrCmd_WaitButton 02041064 1
+arm9 ScrCmd_WaitButtonOrDpad 020410E0 1
+arm9 ScrCmd_WaitButtonOrDelay 02041018 1
+# Page-break wait of the text printer (leaf function, one argument, r1 free).
+arm9 TextPrinter_Continue 02002A84 1
