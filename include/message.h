@@ -69,6 +69,7 @@ void LONG_CALL BufferItemNameWithIndefArticle(MessageFormat *msgFmt, u32 fieldno
 void LONG_CALL BufferItemNamePlural(MessageFormat *msgFmt, u32 fieldno, u32 itemId);
 void LONG_CALL BufferItemNameGiveItem(MessageFormat *msgFmt, u32 fieldno, u32 itemId);
 u8 LONG_CALL AddTextPrinterParameterizedWithColor(void *window, u8 fontId, String *string, u32 x, u32 y, u32 textSpeed, u32 color, void *callback);
+u8 LONG_CALL AddTextPrinterParameterizedWithColorAndSpacing(void *window, u8 fontId, String *string, u32 x, u32 y, u32 textSpeed, u32 color, u32 letterSpacing, u32 lineSpacing, void *callback);
 String *LONG_CALL NewString_ReadMsgData(MsgData *msgData, s32 strno);
 
 #endif // POKEHEARTGOLD_MSGDATA_H

@@ -46,6 +46,9 @@
 #define GMS_MSG_DESC_LOCK_SET_MODE 190
 #define GMS_MSG_NO_BAG_ITEMS 191
 #define GMS_MSG_DESC_NO_BAG_ITEMS 192
+#define GMS_MSG_NO_DUPLICATE_ITEMS 193
+#define GMS_MSG_DESC_NO_DUPLICATE_ITEMS 194
+#define GMS_MSG_NO_DUPLICATE_ITEMS_REFUSAL 195
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
@@ -63,5 +66,6 @@
 #define FLAG_GMS_AUTO_DIALOGUE 2312 /* 0x908: set = AUTO-DIALOGUE ON (read by src/auto_dialogue_text.c and src/field/auto_dialogue.c, no Commit side effect) */
 #define FLAG_GMS_LOCK_SET_MODE 2313 /* 0x909: set = LOCK SET MODE ON (Battle Style forced to Set; src/lock_set_mode.c, GameRules_Commit writes the option) */
 #define FLAG_GMS_NO_BAG_ITEMS 2314 /* 0x90A: set = NO BAG ITEMS ON (read by src/battle/battle_controller_player.c overrideItemUsage, no Commit side effect) */
+#define FLAG_GMS_NO_DUPLICATE_ITEMS 2315 /* 0x90B: set = NO DUPLICATE ITEMS ON (read by src/field/no_duplicate_items.c: give refusal in the party menu, dedupe after battle) */
 
 #endif // GAME_MODE_SELECT_H

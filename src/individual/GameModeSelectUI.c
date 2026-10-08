@@ -194,6 +194,7 @@ static const struct GmsOam sFootOam[4][4] = {
 #define OPT_CANVAS_W         13
 #define OPT_LABEL_COL        1
 #define OPT_LABEL_W          13
+#define GMS_LABEL_FIT_PX     92 /* widest label printed at normal spacing: window 104 px minus the 4 px text offset, minus a gap before ON */
 #define OPT_VALUE_COL        14 /* value text window: tile columns 14 .. 24 */
 #define OPT_VALUE_W          11
 #define OPT_FOOT_ROW         21
@@ -495,7 +496,12 @@ static void GmsPrint(struct GmsCtx *c, struct OakSpeechDataView *d, struct Windo
     if (span != 0) {
         x += FontID_String_GetCenterAlignmentX(font, s, 0, span);
     }
-    AddTextPrinterParameterizedWithColor(w, font, s, x, y, GMS_TEXT_SPEED_INSTANT, color, NULL);
+    /* A left-aligned label wider than the label window allows (e.g. NO DUPLICATE ITEMS) is tightened by 1 px per glyph. */
+    if (span == 0 && 256 - 2 * FontID_String_GetCenterAlignmentX(font, s, 0, 256) > GMS_LABEL_FIT_PX) {
+        AddTextPrinterParameterizedWithColorAndSpacing(w, font, s, x, y, GMS_TEXT_SPEED_INSTANT, color, (u32)-1, 0, NULL);
+    } else {
+        AddTextPrinterParameterizedWithColor(w, font, s, x, y, GMS_TEXT_SPEED_INSTANT, color, NULL);
+    }
     String_Delete(s);
 }
 

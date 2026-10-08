@@ -1063,14 +1063,14 @@ void BattleEndRevertFormChange(struct BattleSystem *bw)
     }
 
     // add the items that the mons have stolen to the bag
-    for (i = 0; i < BattleWorkPokeCountGet(bw, 0); i++) {
+    for (i = 0; i < newBS.itemsToRestoreCount; i++) {
         u32 battleItem = newItems[i];
         u32 originalQuantity = 0;
         u32 newQuantity = 0;
 
         // count up both old and new quantities of an item
         if (battleItem) {
-            for (j = 0; j < BattleWorkPokeCountGet(bw, 0); j++) {
+            for (j = 0; j < newBS.itemsToRestoreCount; j++) {
                 if (battleItem == newItems[j]) {
                     // current item is identical to an item that we've previously handled, move to the next one
                     if (i > j) {
@@ -1080,7 +1080,7 @@ void BattleEndRevertFormChange(struct BattleSystem *bw)
                     }
                 }
             }
-            for (j = 0; j < BattleWorkPokeCountGet(bw, 0); j++) {
+            for (j = 0; j < newBS.itemsToRestoreCount; j++) {
                 if (battleItem == newBS.itemsToRestore[j]) {
                     originalQuantity++;
                 }
@@ -1096,7 +1096,7 @@ void BattleEndRevertFormChange(struct BattleSystem *bw)
     }
 
     // restore items regardless of if it's a trainer battle--this will also overwrite items gained from trainers
-    for (i = 0; i < BattleWorkPokeCountGet(bw, 0); i++) {
+    for (i = 0; i < newBS.itemsToRestoreCount; i++) {
         u32 battleItem = newBS.itemsToRestore[i];
         pp = BattleWorkPokemonParamGet(bw, 0, i);
         if (!IS_ITEM_BERRY(newBS.itemsToRestore[i])) {
@@ -1105,7 +1105,7 @@ void BattleEndRevertFormChange(struct BattleSystem *bw)
     }
 
     // set to zero after the items have already been restored to maybe prevent observed byte loss
-    for (i = 0; i < BattleWorkPokeCountGet(bw, 0); i++) {
+    for (i = 0; i < newBS.itemsToRestoreCount; i++) {
         newBS.itemsToRestore[i] = 0;
     }
 #endif // RESTORE_ITEMS_AT_BATTLE_END

@@ -743,3 +743,9 @@ arm9 LockSetMode_GetBattleStyle 0202AD90 3
 0054 LockSetMode_UpMod 021E66F0 bl
 0054 LockSetMode_DownMod 021E6726 bl
 0054 LockSetMode_TouchHit 021E682C bl
+
+# NO DUPLICATE ITEMS (james-game 0.6.3). Both callers of PartyMenu_Subtask_GiveItemToMon (arm9 0x0207C400): Bag GIVE and party ITEM > GIVE.
+arm9 NoDuplicateItems_GiveItemToMon 02079120 bl
+arm9 NoDuplicateItems_GiveItemToMon 0207941C bl
+# sub_02050724 (battle-end save sync wrapper, 18 bytes) is replaced wholesale: register-2 tail jump.
+arm9 NoDuplicateItems_BattleEnd 02050724 2

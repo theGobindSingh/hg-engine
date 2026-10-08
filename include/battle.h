@@ -1343,6 +1343,7 @@ struct PACKED newBattleStruct {
 
 #ifdef RESTORE_ITEMS_AT_BATTLE_END
     u16 itemsToRestore[6]; // items that each mon was holding at the beginning of the battle
+    u8 itemsToRestoreCount; // party size at battle start; slots at or above it (mons caught mid-battle) are never touched
 #endif // RESTORE_ITEMS_AT_BATTLE_END
 };
 

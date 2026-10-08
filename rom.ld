@@ -948,6 +948,7 @@ GetMoveMaxPP = 0x0207332C | 1;
 ApplyMonMoodModifier = 0x02097F0C | 1;
 PartyMenu_GetCurrentMapSec = 0x020828EC | 1;
 AddTextPrinterParameterizedWithColor = 0x020200FC | 1;
+AddTextPrinterParameterizedWithColorAndSpacing = 0x02020150 | 1;
 PrintItemSlotQuantity = 0x021FF66C | 1;
 
 PlayerProfile_TestBadgeFlag = 0x02028F98 | 1;
@@ -1116,3 +1117,6 @@ ReadMsgData_ExistingNarc_ExistingString = 0x0200B8FC | 1;
 ReadMsgData_ExistingTable_NewString = 0x0200B810 | 1;
 ReadMsgData_ExistingNarc_NewString = 0x0200B9F8 | 1;
 TouchscreenHitbox_FindRectAtTouchNew = 0x02025224 | 1;
+/* james-game 0.6.3 NO DUPLICATE ITEMS: retail party-menu give routine (pret src/party_menu.c:2456) and the post-battle save sync */
+PartyMenu_Subtask_GiveItemToMon = 0x0207C400 | 1;
+sub_0205239C = 0x0205239C | 1;

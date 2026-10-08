@@ -191,3 +191,6 @@ LOCK SET MODE
 Locks Pokémon battles into Set Mode.
 NO BAG ITEMS
 Bag Items can’t be used\nin trainer battles.
+NO DUPLICATE ITEMS
+Pokémon in your party cannot\nhold the same item.
+Another Pokémon is already\nholding that item!\r

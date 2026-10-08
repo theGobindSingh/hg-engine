@@ -49,6 +49,7 @@ struct BattleStruct *ServerInit(struct BattleSystem *bw)
 
     // store items for the player's party in sp so we can restore them at the end
     struct Party *party = SaveData_GetPlayerPartyPtr(SaveBlock2_get());
+    newBS.itemsToRestoreCount = party->count;
     for (int i = 0; i < party->count; i++) {
         newBS.itemsToRestore[i] = GetMonData(Party_GetMonByIndex(party, i), MON_DATA_HELD_ITEM, NULL);
     }
