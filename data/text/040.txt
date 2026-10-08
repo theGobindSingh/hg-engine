@@ -189,3 +189,5 @@ AUTO-DIALOGUE
 TL;DR
 LOCK SET MODE
 Locks Pokémon battles into Set Mode.
+NO BAG ITEMS
+Bag Items can’t be used\nin trainer battles.

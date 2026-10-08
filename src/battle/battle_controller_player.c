@@ -10,31 +10,37 @@
 #include "constants/move_effects.h"
 
 #include "battle.h"
+#include "game_rules.h"
 
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
 
-#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
+/* NO BAG ITEMS (RULE_NO_BAG_ITEMS, flag 2314): Bag Items are refused in trainer battles. DISABLE_ITEMS_IN_TRAINER_BATTLE forces it on. */
 void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
     BattleMessage msg;
     int battlerId;
-    u32 fight_type = BattleTypeGet(bsys);
+
+    if (!(BattleTypeGet(bsys) & BATTLE_TYPE_TRAINER)) {
+        return;
+    }
+#if !defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
+    if (!GameRule_IsEnabled(RULE_NO_BAG_ITEMS)) {
+        return;
+    }
+#endif
 
     for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
         if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_ITEM_INPUT && ctx->com_seq_no[battlerId] == SSI_STATE_7) {
-            if (fight_type & BATTLE_TYPE_TRAINER) {
-                msg.id = BATTLE_MSG_ITEMS_CANT_BE_USED_HERE; // msg.id  = msg_0197_00593; // Items can't be used here
-                msg.tag = TAG_NONE;
-                ov12_022639B8(bsys, battlerId, msg);
-                ctx->com_seq_no[battlerId] = SSI_STATE_15;
-                ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
-            }
+            msg.id = BATTLE_MSG_ITEMS_CANT_BE_USED_HERE; // msg_0197_00593: Items can't be used here
+            msg.tag = TAG_NONE;
+            ov12_022639B8(bsys, battlerId, msg);
+            ctx->com_seq_no[battlerId] = SSI_STATE_15;
+            ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
         }
     }
 }
-#endif
 
 void overrideRunButton(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
@@ -109,9 +115,7 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
 #ifdef DEBUG_BATTLE_SCENARIOS
     TestBattle_autoSelectPlayerMoves(bsys, ctx);
 #endif
-#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
     overrideItemUsage(bsys, ctx);
-#endif
     overrideRunButton(bsys, ctx);
 
     if (ctx->server_seq_no == CONTROLLER_COMMAND_45) {

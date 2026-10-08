@@ -44,6 +44,8 @@
 #define GMS_MSG_DESC_AUTO_DIALOGUE 188
 #define GMS_MSG_LOCK_SET_MODE 189
 #define GMS_MSG_DESC_LOCK_SET_MODE 190
+#define GMS_MSG_NO_BAG_ITEMS 191
+#define GMS_MSG_DESC_NO_BAG_ITEMS 192
 
 /* Script flags holding the chosen game mode (unused by retail and by every other feature of this project). */
 #define FLAG_GMS_LEVEL_CAPS_OFF 2300 /* 0x8FC: set = level caps disabled */
@@ -60,5 +62,6 @@
 #define FLAG_GMS_AUTO_BATTLE  2311 /* 0x907: set = AUTO BATTLE ON (read in battle by src/battle/auto_battle.c, no Commit side effect) */
 #define FLAG_GMS_AUTO_DIALOGUE 2312 /* 0x908: set = AUTO-DIALOGUE ON (read by src/auto_dialogue_text.c and src/field/auto_dialogue.c, no Commit side effect) */
 #define FLAG_GMS_LOCK_SET_MODE 2313 /* 0x909: set = LOCK SET MODE ON (Battle Style forced to Set; src/lock_set_mode.c, GameRules_Commit writes the option) */
+#define FLAG_GMS_NO_BAG_ITEMS 2314 /* 0x90A: set = NO BAG ITEMS ON (read by src/battle/battle_controller_player.c overrideItemUsage, no Commit side effect) */
 
 #endif // GAME_MODE_SELECT_H
