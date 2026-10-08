@@ -187,3 +187,5 @@ AUTO BATTLE
 Enables AI auto-battling with\ntrainers for passive testing.
 AUTO-DIALOGUE
 TL;DR
+LOCK SET MODE
+Locks Pokémon battles into Set Mode.

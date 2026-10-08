@@ -1115,3 +1115,4 @@ ReadMsgData_ExistingTable_ExistingString = 0x0200B760 | 1;
 ReadMsgData_ExistingNarc_ExistingString = 0x0200B8FC | 1;
 ReadMsgData_ExistingTable_NewString = 0x0200B810 | 1;
 ReadMsgData_ExistingNarc_NewString = 0x0200B9F8 | 1;
+TouchscreenHitbox_FindRectAtTouchNew = 0x02025224 | 1;

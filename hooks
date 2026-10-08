@@ -736,3 +736,10 @@ arm9 ScrCmd_WaitButtonOrDpad 020410E0 1
 arm9 ScrCmd_WaitButtonOrDelay 02041018 1
 # Page-break wait of the text printer (leaf function, one argument, r1 free).
 arm9 TextPrinter_Continue 02002A84 1
+
+# LOCK SET MODE (james-game 0.6.1). Options_GetBattleStyle (8-byte leaf): register-3 tail jump.
+arm9 LockSetMode_GetBattleStyle 0202AD90 3
+# Options screen (overlay 54, needs decompressing): the two row-selection `blx 0x020F2BA4` divmods (Up/Down) and the touch hit test.
+0054 LockSetMode_UpMod 021E66F0 bl
+0054 LockSetMode_DownMod 021E6726 bl
+0054 LockSetMode_TouchHit 021E682C bl

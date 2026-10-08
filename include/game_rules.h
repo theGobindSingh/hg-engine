@@ -18,6 +18,7 @@ enum GameRuleId {
     RULE_PORYGIFT,
     RULE_AUTO_BATTLE,
     RULE_AUTO_DIALOGUE,
+    RULE_LOCK_SET_MODE,
     RULE_COUNT
 };
 
